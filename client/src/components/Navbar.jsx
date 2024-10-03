@@ -40,7 +40,7 @@ export default function Navbar() {
             <span className="sr-only">LegalizeMe</span>
             <img
               alt="Your Company Logo"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              src="./vite.svg"
               className="h-8 w-auto"
             />
             <h3 className="ml-3 text-md font-bold text-gray-900">LegalizeMe</h3>
