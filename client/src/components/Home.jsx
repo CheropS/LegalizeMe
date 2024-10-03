@@ -78,7 +78,7 @@ export default function Home() {
                     </div>
                 </motion.div>
 
-                <hr className="mx-auto max-w-7xl border-t border-gray-200" />
+                <hr className="mx-auto max-w-7xl border-t border-gray-300" />
 
                 {/* Features Section */}
                 <div className="bg-white py-24 sm:py-32">
@@ -126,38 +126,7 @@ export default function Home() {
 
                 <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
-                {/* Third Section: Partners */}
-                <div className="bg-white py-24 sm:py-32">
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <motion.h2
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
-                            className="text-center text-lg font-semibold leading-8 text-gray-900"
-                        >
-                            Trusted by legal professionals worldwide
-                        </motion.h2>
-                        <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-                            {['Transistor', 'Reform', 'Tuple', 'SavvyCal', 'Statamic'].map((company, index) => (
-                                <motion.img
-                                    key={index}
-                                    alt={company}
-                                    src={`https://tailwindui.com/plus/img/logos/158x48/${company.toLowerCase()}-logo-gray-900.svg`}
-                                    width={158}
-                                    height={48}
-                                    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                <hr className="mx-auto max-w-7xl border-t border-gray-200" />
-
-                {/* Fourth Section: Work with Us */}
+                {/* Third Section: Work with Us */}
                 <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-10">
                     <img
                         alt=""
@@ -231,6 +200,40 @@ export default function Home() {
                         </motion.div>
                     </div>
                 </div>
+                <hr className="mx-auto max-w-7xl border-t border-gray-200" />
+
+                {/* Third Section: Partners */}
+                <div className="bg-white py-24 sm:py-32">
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                        <motion.h2
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                            className="text-center text-lg font-semibold leading-8 text-gray-900"
+                        >
+                            Trusted by legal professionals worldwide
+                        </motion.h2>
+                        <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                            {['Transistor', 'Reform', 'Tuple', 'SavvyCal', 'Statamic'].map((company, index) => (
+                                <motion.img
+                                    key={index}
+                                    alt={company}
+                                    src={`https://tailwindui.com/plus/img/logos/158x48/${company.toLowerCase()}-logo-gray-900.svg`}
+                                    width={158}
+                                    height={48}
+                                    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                <hr className="mx-auto max-w-7xl border-t border-gray-200" />
+
+                
             </main>
         </div>
     );

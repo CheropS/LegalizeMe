@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import Footer from './components/Footer';
 // import Signup from './components/Signup';
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
         {/*<Route path="/about" element={<About />} />
         <Route path='/signup' element={<Signup />} />*/}
       </Routes>
+      <Footer />
     </Router>
   );
 }
