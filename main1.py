@@ -29,7 +29,7 @@ def fetch_case_data(case_number):
         docket_no = soup.find("div", class_="akn-div docket-number")
         judges = soup.find("div", class_="akn-div judges")
         date = soup.find("div", class_="akn-div doc-date")
-        type_of_court = soup.find("div", class_="akn-div type_of_court")
+        #type_of_court = soup.find("div", class_="akn-div type_of_court")
         
         # Cleaning the data (e.g., removing extra whitespace)
         case_data = {
@@ -38,8 +38,8 @@ def fetch_case_data(case_number):
             "Title": title.get_text(strip=True) if title else "N/A",
             "Docket_No": docket_no.get_text(strip=True) if docket_no else "N/A",
             "Judges": judges.get_text(strip=True) if judges else "N/A",
-            "Date": date.get_text(strip=True) if date else "N/A",
-            "type_of_court":type_of_court.get_text(strip=True) if type_of_court else "N/A"
+            "Date": date.get_text(strip=True) if date else "N/A"
+            #"type_of_court":type_of_court.get_text(strip=True) if type_of_court else "N/A"
         }
         
         return case_data
