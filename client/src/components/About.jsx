@@ -12,29 +12,31 @@ const AboutUs = () => {
     return (
         <div>
             {/* Banner Image */}
-            <div className="relative h-[400px]">
+            <div className="relative h-[300px] sm:h-[400px] md:h-[500px]">
                 <img
                     src={bannerImage}
                     alt="Banner"
                     className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <h1 className="text-white text-5xl font-bold animate-fadeIn">About LegalizeMe</h1>
+                    <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold animate-fadeIn">
+                        About LegalizeMe
+                    </h1>
                 </div>
             </div>
 
             {/* Header */}
-            <div className="bg-white py-12 animate-slideIn">
+            <div className="bg-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8 animate-slideIn">
                 <div className="text-center">
-                    <h1 className="text-4xl font-bold text-gray-900">About Us</h1>
-                    <p className="mt-4 text-lg text-gray-600">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">About Us</h1>
+                    <p className="mt-4 text-base sm:text-lg text-gray-600">
                         LegalizeMe is a global leader in customer support and service excellence. We are committed to providing top-notch services to our clients worldwide.
                     </p>
                 </div>
             </div>
 
             {/* Accordion Section */}
-            <div className="bg-white py-12 animate-fadeInUp">
+            <div className="bg-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8 animate-fadeInUp">
                 <div className="lg:w-1/2 w-full mx-auto">
                     <div id="accordion-flush" className="space-y-5">
                         {/* Mission */}
@@ -56,13 +58,13 @@ const AboutUs = () => {
             </div>
 
             {/* Stats Section */}
-            <div className="bg-gray-50 py-16 animate-fadeInUp delay-100">
-                <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                    <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+            <div className="bg-gray-50 py-12 sm:py-16 animate-fadeInUp delay-100">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <dl className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 text-center">
                         {stats.map((stat) => (
                             <div key={stat.id} className="mx-auto flex max-w-xs flex-col gap-y-4">
                                 <dt className="text-base leading-7 text-gray-600">{stat.name}</dt>
-                                <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                                <dd className="order-first text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
                                     {stat.value}
                                 </dd>
                             </div>
