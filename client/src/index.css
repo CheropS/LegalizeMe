@@ -3,3 +3,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1.8s ease-in-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 1.0s ease-out;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1.5s ease-out;
+}
+
+.animate-accordionFade {
+  animation: fadeInUp 1.5s ease-in-out;
+}

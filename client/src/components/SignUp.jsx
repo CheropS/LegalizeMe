@@ -63,7 +63,7 @@
 // export default Signup;
 
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '@tailwindcss/forms';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 

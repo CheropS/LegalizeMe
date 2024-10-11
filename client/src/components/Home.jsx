@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react';
 import { CloudArrowUpIcon, LockClosedIcon, ArrowPathIcon, FingerPrintIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 

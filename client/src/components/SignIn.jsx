@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'; // Heroicons v2 uses /24/outline
 import '@tailwindcss/forms';
 
@@ -96,7 +96,7 @@ export default function SignIn() {
             </form>
 
             <p className="mt-6 text-center text-sm text-gray-600">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <a
                 href="/signup"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
