@@ -11,7 +11,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
-  const [isAuthenticated, setIsAuthenticated] = useState(false) // User authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const navigation = [
     { name: 'About Us', href: '/about' },
@@ -121,10 +121,10 @@ export default function Navbar() {
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="/" className="-m-1.5 p-1.5 flex items-center">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only">LegalizeMe</span>
               <img
                 alt="Your Company Logo"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                src="./vite.svg"
                 className="h-8 w-auto"
               />
               <h3 className="ml-3 text-md font-bold text-gray-900">LegalizeMe</h3>
