@@ -9,6 +9,19 @@ import AboutUs from './components/About';
 import Pricing from './components/Pricing';
 
 const App = () => {
+  const flow = {
+    start: {
+      message: 'Hello, how can I help you today?',
+      reactions: {
+        'I need help': 'help',
+        'I want to know more about your services': 'services info',
+        'I want to know more about your pricing': 'pricing info',
+        'I want to know more about your company': 'company info',
+        'I want to talk to a human': 'human',
+      },
+    }
+  }
+
   return (
     <Router>
       <Navbar />
@@ -31,7 +44,7 @@ const App = () => {
 
           {/* ChatBot container, hidden by default, shown on hover */}
           <div className="absolute bottom-16 right-0 hidden group-hover:block bg-white border border-gray-300 rounded-lg shadow-lg w-72 md:w-80 lg:w-96 p-4 max-h-[400px] md:max-h-[500px] lg:max-h-[600px] overflow-y-auto">
-            <ChatBot />
+            <ChatBot flow={flow}/>
           </div>
         </div>
       </div>
