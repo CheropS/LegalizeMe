@@ -40,7 +40,7 @@ export default function Navbar() {
             <span className="sr-only">LegalizeMe</span>
             <img
               alt="Your Company Logo"
-              src="./vite.svg"
+              src="./logo.jpg"
               className="h-8 w-auto"
             />
             <h3 className="ml-3 text-md font-bold text-gray-900">LegalizeMe</h3>
@@ -124,7 +124,7 @@ export default function Navbar() {
               <span className="sr-only">LegalizeMe</span>
               <img
                 alt="Your Company Logo"
-                src="./vite.svg"
+                src="./logo.jpg"
                 className="h-8 w-auto"
               />
               <h3 className="ml-3 text-md font-bold text-gray-900">LegalizeMe</h3>
