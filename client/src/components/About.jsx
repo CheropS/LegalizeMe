@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import bannerImage from '/about.jpg';
+import Blog from './Blog';
 
 const AboutUs = () => {
     const stats = [
@@ -11,29 +11,19 @@ const AboutUs = () => {
 
     return (
         <div>
-            {/* Banner Image */}
-            <div className="relative h-[300px] sm:h-[400px] md:h-[500px]">
-                <img
-                    src={bannerImage}
-                    alt="Banner"
-                    className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold animate-fadeIn">
-                        About LegalizeMe
-                    </h1>
+            {/* Page Title */}
+            <section className="bg-white py-[70px] dark:bg-dark text-center">
+                <div className="mx-auto px-4 sm:container">
+                    <div className="border-b border-stroke dark:border-dark-3">
+                        <h2 className="mb-2 text-4xl font-semibold text-dark dark:text-black animate-fadeIn">
+                            About LegalizeMe
+                        </h2>
+                        <p className="mb-2 text-md text-body-color dark:text-dark-6 animate-fadeIn">
+                            Get to know more about LegalizeMe. LegalizeMe is a global leader in customer support and service excellence. We are committed to providing top-notch services to our clients worldwide.
+                        </p>
+                    </div>
                 </div>
-            </div>
-
-            {/* Header */}
-            <div className="bg-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8 animate-slideIn">
-                <div className="text-center">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">About Us</h1>
-                    <p className="mt-4 text-base sm:text-lg text-gray-600">
-                        LegalizeMe is a global leader in customer support and service excellence. We are committed to providing top-notch services to our clients worldwide.
-                    </p>
-                </div>
-            </div>
+            </section>
 
             {/* Accordion Section */}
             <div className="bg-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8 animate-fadeInUp">

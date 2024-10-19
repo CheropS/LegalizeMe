@@ -2,6 +2,9 @@
 
 import { CloudArrowUpIcon, LockClosedIcon, ArrowPathIcon, FingerPrintIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
+import Brief from './Brief';
+import Cta from './CTA';
+import Services from './Services';
 
 const features = [
     {
@@ -31,10 +34,9 @@ const features = [
 ];
 
 const links = [
-    { name: 'Open roles', href: '/about' },
     { name: 'About Us', href: '/about' },
-    { name: 'Our values', href: '/about' },
-    { name: 'Meet the team', href: '/about' },
+    { name: 'Contact Us', href: '/contact' },
+    { name: 'View pricing', href: '/pricing' },
 ];
 
 const stats = [
@@ -78,6 +80,11 @@ export default function Home() {
                 </motion.div>
 
                 <hr className="mx-auto max-w-7xl border-t border-gray-300" />
+
+                {/* Brief intro */}
+                <Brief />
+
+                <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
                 {/* Features Section */}
                 <div className="bg-white py-24 sm:py-32">
@@ -232,6 +239,13 @@ export default function Home() {
 
                 <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
+                {/* CTA */}
+                <Cta />
+                <hr className="mx-auto max-w-7xl border-t border-gray-200" />
+
+                {/* Services Section */}
+                <Services />
+                <hr  className="mx-auto max-w-7xl border-t border-gray-200" />
                 
             </main>
         </div>
