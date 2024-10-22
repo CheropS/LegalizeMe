@@ -612,17 +612,18 @@ const Brief = () => {
                                     Why Choose Us
                                 </span>
                                 <h2 className="mb-5 text-3xl font-bold text-dark dark:text-black sm:text-[40px]/[48px] animate-fadeIn">
-                                    Make your customers happy by giving services.
+                                    The Future of Law Today
                                 </h2>
                                 <p className="mb-5 text-base text-body-color dark:text-dark-6 animate-fadeIn">
-                                    It is a long established fact that a reader will be distracted
-                                    by the readable content of a page when looking at its layout.
-                                    The point of using Lorem Ipsum is that it has a more-or-less.
+                                    Embrace the future of law - transform your legal experience
+                                    with our AI-powered solutions. Be part of the revolution and
+                                    unlock effortless access to justice with LegalizeMe.
                                 </p>
                                 <p className="mb-8 text-base text-body-color dark:text-dark-6 animate-fadeIn">
-                                    A domain name is one of the first steps to establishing your
-                                    brand. Secure a consistent brand image with a domain name that
-                                    matches your business.
+                                    Our platform is designed to provide you with the best legal
+                                    experience possible. We are committed to making the law
+                                    accessible to everyone, everywhere. LegalizeMe is the future
+                                    of law, today.
                                 </p>
                                 <a
                                     href="/cases"

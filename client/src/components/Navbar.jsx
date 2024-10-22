@@ -1,11 +1,7 @@
-'use client'
+'use client'; // This enables client-side rendering for the Navbar component
 
 import { useState } from 'react'
-import {
-  Dialog,
-  DialogPanel,
-  PopoverGroup,
-} from '@headlessui/react'
+import { Dialog, DialogPanel, PopoverGroup } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function Navbar() {
@@ -28,12 +24,12 @@ export default function Navbar() {
   }
 
   const handleLogout = () => {
-    setIsAuthenticated(false) // Logout logic
+    setIsAuthenticated(false)
     console.log('User logged out')
   }
 
   return (
-    <header className="bg-white">
+    <header className="bg-white animate-fadeIn">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1 items-center">
           <a href="/" className="-m-1.5 p-1.5 flex items-center">

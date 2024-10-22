@@ -14,8 +14,7 @@ const Service = () => {
                 What We Offer
               </h2>
               <p className="text-base text-body-color dark:text-dark-6 animate-fadeIn">
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
+                Know more about our services and how we can help you. We offer a wide range of services to help you with your legal needs.
               </p>
             </div>
           </div>
@@ -23,8 +22,9 @@ const Service = () => {
 
         <div className="-mx-4 flex flex-wrap">
           <ServiceCard
-            title="Refreshing Design"
-            details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
+            title="AI Powered Database" 
+            details="Get to experience the best lightning-fast AI that helps you find the best law resources and services.
+            Say goodbye to research headaches and hello to effortless precision. Discover the future of legal work today."
             icon={
               <svg
                 width="36"
@@ -41,8 +41,8 @@ const Service = () => {
             }
           />
           <ServiceCard
-            title="Based on Tailwind CSS"
-            details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
+            title="User Friendly Interface"
+            details="Explore our user-friendly interface that makes it easy for you to find the best law resources and services. Our platform is designed to provide you with the best legal experience possible."
             icon={
               <svg
                 width="36"
@@ -61,8 +61,9 @@ const Service = () => {
             }
           />
           <ServiceCard
-            title="100+ Components"
-            details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
+            title="Interactive Chatbot"
+            details="Draft contracts, get legal answers, and generate documents in real-time-fast, precise, and effortless with our interactive chatbot.
+            Accessible anytime, anywhere. Simplify legal tasks with Counsel today!"
             icon={
               <svg
                 width="36"
@@ -90,7 +91,7 @@ const Service = () => {
               </svg>
             }
           />
-          <ServiceCard
+          {/* <ServiceCard
             title="Speed Optimized"
             details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
             icon={
@@ -151,7 +152,7 @@ const Service = () => {
                 />
               </svg>
             }
-          />
+          /> */}
         </div>
       </div>
     </section>

@@ -1,12 +1,11 @@
 import ChatBot from 'react-chatbotify';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
 import Home from './components/Home';
-import Footer from './components/Footer';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import AboutUs from './components/About';
 import Pricing from './components/Pricing';
+import Contact from './components/Contact';
 
 const App = () => {
   const flow = {
@@ -24,15 +23,14 @@ const App = () => {
 
   return (
     <Router>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/about' element={<AboutUs />} />
         <Route path='/pricing' element={<Pricing />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
-      <Footer />
 
       {/* Responsive ChatBot component */}
       <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 z-50">

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Blog from './Blog';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 const AboutUs = () => {
     const stats = [
@@ -11,16 +12,13 @@ const AboutUs = () => {
 
     return (
         <div>
+            <Navbar />
             {/* Page Title */}
             <section className="bg-white py-[70px] dark:bg-dark text-center">
                 <div className="mx-auto px-4 sm:container">
-                    <div className="border-b border-stroke dark:border-dark-3">
-                        <h2 className="mb-2 text-4xl font-semibold text-dark dark:text-black animate-fadeIn">
-                            About LegalizeMe
-                        </h2>
-                        <p className="mb-2 text-md text-body-color dark:text-dark-6 animate-fadeIn">
-                            Get to know more about LegalizeMe. LegalizeMe is a global leader in customer support and service excellence. We are committed to providing top-notch services to our clients worldwide.
-                        </p>
+                <div class="max-w-2xl mx-auto text-center">
+                        <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">About Us</h2>
+                        <p class="mt-3 text-xl leading-relaxed text-gray-600 md:mt-8">Get to know more about LegalizeMe. LegalizeMe is a global leader in customer support and service excellence. We are committed to providing top-notch services to our clients worldwide.</p>
                     </div>
                 </div>
             </section>
@@ -48,7 +46,7 @@ const AboutUs = () => {
             </div>
 
             {/* Stats Section */}
-            <div className="bg-gray-50 py-12 sm:py-16 animate-fadeInUp delay-100">
+            {/* <div className="bg-gray-50 py-12 sm:py-16 animate-fadeInUp delay-100">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <dl className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 text-center">
                         {stats.map((stat) => (
@@ -61,7 +59,43 @@ const AboutUs = () => {
                         ))}
                     </dl>
                 </div>
-            </div>
+            </div> */}
+
+            <section class="py-10 bg-gray-100 sm:py-16 lg:py-24">
+                <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
+                    <div class="max-w-2xl mx-auto text-center">
+                        <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Numbers tell our story</h2>
+                        <p class="mt-3 text-xl leading-relaxed text-gray-600 md:mt-8">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-8 mt-10 text-center lg:mt-24 sm:gap-x-8 md:grid-cols-3">
+                        <div>
+                            <h3 class="font-bold text-7xl">
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-blue-600"> 6+ </span>
+                            </h3>
+                            <p class="mt-4 text-xl font-medium text-gray-900">Years in business</p>
+                            <p class="text-base mt-0.5 text-gray-500">Creating the successful path</p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-7xl">
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-blue-600"> 4821 </span>
+                            </h3>
+                            <p class="mt-4 text-xl font-medium text-gray-900">Projects delivered</p>
+                            <p class="text-base mt-0.5 text-gray-500">In last 6 years</p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-7xl">
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-blue-600"> 37+ </span>
+                            </h3>
+                            <p class="mt-4 text-xl font-medium text-gray-900">Team members</p>
+                            <p class="text-base mt-0.5 text-gray-500">Working for your success</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <Footer />
         </div>
     );
 };
