@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import Blog from './Blog';
 
 const AboutUs = () => {
     const stats = [
@@ -14,9 +15,9 @@ const AboutUs = () => {
         <div>
             <Navbar />
             {/* Page Title */}
-            <section className="bg-white py-[70px] dark:bg-dark text-center">
+            <section className="bg-white py-[70px] dark:bg-dark text-center font-roboto">
                 <div className="mx-auto px-4 sm:container">
-                <div class="max-w-2xl mx-auto text-center">
+                    <div class="max-w-2xl mx-auto text-center">
                         <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">About Us</h2>
                         <p class="mt-3 text-xl leading-relaxed text-gray-600 md:mt-8">Get to know more about LegalizeMe. LegalizeMe is a global leader in customer support and service excellence. We are committed to providing top-notch services to our clients worldwide.</p>
                     </div>
@@ -24,7 +25,7 @@ const AboutUs = () => {
             </section>
 
             {/* Accordion Section */}
-            <div className="bg-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8 animate-fadeInUp">
+            <div className="bg-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8 animate-fadeInUp font-roboto">
                 <div className="lg:w-1/2 w-full mx-auto">
                     <div id="accordion-flush" className="space-y-5">
                         {/* Mission */}
@@ -45,23 +46,9 @@ const AboutUs = () => {
                 </div>
             </div>
 
-            {/* Stats Section */}
-            {/* <div className="bg-gray-50 py-12 sm:py-16 animate-fadeInUp delay-100">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <dl className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 text-center">
-                        {stats.map((stat) => (
-                            <div key={stat.id} className="mx-auto flex max-w-xs flex-col gap-y-4">
-                                <dt className="text-base leading-7 text-gray-600">{stat.name}</dt>
-                                <dd className="order-first text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
-                                    {stat.value}
-                                </dd>
-                            </div>
-                        ))}
-                    </dl>
-                </div>
-            </div> */}
+            <Blog />
 
-            <section class="py-10 bg-gray-100 sm:py-16 lg:py-24">
+            <section class="py-10 bg-gray-100 sm:py-16 lg:py-24 font-roboto">
                 <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
                     <div class="max-w-2xl mx-auto text-center">
                         <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Numbers tell our story</h2>
