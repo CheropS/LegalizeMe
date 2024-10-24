@@ -2,7 +2,7 @@ import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-white py-8">
+    <footer className="bg-slate-900 text-white py-8 font-roboto">
       <div className="container mx-auto px-6">
         {/* News Subscription */}
         <div className="flex flex-col md:flex-row md:justify-between items-center border-b border-gray-600 pb-6 mb-6">
@@ -25,7 +25,7 @@ const Footer = () => {
           {/* Logo and description */}
           <div>
             <div className="flex items-center mb-4">
-              <h2 className="text-xl font-bold">LegalizeMe</h2>
+              <a className="text-xl font-bold" href="/">LegalizeMe</a>
             </div>
             <p className="text-sm text-gray-400 mb-6">Bringing you the latest in tech and innovation. Join us on the journey.</p>
             {/* Social Icons */}

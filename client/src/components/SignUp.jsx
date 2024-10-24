@@ -101,12 +101,12 @@ export default function SignUp() {
 
   return (
     <>
-      <section class="bg-white">
+      <section class="bg-white font-roboto">
         <div class="grid grid-cols-1 lg:grid-cols-2">
           <div class="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
             <div class="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
-              <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl">Sign up to Celebration</h2>
-              <p class="mt-2 text-base text-gray-600">Already have an account? <a href="#" title="" class="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 hover:underline focus:text-blue-700">Login</a></p>
+              <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl">Sign up to LegalizeMe</h2>
+              <p class="mt-2 text-base text-gray-600">Already have an account? <a href="/login" title="" class="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 hover:underline focus:text-blue-700">Login</a></p>
 
               <form action="#" method="POST" class="mt-8">
                 <div class="space-y-5">
@@ -153,7 +153,7 @@ export default function SignUp() {
                     <input type="checkbox" name="agree" id="agree" class="w-5 h-5 text-blue-600 bg-white border-gray-200 rounded" />
 
                     <label for="agree" class="ml-3 text-sm font-medium text-gray-500">
-                      I agree to Postcraft’s <a href="#" title="" class="text-blue-600 hover:text-blue-700 hover:underline">Terms of Service</a> and <a href="#" title="" class="text-blue-600 hover:text-blue-700 hover:underline">Privacy Policy</a>
+                      I agree to LegalizeMe’s <a href="#" title="" class="text-blue-600 hover:text-blue-700 hover:underline">Terms of Service</a> and <a href="#" title="" class="text-blue-600 hover:text-blue-700 hover:underline">Privacy Policy</a>
                     </label>
                   </div>
 

@@ -52,44 +52,42 @@ const stats = [
 export default function Home() {
     return (
         <>
-            <div className="bg-white">
+            <div className="bg-white font-roboto">
                 <Navbar />
-                <main className="relative isolate px-6 pt-8 lg:px-8">
-                    {/* Hero Section */}
-                    <section className="py-10 sm:py-16 lg:py-24 animate-fadeIn">
-                        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                            <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
-                                <div>
-                                    <h1 className="text-4xl font-bold text-black sm:text-6xl lg:text-7xl">
-                                        Justice Delayed, is Justice Denied
-                                        <div className="relative inline-flex">
-                                            <span className="absolute inset-x-0 bottom-0 border-b-[30px] border-[#4ADE80]"></span>
-                                            <span className="relative text-4xl font-bold text-black sm:text-6xl lg:text-7xl">LegalizeMe</span>
-                                        </div>
-                                    </h1>
-
-                                    <p className="mt-8 text-base text-black sm:text-xl">
-                                        The future of law today. LegalizeMe is a platform that helps you find the best law resources and services. We are here to help you with your legal needs. We provide a platform for you to find the best legal resources and services.
-                                    </p>
-
-                                    <div className="mt-8 sm:flex sm:items-center sm:space-x-8">
-                                        <a href="/cases" className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-green-600 border-r-2" role="button">
-                                            Get Started
-                                        </a>
-
-                                        <a href="/about" className="text-sm font-semibold leading-6 text-gray-900 px-2">
-                                            Learn more <span aria-hidden="true">→</span>
-                                        </a>
+                <section className="py-10 sm:py-16 lg:py-24 animate-fadeIn bg-gradient-to-tr from-indigo-500 to-purple-300">
+                    <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
+                            <div>
+                                <h1 className="text-4xl font-bold font-roboto text-black sm:text-6xl lg:text-7xl">
+                                    Justice Delayed, is Justice Denied
+                                    <div className="relative inline-flex">
+                                        <span className="absolute inset-x-0 bottom-0 border-b-[30px] border-[#4ADE80]"></span>
+                                        <span className="relative text-4xl font-bold text-black sm:text-6xl lg:text-7xl">LegalizeMe</span>
                                     </div>
-                                </div>
+                                </h1>
 
-                                <div>
-                                    <img className="w-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/2/hero-img.png" alt="Hero" />
+                                <p className="mt-8 text-base text-black sm:text-xl">
+                                    The future of law today. LegalizeMe is a platform that helps you find the best law resources and services. We are here to help you with your legal needs. We provide a platform for you to find the best legal resources and services.
+                                </p>
+
+                                <div className="mt-8 sm:flex sm:items-center sm:space-x-8">
+                                    <a href="/cases" className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-green-600 border-r-2" role="button">
+                                        Start Free
+                                    </a>
+
+                                    <a href="/about" className="text-sm font-semibold leading-6 text-gray-900 px-2">
+                                        Learn more <span aria-hidden="true">→</span>
+                                    </a>
                                 </div>
                             </div>
-                        </div>
-                    </section>
 
+                            <div>
+                                <img className="w-full hover:animate-pulse" src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/2/hero-img.png" alt="Hero" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <main className="relative isolate px-6 pt-8 lg:px-8">
                     {/* <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
