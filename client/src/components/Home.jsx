@@ -1,6 +1,6 @@
 'use client'
 
-import { FingerPrintIcon, ChatBubbleLeftIcon, FolderIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import { FingerPrintIcon, ChatBubbleLeftIcon, FolderIcon, PaperAirplaneIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 import Brief from './Brief';
 import Cta from './CTA';
@@ -42,7 +42,7 @@ const features = [
                 </ul>
             </>
         ),
-        icon: FolderIcon,
+        icon: EllipsisHorizontalCircleIcon,
     },
 ];
 
@@ -59,7 +59,7 @@ const stats = [
 ];
 
 const partners = [
-    { name: 'Kenya Law', src: '/kenyalaw.png', url: 'https://www.kenyalaw.org' },
+    { name: 'Kenya Law', src: '/klaw.jpeg', url: 'https://www.kenyalaw.org' },
     { name: 'ALX Academy', src: '/alxacademy.png', url: 'https://www.alxafrica.com' },
     { name: 'Sand Technologies', src: './sandtech.jpeg', url: 'https://www.sandtech.com' },
     { name: 'ALX Ventures', src: './alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
@@ -260,9 +260,7 @@ export default function Home() {
                                         <motion.img
                                             src={src}
                                             alt={name}
-                                            width={158}
-                                            height={48}
-                                            className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                                            className="col-span-2 h-16 w-36 object-contain lg:col-span-1"
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
