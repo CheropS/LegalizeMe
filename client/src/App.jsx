@@ -6,8 +6,11 @@ import Home from './components/Home';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import AboutUs from './components/About';
+import Solutions from './components/Solutions';
 import Pricing from './components/Pricing';
 import Contact from './components/Contact';
+import Resources from './components/Resources';
+import Cases from './components/Cases';
 
 const App = () => {
   const [faqData, setFaqData] = useState([]);
@@ -63,8 +66,11 @@ const App = () => {
         <Route path="/login" element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/about' element={<AboutUs />} />
+        <Route path='/solutions' element={<Solutions />} />
         <Route path='/pricing' element={<Pricing />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/cases' element={<Cases />} />
+        <Route path='/resources' element={<Resources />} />
       </Routes>
 
       {/* Responsive ChatBot component */}

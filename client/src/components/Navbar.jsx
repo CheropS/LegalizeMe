@@ -28,7 +28,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="pb-4 bg-gradient-to-tr from-gray-200 to-white-200 lg:pb-0 animate-fade-In">
+      <header className="pb-4 bg-gradient-to-tr from-gray-200 to-white-200 lg:pb-0 animate-fadeIn">
         <div className="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
