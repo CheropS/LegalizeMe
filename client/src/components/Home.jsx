@@ -8,31 +8,41 @@ import Services from './Services';
 import FAQs from './FAQs';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import Hero from './Hero';
 
 const features = [
     {
         name: 'AI Powered Database',
         description:
-            'Lightning fast search and retrieval of case files. Our AI powered database will help you find the information you need in seconds.',
+            'Our AI-powered datbase transforms the way you search and retrieve legal information. Experience lightning-fast searches, tailored recommendations, and instant summaries. Whether you are a legal professional or just need quick answers. LegalizeMe makes your research precise and effortless. Say goodbye to complex searches and hello to efficient legal work.',
         icon: ChatBubbleLeftIcon,
     },
     {
-        name: 'Robust Case Management',
+        name: '"Counsel" Your Personal Legal Assistant',
         description:
-            'Case management made easy. Our platform is designed to help you manage your cases more efficiently.',
-        icon: FolderIcon,
-    },
-    {
-        name: '"Counsel" the Chatbot',
-        description:
-            'Draft legal documents with ease. Our chatbot "Counsel" will help you draft legal documents in minutes not hours.',
+            '"Counsel" is more than just a chatbot - it is your real-time document generator. Whether you need contracts, agreements, or legal templates, "Counsel" delivers fast, error-free, and accessible documents at your fingertips. Draft contracts in minutes, not hours, and get your legal tasks done anytime, anywhere. With "Counsel", legal support is as easy as having a conversation. Simplify your legal needs with "Counsel" today.',
         icon: PaperAirplaneIcon,
     },
     {
-        name: 'Secure and Private',
+        name: 'Security You Can Trust',
         description:
-            'Your data is safe with us. We take your privacy seriously and have implemented the latest security measures to protect your data.',
+            'Your privacy is our priority. We have implemented the latest security protocals and best practices to ensure that your data is always protected. With LegalizeMe, you can focus on your legal work with complete peace of mind, knowing that your information is safe with us.',
         icon: FingerPrintIcon,
+    },
+    {
+        name: 'Coming Soon: A Glimpse into the Future',
+        description: (
+            <>
+                <p>We are just getting started. Stay tuned for advanced features including:</p>
+                <ul className="list-disc ml-4">
+                    <li>Contract analysis to spot risks and optimize terms</li>
+                    <li>E-discovery tools to streamline case preparation</li>
+                    <li>Lawyer recommendations for specialized legal assistance</li>
+                    <li>Augmented document retrieval for more comprehensive results</li>
+                </ul>
+            </>
+        ),
+        icon: FolderIcon,
     },
 ];
 
@@ -43,10 +53,17 @@ const links = [
 ];
 
 const stats = [
-    { name: 'Offices worldwide', value: '12' },
-    { name: 'Full-time colleagues', value: '300+' },
-    { name: 'Hours per week', value: '40' },
-    { name: 'Paid time off', value: 'Unlimited' },
+    { name: 'Targeted Users', value: '2000+' },
+    { name: 'Documents generated', value: '50+' },
+    { name: 'Time saved per week', value: '15 hours' },
+];
+
+const partners = [
+    { name: 'Kenya Law', src: '/kenyalaw.png', url: 'https://www.kenyalaw.org' },
+    { name: 'ALX Academy', src: '/alxacademy.png', url: 'https://www.alxafrica.com' },
+    { name: 'Sand Technologies', src: './sandtech.jpeg', url: 'https://www.sandtech.com' },
+    { name: 'ALX Ventures', src: './alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
+    { name: 'The FutureList', src: './futurelist.png', url: 'https://www.futurelist.com' },
 ];
 
 export default function Home() {
@@ -57,22 +74,28 @@ export default function Home() {
                 <section className="py-10 sm:py-16 lg:py-24 animate-fadeIn bg-gradient-to-tr from-indigo-500 to-purple-300">
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
+
                             <div>
                                 <h1 className="text-4xl font-bold font-roboto text-black sm:text-6xl lg:text-7xl">
-                                    Justice Delayed, is Justice Denied
-                                    <div className="relative inline-flex">
-                                        <span className="absolute inset-x-0 bottom-0 border-b-[30px] border-[#4ADE80]"></span>
-                                        <span className="relative text-4xl font-bold text-black sm:text-6xl lg:text-7xl">LegalizeMe</span>
-                                    </div>
+                                    LegalizeMe
                                 </h1>
+                                <div className="relative inline-flex">
+                                    <span className="absolute inset-x-0 bottom-0 border-b-[30px] border-[#4ADE80]"></span>
+                                    <span className="relative text-4xl font-bold text-black sm:text-6xl lg:text-7xl">Lubricating the wheels of justice</span>
+                                </div>
 
                                 <p className="mt-8 text-base text-black sm:text-xl">
-                                    The future of law today. LegalizeMe is a platform that helps you find the best law resources and services. We are here to help you with your legal needs. We provide a platform for you to find the best legal resources and services.
+                                    At LegalizeMe, we are not just keeping up with the change - we are driving it.
+                                    Our mission is to revolutionize the legal landscape by delivering state-of-the-art tools that make legal
+                                    services faster, smarter, and accessible to everyone. We break down barriers, eliminate delays and ensure justice is
+                                    never out of reach. With us, every second saved is justice unlocked, every document generated is a problem solved,
+                                    and evert user empowered is a step towards a fairer world. LegalizeMe isn't just a platform - it's
+                                    the future of law in motion.<br /><br /> Sign up now, and be part of the change.
                                 </p>
 
                                 <div className="mt-8 sm:flex sm:items-center sm:space-x-8">
-                                    <a href="/cases" className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-green-600 border-r-2" role="button">
-                                        Start Free
+                                    <a href="/signup" className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-green-600 border-r-2" role="button">
+                                        Get Started
                                     </a>
 
                                     <a href="/about" className="text-sm font-semibold leading-6 text-gray-900 px-2">
@@ -88,39 +111,10 @@ export default function Home() {
                     </div>
                 </section>
                 <main className="relative isolate px-6 pt-8 lg:px-8">
-                    {/* <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 text-center"
-                    >
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                            Justice Delayed, is Justice Denied
-                        </h1>
-                        <p className="mt-6 text-lg leading-8 text-gray-600">
-                            The future of law today. LegalizeMe is a platform that helps you find the best law resources and services. We are here to help you with your legal needs. We provide a platform for you to find the best legal resources and services.
-                        </p>
-                        <p className="mt-6 text-lg leading-8 text-gray-600">
-                            <strong>Welcome to LegalizeMe, the future of law today.</strong>
-                        </p>
-                        <div className="mt-10 flex items-center justify-center gap-x-6">
-                            <a
-                                href="/cases"
-                                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
-                                Get started
-                            </a>
-                            <a href="/about" className="text-sm font-semibold leading-6 text-gray-900">
-                                Learn more <span aria-hidden="true">→</span>
-                            </a>
-                        </div>
-                    </motion.div> */}
-
                     <hr className="mx-auto max-w-7xl border-t border-gray-300" />
-
-                    {/* Brief intro */}
                     <Brief />
-
+                    <hr className="mx-auto max-w-7xl border-t border-gray-200" />
+                    <Hero />
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
                     {/* Features Section */}
@@ -134,10 +128,12 @@ export default function Home() {
                             >
                                 <h2 className="text-base font-semibold leading-7 text-indigo-600">Get your cases solved faster</h2>
                                 <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                                    Everything you need to get your cases solved faster
+                                    LegalizeMe: Fast, Efficient, Reliable and Accessible
                                 </p>
                                 <p className="mt-6 text-lg leading-8 text-gray-600">
-                                    Some of the features that make LegalizeMe the best platform for legal professionals. Feel free to reach out to us if you have any questions. We are here to help you with your legal needs.
+                                    We leverage cutting-edge AI technology to simplify legal services and streamline your workflow.
+                                    From lightning-fast research to automated document generation, we empower you to focus on what matters.
+                                    With smart recommendations nd robust security, the future of legal services is just a click away.
                                 </p>
                             </motion.div>
                             <motion.div
@@ -196,7 +192,7 @@ export default function Home() {
                                     transition={{ duration: 0.5, delay: 0.2 }}
                                     className="text-4xl font-bold tracking-tight text-white sm:text-6xl"
                                 >
-                                    The best place to get started
+                                    Where Law Meets Innovation
                                 </motion.h2>
                                 <motion.p
                                     initial={{ opacity: 0, y: -20 }}
@@ -204,7 +200,8 @@ export default function Home() {
                                     transition={{ duration: 0.5, delay: 0.4 }}
                                     className="mt-6 text-lg leading-8 text-gray-300"
                                 >
-                                    We are always looking for talented individuals to join our team. If you are passionate about law and technology, we would love to hear from you.
+                                    We are continuously evolving to nhance our platform and offer smarter legal solutions. Whether you are a legal professional or running a firm, there is something for everyone.<br /><br />
+                                    For inquiries, details, or personalized support, reach out to us anytime at <strong>info.support@legalizeme.site</strong> by clicking the links below.
                                 </motion.p>
                             </div>
                             <motion.div
@@ -252,23 +249,25 @@ export default function Home() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.5, delay: 0.3 }}
-                                className="text-center text-lg font-semibold leading-8 text-gray-900"
+                                className="text-center text-4xl font-bold leading-8 text-gray-900"
                             >
-                                Trusted by legal professionals worldwide
+                                Our Trusted Partners
                             </motion.h2>
+                            <motion.p className="mt-2 text-md tracking-tight text-center text-gray-900 sm:text-2xl"> We are proud to collaborate with industry leaders and innovators including</motion.p>
                             <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-                                {['Transistor', 'Reform', 'Tuple', 'SavvyCal', 'Statamic'].map((company, index) => (
-                                    <motion.img
-                                        key={index}
-                                        alt={company}
-                                        src={`https://tailwindui.com/plus/img/logos/158x48/${company.toLowerCase()}-logo-gray-900.svg`}
-                                        width={158}
-                                        height={48}
-                                        className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                                    />
+                                {partners.map(({ name, src, url }, index) => (
+                                    <a href={url} key={name} target="_blank" rel="noopener noreferrer">
+                                        <motion.img
+                                            src={src}
+                                            alt={name}
+                                            width={158}
+                                            height={48}
+                                            className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                                        />
+                                    </a>
                                 ))}
                             </div>
                         </div>

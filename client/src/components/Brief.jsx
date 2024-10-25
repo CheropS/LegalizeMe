@@ -615,21 +615,22 @@ const Brief = () => {
                                     The Future of Law Today
                                 </h2>
                                 <p className="mb-5 text-base text-body-color dark:text-dark-6 animate-fadeIn">
-                                    Embrace the future of law - transform your legal experience
+                                    {/* Embrace the future of law - transform your legal experience
                                     with our AI-powered solutions. Be part of the revolution and
-                                    unlock effortless access to justice with LegalizeMe.
+                                    unlock effortless access to justice with LegalizeMe. */}
+                                    We are not just adapting to the future of law - we are creating it.
+                                    LegalizeMe is revolutionizing the legal landscape, making legal services smarter, faster and more accessible to everyone.
+                                    With AI-powered solutions at your fingertips, we empower you to save time, cut costs, and focus on what truly matters - delivering justice.
                                 </p>
                                 <p className="mb-8 text-base text-body-color dark:text-dark-6 animate-fadeIn">
-                                    Our platform is designed to provide you with the best legal
-                                    experience possible. We are committed to making the law
-                                    accessible to everyone, everywhere. LegalizeMe is the future
-                                    of law, today.
+                                    Justice delayed is justice denied. Don't get left behind. Join us today and be a part of a movement that is transforming
+                                    how the legal world operates. Experience the future of law now, and let LegalizeMe be your trusted partner on this journey.
                                 </p>
                                 <a
                                     href="/cases"
                                     className="inline-flex items-center justify-center py-3 text-base font-medium text-center text-white border border-transparent rounded-md px-7 bg-blue-600 hover:bg-opacity-90 animate-fadeIn"
                                 >
-                                    Get Started
+                                    Start Free
                                 </a>
                             </div>
                         </div>
