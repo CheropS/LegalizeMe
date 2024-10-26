@@ -8,10 +8,11 @@ export default function FAQs() {
     };
 
     const faqItems = [
-        { question: "How to create an account?", answer: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit." },
-        { question: "How can I make payment using Paypal?", answer: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit." },
-        { question: "Can I cancel my plan?", answer: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit." },
-        { question: "How can I reach support?", answer: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit." }
+        { question: "What is LegalizeMe", answer: "LegalizeMe is a transformative AI-powered legal platform that simplifies legal processes - providing fast research, dynamic document generation, and access to expert insights for both professionals and individuals." },
+        { question: "How does LegalizeMe work?", answer: "Our platform combines AI with legal expertise to automate key tasks. Users can conduct legal research, generate contracts instantly, via Counsel, our 24/7 AI chatbot." },
+        { question: "Who can benefit from LegalizeMe?", answer: "Whether you are a law student, researcher, legal professional, small business, or individual needing legal support, LegalizeMe offers streamlined tools tailored to your need." },
+        { question: "Is LegalizeMe secure and compliant?", answer: "Yes, security and privacy are paramount. We use end-to-end encryption and adhere to industry standards to protect your data while delivering efficient, reliable services." },
+        { question: "How can I get started with LegalizeMe?", answer: "Getting started is easy! Click on the Register Now button to stand the chance to gain access to the beta version of exclusive tools, AI-powered insights, and be part of a growing community shaping the future of legal services across Kenya and Africa." }
     ];
 
     return (
@@ -51,7 +52,7 @@ export default function FAQs() {
                         ))}
                     </div>
 
-                    <p className="text-center text-gray-600 textbase mt-9">Didn’t find the answer you are looking for? <a href="/contact" className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline">Contact our support</a></p>
+                    <p className="text-center text-gray-600 textbase mt-9">For more information: <a href="/contact" className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline">Contact our support</a></p>
                 </div>
             </section>
         </>

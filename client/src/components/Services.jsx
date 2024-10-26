@@ -15,6 +15,7 @@ const Service = () => {
               </h2>
               <p className="text-base text-body-color dark:text-dark-6 animate-fadeIn">
                 Know more about our services and how we can help you. We offer a wide range of services to help you with your legal needs.
+                LegalizeMe is a global leader in customer support and service excellence. We are committed to providing top-notch services to our clients worldwide.
               </p>
             </div>
           </div>

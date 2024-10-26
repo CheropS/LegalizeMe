@@ -1,5 +1,6 @@
 import { CheckIcon } from '@heroicons/react/20/solid'
 import Navbar from './Navbar'
+import Footer from './Footer'
 
 const Pricing = () => {
   return (
@@ -159,6 +160,7 @@ const Pricing = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }
