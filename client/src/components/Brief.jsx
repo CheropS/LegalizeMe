@@ -615,9 +615,6 @@ const Brief = () => {
                                     The Future of Law Today
                                 </h2>
                                 <p className="mb-5 text-base text-body-color dark:text-dark-6 animate-fadeIn">
-                                    {/* Embrace the future of law - transform your legal experience
-                                    with our AI-powered solutions. Be part of the revolution and
-                                    unlock effortless access to justice with LegalizeMe. */}
                                     We are not just adapting to the future of law - we are creating it.
                                     LegalizeMe is revolutionizing the legal landscape, making legal services smarter, faster and more accessible to everyone.
                                     With AI-powered solutions at your fingertips, we empower you to save time, cut costs, and focus on what truly matters - delivering justice.
