@@ -40,7 +40,10 @@ const AboutUs = () => {
                                         <div className="flex items-start">
                                             <p className="text-3xl sm:text-4xl">👋</p>
                                             <blockquote className="ml-5">
-                                                <p className="text-sm font-medium text-white sm:text-lg">“You made it so simple. My new site is so much faster and easier to work with than my old site.”</p>
+                                                <p className="text-sm font-medium text-white sm:text-lg">
+                                                    “Embrace the future of law - transform your legal experience
+                                                    with our AI-powered solutions. Be part of the revolution and
+                                                    unlock effortless access to justice with LegalizeMe.”</p>
                                             </blockquote>
                                         </div>
                                     </div>
