@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 
 const Solutions = () => {
+
     return (
         <>
             <Navbar />
@@ -72,7 +73,7 @@ const Solutions = () => {
                             <span className="mb-2 block text-lg font-semibold text-indigo-600 animate-fadeIn">
                                 Solutions
                             </span>
-                            <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-black sm:text-4xl md:text-[40px] animate-fadeIn">
+                            <h2 className="mb-3 text-xl font-bold leading-[1.2] text-dark dark:text-black sm:text-4xl md:text-[40px] animate-fadeIn">
                                 Explore the wide range of solutions we offer to help you with your legal needs
                             </h2>
                             <p className="text-base text-body-color dark:text-dark-6 animate-fadeIn">
@@ -141,6 +142,21 @@ const Solutions = () => {
                 </div>
             </section>
 
+            <div className="-mx-4 flex flex-wrap">
+                <div className="w-full px-4">
+                    <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
+                        <span className="mb-2 block text-lg font-semibold text-indigo-600 animate-fadeIn">
+                            Coming soon...
+                        </span>
+                        <h2 className="mb-3 text-2xl font-bold leading-[1.2] text-dark dark:text-black sm:text-4xl md:text-[40px] animate-fadeIn">
+                            The Future of Legal Tech is Here
+                        </h2>
+                        <p className="text-base text-body-color dark:text-dark-6 animate-fadeIn">
+                            The best is yet to come. Brace yourself for groundbreaking innovations that will revolutionize the legal industry. Stay tuned for exciting updates and announcements.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
             <section className="py-10 bg-gray-100 sm:py-16 lg:py-24 animate-fadeIn font-roboto">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
