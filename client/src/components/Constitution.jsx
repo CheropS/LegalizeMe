@@ -2,80 +2,82 @@ import React from 'react';
 
 const Constitution = () => {
     return (
-        <section className="py-10 sm:py-16 lg:py-24 bg-gray-100 font-roboto animate-fadeIn">
-            <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Left Text Section */}
-                    <div>
-                        <h2 className="text-2xl font-bold text-red-600">
-                            The Constitution of Kenya
-                        </h2>
+        <div className="max-w-screen-xl mx-auto py-8 px-4 lg:py-16 lg:px-6">
+            <div className="text-center mb-10">
+                <h2 className="text-4xl tracking-tight font-bold text-primary-800">
+                    The Constitution of Kenya
+                </h2>
+            </div>
 
-                        <p className="mt-4 text-lg text-gray-900">
-                            <strong>We, the people of Kenya—</strong>
-                        </p>
-
-                        <p className="mt-4 text-lg text-gray-900">
-                            Acknowledging the supremacy of the Almighty God of all creation:
-                        </p>
-
-                        <ul className="mt-4 space-y-2 text-lg text-gray-900 list-disc pl-6">
-                            <li>
-                                <strong>Honouring</strong> those who heroically struggled to bring freedom and justice to our land:
-                            </li>
-                            <li>
-                                <strong>Proud</strong> of our ethnic, cultural, and religious diversity, and determined to live in peace and unity as one indivisible sovereign nation:
-                            </li>
-                            <li>
-                                <strong>Respectful</strong> of the environment, which is our heritage, and determined to sustain it for the benefit of future generations:
-                            </li>
-                            <li>
-                                <strong>Committed</strong> to nurturing and protecting the well-being of the individual, the family, communities, and the nation:
-                            </li>
-                            <li>
-                                <strong>Recognising</strong> the aspirations of all Kenyans for a government based on the essential values of human rights, equality, freedom, democracy, social justice, and the rule of law:
-                            </li>
-                            <li>
-                                <strong>Exercising</strong> our sovereign and inalienable right to determine the form of governance of our country and having participated fully in the making of this Constitution:
-                            </li>
-                            <li>
-                                <strong>Adopt, Enact</strong> and give this Constitution to ourselves and to our future generations.
-                            </li>
-                        </ul>
-
-                        {/* Download Links */}
-                        <div className="mt-8 space-y-2 text-red-600">
-                            <a href="/TheConstitutionOfKenya.pdf" className="block underline hover:text-red-700" target="_blank">
-                                Click to Download the Full Version of the Constitution of Kenya.
-                            </a>
-                            <a href="/Constitution of Kenya (Repealed).pdf" className="block underline hover:text-red-700" target="_blank">
-                                Click to download the Previous Constitution.
-                            </a>
-                            <a href="/1963_Constitution.pdf" className="block underline hover:text-red-700" target="_blank">
-                                Click to download the 1963 Constitution.
-                            </a>
-                            <a href="/amendments" className="block underline hover:text-red-700">
-                                Click to view The Amendments of the Constitution of Kenya (Repealed) from 1963 to 2010.
-                            </a>
+            <div className="flex flex-col md:flex-row">
+                {/* Right Image Section */}
+                <div className="mr-0 md:mr-8 mb-6 md:mb-0">
+                    <a href="/TheConstitutionOfKenya.pdf">
+                        <img
+                            className="w-1/2 md:w-full mx-auto border-2 border-gray-200 hover:shadow-lg"
+                            src="/constitution.jpeg"
+                            alt="Constitution of Kenya"
+                        />
+                    </a>
+                    <p className="mt-2 text-center text-gray-700">
+                        Click on the Image to Download the Constitution of Kenya.
+                    </p>
+                </div>
+                
+                <div className="flex-1 flex flex-col sm:flex-row flex-wrap -mb-4 -mx-2">
+                    {/* Constitution Content Section */}
+                    <div className="w-full mb-4 px-2">
+                        <div className="h-full py-4 px-6 border border-red-600 border-t-0 border-l-0 rounded-br-xl">
+                            <h3 className="text-2xl font-bold mb-6">Introduction:</h3>
+                            <p className="text-sm">
+                                <strong>We, the people of Kenya—</strong> Acknowledging the supremacy of the Almighty God of all creation, and recognizing our diversity and commitment to peace, unity, and sustainable development.
+                            </p>
                         </div>
                     </div>
 
-                    {/* Right Image Section */}
-                    <div className="flex justify-center px-4">
-                        <a href="/TheConstitutionOfKenya.pdf">
-                            <img
-                                className="w-80 h-auto border-2 border-gray-200 hover:shadow-lg"
-                                src="/constitution.jpeg"
-                                alt="Constitution of Kenya"
-                            />
-                        </a>
-                        <p className="mt-2 text-right py-60 text-gray-700">
-                            Click on the Image to Download the Constitution of Kenya.
-                        </p>
+                    <div className="w-full sm:w-1/2 mb-4 px-2">
+                        <div className="h-full py-4 px-6 border border-red-600 border-t-0 border-l-0 rounded-br-xl">
+                            <h3 className="text-2xl font-bold mb-6">Our Commitment:</h3>
+                            <ul className="space-y-2 text-sm list-disc pl-6">
+                                <li>Honouring those who fought for our freedom and justice.</li>
+                                <li>Proud of our ethnic, cultural, and religious diversity.</li>
+                                <li>Respectful of our environment and determined to preserve it.</li>
+                                <li>Dedicated to protecting well-being at individual, family, and national levels.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="w-full sm:w-1/2 mb-4 px-2">
+                        <div className="h-full py-4 px-6 border border-red-600 border-t-0 border-l-0 rounded-br-xl">
+                            <h3 className="text-2xl font-bold mb-6">Our Aspiration:</h3>
+                            <p className="text-sm">
+                                Recognizing the aspirations of all Kenyans for a government based on human rights, equality, freedom, democracy, social justice, and rule of law.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="w-full mb-4 px-2">
+                        <div className="h-full py-4 px-6 border border-red-600 border-t-0 border-l-0 rounded-br-xl">
+                            <h3 className="text-2xl font-bold mb-6">Download Links:</h3>
+                            <div className="space-y-2 text-red-600">
+                                <a href="/TheConstitutionOfKenya.pdf" className="block underline hover:text-red-700" target="_blank">
+                                    Click to Download the Full Version of the Constitution of Kenya.
+                                </a>
+                                <a href="/Constitution of Kenya (Repealed).pdf" className="block underline hover:text-red-700" target="_blank">
+                                    Click to download the Previous Constitution.
+                                </a>
+                                <a href="/1963_Constitution.pdf" className="block underline hover:text-red-700" target="_blank">
+                                    Click to download the 1963 Constitution.
+                                </a>
+                                <a href="/amendments" className="block underline hover:text-red-700">
+                                    View the Amendments from 1963 to 2010.
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

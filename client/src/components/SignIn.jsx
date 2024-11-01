@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'; // Heroicons v2 uses /24/outline
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import '@tailwindcss/forms';
 
 export default function SignIn() {
@@ -37,7 +37,7 @@ export default function SignIn() {
                     <div className="flex items-center justify-between">
                       <label for="" className="text-base font-medium text-gray-900"> Password </label>
 
-                      <a href="#" title="" className="text-sm font-medium text-blue-600 hover:underline hover:text-blue-700 focus:text-blue-700"> Forgot password? </a>
+                      <a href="forgot-password" title="" className="text-sm font-medium text-blue-600 hover:underline hover:text-blue-700 focus:text-blue-700"> Forgot password? </a>
                     </div>
                     <div className="mt-2.5">
                       <input

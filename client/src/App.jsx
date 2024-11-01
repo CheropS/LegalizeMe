@@ -11,6 +11,7 @@ import Pricing from './components/Pricing';
 import Contact from './components/Contact';
 import Resources from './components/Resources';
 import Cases from './components/Cases';
+import ForgotPassword from './components/ForgotPassword';
 
 const App = () => {
   const [faqData, setFaqData] = useState([]);
@@ -71,6 +72,7 @@ const App = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/cases' element={<Cases />} />
         <Route path='/resources' element={<Resources />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} />
       </Routes>
 
       {/* Responsive ChatBot component */}
