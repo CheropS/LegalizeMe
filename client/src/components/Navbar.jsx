@@ -1,29 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // user is logged in
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // User's authentication state
+
+  // Check if user is authenticated on component mount
+  useEffect(() => {
+    const token = localStorage.getItem('token'); // Check for token in localStorage
+    if (token) {
+      setIsAuthenticated(true); // User is authenticated if token exists
+    }
+  }, []);
 
   // Search functionality
   const handleSearch = (event) => {
     event.preventDefault();
     console.log('Searching for:', searchTerm);
-    // search logic
+    // Add your search logic here
   };
 
   // Logout functionality
   const handleLogout = () => {
-    setIsAuthenticated(false); // Simulate user logout
+    // Clear the JWT token from localStorage
+    localStorage.removeItem('token'); 
+
+    // Update authentication state
+    setIsAuthenticated(false); // Update the state to reflect logout
+
+    // Optionally, reset user-related state here if needed
+
     console.log('User logged out');
-    // actual logout logic (e.g., clear session, JWT, etc.)
   };
 
   // Toggle mobile menu
   const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
+    setMobileMenuOpen((prev) => !prev); // Use functional state update for toggling
   };
 
   return (
@@ -125,181 +139,9 @@ export default function Navbar() {
                 )}
               </div>
             </nav>
-
           )}
         </div>
       </header>
     </>
   );
 }
-
-
-// <header classNameName="bg-white animate-fadeIn">
-// bg-gradient-to-tr from-indigo-600 to-purple-400 shadow-lg transition duration-500 ease-in-out
-//   <nav aria-label="Global" classNameName="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-//     <div classNameName="flex lg:flex-1 items-center">
-//       <a href="/" classNameName="-m-1.5 p-1.5 flex items-center">
-//         <span classNameName="sr-only">LegalizeMe</span>
-//         <img
-//           alt="legalizeme logo"
-//           src="./transparentlogo.svg"
-//           classNameName="h-8 w-auto"
-//         />
-//         <h3 classNameName="ml-3 text-md font-bold text-gray-900">LegalizeMe</h3>
-//       </a>
-//     </div>
-
-//     {/* Navigation Links */}
-//     <PopoverGroup classNameName="hidden lg:flex lg:gap-x-12">
-//       {navigation.map((item) => (
-//         <a key={item.name} href={item.href} classNameName="text-sm font-semibold leading-6 text-gray-900">
-//           {item.name}
-//         </a>
-//       ))}
-//     </PopoverGroup>
-
-//     {/* Search input for desktop view */}
-//     <div classNameName="hidden lg:flex lg:justify-center lg:mx-8 lg:gap-x-4">
-//       <form onSubmit={handleSearch} classNameName="flex">
-//         <input
-//           type="text"
-//           placeholder="Search..."
-//           value={searchTerm}
-//           onChange={(e) => setSearchTerm(e.target.value)}
-//           classNameName="block w-full px-4 py-2 text-sm border rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
-//         />
-//         <button
-//           type="submit"
-//           classNameName="ml-2 px-4 py-2 bg-[#795548] text-white text-sm font-semibold rounded-lg hover:bg-[#795548] focus:outline-none focus:ring-2 focus:ring-indigo-500"
-//         >
-//           Search
-//         </button>
-//       </form>
-//     </div>
-
-//     {/* Authentication Buttons */}
-//     <div classNameName="hidden lg:flex lg:flex-1 lg:justify-end space-x-4">
-//       {!isAuthenticated ? (
-//         <>
-//           <a
-//             href="/login"
-//             classNameName="px-4 py-2 text-sm font-semibold text-white bg-[#795548] rounded-lg hover:bg-[#795548]"
-//           >
-//             Log in
-//           </a>
-//           <a
-//             href="/signup"
-//             classNameName="px-4 py-2 text-sm font-semibold text-[#795548] border border-[#795548] rounded-lg hover:bg-[#795548] hover:text-white"
-//           >
-//             Sign up
-//           </a>
-//         </>
-//       ) : (
-//         <button
-//           onClick={handleLogout}
-//           classNameName="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700"
-//         >
-//           Log out
-//         </button>
-//       )}
-//     </div>
-
-//     {/* Mobile Menu Button */}
-//     <div classNameName="flex lg:hidden">
-//       <button
-//         type="button"
-//         onClick={() => setMobileMenuOpen(true)}
-//         classNameName="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-//       >
-//         <span classNameName="sr-only">Open main menu</span>
-//         <Bars3Icon aria-hidden="true" classNameName="h-6 w-6" />
-//       </button>
-//     </div>
-//   </nav>
-
-//   {/* Mobile Menu */}
-//   <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} classNameName="lg:hidden">
-//     <div classNameName="fixed inset-0 z-10" />
-//     <DialogPanel classNameName="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-//       <div classNameName="flex items-center justify-between">
-//         <a href="/" classNameName="-m-1.5 p-1.5 flex items-center">
-//           <span classNameName="sr-only">LegalizeMe</span>
-//           <img
-//             alt="legalizeme logo"
-//             src="./transparentlogo.svg"
-//             classNameName="h-8 w-auto"
-//           />
-//           <h3 classNameName="ml-3 text-md font-bold text-gray-900">LegalizeMe</h3>
-//         </a>
-//         <button
-//           type="button"
-//           onClick={() => setMobileMenuOpen(false)}
-//           classNameName="-m-2.5 rounded-md p-2.5 text-gray-700"
-//         >
-//           <span classNameName="sr-only">Close menu</span>
-//           <XMarkIcon aria-hidden="true" classNameName="h-6 w-6" />
-//         </button>
-//       </div>
-
-//       {/* Search input for mobile view */}
-//       <div classNameName="mt-6">
-//         <form onSubmit={handleSearch} classNameName="flex">
-//           <input
-//             type="text"
-//             placeholder="Search..."
-//             value={searchTerm}
-//             onChange={(e) => setSearchTerm(e.target.value)}
-//             classNameName="block w-full px-4 py-2 text-sm border rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
-//           />
-//           <button
-//             type="submit"
-//             classNameName="ml-2 px-4 py-2 bg-[#795548] text-white text-sm font-semibold rounded-lg hover:bg-[#795548] focus:outline-none focus:ring-2 focus:ring-indigo-500"
-//           >
-//             Search
-//           </button>
-//         </form>
-//       </div>
-
-//       <div classNameName="mt-6 flow-root">
-//         <div classNameName="-my-6 divide-y divide-gray-500/10">
-//           <div classNameName="space-y-2 py-6">
-//             {navigation.map((item) => (
-//               <a
-//                 key={item.name}
-//                 href={item.href}
-//                 classNameName="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-//               >
-//                 {item.name}
-//               </a>
-//             ))}
-//           </div>
-//           <div classNameName="py-6">
-//             {!isAuthenticated ? (
-//               <>
-//                 <a
-//                   href="/login"
-//                   classNameName="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-//                 >
-//                   Log in
-//                 </a>
-//                 <a
-//                   href="/signup"
-//                   classNameName="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-//                 >
-//                   Sign up
-//                 </a>
-//               </>
-//             ) : (
-//               <button
-//                 onClick={handleLogout}
-//                 classNameName="-mx-3 block w-full rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-red-600 hover:bg-red-50"
-//               >
-//                 Log out
-//               </button>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </DialogPanel>
-//   </Dialog>
-// </header>
