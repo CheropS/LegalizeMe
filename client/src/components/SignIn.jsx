@@ -1,33 +1,73 @@
-import { useState } from 'react';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'; // Heroicons v2 uses /24/outline
+import React, { useState } from 'react';
 import '@tailwindcss/forms';
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const handleTogglePassword = () => setShowPassword((prev) => !prev);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+  
+    if (!username || !password) {
+      setError('Please fill in all fields');
+      return;
+    }
+  
+    try {
+      const response = await fetch('https://backend-1-ygzf.onrender.com/api/token/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      const data = await response.json();
+      console.log('Response data:', data);  // Log response data for debugging
+  
+      if (response.ok) {
+        setSuccess('Logged in successfully. Redirecting...');
+        localStorage.setItem('token', data.token);
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 2000);
+      } else {
+        setError(data.message || 'Login failed. Please try again.');
+        console.error('Error data:', data); // Log error details if any
+      }
+    } catch (error) {
+      setError('Login failed. Please try again.');
+      console.error('Network or Server Error:', error); // Log network issues
+    }
   };
+  
 
   return (
     <>
-      <section className="bg-white font-roboto">
+      <section className="bg-white font-roboto animate-fadeIn">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
               <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">Sign in to LegalizeMe</h2>
               <p className="mt-2 text-base text-gray-600">Don’t have an account? <a href="/signup" title="" className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 hover:underline focus:text-blue-700">Create a free account</a></p>
 
-              <form action="#" method="POST" className="mt-8">
+              <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+                {error && <div className="p-4 text-red-600 bg-red-100 rounded-md">{error}</div>}
+                {success && <div className="p-4 text-green-600 bg-green-100 rounded-md">{success}</div>}
                 <div className="space-y-5">
                   <div>
-                    <label for="" className="text-base font-medium text-gray-900"> Email address </label>
+                    <label className="text-base font-medium text-gray-900"> Username </label>
                     <div className="mt-2.5">
                       <input
-                        type="email"
-                        name=""
-                        id=""
-                        placeholder="Enter email to get started"
+                        type="name"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Enter username"
                         className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
                     </div>
@@ -35,18 +75,20 @@ export default function SignIn() {
 
                   <div>
                     <div className="flex items-center justify-between">
-                      <label for="" className="text-base font-medium text-gray-900"> Password </label>
-
-                      <a href="#" title="" className="text-sm font-medium text-blue-600 hover:underline hover:text-blue-700 focus:text-blue-700"> Forgot password? </a>
+                      <label className="text-base font-medium text-gray-900"> Password </label>
+                      <a href="forgot-password" title="" className="text-sm font-medium text-blue-600 hover:underline hover:text-blue-700 focus:text-blue-700"> Forgot password? </a>
                     </div>
-                    <div className="mt-2.5">
+                    <div className="mt-2.5 relative">
                       <input
-                        type="password"
-                        name=""
-                        id=""
+                        type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter your password"
                         className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
+                      <button type="button" onClick={handleTogglePassword} className="absolute inset-y-0 right-4 flex items-center text-gray-500">
+                        {showPassword ? '🙈' : '👁️'}
+                      </button>
                     </div>
                   </div>
 
@@ -55,7 +97,6 @@ export default function SignIn() {
                   </div>
                 </div>
               </form>
-
               <div className="mt-3 space-y-3">
                 <button
                   type="button"
@@ -85,7 +126,7 @@ export default function SignIn() {
               </div>
             </div>
           </div>
-
+          {/* Existing right-side content */}
           <div className="flex items-center justify-center px-4 py-10 sm:py-16 lg:py-24 bg-gray-50 sm:px-6 lg:px-8">
             <div>
               <img className="w-full mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/signup/1/cards.png" alt="" />

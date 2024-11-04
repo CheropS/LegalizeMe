@@ -1,122 +1,73 @@
-// import React, { useState } from "react";
-// import { Auth } from "@aws-amplify/auth";
-// import "../aws-config";
-
-// const Signup = () => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [errorMessage, setErrorMessage] = useState(null);
-
-//   const onSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const signUpResponse = await Auth.signUp({
-//         username: email,
-//         password: password,
-//         attributes: {
-//           email: email, // specify that the email is an attribute
-//         },
-//       });
-//       console.log("Sign Up successful", signUpResponse);
-//     } catch (err) {
-//       console.error("Error signing up:", err);
-//       setErrorMessage(err.message || "An error occurred during signup");
-//     }
-//   };
-
-//   return (
-//     <div classNameName="flex items-center justify-center h-screen">
-//       <form onSubmit={onSubmit}>
-//         <div classNameName="flex flex-col p-4 space-y-4 bg-white rounded-lg shadow-lg dark:bg-gray-800">
-//           <h2 classNameName="text-2xl font-semibold text-center">Sign Up</h2>
-//           <label htmlFor="email" classNameName="text-sm font-medium">Email</label>
-//           <input
-//             type="email"
-//             placeholder="Email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             classNameName="rounded-lg border border-gray-200 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
-//           />
-//           <label htmlFor="password" classNameName="text-sm font-medium">Password</label>
-//           <input
-//             type="password"
-//             placeholder="Password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//             classNameName="rounded-lg border border-gray-200 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
-//           />
-//           {errorMessage && (
-//             <p classNameName="text-red-500 text-sm">{errorMessage}</p>
-//           )}
-//           <button
-//             type="submit"
-//             classNameName="bg-blue-500 text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
-//           >
-//             Sign Up
-//           </button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Signup;
-
-
 import { useState } from 'react';
 import '@tailwindcss/forms';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [formValues, setFormValues] = useState({
-    email: '',
-    name: '',
-    password: '',
-    confirmPassword: '',
-    country: '',
-    termsAccepted: false,
-  });
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: type === 'checkbox' ? checked : value,
-    });
-  };
+  const handleTogglePassword = () => setShowPassword((prev) => !prev);
 
-  const togglePasswordVisibility = () => setShowPassword(!showPassword);
-  const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formValues.termsAccepted) {
-      alert("Please accept the terms and conditions to proceed.");
+    setError('');
+    setSuccess('');
+  
+    if (!username || !email || !password) {
+      setError('Please fill in all fields');
       return;
     }
-    // Handle sign-up logic here
+  
+    try {
+      const response = await fetch('https://backend-1-ygzf.onrender.com/api/register/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email, password }),
+      });
+  
+      const data = await response.json();
+      console.log('Response data:', data);  // Log response data for debugging
+  
+      if (response.ok) {
+        setSuccess('Account created successfully');
+        setUsername('');
+        setEmail('');
+        setPassword('');
+      } else {
+        setError(data.message || 'Signup failed. Please try again.');
+        console.error('Error data:', data);
+      }
+    } catch (error) {
+      setError('Signup failed. Please try again.');
+      console.error('Network or Server Error:', error);
+    }
   };
+  
 
   return (
     <>
-      <section className="bg-white font-roboto">
+      <section className="bg-white font-roboto animate-fadeIn">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
               <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">Sign up to LegalizeMe</h2>
               <p className="mt-2 text-base text-gray-600">Already have an account? <a href="/login" title="" className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 hover:underline focus:text-blue-700">Login</a></p>
 
-              <form action="#" method="POST" className="mt-8">
+              <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+                {error && <div className="p-4 text-red-600 bg-red-100 rounded-md">{error}</div>}
+                {success && <div className="p-4 text-green-600 bg-green-100 rounded-md">{success}</div>}
+
                 <div className="space-y-5">
                   <div>
-                    <label for="" className="text-base font-medium text-gray-900"> Full Name </label>
+                    <label className="text-base font-medium text-gray-900"> Full Name </label>
                     <div className="mt-2.5">
                       <input
                         type="text"
-                        name=""
-                        id=""
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         placeholder="Enter your full name"
                         className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
@@ -124,12 +75,12 @@ export default function SignUp() {
                   </div>
 
                   <div>
-                    <label for="" className="text-base font-medium text-gray-900"> Email address </label>
+                    <label className="text-base font-medium text-gray-900"> Email address </label>
                     <div className="mt-2.5">
                       <input
                         type="email"
-                        name=""
-                        id=""
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter email to get started"
                         className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
@@ -137,22 +88,25 @@ export default function SignUp() {
                   </div>
 
                   <div>
-                    <label for="" className="text-base font-medium text-gray-900"> Password </label>
-                    <div className="mt-2.5">
+                    <label className="text-base font-medium text-gray-900"> Password </label>
+                    <div className="mt-2.5 relative">
                       <input
-                        type="password"
-                        name=""
-                        id=""
+                        type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter your password"
                         className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
+                      <button type="button" onClick={handleTogglePassword} className="absolute inset-y-0 right-4 flex items-center text-gray-500">
+                        {showPassword ? '🙈' : '👁️'}
+                      </button>
                     </div>
                   </div>
 
                   <div className="flex items-center">
                     <input type="checkbox" name="agree" id="agree" className="w-5 h-5 text-blue-600 bg-white border-gray-200 rounded" />
 
-                    <label for="agree" className="ml-3 text-sm font-medium text-gray-500">
+                    <label htmlFor="agree" className="ml-3 text-sm font-medium text-gray-500">
                       I agree to LegalizeMe’s <a href="#" title="" className="text-blue-600 hover:text-blue-700 hover:underline">Terms of Service</a> and <a href="#" title="" className="text-blue-600 hover:text-blue-700 hover:underline">Privacy Policy</a>
                     </label>
                   </div>
@@ -164,7 +118,6 @@ export default function SignUp() {
                   </div>
                 </div>
               </form>
-
               <div className="mt-3 space-y-3">
                 <button
                   type="button"
@@ -194,7 +147,7 @@ export default function SignUp() {
               </div>
             </div>
           </div>
-
+          {/* Existing right-side content */}
           <div className="flex items-center justify-center px-4 py-10 sm:py-16 lg:py-24 bg-gray-50 sm:px-6 lg:px-8">
             <div>
               <img className="w-full mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/signup/1/cards.png" alt="" />

@@ -1,8 +1,170 @@
-import { CheckIcon } from '@heroicons/react/20/solid'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 const Pricing = () => {
+  const plans = [
+    {
+      name: "Free Tier",
+      price: "Ksh 0",
+      billing: "One-time payment",
+      features: [
+        "10 free documents watermarked",
+        "Water removal at Ksh 99/document"
+      ],
+      buttonText: "Get full access",
+      buttonLink: "/checkout"
+    },
+    {
+      name: "Pay-Per-Use",
+      price: "Ksh 500",
+      billing: "One-time payment",
+      features: [
+        "Per Document",
+        "Watermark removal at Ksh 99"
+      ],
+      buttonText: "Get full access",
+      buttonLink: "/checkout"
+    },
+    {
+      name: "Unlimited",
+      price: "Ksh 2500",
+      billing: "Monthly payment",
+      features: [
+        "Unlimited documents",
+        "Watermark-free documents",
+        "Priority support"
+      ],
+      buttonText: "Subscribe now",
+      buttonLink: "/checkout"
+    }
+  ];
+
+  const caseLawPlans = [
+    {
+      name: "Free Tier",
+      price: "KES 0",
+      features: [
+        "25 Free Searches Per Month",
+        "Basic access, no AI-powered features"
+      ],
+      buttonText: "Get started",
+      buttonLink: "/checkout"
+    },
+    {
+      name: "Pay-Per-Use",
+      price: "KES 700",
+      features: [
+        "AI-powered summaries and recommendations per document",
+        "Discounted rates for mailing list subscribers"
+      ],
+      buttonText: "Try now",
+      buttonLink: "/checkout"
+    },
+    {
+      name: "Standard Subscription",
+      price: "KES 2500/month",
+      features: [
+        "Unlimited case law access with AI summaries and recommendations"
+      ],
+      buttonText: "Subscribe",
+      buttonLink: "/checkout"
+    },
+    {
+      name: "Premium Subscription",
+      price: "KES 3000/month",
+      features: [
+        "Unlimited access, all AI features, watermark-free document generation",
+        "Discounts for mailing list subscribers"
+      ],
+      buttonText: "Subscribe",
+      buttonLink: "/checkout"
+    },
+    {
+      name: "Student Discounts",
+      price: "Discounted",
+      features: [
+        "Free database access",
+        "25% discount on AI and chatbot features",
+        "Up to 50% off on monthly subscriptions"
+      ],
+      buttonText: "Learn more",
+      buttonLink: "/checkout"
+    }
+  ];
+
+  const longTermRevenuePlans = [
+    {
+      name: "Small Firms Package",
+      price: "$100/month",
+      features: [
+        "Affordable subscription for small firms",
+        "Collaboration tools and AI insights"
+      ],
+      buttonText: "Get started",
+      buttonLink: "/checkout"
+    },
+    {
+      name: "Large Firms Package",
+      features: [
+        "Custom pricing for full database access",
+        "Advanced analytics and case trend insights"
+      ],
+      buttonText: "Contact sales",
+      buttonLink: "/contact"
+    },
+    {
+      name: "AI/ML Model Licensing",
+      features: [
+        "Licensing for legal search and summarization models",
+        "Ideal for law firms and educational institutions"
+      ],
+      buttonText: "Inquire now",
+      buttonLink: "/contact"
+    },
+    {
+      name: "Data Analytics",
+      features: [
+        "Legal trends and case law analysis",
+        "Fee-based service for specialized insights"
+      ],
+      buttonText: "Learn more",
+      buttonLink: "/contact"
+    },
+    {
+      name: "Data Monetization",
+      features: [
+        "Aggregated legal data for government bodies, universities, and research institutions"
+      ],
+      buttonText: "Request access",
+      buttonLink: "/contact"
+    }
+  ];
+
+  const renderPlanCards = (planData) => {
+    return planData.map((plan, index) => (
+      <div key={index} className="overflow-hidden bg-white border-2 border-gray-100 rounded-md shadow-lg">
+        <div className="p-8 xl:px-12">
+          <h3 className="text-base font-semibold text-purple-600">{plan.name}</h3>
+          {plan.price && <p className="text-5xl font-bold text-black mt-7">{plan.price}</p>}
+          {plan.billing && <p className="mt-3 text-base text-gray-600">{plan.billing}</p>}
+          <ul className="inline-flex flex-col items-start space-y-5 text-left mt-9">
+            {plan.features.map((feature, i) => (
+              <li key={i} className="inline-flex items-center space-x-2">
+                <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-base font-medium text-gray-900">{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <a href={plan.buttonLink} title="" className="inline-flex items-center justify-center px-10 py-4 mt-10 text-base font-semibold text-white transition-all duration-200 bg-blue-600 rounded-md hover:bg-blue-700 focus:bg-blue-700" role="button">
+            {plan.buttonText}
+          </a>
+        </div>
+      </div>
+    ));
+  };
+
   return (
     <>
       <Navbar />
@@ -10,152 +172,29 @@ const Pricing = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Pricing & Plans</h2>
-            <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis.</p>
+            <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600">
+              Explore our pricing plans and choose the one that fits your needs. You can always upgrade or downgrade your subscription.
+            </p>
           </div>
 
+          {/* General Pricing Plans */}
           <div className="grid max-w-md grid-cols-1 gap-6 mx-auto mt-8 text-center lg:max-w-full lg:mt-16 lg:grid-cols-3">
-            <div className="overflow-hidden bg-white border-2 border-gray-100 rounded-md">
-              <div className="p-8 xl:px-12">
-                <h3 className="text-base font-semibold text-purple-600">Standard</h3>
-                <p className="text-5xl font-bold text-black mt-7">$29</p>
-                <p className="mt-3 text-base text-gray-600">One-time payment</p>
+            {renderPlanCards(plans)}
+          </div>
 
-                <ul className="inline-flex flex-col items-start space-y-5 text-left mt-9">
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> 1 Domain License </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> Full Celebration Library </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="h-5 text-indigo-500 flex-shrink-0w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> 120+ Coded Blocks </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="h-5 text-indigo-500 flex-shrink-0w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> Design Files Included </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="pb-0.5 text-base font-medium text-gray-900 border-b border-black border-dashed"> Premium Support </span>
-                  </li>
-                </ul>
-
-                <a href="#" title="" className="inline-flex items-center justify-center px-10 py-4 mt-10 text-base font-semibold text-white transition-all duration-200 bg-blue-600 rounded-md hover:bg-blue-700 focus:bg-blue-700" role="button"> Get full access </a>
-                <p className="mt-4 text-sm text-gray-500">14 Days Moneyback Guarantee</p>
-              </div>
+          {/* Case Law Database Access & AI Features */}
+          <div className="mt-16 text-center">
+            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Case Law Database Access & AI Features</h2>
+            <div className="grid max-w-md grid-cols-1 gap-6 mx-auto mt-8 lg:max-w-full lg:grid-cols-3">
+              {renderPlanCards(caseLawPlans)}
             </div>
+          </div>
 
-            <div className="overflow-hidden bg-white border-2 border-gray-100 rounded-md shadow-lg">
-              <div className="p-8 xl:px-12">
-                <h3 className="text-base font-semibold text-purple-600">Professional</h3>
-                <p className="text-5xl font-bold text-black mt-7">$49</p>
-                <p className="mt-3 text-base text-gray-600">One-time payment</p>
-
-                <ul className="inline-flex flex-col items-start space-y-5 text-left mt-9">
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> 5 Domain License </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> Full Celebration Library </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> 120+ Coded Blocks </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> Design Files Included </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="pb-0.5 text-base font-medium text-gray-900 border-b border-black border-dashed"> Premium Support </span>
-                  </li>
-                </ul>
-
-                <a href="#" title="" className="inline-flex items-center justify-center px-10 py-4 mt-10 text-base font-semibold text-white transition-all duration-200 rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 hover:opacity-80 focus:opacity-80" role="button"> Get full access </a>
-                <p className="mt-4 text-sm text-gray-500">14 Days Moneyback Guarantee</p>
-              </div>
-            </div>
-
-            <div className="overflow-hidden bg-white border-2 border-gray-100 rounded-md">
-              <div className="p-8 xl:px-12">
-                <h3 className="text-base font-semibold text-purple-600">Exclusive</h3>
-                <p className="text-5xl font-bold text-black mt-7">$79</p>
-                <p className="mt-3 text-base text-gray-600">One-time payment</p>
-
-                <ul className="inline-flex flex-col items-start space-y-5 text-left mt-9">
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> Unlimited Domain License </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> Full Celebration Library </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> 120+ Coded Blocks </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="text-base font-medium text-gray-900"> Design Files Included </span>
-                  </li>
-
-                  <li className="inline-flex items-center space-x-2">
-                    <svg className="flex-shrink-0 w-5 h-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span className="pb-0.5 text-base font-medium text-gray-900 border-b border-black border-dashed"> Premium Support </span>
-                  </li>
-                </ul>
-
-                <a href="#" title="" className="inline-flex items-center justify-center px-10 py-4 mt-10 text-base font-semibold text-white transition-all duration-200 bg-blue-600 rounded-md hover:bg-blue-700 focus:bg-blue-700" role="button"> Get full access </a>
-                <p className="mt-4 text-sm text-gray-500">14 Days Moneyback Guarantee</p>
-              </div>
+          {/* Long-Term Revenue Streams */}
+          <div className="mt-16 text-center">
+            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Long-Term Revenue Streams</h2>
+            <div className="grid max-w-md grid-cols-1 gap-6 mx-auto mt-8 lg:max-w-full lg:grid-cols-3">
+              {renderPlanCards(longTermRevenuePlans)}
             </div>
           </div>
         </div>
@@ -163,135 +202,6 @@ const Pricing = () => {
       <Footer />
     </>
   );
-}
+};
 
 export default Pricing;
-
-// const tiers = [
-//   {
-//     name: 'Hobby',
-//     id: 'tier-hobby',
-//     href: '#',
-//     priceMonthly: '$29',
-//     description: "The perfect plan if you're just getting started with our product.",
-//     features: ['25 products', 'Up to 10,000 subscribers', 'Advanced analytics', '24-hour support response time'],
-//     featured: false,
-//   },
-//   {
-//     name: 'Enterprise',
-//     id: 'tier-enterprise',
-//     href: '#',
-//     priceMonthly: '$99',
-//     description: 'Dedicated support and infrastructure for your company.',
-//     features: [
-//       'Unlimited products',
-//       'Unlimited subscribers',
-//       'Advanced analytics',
-//       'Dedicated support representative',
-//       'Marketing automations',
-//       'Custom integrations',
-//     ],
-//     featured: true,
-//   },
-// ]
-
-// function classNameNames(...classNamees) {
-//   return classNamees.filter(Boolean).join(' ')
-// }
-
-// export default function Pricing() {
-//   return (
-//     <>
-//       <Navbar />
-//       <div classNameName="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8 font-roboto animate-fadeIn">
-//         <div aria-hidden="true" classNameName="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl">
-//           <div
-//             style={{
-//               clipPath:
-//                 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-//             }}
-//             classNameName="mx-auto aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
-//           />
-//         </div>
-//         <div classNameName="mx-auto max-w-2xl text-center lg:max-w-4xl">
-//           <h2 classNameName="text-base font-semibold leading-7 text-indigo-600">Pricing</h2>
-//           <p classNameName="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-//             The right price for you, whoever you are
-//           </p>
-//         </div>
-//         <p classNameName="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
-//           Choose the plan that best fits your needs and start leveraging our powerful tools to grow your business. Whether you&apos;re just starting out or looking for enterprise-level support, we have a plan that&apos;s right for you.
-//         </p>
-//         <div classNameName="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
-//           {tiers.map((tier, tierIdx) => (
-//             <div
-//               key={tier.id}
-//               classNameName={classNameNames(
-//                 tier.featured ? 'relative bg-gray-900 shadow-2xl' : 'bg-white/60 sm:mx-8 lg:mx-0',
-//                 tier.featured
-//                   ? ''
-//                   : tierIdx === 0
-//                     ? 'rounded-t-3xl sm:rounded-b-none lg:rounded-bl-3xl lg:rounded-tr-none'
-//                     : 'sm:rounded-t-none lg:rounded-bl-none lg:rounded-tr-3xl',
-//                 'rounded-3xl p-8 ring-1 ring-gray-900/10 sm:p-10',
-//               )}
-//             >
-//               <h3
-//                 id={tier.id}
-//                 classNameName={classNameNames(
-//                   tier.featured ? 'text-indigo-400' : 'text-indigo-600',
-//                   'text-base font-semibold leading-7',
-//                 )}
-//               >
-//                 {tier.name}
-//               </h3>
-//               <p classNameName="mt-4 flex items-baseline gap-x-2">
-//                 <span
-//                   classNameName={classNameNames(
-//                     tier.featured ? 'text-white' : 'text-gray-900',
-//                     'text-5xl font-bold tracking-tight',
-//                   )}
-//                 >
-//                   {tier.priceMonthly}
-//                 </span>
-//                 <span classNameName={classNameNames(tier.featured ? 'text-gray-400' : 'text-gray-500', 'text-base')}>/month</span>
-//               </p>
-//               <p classNameName={classNameNames(tier.featured ? 'text-gray-300' : 'text-gray-600', 'mt-6 text-base leading-7')}>
-//                 {tier.description}
-//               </p>
-//               <ul
-//                 role="list"
-//                 classNameName={classNameNames(
-//                   tier.featured ? 'text-gray-300' : 'text-gray-600',
-//                   'mt-8 space-y-3 text-sm leading-6 sm:mt-10',
-//                 )}
-//               >
-//                 {tier.features.map((feature) => (
-//                   <li key={feature} classNameName="flex gap-x-3">
-//                     <CheckIcon
-//                       aria-hidden="true"
-//                       classNameName={classNameNames(tier.featured ? 'text-indigo-400' : 'text-indigo-600', 'h-6 w-5 flex-none')}
-//                     />
-//                     {feature}
-//                   </li>
-//                 ))}
-//               </ul>
-//               <a
-//                 href={tier.href}
-//                 aria-describedby={tier.id}
-//                 classNameName={classNameNames(
-//                   tier.featured
-//                     ? 'bg-indigo-500 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline-indigo-500'
-//                     : 'text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300 focus-visible:outline-indigo-600',
-//                   'mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10',
-//                 )}
-//               >
-//                 Get started today
-//               </a>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </>
-//   )
-// }

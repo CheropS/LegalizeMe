@@ -179,3 +179,4 @@ const ServiceCard = ({ icon, title, details }) => {
     </>
   );
 };
+
