@@ -39,7 +39,6 @@ def scrape_case_metadata(url):
     case_data['Case Number'] = get_field('Case Number')
     case_data['Parties'] = get_field('Parties')
     case_data['Date Delivered'] = get_field('Date Delivered')
-    case_data['Case Class'] = get_field('Case Class')
     case_data['Court'] = get_field('Court')
     case_data['Case Action'] = get_field('Case Action')
     case_data['Judge(s)'] = get_field('Judge(s)')
@@ -60,23 +59,23 @@ def scrape_case_metadata(url):
     return case_data
 
 # Specify the initial case number
-initial_case_number = 298831
+initial_case_number = 299031
 
 # Number of pages you want to scrape
-num_pages_to_scrape = 100
+num_pages_to_scrape = 200
 
 # Base URL for the case
 base_url = "https://kenyalaw.org/caselaw/cases/view/"
 
 # Specify the CSV file name
-csv_file = "cases_data.csv"
+csv_file = "cases_data1.csv"
 
 # Open CSV file and write the header
 with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     
     # Write the header (including Full Text)
-    writer.writerow(["Case Number", "Parties", "Date Delivered", "Case Class", "Court", "Case Action", "Judge(s)", "Citation", "County", "Full Text"])
+    writer.writerow(["Case Number", "Parties", "Date Delivered","Court", "Case Action", "Judge(s)", "Citation", "County", "Full Text"])
     
     # Loop through the pages, decrementing the case number each time
     for i in range(num_pages_to_scrape):
