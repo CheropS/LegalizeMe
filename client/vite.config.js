@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react-swc';
 export default defineConfig({
   plugins: [react()],
   build: {
-    sourcemap: false, // Disable source maps in production
+    sourcemap: false,
   },
   // server: {
   //   port: 3000,
