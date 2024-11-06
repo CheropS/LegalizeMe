@@ -50,6 +50,7 @@ const links = [
     { name: 'About Us', href: '/about' },
     { name: 'Contact Us', href: '/contact' },
     { name: 'View pricing', href: '/pricing' },
+    { name: 'Feedback', href: '/feedback' },
 ];
 
 const stats = [

@@ -14,6 +14,7 @@ import Cases from './components/Cases';
 import ForgotPassword from './components/ForgotPassword';
 import Terms from './components/Terms';
 import DataGovernance from './components/DataGovernance';
+import Feedback from './components/Feedback';
 
 const App = () => {
   const [faqData, setFaqData] = useState([]);
@@ -77,6 +78,7 @@ const App = () => {
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/terms' element={<Terms />} />
         <Route path='/data-governance' element={<DataGovernance />} />
+        <Route path='/feedback' element={<Feedback />} />
       </Routes>
 
       {/* Responsive ChatBot component */}
