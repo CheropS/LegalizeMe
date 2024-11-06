@@ -6,6 +6,7 @@ export default function SignUp() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -15,27 +16,33 @@ export default function SignUp() {
     e.preventDefault();
     setError('');
     setSuccess('');
-  
+
     if (!username || !email || !password) {
       setError('Please fill in all fields');
       return;
     }
-  
+
+    if (!agreed) {
+      setError('Please agree to the Terms of Service and Data Governance Policy');
+      return;
+    }
+
     try {
       const response = await fetch('https://backend-1-ygzf.onrender.com/api/register/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),
       });
-  
+
       const data = await response.json();
       console.log('Response data:', data);  // Log response data for debugging
-  
+
       if (response.ok) {
         setSuccess('Account created successfully');
         setUsername('');
         setEmail('');
         setPassword('');
+        setAgreed(false);
       } else {
         setError(data.message || 'Signup failed. Please try again.');
         console.error('Error data:', data);
@@ -45,7 +52,7 @@ export default function SignUp() {
       console.error('Network or Server Error:', error);
     }
   };
-  
+
 
   return (
     <>
@@ -104,10 +111,10 @@ export default function SignUp() {
                   </div>
 
                   <div className="flex items-center">
-                    <input type="checkbox" name="agree" id="agree" className="w-5 h-5 text-blue-600 bg-white border-gray-200 rounded" />
+                    <input type="checkbox" name="agree" id="agree" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} className="w-5 h-5 text-blue-600 bg-white border-gray-200 rounded" />
 
                     <label htmlFor="agree" className="ml-3 text-sm font-medium text-gray-500">
-                      I agree to LegalizeMe’s <a href="#" title="" className="text-blue-600 hover:text-blue-700 hover:underline">Terms of Service</a> and <a href="#" title="" className="text-blue-600 hover:text-blue-700 hover:underline">Privacy Policy</a>
+                      I agree to LegalizeMe’s <a href="/terms" title="" className="text-blue-600 hover:text-blue-700 hover:underline">Terms of Service</a> and <a href="data-governance" title="" className="text-blue-600 hover:text-blue-700 hover:underline">Privacy Policy</a>
                     </label>
                   </div>
 
@@ -153,8 +160,12 @@ export default function SignUp() {
               <img className="w-full mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/signup/1/cards.png" alt="" />
 
               <div className="w-full max-w-md mx-auto xl:max-w-xl">
-                <h3 className="text-2xl font-bold text-center text-black">Design your own card</h3>
-                <p className="leading-relaxed text-center text-gray-500 mt-2.5">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis.</p>
+                <h3 className="text-2xl font-bold text-center text-black">
+                  LegalizeMe is the best platform for all your legal needs
+                </h3>
+                <p className="leading-relaxed text-center text-gray-500 mt-2.5">
+                  Get access to a wide range of legal services and resources to help you succeed.
+                </p>
 
                 <div className="flex items-center justify-center mt-10 space-x-3">
                   <div className="bg-orange-500 rounded-full w-20 h-1.5"></div>
