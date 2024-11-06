@@ -14,7 +14,7 @@ const features = [
     {
         name: 'AI Powered Database',
         description:
-            'Our AI-powered datbase transforms the way you search and retrieve legal information. Experience lightning-fast searches, tailored recommendations, and instant summaries. Whether you are a legal professional or just need quick answers. LegalizeMe makes your research precise and effortless. Say goodbye to complex searches and hello to efficient legal work.',
+            'Our AI-powered database transforms the way you search and retrieve legal information. Experience lightning-fast searches, tailored recommendations, and instant summaries. Whether you are a legal professional or just need quick answers. LegalizeMe makes your research precise and effortless. Say goodbye to complex searches and hello to efficient legal work.',
         icon: ChatBubbleLeftIcon,
     },
     {
@@ -26,7 +26,7 @@ const features = [
     {
         name: 'Security You Can Trust',
         description:
-            'Your privacy is our priority. We have implemented the latest security protocals and best practices to ensure that your data is always protected. With LegalizeMe, you can focus on your legal work with complete peace of mind, knowing that your information is safe with us.',
+            'Your privacy is our priority. We have implemented the latest security protocols and best practices to ensure that your data is always protected. With LegalizeMe, you can focus on your legal work with complete peace of mind, knowing that your information is safe with us.',
         icon: FingerPrintIcon,
     },
     {
@@ -50,6 +50,7 @@ const links = [
     { name: 'About Us', href: '/about' },
     { name: 'Contact Us', href: '/contact' },
     { name: 'View pricing', href: '/pricing' },
+    { name: 'Feedback', href: '/feedback' },
 ];
 
 const stats = [
@@ -89,7 +90,7 @@ export default function Home() {
                                     Our mission is to revolutionize the legal landscape by delivering state-of-the-art tools that make legal
                                     services faster, smarter, and accessible to everyone. We break down barriers, eliminate delays and ensure justice is
                                     never out of reach. With us, every second saved is justice unlocked, every document generated is a problem solved,
-                                    and evert user empowered is a step towards a fairer world. LegalizeMe isn't just a platform - it's
+                                    and every user empowered is a step towards a fairer world. LegalizeMe isn't just a platform - it's
                                     the future of law in motion.<br /><br /> Sign up now, and be part of the change.
                                 </p>
 
@@ -133,7 +134,7 @@ export default function Home() {
                                 <p className="mt-6 text-lg leading-8 text-gray-600">
                                     We leverage cutting-edge AI technology to simplify legal services and streamline your workflow.
                                     From lightning-fast research to automated document generation, we empower you to focus on what matters.
-                                    With smart recommendations nd robust security, the future of legal services is just a click away.
+                                    With smart recommendations and robust security, the future of legal services is just a click away.
                                 </p>
                             </motion.div>
                             <motion.div
@@ -200,7 +201,7 @@ export default function Home() {
                                     transition={{ duration: 0.5, delay: 0.4 }}
                                     className="mt-6 text-lg leading-8 text-gray-300"
                                 >
-                                    We are continuously evolving to nhance our platform and offer smarter legal solutions. Whether you are a legal professional or running a firm, there is something for everyone.<br /><br />
+                                    We are continuously evolving to enhance our platform and offer smarter legal solutions. Whether you are a legal professional or running a firm, there is something for everyone.<br /><br />
                                     For inquiries, details, or personalized support, reach out to us anytime at <strong>info.support@legalizeme.site</strong> by clicking the links below.
                                 </motion.p>
                             </div>

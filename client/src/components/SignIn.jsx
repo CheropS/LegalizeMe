@@ -132,8 +132,12 @@ export default function SignIn() {
               <img className="w-full mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/signup/1/cards.png" alt="" />
 
               <div className="w-full max-w-md mx-auto xl:max-w-xl">
-                <h3 className="text-2xl font-bold text-center text-black">Design your own card</h3>
-                <p className="leading-relaxed text-center text-gray-500 mt-2.5">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis.</p>
+                <h3 className="text-2xl font-bold text-center text-black">
+                  Log in to LegalizeMe
+                </h3>
+                <p className="leading-relaxed text-center text-gray-500 mt-2.5">
+                  Sign in to your account to access all features and services. If you don't have an account yet, you can create one for free.
+                </p>
 
                 <div className="flex items-center justify-center mt-10 space-x-3">
                   <div className="bg-orange-500 rounded-full w-20 h-1.5"></div>
