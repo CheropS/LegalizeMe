@@ -1,4 +1,4 @@
-'use client'
+import React from 'react';
 
 import { FingerPrintIcon, ChatBubbleLeftIcon, FolderIcon, PaperAirplaneIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
