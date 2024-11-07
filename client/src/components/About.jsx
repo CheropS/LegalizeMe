@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Blog from './Blog';
-import Numbers from './Numbers';
 
 const AboutUs = () => {
     const stats = [
