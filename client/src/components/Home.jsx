@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { FingerPrintIcon, ChatBubbleLeftIcon, FolderIcon, PaperAirplaneIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
+
+import { FingerPrintIcon, ChatBubbleLeftIcon, PaperAirplaneIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
-import Brief from './Brief';
-import Cta from './CTA';
-import Services from './Services';
-import FAQs from './FAQs';
-import Navbar from './Navbar';
-import Footer from './Footer';
-import Hero from './Hero';
+import Brief from './Brief.jsx';
+import Cta from './CTA.jsx';
+import Services from './Services.jsx';
+import FAQs from './FAQs.jsx';
+import Navbar from './Navbar.jsx';
+import Footer from './Footer.jsx';
+import Hero from './Hero.jsx';
 
 const features = [
     {
@@ -62,9 +63,9 @@ const stats = [
 const partners = [
     { name: 'Kenya Law', src: '/klaw.jpeg', url: 'https://www.kenyalaw.org' },
     { name: 'ALX Academy', src: '/alxacademy.png', url: 'https://www.alxafrica.com' },
-    { name: 'Sand Technologies', src: './sandtech.jpeg', url: 'https://www.sandtech.com' },
-    { name: 'ALX Ventures', src: './alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
-    { name: 'The FutureList', src: './futurelist.png', url: 'https://www.futurelist.com' },
+    { name: 'Sand Technologies', src: '/sandtech.jpeg', url: 'https://www.sandtech.com' },
+    { name: 'ALX Ventures', src: '/alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
+    { name: 'The FutureList', src: '/futurelist.png', url: 'https://www.futurelist.com' },
 ];
 
 export default function Home() {
