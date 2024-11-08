@@ -1,13 +1,10 @@
-'use client'
-
+import React from 'react';
 import { FingerPrintIcon, ChatBubbleLeftIcon, FolderIcon, PaperAirplaneIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 import Brief from './Brief';
 import Cta from './CTA';
 import Services from './Services';
 import FAQs from './FAQs';
-import Navbar from './Navbar';
-import Footer from './Footer';
 import Hero from './Hero';
 
 const features = [
