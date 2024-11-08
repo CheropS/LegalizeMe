@@ -50,7 +50,6 @@ const links = [
     { name: 'About Us', href: '/about' },
     { name: 'Contact Us', href: '/contact' },
     { name: 'View pricing', href: '/pricing' },
-    { name: 'Feedback', href: '/feedback' },
 ];
 
 const stats = [
@@ -71,7 +70,6 @@ export default function Home() {
     return (
         <>
             <div className="bg-white font-roboto">
-                <Navbar />
                 <section className="py-10 sm:py-16 lg:py-24 animate-fadeIn bg-gradient-to-tr from-indigo-500 to-purple-300">
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
@@ -287,7 +285,6 @@ export default function Home() {
 
                 </main>
             </div>
-            <Footer />
         </>
     );
 }

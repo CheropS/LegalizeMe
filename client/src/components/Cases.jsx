@@ -202,8 +202,6 @@
 // export default Cases;
 
 import React, { useEffect, useState } from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 const Cases = () => {
     const [cases, setCases] = useState([]);
@@ -251,7 +249,6 @@ const Cases = () => {
 
     return (
         <>
-            <Navbar />
             {/* "How Does it Work" Section */}
             <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-roboto">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -397,8 +394,6 @@ const Cases = () => {
                     </div>
                 </div>
             </section>
-
-            <Footer />
         </>
     );
 };

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -35,7 +33,6 @@ export default function Contact() {
 
     return (
         <>
-            <Navbar />
             <section className="py-10 bg-gray-100 sm:py-16 lg:py-24 animate-fadeIn font-roboto">
                 <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                     <div className="max-w-2xl mx-auto text-center">
@@ -162,7 +159,6 @@ export default function Contact() {
                     </div>
                 </div>
             </section>
-            <Footer />
         </>
     );
 }

@@ -57,9 +57,9 @@ const Footer = () => {
             <h3 className="mb-6 text-md font-semibold">Company</h3>
             <ul className="space-y-4">
               <li><a href="/about" className="hover:underline text-gray-400 hover:text-white">About</a></li>
-              <li><a href="/resources" className="hover:underline text-gray-400 hover:text-white">Careers</a></li>
+              <li><a href="#" className="hover:underline text-gray-400 hover:text-white">Careers</a></li>
               <li><a href="/terms" className="hover:underline text-gray-400 hover:text-white">Terms of Service</a></li>
-              <li><a href="/data-gorvernance" className="hover:underline text-gray-400 hover:text-white">Privacy Policy</a></li>
+              <li><a href="/data-governance" className="hover:underline text-gray-400 hover:text-white">Privacy Policy</a></li>
             </ul>
           </div>
 
@@ -68,13 +68,13 @@ const Footer = () => {
             <h3 className="mb-6 text-md font-semibold">Contact us</h3>
             <ul className="space-y-4">
               <li className="flex items-center space-x-2">
-                <span className="text-gray-400 hover:text-white">+2547 14 844 320</span>
+                <span className="text-gray-400 hover:text-white">+254 714 844 320</span>
               </li>
               <li className="flex items-center space-x-2">
                 <span className="text-gray-400 hover:text-white">info.support@legalizeme.site</span>
               </li>
               <li className="flex items-center space-x-2">
-                <span className="text-gray-400 hover:text-white">Eldoret, East View Elgon Road</span>
+                <span className="text-gray-400 hover:text-white">Eldoret East View Elgon Road</span>
               </li>
             </ul>
           </div>
