@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Papa from 'papaparse';
 import ChatBot from 'react-chatbotify';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './components/Home';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
@@ -16,10 +18,22 @@ import Terms from './components/Terms';
 import DataGovernance from './components/DataGovernance';
 import Feedback from './components/Feedback';
 
+const Layout = ({ children }) => {
+  const location = useLocation();
+  const noNavbarFooterPages = ['/signup', '/login', '/terms', '/data-governance'];
+
+  return (
+    <>
+      {!noNavbarFooterPages.includes(location.pathname) && <Navbar />}
+      {children}
+      {!noNavbarFooterPages.includes(location.pathname) && <Footer />}
+    </>
+  );
+};
+
 const App = () => {
   const [faqData, setFaqData] = useState([]);
 
-  // Load and parse CSV for FAQs
   useEffect(() => {
     Papa.parse("/cases_data.csv", {
       download: true,
@@ -30,7 +44,6 @@ const App = () => {
     });
   }, []);
 
-  // Define chatbot flow and reactions
   const flow = {
     start: {
       message: 'Hello, how can I help you today?',
@@ -65,21 +78,23 @@ const App = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<SignIn />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/about' element={<AboutUs />} />
-        <Route path='/solutions' element={<Solutions />} />
-        <Route path='/pricing' element={<Pricing />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/cases' element={<Cases />} />
-        <Route path='/resources' element={<Resources />} />
-        <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/terms' element={<Terms />} />
-        <Route path='/data-governance' element={<DataGovernance />} />
-        <Route path='/feedback' element={<Feedback />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/cases" element={<Cases />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/data-governance" element={<DataGovernance />} />
+          <Route path="/feedback" element={<Feedback />} />
+        </Routes>
+      </Layout>
 
       {/* Responsive ChatBot component */}
       <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 z-50 font-roboto">

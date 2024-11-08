@@ -12,6 +12,9 @@
   },
   "dependencies": {
     "@aws-amplify/auth": "^6.4.2",
+    "@chakra-ui/react": "^3.1.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
     "@tailwindcss/forms": "^0.5.9",
@@ -20,7 +23,7 @@
     "aws-amplify": "^6.6.2",
     "axios": "^1.7.7",
     "buffer": "^6.0.3",
-    "framer-motion": "^11.10.0",
+    "framer-motion": "^11.11.11",
     "gsap": "^3.12.5",
     "openai": "^4.68.1",
     "papaparse": "^5.4.1",

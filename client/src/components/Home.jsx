@@ -1,15 +1,14 @@
-import React from 'react';
+'use client'
 
-
-import { FingerPrintIcon, ChatBubbleLeftIcon, PaperAirplaneIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
+import { FingerPrintIcon, ChatBubbleLeftIcon, FolderIcon, PaperAirplaneIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
-import Brief from './Brief.jsx';
-import Cta from './CTA.jsx';
-import Services from './Services.jsx';
-import FAQs from './FAQs.jsx';
-import Navbar from './Navbar.jsx';
-import Footer from './Footer.jsx';
-import Hero from './Hero.jsx';
+import Brief from './Brief';
+import Cta from './CTA';
+import Services from './Services';
+import FAQs from './FAQs';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import Hero from './Hero';
 
 const features = [
     {
@@ -51,7 +50,6 @@ const links = [
     { name: 'About Us', href: '/about' },
     { name: 'Contact Us', href: '/contact' },
     { name: 'View pricing', href: '/pricing' },
-    { name: 'Feedback', href: '/feedback' },
 ];
 
 const stats = [
@@ -63,16 +61,15 @@ const stats = [
 const partners = [
     { name: 'Kenya Law', src: '/klaw.jpeg', url: 'https://www.kenyalaw.org' },
     { name: 'ALX Academy', src: '/alxacademy.png', url: 'https://www.alxafrica.com' },
-    { name: 'Sand Technologies', src: '/sandtech.jpeg', url: 'https://www.sandtech.com' },
-    { name: 'ALX Ventures', src: '/alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
-    { name: 'The FutureList', src: '/futurelist.png', url: 'https://www.futurelist.com' },
+    { name: 'Sand Technologies', src: './sandtech.jpeg', url: 'https://www.sandtech.com' },
+    { name: 'ALX Ventures', src: './alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
+    { name: 'The FutureList', src: './futurelist.png', url: 'https://www.futurelist.com' },
 ];
 
 export default function Home() {
     return (
         <>
             <div className="bg-white font-roboto">
-                <Navbar />
                 <section className="py-10 sm:py-16 lg:py-24 animate-fadeIn bg-gradient-to-tr from-indigo-500 to-purple-300">
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
@@ -288,7 +285,6 @@ export default function Home() {
 
                 </main>
             </div>
-            <Footer />
         </>
     );
 }
