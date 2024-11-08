@@ -59,8 +59,8 @@ const partners = [
     { name: 'Kenya Law', src: '/klaw.jpeg', url: 'https://www.kenyalaw.org' },
     { name: 'ALX Academy', src: '/alxacademy.png', url: 'https://www.alxafrica.com' },
     { name: 'Sand Technologies', src: './sandtech.jpeg', url: 'https://www.sandtech.com' },
-    { name: 'ALX Ventures', src: './alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
-    { name: 'The FutureList', src: './futurelist.png', url: 'https://www.futurelist.com' },
+    { name: 'ALX Ventures', src: '/alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
+    { name: 'The FutureList', src: '/futurelist.png', url: 'https://www.futurelist.com' },
 ];
 
 export default function Home() {
@@ -101,14 +101,14 @@ export default function Home() {
                             </div>
 
                             <div>
-                                <img className="w-full hover:animate-pulse" src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/2/hero-img.png" alt="Hero" />
+                                <img className="w-full hover:animate-pulse" src="#" alt="Hero" />
                             </div>
                         </div>
                     </div>
                 </section>
                 <main className="relative isolate px-6 pt-8 lg:px-8">
                     <hr className="mx-auto max-w-7xl border-t border-gray-300" />
-                    <Brief />
+                    {/* <Brief /> */}
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
                     <Hero />
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
@@ -165,7 +165,7 @@ export default function Home() {
                     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-10">
                         <img
                             alt=""
-                            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+                            src="#"
                             className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
                         />
                         <div
@@ -270,11 +270,11 @@ export default function Home() {
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
                     {/* CTA */}
-                    <Cta />
+                    {/* <Cta /> */}
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
                     {/* Services Section */}
-                    <Services />
+                    {/* <Services /> */}
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
                     {/* FAQs Section */}
