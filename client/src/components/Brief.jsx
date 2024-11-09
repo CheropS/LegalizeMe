@@ -11,14 +11,14 @@ const Brief = () => {
                                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                                     <div className="py-3 sm:py-4 animate-fadeIn">
                                         <img
-                                            src="https://i.ibb.co/gFb3ns6/image-1.jpg"
+                                            src="/image.jpg"
                                             alt=""
                                             className="w-full rounded-2xl"
                                         />
                                     </div>
                                     <div className="py-3 sm:py-4 animate-fadeIn">
                                         <img
-                                            src="https://i.ibb.co/rfHFq15/image-2.jpg"
+                                            src="image1.jpg"
                                             alt=""
                                             className="w-full rounded-2xl"
                                         />
@@ -27,7 +27,7 @@ const Brief = () => {
                                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                                     <div className="relative z-10 my-4 animate-fadeIn">
                                         <img
-                                            src="https://i.ibb.co/9y7nYCD/image-3.jpg"
+                                            src="image3.jpg"
                                             alt=""
                                             className="w-full rounded-2xl"
                                         />
