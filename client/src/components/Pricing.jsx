@@ -52,9 +52,8 @@ const Pricing = () => {
       price: "Ksh 2500",
       billing: "Monthly payment",
       features: [
-        "Unlimited documents",
-        "Watermark-free documents",
-        "Priority support"
+        "Unlimited case law access",
+        "AI Powered Database",
       ],
       buttonText: "Subscribe now",
       buttonLink: "/checkout"
@@ -145,8 +144,8 @@ const Pricing = () => {
 
   const renderPlanCards = (planData) => {
     return planData.map((plan, index) => (
-      <div key={index} className="overflow-hidden bg-white border-2 border-gray-100 rounded-md shadow-lg">
-        <div className="p-8 xl:px-12">
+      <div key={index} className="flex flex-col h-full overflow-hidden bg-white border-2 border-gray-100 rounded-md shadow-lg">
+        <div className="p-8 xl:px-12 flex-grow">
           <h3 className="text-base font-semibold text-purple-600">{plan.name}</h3>
           {plan.price && <p className="text-5xl font-bold text-black mt-7">{plan.price}</p>}
           {plan.billing && <p className="mt-3 text-base text-gray-600">{plan.billing}</p>}
@@ -160,33 +159,37 @@ const Pricing = () => {
               </li>
             ))}
           </ul>
-          <a href={plan.buttonLink} title="" className="inline-flex items-center justify-center px-10 py-4 mt-10 text-base font-semibold text-white transition-all duration-200 bg-blue-600 rounded-md hover:bg-blue-700 focus:bg-blue-700" role="button">
+        </div>
+        <div className="p-8 pt-0 flex justify-center">
+          <a href={plan.buttonLink} title="" className="inline-flex items-center justify-center w-full max-w-xs px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 rounded-md hover:bg-blue-700 focus:bg-blue-700" role="button">
             {plan.buttonText}
           </a>
         </div>
       </div>
     ));
   };
+  
 
   return (
     <>
       <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-roboto">
-        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Pricing & Plans</h2>
-            <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600">
-              Explore our pricing plans and choose the one that fits your needs. You can always upgrade or downgrade your subscription.
-            </p>
-          </div>
+      <div className="px-4 mx-auto max-w-6xl sm:px-6 lg:px-8">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Pricing & Plans</h2>
+          <p className="py-2 max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600">
+            Explore our pricing plans and choose the one that fits your needs. You can always upgrade or downgrade your subscription.
+          </p>
+          <h2 className="py-x text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-4xl">Chatbot Plans</h2>
+        </div>
 
-          {/* General Pricing Plans */}
-          <div className="grid max-w-md grid-cols-1 gap-6 mx-auto mt-8 text-center lg:max-w-full lg:mt-16 lg:grid-cols-3">
-            {renderPlanCards(plans)}
-          </div>
+        {/* General Pricing Plans */}
+        <div className="grid max-w-full grid-cols-1 gap-6 mx-auto mt-8 text-center sm:grid-cols-2 lg:grid-cols-2 lg:gap-8">
+          {renderPlanCards(plans)}
+        </div>
 
           {/* Case Law Database Access & AI Features */}
           <div className="mt-16 text-center">
-            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Case Law Database Access & AI Features</h2>
+            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-4xl">Case Law Database Access & AI Features</h2>
             <div className="grid max-w-md grid-cols-1 gap-6 mx-auto mt-8 lg:max-w-full lg:grid-cols-3">
               {renderPlanCards(caseLawPlans)}
             </div>
