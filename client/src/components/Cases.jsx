@@ -50,61 +50,61 @@
 //         <>
 //             <Navbar />
 
-            // {/* "How Does it Work" Section */}
-            // <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-roboto">
-            //     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            //         <div className="max-w-2xl mx-auto text-center">
-            //             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">How does it work?</h2>
-            //             <p className="max-w-lg mx-auto mt-4 text-base leading-relaxed text-gray-600">
-            //                 Discover the process of navigating through legal cases with ease.
-            //             </p>
-            //         </div>
+// {/* "How Does it Work" Section */}
+// <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-roboto">
+//     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+//         <div className="max-w-2xl mx-auto text-center">
+//             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">How does it work?</h2>
+//             <p className="max-w-lg mx-auto mt-4 text-base leading-relaxed text-gray-600">
+//                 Discover the process of navigating through legal cases with ease.
+//             </p>
+//         </div>
 
-            //         <div className="relative mt-12 lg:mt-20">
-            //             <div className="absolute inset-x-0 hidden xl:px-44 top-2 md:block md:px-20 lg:px-28">
-            //                 <img className="w-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/steps/2/curved-dotted-line.svg" alt="" />
-            //             </div>
+//         <div className="relative mt-12 lg:mt-20">
+//             <div className="absolute inset-x-0 hidden xl:px-44 top-2 md:block md:px-20 lg:px-28">
+//                 <img className="w-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/steps/2/curved-dotted-line.svg" alt="" />
+//             </div>
 
-            //             <div className="relative grid grid-cols-1 text-center gap-y-12 md:grid-cols-3 gap-x-12">
-            //                 <div>
-            //                     <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
-            //                         <span className="text-xl font-semibold text-gray-700"> 1 </span>
-            //                     </div>
-            //                     <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">
-            //                         Navigate through the cases
-            //                     </h3>
-            //                     <p className="mt-4 text-base text-gray-600">
-            //                         Browse through a comprehensive list of legal cases, filter by case number or classification, and find detailed information on each case.
-            //                     </p>
-            //                 </div>
+//             <div className="relative grid grid-cols-1 text-center gap-y-12 md:grid-cols-3 gap-x-12">
+//                 <div>
+//                     <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+//                         <span className="text-xl font-semibold text-gray-700"> 1 </span>
+//                     </div>
+//                     <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">
+//                         Navigate through the cases
+//                     </h3>
+//                     <p className="mt-4 text-base text-gray-600">
+//                         Browse through a comprehensive list of legal cases, filter by case number or classification, and find detailed information on each case.
+//                     </p>
+//                 </div>
 
-            //                 <div>
-            //                     <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
-            //                         <span className="text-xl font-semibold text-gray-700"> 2 </span>
-            //                     </div>
-            //                     <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">
-            //                         Read the full case details
-            //                     </h3>
-            //                     <p className="mt-4 text-base text-gray-600">
-            //                         Get access to the full text of each case, including the date delivered, case number, and classification.
-            //                     </p>
-            //                 </div>
+//                 <div>
+//                     <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+//                         <span className="text-xl font-semibold text-gray-700"> 2 </span>
+//                     </div>
+//                     <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">
+//                         Read the full case details
+//                     </h3>
+//                     <p className="mt-4 text-base text-gray-600">
+//                         Get access to the full text of each case, including the date delivered, case number, and classification.
+//                     </p>
+//                 </div>
 
-            //                 <div>
-            //                     <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
-            //                         <span className="text-xl font-semibold text-gray-700"> 3 </span>
-            //                     </div>
-            //                     <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">
-            //                         Stay informed
-            //                     </h3>
-            //                     <p className="mt-4 text-base text-gray-600">
-            //                         Stay up-to-date with the latest legal cases, summaries, and insights to help you navigate through the legal system.
-            //                     </p>
-            //                 </div>
-            //             </div>
-            //         </div>
-            //     </div>
-            // </section>
+//                 <div>
+//                     <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+//                         <span className="text-xl font-semibold text-gray-700"> 3 </span>
+//                     </div>
+//                     <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">
+//                         Stay informed
+//                     </h3>
+//                     <p className="mt-4 text-base text-gray-600">
+//                         Stay up-to-date with the latest legal cases, summaries, and insights to help you navigate through the legal system.
+//                     </p>
+//                 </div>
+//             </div>
+//         </div>
+//     </div>
+// </section>
 
 //             <section className="py-10 bg-white sm:py-16 lg:py-24 font-roboto animate-fadeIn">
 //                 <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -208,6 +208,12 @@ const Cases = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [classifications, setClassifications] = useState([]);
+    const [counties, setCounties] = useState([]);
+    const [courts, setCourts] = useState([]);
+    const [selectedClassification, setSelectedClassification] = useState('');
+    const [selectedCounty, setSelectedCounty] = useState('');
+    const [selectedCourt, setSelectedCourt] = useState('');
     const casesPerPage = 9;
 
     useEffect(() => {
@@ -218,17 +224,36 @@ const Cases = () => {
                 }
                 return response.json();
             })
-            .then(data => setCases(data.results))
+            .then(data => {
+                setCases(data.results);
+                // Extract unique classification, county, and court values for the dropdowns
+                setClassifications([...new Set(data.results.map(caseItem => caseItem.case_classification))]);
+                setCounties([...new Set(data.results.map(caseItem => caseItem.county))]);
+                setCourts([...new Set(data.results.map(caseItem => caseItem.court))]);
+            })
             .catch(error => console.error("Error fetching cases:", error));
     }, []);
+
+    // Automatically update searchQuery when searchTerm is cleared
+    useEffect(() => {
+        if (searchTerm === '') {
+            setSearchQuery('');  // Reset searchQuery when searchTerm is cleared
+        }
+    }, [searchTerm]);
 
     const handleSearch = () => {
         setSearchQuery(searchTerm);
     };
 
+    const handleFilterChange = () => {
+        setCurrentPage(1);  // Reset to first page when filters are applied
+    };
+
     const filteredCases = cases.filter(caseItem =>
-        (caseItem.case_number && caseItem.case_number.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (caseItem.case_classification && caseItem.case_classification.case_class && caseItem.case_classification.case_class.toLowerCase().includes(searchQuery.toLowerCase()))
+        (!searchQuery || (caseItem.case_number && caseItem.case_number.toLowerCase().includes(searchQuery.toLowerCase()))) &&
+        (!selectedClassification || caseItem.case_classification === selectedClassification) &&
+        (!selectedCounty || caseItem.county === selectedCounty) &&
+        (!selectedCourt || caseItem.court === selectedCourt)
     );
 
     const indexOfLastCase = currentPage * casesPerPage;
@@ -301,8 +326,7 @@ const Cases = () => {
                 </div>
             </section>
 
-            {/* Search and Case Cards Section */}
-            <section className="py-10 bg-white sm:py-16 lg:py-24 font-roboto animate-fadeIn">
+            <section className="py-10 bg-white sm:py-16 lg:py-24 font-roboto">
                 <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                     <div className="max-w-2xl mx-auto text-center">
                         <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Latest Cases</h2>
@@ -311,15 +335,45 @@ const Cases = () => {
                         </p>
                     </div>
 
-                    {/* Search Input */}
-                    <div className="flex justify-center mt-8 space-x-4">
+                    {/* Search and Filter Inputs */}
+                    <div className="flex flex-col items-center mt-8 space-y-4 lg:space-y-0 lg:space-x-4 lg:flex-row">
                         <input
                             type="text"
-                            placeholder="Search cases by number or classification"
+                            placeholder="Search by case number"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring focus:border-blue-300"
                         />
+                        <select
+                            value={selectedClassification}
+                            onChange={(e) => { setSelectedClassification(e.target.value); handleFilterChange(); }}
+                            className="px-8 py-2 border rounded-lg text-gray-700"
+                        >
+                            <option value="">All Classifications</option>
+                            {classifications.map((classification, index) => (
+                                <option key={index} value={classification}>{classification}</option>
+                            ))}
+                        </select>
+                        <select
+                            value={selectedCounty}
+                            onChange={(e) => { setSelectedCounty(e.target.value); handleFilterChange(); }}
+                            className="px-8 py-2 border rounded-lg text-gray-700"
+                        >
+                            <option value="">All Counties</option>
+                            {counties.map((county, index) => (
+                                <option key={index} value={county}>{county}</option>
+                            ))}
+                        </select>
+                        <select
+                            value={selectedCourt}
+                            onChange={(e) => { setSelectedCourt(e.target.value); handleFilterChange(); }}
+                            className="px-8 py-2 border rounded-lg text-gray-700"
+                        >
+                            <option value="">All Courts</option>
+                            {courts.map((court, index) => (
+                                <option key={index} value={court}>{court}</option>
+                            ))}
+                        </select>
                         <button
                             onClick={handleSearch}
                             className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600"
@@ -329,64 +383,51 @@ const Cases = () => {
                     </div>
 
                     {/* Cases */}
-                    <div className="grid max-w-md grid-cols-1 mx-auto mt-12 lg:max-w-full lg:mt-16 lg:grid-cols-3 gap-x-16 gap-y-12 animate-fadeIn">
+                    <div className="grid max-w-md grid-cols-1 mx-auto mt-12 lg:max-w-full lg:mt-16 lg:grid-cols-3 gap-x-16 gap-y-12">
                         {currentCases.map((caseItem) => (
                             <div key={caseItem.id} className="bg-white p-6 rounded-lg shadow-md">
                                 <span className="inline-flex px-4 py-2 text-xs font-semibold tracking-widest uppercase rounded-full text-rose-500 bg-rose-100">
-                                    {caseItem.case_classification.case_class}
+                                    {caseItem.case_classification}
                                 </span>
                                 <h3 className="mt-4 text-xl font-semibold text-black">
-                                    {caseItem.case_number}
+                                    <a href={`/cases/${caseItem.id}`} className="hover:underline">
+                                        {caseItem.case_number}
+                                    </a>
                                 </h3>
                                 <p className="mt-4 text-gray-600">
                                     {caseItem.full_text.substring(0, 100)}...
+                                    <button className="text-blue-500 hover:underline">Continue Reading</button>
                                 </p>
                                 <div className="h-0 mt-6 mb-4 border-t-2 border-gray-200 border-dashed"></div>
                                 <span className="block text-sm font-bold tracking-widest text-gray-500 uppercase">
                                     {caseItem.date_delivered}
                                 </span>
                                 <span className="block mt-2 text-sm font-medium text-gray-700">
-                                    Court: {caseItem.court.court_name}
+                                    Court: {caseItem.court}
                                 </span>
                                 <span className="block text-sm font-medium text-gray-700">
-                                    County: {caseItem.county.county_name}
+                                    County: {caseItem.county}
                                 </span>
-                                <button className="mt-4 inline-flex items-center text-blue-500 hover:underline">
-                                    Read More
-                                </button>
                             </div>
                         ))}
                     </div>
 
                     {/* Pagination */}
-                    <div className="bg-white py-10 text-center dark:bg-dark mt-12">
-                        <div>
-                            <ul className="mx-auto flex w-full max-w-[415px] items-center justify-between">
-                                <li>
-                                    <button
-                                        onClick={goToPreviousPage}
-                                        disabled={currentPage === 1}
-                                        className="inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 py-2 text-base font-medium text-dark hover:bg-gray-2 dark:text-black dark:hover:bg-white/5"
-                                    >
-                                        <span>Previous</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <span className="text-lg font-medium text-gray-700">
-                                        Page {currentPage} of {totalPages}
-                                    </span>
-                                </li>
-                                <li>
-                                    <button
-                                        onClick={goToNextPage}
-                                        disabled={currentPage === totalPages}
-                                        className="inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 py-2 text-base font-medium text-dark hover:bg-gray-2 dark:text-black dark:hover:bg-white/5"
-                                    >
-                                        <span>Next</span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
+                    <div className="flex justify-center mt-10 space-x-2">
+                        <button
+                            onClick={goToPreviousPage}
+                            disabled={currentPage === 1}
+                            className="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300"
+                        >
+                            Previous
+                        </button>
+                        <button
+                            onClick={goToNextPage}
+                            disabled={currentPage === totalPages}
+                            className="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300"
+                        >
+                            Next
+                        </button>
                     </div>
                 </div>
             </section>
@@ -395,4 +436,3 @@ const Cases = () => {
 };
 
 export default Cases;
-
