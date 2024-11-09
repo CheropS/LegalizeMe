@@ -222,18 +222,15 @@ const Cases = () => {
             .catch(error => console.error("Error fetching cases:", error));
     }, []);
 
-    // Trigger search only on button click
     const handleSearch = () => {
         setSearchQuery(searchTerm);
     };
 
-    // Filter cases based on search query
     const filteredCases = cases.filter(caseItem =>
-        caseItem.case_number.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        caseItem.case_classification.case_class.toLowerCase().includes(searchQuery.toLowerCase())
+        (caseItem.case_number && caseItem.case_number.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (caseItem.case_classification && caseItem.case_classification.case_class && caseItem.case_classification.case_class.toLowerCase().includes(searchQuery.toLowerCase()))
     );
 
-    // Pagination logic
     const indexOfLastCase = currentPage * casesPerPage;
     const indexOfFirstCase = indexOfLastCase - casesPerPage;
     const currentCases = filteredCases.slice(indexOfFirstCase, indexOfLastCase);
@@ -249,7 +246,6 @@ const Cases = () => {
 
     return (
         <>
-            {/* "How Does it Work" Section */}
             <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-roboto">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="max-w-2xl mx-auto text-center">
@@ -399,3 +395,4 @@ const Cases = () => {
 };
 
 export default Cases;
+

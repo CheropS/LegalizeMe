@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+
 import { FingerPrintIcon, ChatBubbleLeftIcon, FolderIcon, PaperAirplaneIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 import Brief from './Brief';
@@ -9,36 +10,38 @@ import Hero from './Hero';
 
 const features = [
     {
-        name: 'AI Powered Database',
+        name: 'AI-Powered Legal Database',
         description:
-            'Our AI-powered database transforms the way you search and retrieve legal information. Experience lightning-fast searches, tailored recommendations, and instant summaries. Whether you are a legal professional or just need quick answers. LegalizeMe makes your research precise and effortless. Say goodbye to complex searches and hello to efficient legal work.',
+            'Our AI-driven database transforms legal research with rapid, precise searches, personalized insights, and instant summaries. Whether you are a legal professional or seeking quick access to legal information, LegalizeMe saves you time, turning complex searches into effortless results. Embrace smarter, faster legal work.',
         icon: ChatBubbleLeftIcon,
     },
     {
         name: '"Counsel" Your Personal Legal Assistant',
         description:
-            '"Counsel" is more than just a chatbot - it is your real-time document generator. Whether you need contracts, agreements, or legal templates, "Counsel" delivers fast, error-free, and accessible documents at your fingertips. Draft contracts in minutes, not hours, and get your legal tasks done anytime, anywhere. With "Counsel", legal support is as easy as having a conversation. Simplify your legal needs with "Counsel" today.',
+            '"Counsel" isn’t just a chatbot—it’s your real-time document generator. From contracts to agreements, "Counsel" delivers. Fast, accurate, and as easy as a conversation, "Counsel" puts legal support at your fingertips.',
         icon: PaperAirplaneIcon,
     },
     {
         name: 'Security You Can Trust',
         description:
-            'Your privacy is our priority. We have implemented the latest security protocols and best practices to ensure that your data is always protected. With LegalizeMe, you can focus on your legal work with complete peace of mind, knowing that your information is safe with us.',
+            'At LegalizeMe, your privacy is paramount. We utilize the latest security protocols and industry-leading best practices to safeguard your data, ensuring that your information is always protected. With us, you can approach your legal work with confidence, knowing your data is in safe hands.',
         icon: FingerPrintIcon,
     },
     {
         name: 'Coming Soon: A Glimpse into the Future',
-        description: (
-            <>
-                <p>We are just getting started. Stay tuned for advanced features including:</p>
-                <ul className="list-disc ml-4">
-                    <li>Contract analysis to spot risks and optimize terms</li>
-                    <li>E-discovery tools to streamline case preparation</li>
-                    <li>Lawyer recommendations for specialized legal assistance</li>
-                    <li>Augmented document retrieval for more comprehensive results</li>
-                </ul>
-            </>
-        ),
+        description: 'We’re just getting started. Soon, you’ll have access to cutting-edge features like advanced contract analysis to identify risks and optimize terms—plus much more. Stay tuned.'
+        // (
+        //     <>
+        //         <p>We are just getting started. Stay tuned for advanced features including:</p>
+        //         <ul className="list-disc ml-4">
+        //             <li>Contract analysis to spot risks and optimize terms</li>
+        //             <li>E-discovery tools to streamline case preparation</li>
+        //             <li>Lawyer recommendations for specialized legal assistance</li>
+        //             <li>Augmented document retrieval for more comprehensive results</li>
+        //         </ul>
+        //     </>
+        // )
+        ,
         icon: EllipsisHorizontalCircleIcon,
     },
 ];
@@ -51,7 +54,7 @@ const links = [
 
 const stats = [
     { name: 'Targeted Users', value: '2000+' },
-    { name: 'Documents generated', value: '50+' },
+    { name: 'Documents generated daily', value: '50+' },
     { name: 'Time saved per week', value: '15 hours' },
 ];
 
@@ -59,8 +62,8 @@ const partners = [
     { name: 'Kenya Law', src: '/klaw.jpeg', url: 'https://www.kenyalaw.org' },
     { name: 'ALX Academy', src: '/alxacademy.png', url: 'https://www.alxafrica.com' },
     { name: 'Sand Technologies', src: './sandtech.jpeg', url: 'https://www.sandtech.com' },
-    { name: 'ALX Ventures', src: '/alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
-    { name: 'The FutureList', src: '/futurelist.png', url: 'https://www.futurelist.com' },
+    { name: 'ALX Ventures', src: './alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
+    { name: 'The FutureList', src: './futurelist.png', url: 'https://www.futurelist.com' },
 ];
 
 export default function Home() {
@@ -81,12 +84,7 @@ export default function Home() {
                                 </div>
 
                                 <p className="mt-8 text-base text-black sm:text-xl">
-                                    At LegalizeMe, we are not just keeping up with the change - we are driving it.
-                                    Our mission is to revolutionize the legal landscape by delivering state-of-the-art tools that make legal
-                                    services faster, smarter, and accessible to everyone. We break down barriers, eliminate delays and ensure justice is
-                                    never out of reach. With us, every second saved is justice unlocked, every document generated is a problem solved,
-                                    and every user empowered is a step towards a fairer world. LegalizeMe isn't just a platform - it's
-                                    the future of law in motion.<br /><br /> Sign up now, and be part of the change.
+                                At LegalizeMe, we're redefining access to justice with cutting-edge tools that make legal services faster, smarter, and accessible for all. Every minute saved, every document generated, and every user empowered brings us closer to a world where justice moves swiftly for everyone.<br /><br /> Sign up now, and be part of the change.
                                 </p>
 
                                 <div className="mt-8 sm:flex sm:items-center sm:space-x-8">
@@ -101,14 +99,14 @@ export default function Home() {
                             </div>
 
                             <div>
-                                <img className="w-full hover:animate-pulse" src="#" alt="Hero" />
+                                <img className="w-full hover:animate-pulse" src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/2/hero-img.png" alt="Hero" />
                             </div>
                         </div>
                     </div>
                 </section>
                 <main className="relative isolate px-6 pt-8 lg:px-8">
                     <hr className="mx-auto max-w-7xl border-t border-gray-300" />
-                    {/* <Brief /> */}
+                    <Brief />
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
                     <Hero />
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
@@ -165,7 +163,7 @@ export default function Home() {
                     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-10">
                         <img
                             alt=""
-                            src="#"
+                            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
                             className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
                         />
                         <div
@@ -196,7 +194,7 @@ export default function Home() {
                                     transition={{ duration: 0.5, delay: 0.4 }}
                                     className="mt-6 text-lg leading-8 text-gray-300"
                                 >
-                                    We are continuously evolving to enhance our platform and offer smarter legal solutions. Whether you are a legal professional or running a firm, there is something for everyone.<br /><br />
+                                    We’re evolving to deliver smarter legal solutions for legal professionals, researchers, students, and business founders. There's something for everyone.<br /><br />
                                     For inquiries, details, or personalized support, reach out to us anytime at <strong>info.support@legalizeme.site</strong> by clicking the links below.
                                 </motion.p>
                             </div>
@@ -270,11 +268,11 @@ export default function Home() {
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
                     {/* CTA */}
-                    {/* <Cta /> */}
+                    <Cta />
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
                     {/* Services Section */}
-                    {/* <Services /> */}
+                    <Services />
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
                     {/* FAQs Section */}
