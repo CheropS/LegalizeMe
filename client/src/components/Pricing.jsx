@@ -35,19 +35,6 @@ const Pricing = () => {
       ],
       buttonText: "Subscribe now",
       buttonLink: "/checkout"
-    },
-    {
-      name: "All-Inclusive",
-      price: "Ksh 6000",
-      billing: "Yearly payment",
-      features: [
-        "Unlimited documents",
-        "Watermark-free documents",
-        "Priority support",
-        "17% discount mailing list subscribers"
-      ],
-      buttonText: "Subscribe now",
-      buttonLink: "/checkout"
     }
   ];
 
@@ -73,15 +60,6 @@ const Pricing = () => {
       buttonLink: "/checkout"
     },
     {
-      name: "Standard Subscription",
-      price: "KES 2500/month",
-      features: [
-        "Unlimited case law access with AI summaries and recommendations"
-      ],
-      buttonText: "Subscribe",
-      buttonLink: "/checkout"
-    },
-    {
       name: "Premium Subscription",
       price: "KES 3000/month",
       features: [
@@ -89,6 +67,19 @@ const Pricing = () => {
         "Discounts for mailing list subscribers"
       ],
       buttonText: "Subscribe",
+      buttonLink: "/checkout"
+    },
+    {
+      name: "All-Inclusive",
+      price: "Ksh 6000",
+      billing: "Yearly payment",
+      features: [
+        "Unlimited documents",
+        "Watermark-free documents",
+        "Priority support",
+        "17% discount mailing list subscribers"
+      ],
+      buttonText: "Subscribe now",
       buttonLink: "/checkout"
     },
     {

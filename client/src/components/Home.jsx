@@ -81,7 +81,7 @@ export default function Home() {
                                     LegalizeMe
                                 </h1>
                                 <div className="relative inline-flex">
-                                    <span className="absolute inset-x-0 bottom-0 border-b-[50px] border-[#4ADE80]"></span>
+                                    <span className="absolute inset-x-0 bottom-0 border-b-[30px] border-[#4ADE80]"></span>
                                     <span className="relative text-4xl font-bold text-black sm:text-6xl lg:text-6xl">
                                         Lubricating the wheels of justice
                                     </span>
