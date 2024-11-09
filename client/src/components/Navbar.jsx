@@ -17,7 +17,7 @@ export default function Navbar() {
   // Logout functionality
   const handleLogout = () => {
     // Clear the JWT token from localStorage
-    localStorage.removeItem('token'); 
+    localStorage.removeItem('token');
 
     // Update authentication state
     setIsAuthenticated(false); // Update the state to reflect logout
@@ -37,11 +37,14 @@ export default function Navbar() {
           <nav className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <a href="/" title="" className="flex items-center space-x-3">
-                <img className="h-12 w-12 lg:h-16 lg:w-16" src="transparentlogo.svg" alt="Logo" />
-                {/* <h3 className="text-xl font-bold text-black lg:text-2">LegalizeMe</h3> */}
+              <a href="/" title="Home" className="flex items-center space-x-4">
+                {/* <img className="h-12 w-12 lg:h-16 lg:w-16" src="transparentlogo.svg" alt="Logo" /> */}
+                <h3 className="text-2xl font-extrabold text-gray-800 tracking-wide lg:text-3xl transition duration-200 hover:text-blue-600">
+                  Legalize<span className="text-black-200">Me</span>
+                </h3>
               </a>
             </div>
+
 
             {/* Hamburger menu button for mobile */}
             <button

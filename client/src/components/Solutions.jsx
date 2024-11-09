@@ -266,52 +266,33 @@ const Solutions = () => {
             </div>
           </div>
           <div className="flex flex-wrap -mx-4 mt-12 animate-fadeIn font-roboto">
-            <div className="w-full md:w-1/3 px-4 mb-8">
-              <div className="rounded-md bg-white shadow-md p-8">
-                <div className="text-4xl font-bold text-purple-600 mb-4">01</div>
-                <h3 className="text-2xl font-bold mb-4">A more powerful chatbot</h3>
-                <p className="text-gray-600 mb-4">
-                  Chatbot powered by cutting-edge LLM technology to answer your legal queries and generate documents in real-time.
-                </p>
+            {['01', '02', '03'].map((num, idx) => (
+              <div key={num} className="w-full md:w-1/3 px-4 mb-8">
+                <div className="rounded-md bg-white shadow-md p-8 h-[300px] flex flex-col justify-between">
+                  <div className="text-4xl font-bold text-purple-600 mb-4">{num}</div>
+                  <h3 className="text-2xl font-bold mb-4">
+                    {idx === 0
+                      ? 'AI-Powered Document Generation'
+                      : idx === 1
+                        ? 'Contract Analysis'
+                        : 'Legal references'}
+                  </h3>
+                  <p className="text-gray-600">
+                    {idx === 0
+                      ? 'Harnessing cutting-edge LLM technology to instantly generate accurate legal documents, with the future potential to answer your legal queries.'
+                      : idx === 1
+                        ? 'Automated contract analysis, extracting critical insights to help you make smarter decisions.'
+                        : 'Seamless access to legal references and case laws, tailored to your needs.'}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="w-full md:w-1/3 px-4 mb-8 animate-fadeIn font-roboto">
-              <div className="rounded-md bg-white shadow-md p-8">
-                <div className="text-4xl font-bold text-purple-600 mb-4">02</div>
-                <h3 className="text-2xl font-bold mb-4">Contract Analysis</h3>
-                <p className="text-gray-600 mb-4">
-                  Automated contract analysis, extracting critical insights to help you make smarter decisions.
-                </p>
-              </div>
-            </div>
-
-            <div className="w-full md:w-1/3 px-4 mb-8 animate-fadeIn font-roboto">
-              <div className="rounded-md bg-white shadow-md p-8">
-                <div className="text-4xl font-bold text-purple-600 mb-4">03</div>
-                <h3 className="text-2xl font-bold mb-4">Legal references</h3>
-                <p className="text-gray-600 mb-4">
-                  Seamless access to legal references and case laws, tailored to your needs.
-                </p>
-              </div>
-            </div>
-            <div className="w-full md:w-1/3 px-4 mb-8">
-              <div className="rounded-md bg-white shadow-md p-8">
-                <div className="text-4xl font-bold text-purple-600 mb-4">04</div>
-                <h3 className="text-2xl font-bold mb-4">AI-Powered Document Generation</h3>
-                <p className="text-gray-600 mb-4">
-                  Harnessing cutting-edge LLM technology to instantly generate accurate legal documents, with the future potential to answer your legal queries.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <div className="container mx-auto px-4">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
               <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
-                {/* <span className="mb-2 block text-lg font-semibold text-indigo-600 animate-fadeIn">
-              Coming soon...
-            </span> */}
                 <h2 className="mb-3 text-2xl font-bold leading-[1.2] text-dark dark:text-black sm:text-4xl md:text-[40px] animate-fadeIn">
                   The Future of Law is Here. Experience It First.
                 </h2>
