@@ -23,18 +23,6 @@ const Pricing = () => {
       ],
       buttonText: "Get full access",
       buttonLink: "/checkout"
-    },
-    {
-      name: "Unlimited",
-      price: "Ksh 2500",
-      billing: "Monthly payment",
-      features: [
-        "Unlimited documents",
-        "Watermark-free documents",
-        "Priority support"
-      ],
-      buttonText: "Subscribe now",
-      buttonLink: "/checkout"
     }
   ];
 
@@ -57,6 +45,18 @@ const Pricing = () => {
         "Discounted rates for mailing list subscribers"
       ],
       buttonText: "Try now",
+      buttonLink: "/checkout"
+    },
+    {
+      name: "Unlimited",
+      price: "Ksh 2500",
+      billing: "Monthly payment",
+      features: [
+        "Unlimited documents",
+        "Watermark-free documents",
+        "Priority support"
+      ],
+      buttonText: "Subscribe now",
       buttonLink: "/checkout"
     },
     {
