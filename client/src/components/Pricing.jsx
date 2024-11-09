@@ -35,6 +35,19 @@ const Pricing = () => {
       ],
       buttonText: "Subscribe now",
       buttonLink: "/checkout"
+    },
+    {
+      name: "All-Inclusive",
+      price: "Ksh 6000",
+      billing: "Yearly payment",
+      features: [
+        "Unlimited documents",
+        "Watermark-free documents",
+        "Priority support",
+        "17% discount mailing list subscribers"
+      ],
+      buttonText: "Subscribe now",
+      buttonLink: "/checkout"
     }
   ];
 
@@ -91,53 +104,53 @@ const Pricing = () => {
     }
   ];
 
-  const longTermRevenuePlans = [
-    {
-      name: "Small Firms Package",
-      price: "$100/month",
-      features: [
-        "Affordable subscription for small firms",
-        "Collaboration tools and AI insights"
-      ],
-      buttonText: "Get started",
-      buttonLink: "/checkout"
-    },
-    {
-      name: "Large Firms Package",
-      features: [
-        "Custom pricing for full database access",
-        "Advanced analytics and case trend insights"
-      ],
-      buttonText: "Contact sales",
-      buttonLink: "/contact"
-    },
-    {
-      name: "AI/ML Model Licensing",
-      features: [
-        "Licensing for legal search and summarization models",
-        "Ideal for law firms and educational institutions"
-      ],
-      buttonText: "Inquire now",
-      buttonLink: "/contact"
-    },
-    {
-      name: "Data Analytics",
-      features: [
-        "Legal trends and case law analysis",
-        "Fee-based service for specialized insights"
-      ],
-      buttonText: "Learn more",
-      buttonLink: "/contact"
-    },
-    {
-      name: "Data Monetization",
-      features: [
-        "Aggregated legal data for government bodies, universities, and research institutions"
-      ],
-      buttonText: "Request access",
-      buttonLink: "/contact"
-    }
-  ];
+  // const longTermRevenuePlans = [
+  //   {
+  //     name: "Small Firms Package",
+  //     price: "$100/month",
+  //     features: [
+  //       "Affordable subscription for small firms",
+  //       "Collaboration tools and AI insights"
+  //     ],
+  //     buttonText: "Get started",
+  //     buttonLink: "/checkout"
+  //   },
+  //   {
+  //     name: "Large Firms Package",
+  //     features: [
+  //       "Custom pricing for full database access",
+  //       "Advanced analytics and case trend insights"
+  //     ],
+  //     buttonText: "Contact sales",
+  //     buttonLink: "/contact"
+  //   },
+  //   {
+  //     name: "AI/ML Model Licensing",
+  //     features: [
+  //       "Licensing for legal search and summarization models",
+  //       "Ideal for law firms and educational institutions"
+  //     ],
+  //     buttonText: "Inquire now",
+  //     buttonLink: "/contact"
+  //   },
+  //   {
+  //     name: "Data Analytics",
+  //     features: [
+  //       "Legal trends and case law analysis",
+  //       "Fee-based service for specialized insights"
+  //     ],
+  //     buttonText: "Learn more",
+  //     buttonLink: "/contact"
+  //   },
+  //   {
+  //     name: "Data Monetization",
+  //     features: [
+  //       "Aggregated legal data for government bodies, universities, and research institutions"
+  //     ],
+  //     buttonText: "Request access",
+  //     buttonLink: "/contact"
+  //   }
+  // ];
 
   const renderPlanCards = (planData) => {
     return planData.map((plan, index) => (
@@ -189,12 +202,12 @@ const Pricing = () => {
           </div>
 
           {/* Long-Term Revenue Streams */}
-          <div className="mt-16 text-center">
+          {/* <div className="mt-16 text-center">
             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Long-Term Revenue Streams</h2>
             <div className="grid max-w-md grid-cols-1 gap-6 mx-auto mt-8 lg:max-w-full lg:grid-cols-3">
               {renderPlanCards(longTermRevenuePlans)}
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </>

@@ -50,6 +50,7 @@ const links = [
     { name: 'About Us', href: '/about' },
     { name: 'Contact Us', href: '/contact' },
     { name: 'View pricing', href: '/pricing' },
+    { name: 'Feedback', href: '/feedback' },
 ];
 
 const stats = [
@@ -66,6 +67,7 @@ const partners = [
     { name: 'The FutureList', src: './futurelist.png', url: 'https://www.futurelist.com' },
 ];
 
+
 export default function Home() {
     return (
         <>
@@ -74,36 +76,39 @@ export default function Home() {
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
 
-                            <div>
-                                <h1 className="text-4xl font-bold font-roboto text-black sm:text-6xl lg:text-7xl">
+                            <div className="animate-slideInLeft">
+                                <h1 className="text-4xl font-bold font-roboto text-black sm:text-6xl lg:text-6xl">
                                     LegalizeMe
                                 </h1>
                                 <div className="relative inline-flex">
-                                    <span className="absolute inset-x-0 bottom-0 border-b-[30px] border-[#4ADE80]"></span>
-                                    <span className="relative text-4xl font-bold text-black sm:text-6xl lg:text-7xl">Lubricating the wheels of justice</span>
+                                    <span className="absolute inset-x-0 bottom-0 border-b-[50px] border-[#4ADE80]"></span>
+                                    <span className="relative text-4xl font-bold text-black sm:text-6xl lg:text-6xl">
+                                        Lubricating the wheels of justice
+                                    </span>
                                 </div>
 
-                                <p className="mt-8 text-base text-black sm:text-xl">
-                                At LegalizeMe, we're redefining access to justice with cutting-edge tools that make legal services faster, smarter, and accessible for all. Every minute saved, every document generated, and every user empowered brings us closer to a world where justice moves swiftly for everyone.<br /><br /> Sign up now, and be part of the change.
+                                <p className="mt-8 text-base text-black sm:text-xl animate-fadeIn delay-500">
+                                LegalizeMe is redefining access to justice with cutting-edge tools that make legal services faster, smarter, and accessible for all. Every minute saved, every document generated, and every user empowered brings us closer to a world where justice moves swiftly for everyone.<br /><br /> Sign up now, and be part of the change.
                                 </p>
 
                                 <div className="mt-8 sm:flex sm:items-center sm:space-x-8">
-                                    <a href="/signup" className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-green-600 border-r-2" role="button">
+                                    <a href="/signup" className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-green-600 border-r-2 transform hover:scale-105" role="button">
                                         Get Started
                                     </a>
 
-                                    <a href="/about" className="text-sm font-semibold leading-6 text-gray-900 px-2">
+                                    <a href="/about" className="text-sm font-semibold leading-6 text-gray-900 px-2 transform hover:scale-105 transition-all duration-200">
                                         Learn more <span aria-hidden="true">→</span>
                                     </a>
                                 </div>
                             </div>
 
-                            <div>
-                                <img className="w-full hover:animate-pulse" src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/2/hero-img.png" alt="Hero" />
+                            <div className="animate-slideInRight">
+                                <img className="w-full hover:animate-pulse transform transition-transform duration-500 hover:scale-105" src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/2/hero-img.png" alt="Hero" />
                             </div>
                         </div>
                     </div>
                 </section>
+
                 <main className="relative isolate px-6 pt-8 lg:px-8">
                     <hr className="mx-auto max-w-7xl border-t border-gray-300" />
                     <Brief />
@@ -163,7 +168,7 @@ export default function Home() {
                     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-10">
                         <img
                             alt=""
-                            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+                            src="/innovation.jpg"
                             className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
                         />
                         <div

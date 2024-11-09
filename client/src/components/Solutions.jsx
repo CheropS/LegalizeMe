@@ -7,12 +7,10 @@ const Solutions = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
-              How do we create success
+              Transforming Legal Services with AI-Driven Technology
             </h2>
             <p className="max-w-lg mx-auto mt-4 text-base leading-relaxed text-gray-600">
-              We are committed to providing you with the best solutions for your
-              legal needs and business growth. We approach every client with a
-              focus on integrity, advocacy, and understanding. We fight for you!
+              We craft innovative solutions designed to meet the unique needs of the legal landscape, empowering individuals and professionals alike. By harnessing cutting-edge AI, our tools simplify processes, reduce costs, and make justice accessible, efficient, and reliable for all.
             </p>
           </div>
 
@@ -171,13 +169,7 @@ const Solutions = () => {
                 Comprehensive Legal Database
               </h3>
               <p className="mt-4 text-base text-gray-600">
-                Imagine having the entire legal world at your disposal. Our
-                platform gives you instant access to an extensive legal database
-                packed with case law precedent and other legal documents. Say
-                goodbye to endless searches - our AI-powered search engine
-                delivers only the most relevant results, summarized and ready to
-                use. Legal researc has never been this easy. Welcome to the
-                future of law.
+                Unlock instant access to a vast library of case law, precedents, and essential legal documents—all powered by AI for quick, precise search results. Simplify your legal research with relevant insights delivered instantly. Welcome to the future of law.
               </p>
             </div>
 
@@ -212,13 +204,7 @@ const Solutions = () => {
                 Automated Legal Document Generation
               </h3>
               <p className="mt-4 text-base text-gray-600">
-                Why waste time on tedious paperwork? With just a few inputs, our
-                system generates tailoremade lega documents in minutes - no
-                hassle, no fuss. Whether it's contracts, agreements, or
-                policies, we've got you covered. And for transparency, each
-                document is watermarked as a draft until it is legally
-                validated. Precision, speed, and control - right at your
-                fingertips.
+                Generate customized legal documents in minutes—contracts, agreements, policies, and more. Our system ensures precision and speed, marking each document as a draft until legally validated, giving you control and transparency every step of the way.
               </p>
             </div>
 
@@ -250,15 +236,10 @@ const Solutions = () => {
                 </svg>
               </div>
               <h3 className="mt-8 text-lg font-semibold text-black">
-                Your Legal Ally on Every Step of Your Journey
+                Your Legal Ally
               </h3>
               <p className="mt-4 text-base text-gray-600">
-                We are more than just a platform - we are your trusted legal
-                ally. Whether you're drafting documents, conducting research, or
-                navigating complexities, we're here to simplify the process,
-                reduce uncertainity, and empower you to succeed. Our team of
-                legal experts is always on standby to provide guidance and
-                support. With LegalizeMe, you're never alone.
+                From drafting documents to navigating legal complexities, we’re here to simplify, support, and empower. With expert guidance always available, LegalizeMe ensures you have a trusted partner at every step of your journey.
               </p>
             </div>
           </div>
@@ -267,30 +248,30 @@ const Solutions = () => {
 
       <section className="bg-gray-200 py-20">
         <div className="container mx-auto px-4">
-        <div className="-mx-4 flex flex-wrap">
-        <div className="w-full px-4">
-          <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
-            <span className="mb-2 block text-lg font-semibold text-indigo-600 animate-fadeIn">
-              Coming soon...
-            </span>
-            <h2 className="mb-3 text-2xl font-bold leading-[1.2] text-dark dark:text-black sm:text-4xl md:text-[40px] animate-fadeIn">
-              The Future of Legal Tech is Here
-            </h2>
-            <p className="text-base text-body-color dark:text-dark-6 animate-fadeIn">
-              The best is yet to come. Brace yourself for groundbreaking
-              innovations that will revolutionize the legal industry. Stay tuned
-              for exciting updates and announcements.
-            </p>
+          <div className="-mx-4 flex flex-wrap">
+            <div className="w-full px-4">
+              <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
+                <span className="mb-2 block text-lg font-semibold text-indigo-600 animate-fadeIn">
+                  Coming soon...
+                </span>
+                <h2 className="mb-3 text-2xl font-bold leading-[1.2] text-dark dark:text-black sm:text-4xl md:text-[40px] animate-fadeIn">
+                  The Future of Legal Tech is Here
+                </h2>
+                <p className="text-base text-body-color dark:text-dark-6 animate-fadeIn">
+                  The best is yet to come. Brace yourself for groundbreaking
+                  innovations that will revolutionize the legal industry. Stay tuned
+                  for exciting updates and announcements.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
           <div className="flex flex-wrap -mx-4 mt-12 animate-fadeIn font-roboto">
             <div className="w-full md:w-1/3 px-4 mb-8">
               <div className="rounded-md bg-white shadow-md p-8">
                 <div className="text-4xl font-bold text-purple-600 mb-4">01</div>
                 <h3 className="text-2xl font-bold mb-4">A more powerful chatbot</h3>
                 <p className="text-gray-600 mb-4">
-                Chatbot powered by cutting-edge LLM technology to answer your legal queries and generate documents in real-time.
+                  Chatbot powered by cutting-edge LLM technology to answer your legal queries and generate documents in real-time.
                 </p>
               </div>
             </div>
@@ -299,7 +280,7 @@ const Solutions = () => {
                 <div className="text-4xl font-bold text-purple-600 mb-4">02</div>
                 <h3 className="text-2xl font-bold mb-4">Contract Analysis</h3>
                 <p className="text-gray-600 mb-4">
-                Automated contract analysis, extracting critical insights to help you make smarter decisions.
+                  Automated contract analysis, extracting critical insights to help you make smarter decisions.
                 </p>
               </div>
             </div>
@@ -309,68 +290,56 @@ const Solutions = () => {
                 <div className="text-4xl font-bold text-purple-600 mb-4">03</div>
                 <h3 className="text-2xl font-bold mb-4">Legal references</h3>
                 <p className="text-gray-600 mb-4">
-                    Seamless access to legal references and case laws, tailored to your needs.
+                  Seamless access to legal references and case laws, tailored to your needs.
+                </p>
+              </div>
+            </div>
+            <div className="w-full md:w-1/3 px-4 mb-8">
+              <div className="rounded-md bg-white shadow-md p-8">
+                <div className="text-4xl font-bold text-purple-600 mb-4">04</div>
+                <h3 className="text-2xl font-bold mb-4">AI-Powered Document Generation</h3>
+                <p className="text-gray-600 mb-4">
+                  Harnessing cutting-edge LLM technology to instantly generate accurate legal documents, with the future potential to answer your legal queries.
                 </p>
               </div>
             </div>
           </div>
         </div>
         <div className="container mx-auto px-4">
-      <div className="-mx-4 flex flex-wrap">
-        <div className="w-full px-4">
-          <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
-            {/* <span className="mb-2 block text-lg font-semibold text-indigo-600 animate-fadeIn">
+          <div className="-mx-4 flex flex-wrap">
+            <div className="w-full px-4">
+              <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
+                {/* <span className="mb-2 block text-lg font-semibold text-indigo-600 animate-fadeIn">
               Coming soon...
             </span> */}
-            <h2 className="mb-3 text-2xl font-bold leading-[1.2] text-dark dark:text-black sm:text-4xl md:text-[40px] animate-fadeIn">
-              Get ready—the future of legal tech is almost here. Stay with us, and experience it first.
-            </h2>
-            <p className="text-base text-body-color dark:text-dark-6 animate-fadeIn">
-            Curious? Excited? You should be. These tools are designed to transform how you work with the law, giving you unprecedented power and efficiency.
-            </p>
+                <h2 className="mb-3 text-2xl font-bold leading-[1.2] text-dark dark:text-black sm:text-4xl md:text-[40px] animate-fadeIn">
+                  The Future of Law is Here. Experience It First.
+                </h2>
+                <p className="text-base text-body-color dark:text-dark-6 animate-fadeIn">
+                  Curious? Excited? You should be. These tools are designed to transform how you work with the law, giving you unprecedented power and efficiency.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      </div>
       </section>
 
       <section className="py-10 bg-gray-100 sm:py-16 lg:py-24 animate-fadeIn font-roboto">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold leading-tight text-gray-800 sm:text-4xl lg:text-5xl">
-              Trusted by <span className="text-blue-600">renowned</span> world
-              className companies & design teams
+              Trusted by <span className="text-blue-600">renowned</span> world companies & design teams
             </h2>
           </div>
 
           <div className="grid max-w-xl grid-cols-1 mx-auto mt-8 text-center lg:max-w-full sm:mt-12 lg:mt-20 lg:grid-cols-3 gap-x-6 xl:gap-x-12 gap-y-6">
+
             <div className="overflow-hidden bg-white rounded-md shadow">
               <div className="px-8 py-12">
-                <div className="relative w-24 h-24 mx-auto">
-                  <img
-                    className="relative object-cover w-24 h-24 mx-auto rounded-full"
-                    src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/1/avatar-1.jpg"
-                    alt=""
-                  />
-                  <div className="absolute top-0 right-0 flex items-center justify-center bg-blue-600 rounded-full w-7 h-7">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292zm-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292z"></path>
-                    </svg>
-                  </div>
-                </div>
-                <blockquote className="mt-7">
-                  <p className="text-lg text-black">
-                    “Amet minim mollit non deserunt ullam co est sit aliqua
-                    dolor do amet sint. Velit officia consequat duis enim velit
-                    mollit. Exercitation veniam consequat”
-                  </p>
+                <blockquote className="mt-7 text-lg text-black italic">
+                  “LegalizeMe is a game-changer for my team. We’ve significantly reduced the time spent on documentation, allowing us to focus on growth.”
                 </blockquote>
-                <p className="text-base font-semibold tex-tblack mt-9">
+                <p className="text-base font-semibold mt-9 text-indigo-600">
                   Jenny Wilson
                 </p>
                 <p className="mt-1 text-base text-gray-600">
@@ -381,31 +350,10 @@ const Solutions = () => {
 
             <div className="overflow-hidden bg-white rounded-md shadow">
               <div className="px-8 py-12">
-                <div className="relative w-24 h-24 mx-auto">
-                  <img
-                    className="relative object-cover w-24 h-24 mx-auto rounded-full"
-                    src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/1/avatar-2.jpg"
-                    alt=""
-                  />
-                  <div className="absolute top-0 right-0 flex items-center justify-center bg-blue-600 rounded-full w-7 h-7">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292zm-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292z"></path>
-                    </svg>
-                  </div>
-                </div>
-                <blockquote className="mt-7">
-                  <p className="text-lg text-black">
-                    “Amet minim mollit non deserunt ullam co est sit aliqua
-                    dolor do amet sint. Velit officia consequat duis enim velit
-                    mollit. Exercitation veniam consequat”
-                  </p>
+                <blockquote className="mt-7 text-lg text-black italic">
+                  “This platform is so user-friendly. It has simplified my business processes in ways I hadn’t thought possible.”
                 </blockquote>
-                <p className="text-base font-semibold tex-tblack mt-9">
+                <p className="text-base font-semibold mt-9 text-indigo-600">
                   Robert Fox
                 </p>
                 <p className="mt-1 text-base text-gray-600">
@@ -416,31 +364,10 @@ const Solutions = () => {
 
             <div className="overflow-hidden bg-white rounded-md shadow">
               <div className="px-8 py-12">
-                <div className="relative w-24 h-24 mx-auto">
-                  <img
-                    className="relative object-cover w-24 h-24 mx-auto rounded-full"
-                    src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/1/avatar-3.jpg"
-                    alt=""
-                  />
-                  <div className="absolute top-0 right-0 flex items-center justify-center bg-blue-600 rounded-full w-7 h-7">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292zm-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292z"></path>
-                    </svg>
-                  </div>
-                </div>
-                <blockquote className="mt-7">
-                  <p className="text-lg text-black">
-                    “Amet minim mollit non deserunt ullam co est sit aliqua
-                    dolor do amet sint. Velit officia consequat duis enim velit
-                    mollit. Exercitation veniam consequat”
-                  </p>
+                <blockquote className="mt-7 text-lg text-black italic">
+                  “Highly recommend LegalizeMe! It’s streamlined my daily tasks, freeing up more time to innovate and expand my work.”
                 </blockquote>
-                <p className="text-base font-semibold tex-tblack mt-9">
+                <p className="text-base font-semibold mt-9 text-indigo-600">
                   Kristin Watson
                 </p>
                 <p className="mt-1 text-base text-gray-600">
@@ -448,9 +375,11 @@ const Solutions = () => {
                 </p>
               </div>
             </div>
+
           </div>
         </div>
       </section>
+
     </>
   );
 };

@@ -38,8 +38,8 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <a href="/" title="" className="flex items-center space-x-3">
-                <img className="h-8 w-8 lg:h-12 lg:w-12" src="transparentlogo.svg" alt="Logo" />
-                <h3 className="text-xl font-bold text-black lg:text-2">LegalizeMe</h3>
+                <img className="h-12 w-12 lg:h-16 lg:w-16" src="transparentlogo.svg" alt="Logo" />
+                {/* <h3 className="text-xl font-bold text-black lg:text-2">LegalizeMe</h3> */}
               </a>
             </div>
 
