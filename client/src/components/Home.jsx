@@ -88,7 +88,7 @@ export default function Home() {
                                 </div>
 
                                 <p className="mt-8 text-base text-black sm:text-xl animate-fadeIn delay-500">
-                                LegalizeMe is redefining access to justice with cutting-edge tools that make legal services faster, smarter, and accessible for all. Every minute saved, every document generated, and every user empowered brings us closer to a world where justice moves swiftly for everyone.<br /><br /> Sign up now, and be part of the change.
+                                    LegalizeMe is redefining access to justice with cutting-edge tools that make legal services faster, smarter, and accessible for all. Every minute saved, every document generated, and every user empowered brings us closer to a world where justice moves swiftly for everyone.<br /><br /> Sign up now, and be part of the change.
                                 </p>
 
                                 <div className="mt-8 sm:flex sm:items-center sm:space-x-8">
@@ -102,10 +102,30 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="animate-slideInRight">
-                                <img className="w-full hover:animate-pulse transform transition-transform duration-500 hover:scale-105" src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/2/hero-img.png" alt="Hero" />
+                            {/* <div className="animate-slideInRight">
+                                <img className="w-full hover:animate-pulse transform transition-transform duration-500 hover:scale-105 rounded-lg" src="file.jpg" alt="Hero" />
+                            </div> */}
+                            <div className="relative lg:mb-12">
+                                <img className="absolute -right-0 -bottom-8 xl:-bottom-12 xl:-right-4" src="https://cdn.rareblocks.xyz/collection/celebration/images/content/3/dots-pattern.svg" alt="" />
+                                <div className="pl-12 pr-6">
+                                    <img className="relative rounded-lg" src="/file.jpg" alt="" />
+                                </div>
+                                <div className="absolute left-0 pr-12 bottom-8 xl:bottom-20">
+                                    <div className="max-w-xs bg-indigo-400 rounded-lg sm:max-w-md xl:max-w-md">
+                                        <div className="px-3 py-4 sm:px-4 sm:py-4">
+                                            <div className="flex items-start">
+                                                <blockquote className="ml-2">
+                                                    <p className="text-sm font-medium text-white sm:text-lg">
+                                                        "Welcome to LegalizeMe. Be part of the revolution."
+                                                    </p>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </section>
 
