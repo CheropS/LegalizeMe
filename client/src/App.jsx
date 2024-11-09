@@ -17,6 +17,9 @@ import ForgotPassword from './components/ForgotPassword';
 import Terms from './components/Terms';
 import DataGovernance from './components/DataGovernance';
 import Feedback from './components/Feedback';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 const Layout = ({ children }) => {
   const location = useLocation();

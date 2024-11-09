@@ -28,7 +28,7 @@ const AboutUs = () => {
                         <div className="relative lg:mb-12">
                             <img className="absolute -right-0 -bottom-8 xl:-bottom-12 xl:-right-4" src="https://cdn.rareblocks.xyz/collection/celebration/images/content/3/dots-pattern.svg" alt="" />
                             <div className="pl-12 pr-6">
-                                <img className="relative" src="https://cdn.rareblocks.xyz/collection/celebration/images/content/3/girl-working-on-laptop.jpg" alt="" />
+                                <img className="relative rounded-lg" src="/about.jpg" alt="" />
                             </div>
                             <div className="absolute left-0 pr-12 bottom-8 xl:bottom-20">
                                 <div className="max-w-xs bg-blue-600 rounded-lg sm:max-w-md xl:max-w-md">
@@ -49,10 +49,9 @@ const AboutUs = () => {
 
                         <div className="2xl:pl-16">
                             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight">Get to know us</h2>
-                            <p className="text-xl leading-relaxed text-gray-900 mt-9">LegalizeMe is redefining the legal experience with cutting-edge technology that makes legal services faster, reliable and accessible to all.
-                                Our platform empowers users to save time, reduce costs, and streamline their processes - whether you're a law firm, student, or individual seeking justice.
+                            <p className="text-xl leading-relaxed text-gray-900 mt-9">LegalizeMe is revolutionizing the legal landscape with technology that makes legal services faster, more reliable, and accessible for everyone. Our platform empowers users to save time, cut costs, and streamline their processes—whether you're a legal professional, student, or individual seeking justice.
                             </p>
-                            <p className="mt-6 text-xl leading-relaxed text-gray-900">We believe in breaking barriers because justice delayed is justice denied. At LegalizeMe, we're not just transforming law - we're making it work for you.</p>
+                            <p className="mt-6 text-xl leading-relaxed text-gray-900">At LegalizeMe, we believe in breaking down barriers because justice delayed is justice denied. We're not just transforming the law; we're making it work for you.</p>
                         </div>
                     </div>
                 </div>
@@ -71,16 +70,15 @@ const AboutUs = () => {
 
                         {/* Vision */}
                         <AccordionItem title="Vision">
-                            <p>To become the go-to legal tech platform that transforms how law is practiced and accessed across Africa and beyond, empowering individuals and legal professionals with cutting-edge tools to achieve justice efficiently.</p>
+                            <p>To be the premier legal hub that revolutionizes law across Africa and beyond, empowering individuals and legal professionals with groundbreaking tools to make justice swift, accessible, and efficient for all.</p>
                         </AccordionItem>
 
                         {/* Core Values */}
                         <AccordionItem title="Core Values">
                             <p>
-                                <li>Innovation - We push the boundaries of technology to deliver exceptional legal solutions</li>
-                                <li>Accessibility - We believe legal services should be accessible to everyone, everywhere</li>
-                                <li>Integrity - Upholding trust, transparency, and fairness in all we do</li>
-                                <li>Impact - Empowering users to save time, reduce costs, and unlock opportunities through our platform</li>
+                                <li><strong>Innovation</strong> - Redefining possibilities in legal tech for impactful solutions.</li>
+                                <li><strong>Accessibility</strong> - Making justice swift, affordable, and available to all.</li>
+                                <li><strong>Integrity</strong> - Committed to trust, transparency, and fairness in every step.</li>
                             </p>
                         </AccordionItem>
                     </div>
