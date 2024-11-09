@@ -30,15 +30,15 @@ const Footer = () => {
             <p className="text-sm text-gray-400 mb-6">Bringing you the latest in tech and innovation. Join us on the journey.</p>
             {/* Social Icons */}
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="https://www.facebook.com/profile.php?id=100069216433282" className="text-gray-400 hover:text-white" target="_blank">
                 <FaFacebookF size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="https://x.com/Legalizee_Me" className="text-gray-400 hover:text-white" target="_blank">
                 <FaTwitter size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              {/* <a href="#" className="text-gray-400 hover:text-white">
                 <FaInstagram size={24} />
-              </a>
+              </a> */}
             </div>
           </div>
 

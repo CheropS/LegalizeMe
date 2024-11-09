@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Blog from './Blog';
 
 const AboutUs = () => {
-    const stats = [
-        { id: 1, name: 'Global Users', value: '10M+' },
-        { id: 2, name: 'Active Projects', value: '1.2K+' },
-        { id: 3, name: 'Support Staff', value: '24/7' },
-    ];
+    // const stats = [
+    //     { id: 1, name: 'Global Users', value: '10M+' },
+    //     { id: 2, name: 'Active Projects', value: '1.2K+' },
+    //     { id: 3, name: 'Support Staff', value: '24/7' },
+    // ];
 
     return (
         <div>
@@ -105,7 +105,7 @@ const AboutUs = () => {
                     <div className="grid grid-cols-1 gap-8 mt-10 text-center lg:mt-24 sm:gap-x-8 md:grid-cols-3">
                         <div>
                             <h3 className="font-bold text-7xl">
-                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-blue-600"> 500+ </span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-blue-600"> 500+ </span>
                             </h3>
                             <p className="mt-4 text-xl font-medium text-gray-900">Documents</p>
                             <p className="text-base mt-0.5 text-gray-500">Generated daily</p>
@@ -113,7 +113,7 @@ const AboutUs = () => {
 
                         <div>
                             <h3 className="font-bold text-7xl">
-                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-blue-600"> 2000+ </span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-blue-600"> 2000+ </span>
                             </h3>
                             <p className="mt-4 text-xl font-medium text-gray-900">Active users</p>
                             <p className="text-base mt-0.5 text-gray-500">Since inception</p>
@@ -121,7 +121,7 @@ const AboutUs = () => {
 
                         <div>
                             <h3 className="font-bold text-7xl">
-                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-blue-600"> 5s </span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-blue-600"> 5s </span>
                             </h3>
                             <p className="mt-4 text-xl font-medium text-gray-900">To Generate</p>
                             <p className="text-base mt-0.5 text-gray-500">Summary for a document</p>
