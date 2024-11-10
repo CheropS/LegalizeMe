@@ -48,7 +48,7 @@ const Pricing = () => {
       buttonLink: "/checkout"
     },
     {
-      name: "Unlimited",
+      name: "Basic Plan",
       price: "Ksh 2500",
       billing: "Monthly payment",
       features: [
@@ -60,12 +60,13 @@ const Pricing = () => {
     },
     {
       name: "Premium Subscription",
-      price: "KES 3000/month",
+      price: "Ksh 3000",
+      billing: "Monthly payment",
       features: [
         "Unlimited access, all AI features, watermark-free document generation",
         "Discounts for mailing list subscribers"
       ],
-      buttonText: "Subscribe",
+      buttonText: "Subscribe now",
       buttonLink: "/checkout"
     },
     {

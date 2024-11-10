@@ -8,7 +8,7 @@ export default function FAQs() {
     };
 
     const faqItems = [
-        { question: "What is LegalizeMe", answer: "LegalizeMe is a transformative AI-powered legal platform that simplifies legal processes - providing fast research, dynamic document generation, and access to expert insights for both professionals and individuals." },
+        { question: "What is LegalizeMe", answer: "LegalizeMe is a transformative AI-powered legal platform that simplifies legal processes - providing fast research, dynamic document generation, and access to expert insights for both legal professionals and individuals." },
         { question: "How does LegalizeMe work?", answer: "Our platform combines AI with legal expertise to automate key tasks. Users can conduct legal research, generate contracts instantly, via Counsel, our 24/7 AI chatbot." },
         { question: "Who can benefit from LegalizeMe?", answer: "Whether you are a law student, researcher, legal professional, small business, or individual needing legal support, LegalizeMe offers streamlined tools tailored to your need." },
         { question: "Is LegalizeMe secure and compliant?", answer: "Yes, security and privacy are paramount. We use end-to-end encryption and adhere to industry standards to protect your data while delivering efficient, reliable services." },
