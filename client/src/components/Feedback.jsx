@@ -52,7 +52,6 @@ export default function Feedback() {
 
   return (
     <>
-      <Navbar />
       <div className="max-w-2xl mx-auto bg-white p-8 mt-10 rounded-lg shadow-lg font-roboto animate-fadeIn">
         <h2 className="text-2xl font-bold text-center text-blue-600">We value your feedback!</h2>
         <p className="mt-2 text-center text-gray-600">Help us improve by sharing your thoughts on our service.</p>
@@ -240,7 +239,6 @@ export default function Feedback() {
           </button>
         </form>
       </div>
-      <Footer />
     </>
   );
 }
