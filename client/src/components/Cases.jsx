@@ -202,12 +202,18 @@
 // export default Cases;
 
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Cases = () => {
     const [cases, setCases] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    // const [nextPage, setNextPage] = useState(null);
+    // const [previousPage, setPreviousPage] = useState(null);
     const [classifications, setClassifications] = useState([]);
     const [counties, setCounties] = useState([]);
     const [courts, setCourts] = useState([]);
@@ -216,40 +222,43 @@ const Cases = () => {
     const [selectedCourt, setSelectedCourt] = useState('');
     const casesPerPage = 9;
 
+    const BASE_URL = "https://backend-1-ygzf.onrender.com/api/cases/";
+
+    const fetchAllCases = async () => {
+        try {
+            let url = BASE_URL;
+            let allCases = [];
+            while (url) {
+                const response = await axios.get(url);
+                allCases = [...allCases, ...response.data.results];
+                url = response.data.next;
+            }
+            setCases(allCases);
+            extractDropdownData(allCases);
+        } catch (err) {
+            setError('Error fetching cases. Please try again later');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const extractDropdownData = (allCases) => {
+        const uniqueClassifications = [...new Set(allCases.map((item) => item.case_classification))];
+        const uniqueCounties = [...new Set(allCases.map((item) => item.county))];
+        const uniqueCourts = [...new Set(allCases.map((item) => item.court))];
+        setClassifications(uniqueClassifications);
+        setCounties(uniqueCounties);
+        setCourts(uniqueCourts);
+    };
+
     useEffect(() => {
-        fetch("https://backend-1-ygzf.onrender.com/api/cases/")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                setCases(data.results);
-                // Extract unique classification, county, and court values for the dropdowns
-                setClassifications([...new Set(data.results.map(caseItem => caseItem.case_classification))]);
-                setCounties([...new Set(data.results.map(caseItem => caseItem.county))]);
-                setCourts([...new Set(data.results.map(caseItem => caseItem.court))]);
-            })
-            .catch(error => console.error("Error fetching cases:", error));
+        setLoading(true);
+        // setTimeout(() => {
+        //     setLoading(false);
+        // }, 2000); // Simulated delay
     }, []);
 
-    // Automatically update searchQuery when searchTerm is cleared
-    useEffect(() => {
-        if (searchTerm === '') {
-            setSearchQuery('');  // Reset searchQuery when searchTerm is cleared
-        }
-    }, [searchTerm]);
-
-    const handleSearch = () => {
-        setSearchQuery(searchTerm);
-    };
-
-    const handleFilterChange = () => {
-        setCurrentPage(1);  // Reset to first page when filters are applied
-    };
-
-    const filteredCases = cases.filter(caseItem =>
+    const filteredCases = cases.filter((caseItem) =>
         (!searchQuery || (caseItem.case_number && caseItem.case_number.toLowerCase().includes(searchQuery.toLowerCase()))) &&
         (!selectedClassification || caseItem.case_classification === selectedClassification) &&
         (!selectedCounty || caseItem.county === selectedCounty) &&
@@ -261,13 +270,42 @@ const Cases = () => {
     const currentCases = filteredCases.slice(indexOfFirstCase, indexOfLastCase);
     const totalPages = Math.ceil(filteredCases.length / casesPerPage);
 
-    const goToNextPage = () => {
-        setCurrentPage(prevPage => Math.min(prevPage + 1, totalPages));
+    const handleNext = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage((prev) => prev + 1);
+        }
     };
 
-    const goToPreviousPage = () => {
-        setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
+    const handlePrevious = () => {
+        if (currentPage > 1) {
+            setCurrentPage((prev) => prev - 1);
+        }
     };
+
+    // const handleSearch = () => {
+    //     setSearchQuery(searchTerm);
+    //     setCurrentPage(1); // Reset to first page after a new search
+    // };
+
+    // Watch for changes in searchTerm to reset searchQuery if empty
+    useEffect(() => {
+        if (searchTerm === '') {
+            setSearchQuery('');
+            setCurrentPage(1);
+        }
+    }, [searchTerm]);
+
+    const handleSearch = () => {
+        setSearchQuery(searchTerm);
+    };
+
+    const handleFilterChange = () => {
+        setCurrentPage(1);
+    };
+
+    useEffect(() => {
+        fetchAllCases();
+    }, []);
 
     return (
         <>
@@ -367,7 +405,7 @@ const Cases = () => {
                         <select
                             value={selectedCourt}
                             onChange={(e) => { setSelectedCourt(e.target.value); handleFilterChange(); }}
-                            className="px-8 py-2 border rounded-lg text-gray-700"
+                            className="px-4 py-2 border rounded-lg text-gray-700"
                         >
                             <option value="">All Courts</option>
                             {courts.map((court, index) => (
@@ -382,26 +420,30 @@ const Cases = () => {
                         </button>
                     </div>
 
-                    {/* Cases */}
                     <div className="grid max-w-md grid-cols-1 mx-auto mt-12 lg:max-w-full lg:mt-16 lg:grid-cols-3 gap-x-16 gap-y-12">
-                        {currentCases.map((caseItem) => (
+                        {loading && (
+                            <div className="flex flex-col items-center justify-center col-span-full">
+                                <div className="loader"></div>
+                                <p className="mt-4 text-gray-700 text-lg">Loading...</p>
+                            </div>
+                        )}
+                        {error && <p className="text-red-500 text-center">{error}</p>}
+                        {!loading && !error && currentCases.map((caseItem) => (
                             <div key={caseItem.id} className="bg-white p-6 rounded-lg shadow-md">
                                 <span className="inline-flex px-4 py-2 text-xs font-semibold tracking-widest uppercase rounded-full text-rose-500 bg-rose-100">
                                     {caseItem.case_classification}
                                 </span>
                                 <h3 className="mt-4 text-xl font-semibold text-black">
-                                    <a href={`/cases/${caseItem.id}`} className="hover:underline">
+                                    <Link to={`/cases/${caseItem.id}`} className="hover:underline">
                                         {caseItem.case_number}
-                                    </a>
+                                    </Link>
                                 </h3>
                                 <p className="mt-4 text-gray-600">
-                                    {caseItem.full_text.substring(0, 100)}...
-                                    <button className="text-blue-500 hover:underline">Continue Reading</button>
+                                    {caseItem.citation.substring(0, 100)}...
+                                    <Link to={`/cases/${caseItem.id}`} className="text-blue-500 hover:underline">
+                                        Continue Reading
+                                    </Link>
                                 </p>
-                                <div className="h-0 mt-6 mb-4 border-t-2 border-gray-200 border-dashed"></div>
-                                <span className="block text-sm font-bold tracking-widest text-gray-500 uppercase">
-                                    {caseItem.date_delivered}
-                                </span>
                                 <span className="block mt-2 text-sm font-medium text-gray-700">
                                     Court: {caseItem.court}
                                 </span>
@@ -413,18 +455,19 @@ const Cases = () => {
                     </div>
 
                     {/* Pagination */}
-                    <div className="flex justify-center mt-10 space-x-2">
+                    <div className="flex justify-center mt-6">
                         <button
-                            onClick={goToPreviousPage}
+                            onClick={handlePrevious}
                             disabled={currentPage === 1}
-                            className="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300"
+                            className="px-4 py-2 bg-blue-500 text-white rounded-lg mx-2 disabled:opacity-50"
                         >
                             Previous
                         </button>
+                        <span className="px-4 py-2 text-gray-700">Page {currentPage} of {totalPages}</span>
                         <button
-                            onClick={goToNextPage}
+                            onClick={handleNext}
                             disabled={currentPage === totalPages}
-                            className="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300"
+                            className="px-4 py-2 bg-blue-500 text-white rounded-lg mx-2 disabled:opacity-50"
                         >
                             Next
                         </button>
