@@ -19,6 +19,7 @@ import DataGovernance from './components/DataGovernance';
 import Feedback from './components/Feedback';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CaseDetail from './components/CaseDetail';
 
 
 const Layout = ({ children }) => {
@@ -91,6 +92,7 @@ const App = () => {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cases" element={<Cases />} />
+          <Route path="/cases/:id" element={<CaseDetail />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/terms" element={<Terms />} />
