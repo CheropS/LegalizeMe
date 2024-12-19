@@ -21,7 +21,7 @@ export default function SignIn() {
     }
   
     try {
-      const response = await fetch('https://backend-1-ygzf.onrender.com/api/token/', {
+      const response = await fetch('https://legalizeme.azurewebsites.net/api/token/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),

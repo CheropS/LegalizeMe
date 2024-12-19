@@ -1,18 +1,20 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import useAuth from '../hooks/useAuth';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // User's authentication state
+  //const [isAuthenticated, setIsAuthenticated] = useState(false); // User's authentication state
 
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
   // Check if user is authenticated on component mount
-  useEffect(() => {
-    const token = localStorage.getItem('token'); // Check for token in localStorage
-    if (token) {
-      setIsAuthenticated(true); // User is authenticated if token exists
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token'); // Check for token in localStorage
+  //   if (token) {
+  //     setIsAuthenticated(true); // User is authenticated if token exists
+  //   }
+  // }, []);
 
   // Logout functionality
   const handleLogout = () => {

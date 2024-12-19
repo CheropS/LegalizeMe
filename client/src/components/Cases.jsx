@@ -222,21 +222,37 @@ const Cases = () => {
     const [selectedCourt, setSelectedCourt] = useState('');
     const casesPerPage = 9;
 
-    const BASE_URL = "https://backend-1-ygzf.onrender.com/api/cases/";
+    const BASE_URL = "https://legalizeme.azurewebsites.net/api/cases";
 
     const fetchAllCases = async () => {
         try {
             let url = BASE_URL;
             let allCases = [];
             while (url) {
-                const response = await axios.get(url);
-                allCases = [...allCases, ...response.data.results];
-                url = response.data.next;
+                const response = await axios.get(url, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (Array.isArray(response.data)) {
+                    allCases.push(...response.data);
+                    break;
+                } else if (response.data.results && Array.isArray(response.data.results)) {
+                    allCases.push(...response.data.results);
+                    url = response.data.next;
+                } else {
+                    throw new Error('Invalid response data');   
+                }
+
+                // allCases = [...allCases, ...response.data.results];
+                // url = response.data.next;
             }
             setCases(allCases);
             extractDropdownData(allCases);
         } catch (err) {
             setError('Error fetching cases. Please try again later');
+            console.log(err);
         } finally {
             setLoading(false);
         }
@@ -282,11 +298,6 @@ const Cases = () => {
         }
     };
 
-    // const handleSearch = () => {
-    //     setSearchQuery(searchTerm);
-    //     setCurrentPage(1); // Reset to first page after a new search
-    // };
-
     // Watch for changes in searchTerm to reset searchQuery if empty
     useEffect(() => {
         if (searchTerm === '') {
@@ -306,6 +317,14 @@ const Cases = () => {
     useEffect(() => {
         fetchAllCases();
     }, []);
+
+    const handleClearFilters = () => {
+        setSelectedClassification('');
+        setSelectedCounty('');
+        setSelectedCourt('');
+        setSearchTerm('');
+        setSearchQuery('');
+    };
 
     return (
         <>
@@ -385,7 +404,7 @@ const Cases = () => {
                         <select
                             value={selectedClassification}
                             onChange={(e) => { setSelectedClassification(e.target.value); handleFilterChange(); }}
-                            className="px-8 py-2 border rounded-lg text-gray-700"
+                            className="px-8 py-2 border rounded-lg"
                         >
                             <option value="">All Classifications</option>
                             {classifications.map((classification, index) => (
@@ -395,7 +414,7 @@ const Cases = () => {
                         <select
                             value={selectedCounty}
                             onChange={(e) => { setSelectedCounty(e.target.value); handleFilterChange(); }}
-                            className="px-8 py-2 border rounded-lg text-gray-700"
+                            className="px-8 py-2 border rounded-lg"
                         >
                             <option value="">All Counties</option>
                             {counties.map((county, index) => (
@@ -405,19 +424,21 @@ const Cases = () => {
                         <select
                             value={selectedCourt}
                             onChange={(e) => { setSelectedCourt(e.target.value); handleFilterChange(); }}
-                            className="px-4 py-2 border rounded-lg text-gray-700"
+                            className="px-8 py-2 border rounded-lg"
                         >
                             <option value="">All Courts</option>
                             {courts.map((court, index) => (
                                 <option key={index} value={court}>{court}</option>
                             ))}
                         </select>
-                        <button
+                        {/* <button
                             onClick={handleSearch}
                             className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600"
                         >
                             Search
-                        </button>
+                        </button> */}
+                        <button onClick={handleSearch} className="bg-blue-500 text-white px-4 py-2 rounded-lg">Search</button>
+                        <button onClick={handleClearFilters} className="bg-gray-300 text-black px-4 py-2 rounded-lg">Clear Filters</button>
                     </div>
 
                     <div className="grid max-w-md grid-cols-1 mx-auto mt-12 lg:max-w-full lg:mt-16 lg:grid-cols-3 gap-x-16 gap-y-12">
