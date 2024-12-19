@@ -28,7 +28,7 @@ export default function SignUp() {
     }
 
     try {
-      const response = await fetch('https://backend-1-ygzf.onrender.com/api/register/', {
+      const response = await fetch('https://legalizeme.azurewebsites.net/api/register/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),
@@ -69,13 +69,13 @@ export default function SignUp() {
 
                 <div className="space-y-5">
                   <div>
-                    <label className="text-base font-medium text-gray-900"> Full Name </label>
+                    <label className="text-base font-medium text-gray-900"> Username </label>
                     <div className="mt-2.5">
                       <input
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        placeholder="Enter your full name"
+                        placeholder="Enter your preferred username"
                         className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
                     </div>

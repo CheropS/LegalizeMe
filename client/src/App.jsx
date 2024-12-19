@@ -1,36 +1,35 @@
-import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Papa from 'papaparse';
-import ChatBot from 'react-chatbotify';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './components/Home';
-import SignUp from './components/SignUp';
-import SignIn from './components/SignIn';
-import AboutUs from './components/About';
-import Solutions from './components/Solutions';
-import Pricing from './components/Pricing';
-import Contact from './components/Contact';
-import Resources from './components/Resources';
-import Cases from './components/Cases';
-import ForgotPassword from './components/ForgotPassword';
-import Terms from './components/Terms';
-import DataGovernance from './components/DataGovernance';
-import Feedback from './components/Feedback';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import CaseDetail from './components/CaseDetail';
-
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import Papa from "papaparse";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
+import AboutUs from "./components/About";
+import Solutions from "./components/Solutions";
+import Pricing from "./components/Pricing";
+import Contact from "./components/Contact";
+import Resources from "./components/Resources";
+import Cases from "./components/Cases";
+import ForgotPassword from "./components/ForgotPassword";
+import Terms from "./components/Terms";
+import DataGovernance from "./components/DataGovernance";
+import Feedback from "./components/Feedback";
+import CaseDetail from "./components/CaseDetail";
+import ChatBot from "./components/ChatBot";
+import Checkout from "./components/Checkout";
+import StudentVerification from "./components/Verify";
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const noNavbarFooterPages = ['/signup', '/login', '/terms', '/data-governance'];
+  const noNavbarFooterPages = ["/signup", "/login", "/terms", "/data-governance", "/checkout", "/forgot-password"];
 
   return (
     <>
-      {!noNavbarFooterPages.includes(location.pathname) && <Navbar />}
+      {!noNavbarFooterPages.includes(location.pathname.toLowerCase()) && <Navbar />}
       {children}
-      {!noNavbarFooterPages.includes(location.pathname) && <Footer />}
+      {!noNavbarFooterPages.includes(location.pathname.toLowerCase()) && <Footer />}
     </>
   );
 };
@@ -43,40 +42,41 @@ const App = () => {
       download: true,
       header: true,
       complete: (result) => {
-        setFaqData(result.data);
+        setFaqData(result.data || []);
       },
+      error: (err) => console.error("Error loading FAQ data:", err),
     });
   }, []);
 
   const flow = {
     start: {
-      message: 'Hello, how can I help you today?',
+      message: "Hello, how can I help you today?",
       reactions: {
-        'I need help': 'help',
-        'I want to know more about your services': 'services info',
-        'I want to know more about your pricing': 'pricing info',
-        'I want to know more about your company': 'company info',
-        'I want to talk to a human': 'human',
+        "I need help": "help",
+        "I want to know more about your services": "services info",
+        "I want to know more about your pricing": "pricing info",
+        "I want to know more about your company": "company info",
+        "I want to talk to a human": "human",
       },
     },
     help: {
-      message: 'Here are some FAQs. Ask me anything.',
-      reactions: faqData.reduce((acc, faq) => {
-        acc[faq.question] = faq.answer;
-        return acc;
-      }, {}),
+      message: "Here are some FAQs. Ask me anything.",
+      reactions: faqData.reduce(
+        (acc, faq) => ({ ...acc, [faq.question]: faq.answer }),
+        {}
+      ),
     },
-    'services info': {
-      message: 'We offer a variety of services tailored to your needs.',
+    "services info": {
+      message: "We offer a variety of services tailored to your needs.",
     },
-    'pricing info': {
-      message: 'Our pricing is flexible and depends on the service you choose.',
+    "pricing info": {
+      message: "Our pricing is flexible and depends on the service you choose.",
     },
-    'company info': {
-      message: 'We are a company dedicated to delivering quality solutions.',
+    "company info": {
+      message: "We are a company dedicated to delivering quality solutions.",
     },
     human: {
-      message: 'Please hold, connecting you to a human agent.',
+      message: "Please hold, connecting you to a human agent.",
     },
   };
 
@@ -98,22 +98,14 @@ const App = () => {
           <Route path="/terms" element={<Terms />} />
           <Route path="/data-governance" element={<DataGovernance />} />
           <Route path="/feedback" element={<Feedback />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/verify" element={<StudentVerification />} />
         </Routes>
       </Layout>
 
-      {/* Responsive ChatBot component */}
-      <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 z-50 font-roboto">
-        <div className="group relative">
-          {/* ChatBot icon or button */}
-          <div className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-blue-500 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-600">
-            <span className="text-white text-2xl lg:text-3xl">💬</span>
-          </div>
-
-          {/* ChatBot container, hidden by default, shown on hover */}
-          <div className="absolute bottom-16 right-0 hidden group-hover:block bg-white border border-gray-300 rounded-lg shadow-lg w-72 md:w-80 lg:w-96 p-4 max-h-[400px] md:max-h-[500px] lg:max-h-[600px] overflow-y-auto">
-            <ChatBot flow={flow} />
-          </div>
-        </div>
+      {/* Global ChatBot */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <ChatBot flow={flow} />
       </div>
     </Router>
   );
