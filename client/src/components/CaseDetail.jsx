@@ -5,13 +5,14 @@ const CaseDetail = () => {
     const { id } = useParams();
     const [caseDetail, setCaseDetail] = useState(null);
     const [summary, setSummary] = useState(null);
+    const [showSummary, setShowSummary] = useState(false);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [summaryLoading, setSummaryLoading] = useState(false);
     const [summaryError, setSummaryError] = useState(null);
 
     useEffect(() => {
-        fetch(`https://backend-1-ygzf.onrender.com/api/cases/${id}`)
+        fetch(`https://legalizeme.azurewebsites.net/api/cases/${id}`)
             .then(response => response.json())
             .then(data => {
                 setCaseDetail(data);
@@ -27,14 +28,21 @@ const CaseDetail = () => {
     const fetchSummary = () => {
         if (!caseDetail) return;
 
+        if (showSummary) {
+            // If summary is already shown, hide it
+            setShowSummary(false);
+            return;
+        }
+
         const encodedCaseNumber = encodeURIComponent(caseDetail.case_number);
         setSummaryLoading(true);
         setSummaryError(null);
 
-        fetch(`https://backend-1-ygzf.onrender.com/api/summarize/${encodedCaseNumber}`)
+        fetch(`https://legalizeme.azurewebsites.net/api/summarize/${encodedCaseNumber}`)
             .then(response => response.json())
             .then(data => {
                 setSummary(data);
+                setShowSummary(true); // Show summary once fetched
                 setSummaryLoading(false);
             })
             .catch(error => {
@@ -69,7 +77,7 @@ const CaseDetail = () => {
                     onClick={fetchSummary}
                     className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
                 >
-                    Summarized
+                    {showSummary ? "Hide Summary" : "Summarize"}
                 </button>
             </div>
             {summaryLoading && (
@@ -78,7 +86,7 @@ const CaseDetail = () => {
             {summaryError && (
                 <p className="text-red-500 text-center">{summaryError}</p>
             )}
-            {summary && (
+            {showSummary && summary && (
                 <div className="mt-4 p-4 bg-gray-100 rounded-lg">
                     <h3 className="text-xl font-semibold text-gray-800">Summary</h3>
                     <p className="mt-2 text-gray-700">{summary.summary}</p>
