@@ -24,15 +24,28 @@ import PasswordReset from "./components/PasswordReset";
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const noNavbarFooterPages = ["/signup", "/login", "/terms", "/data-governance", "/checkout", "/forgot-password", "/password-reset"];
-  const noChatBotPages = ["/checkout", "/verify", "/password-reset", "/login", "/signup"];
+  const basePath = location.pathname.toLowerCase();
 
+  const noNavbarFooterPages = ["/signup", "/login", "/terms", "/data-governance", "/checkout", "/forgot-password", "/password-reset"];
+  const noChatBotPages = ["/checkout", "/verify", "/password-reset", "/login", "/signup", "/forgot-password"];
+
+  const hideNavbarFooter = noNavbarFooterPages.includes(basePath) || basePath.startsWith("password-reset");
+  const hideChatBot = noChatBotPages.includes(basePath) || basePath.startsWith("password-reset");
   return (
     <>
-      {!noNavbarFooterPages.includes(location.pathname.toLowerCase()) && <Navbar />}
+      {/* {!noNavbarFooterPages.includes(location.pathname.toLowerCase()) && <Navbar />}
       {children}
       {!noNavbarFooterPages.includes(location.pathname.toLowerCase()) && <Footer />}
       {!noChatBotPages.includes(location.pathname.toLowerCase()) && (
+        <div className="fixed bottom-4 right-4 z-50">
+          <ChatBot />
+        </div>
+      )}
+       */}
+       {!hideNavbarFooter && <Navbar />}
+      {children}
+      {!hideNavbarFooter && <Footer />}
+      {!hideChatBot && (
         <div className="fixed bottom-4 right-4 z-50">
           <ChatBot />
         </div>
