@@ -20,16 +20,23 @@ import CaseDetail from "./components/CaseDetail";
 import ChatBot from "./components/ChatBot";
 import Checkout from "./components/Checkout";
 import StudentVerification from "./components/Verify";
+import PasswordReset from "./components/PasswordReset";
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const noNavbarFooterPages = ["/signup", "/login", "/terms", "/data-governance", "/checkout", "/forgot-password"];
+  const noNavbarFooterPages = ["/signup", "/login", "/terms", "/data-governance", "/checkout", "/forgot-password", "/password-reset"];
+  const noChatBotPages = ["/checkout", "/verify", "/password-reset", "/login", "/signup"];
 
   return (
     <>
       {!noNavbarFooterPages.includes(location.pathname.toLowerCase()) && <Navbar />}
       {children}
       {!noNavbarFooterPages.includes(location.pathname.toLowerCase()) && <Footer />}
+      {!noChatBotPages.includes(location.pathname.toLowerCase()) && (
+        <div className="fixed bottom-4 right-4 z-50">
+          <ChatBot />
+        </div>
+      )}
     </>
   );
 };
@@ -100,13 +107,9 @@ const App = () => {
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/verify" element={<StudentVerification />} />
+          <Route path="/password-reset" element={<PasswordReset />} />
         </Routes>
       </Layout>
-
-      {/* Global ChatBot */}
-      <div className="fixed bottom-4 right-4 z-50">
-        <ChatBot flow={flow} />
-      </div>
     </Router>
   );
 };
