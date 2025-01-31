@@ -21,12 +21,13 @@ import ChatBot from "./components/ChatBot";
 import Checkout from "./components/Checkout";
 import StudentVerification from "./components/Verify";
 import PasswordReset from "./components/PasswordReset";
+import NavbarWithHero from "./components/NavbarWithHero";
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const basePath = location.pathname.toLowerCase();
 
-  const noNavbarFooterPages = ["/signup", "/login", "/terms", "/data-governance", "/checkout", "/forgot-password", "/password-reset"];
+  const noNavbarFooterPages = ["/signup", "/login", "/terms", "/data-governance", "/checkout", "/forgot-password", "/password-reset", "/"];
   const noChatBotPages = ["/checkout", "/verify", "/password-reset", "/login", "/signup", "/forgot-password"];
 
   const hideNavbarFooter = noNavbarFooterPages.includes(basePath) || basePath.startsWith("password-reset");

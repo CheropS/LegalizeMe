@@ -7,6 +7,8 @@ import Cta from './CTA';
 import Services from './Services';
 import FAQs from './FAQs';
 import Hero from './Hero';
+import NavbarWithHero from './NavbarWithHero';
+import Footer from './Footer';
 
 const features = [
     {
@@ -72,63 +74,7 @@ export default function Home() {
     return (
         <>
             <div className="bg-white font-roboto">
-                <section className="py-10 sm:py-16 lg:py-24 animate-fadeIn bg-gradient-to-tr from-indigo-500 to-purple-300">
-                    <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                        <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
-
-                            <div className="animate-slideInLeft">
-                                <h1 className="text-4xl font-bold font-roboto text-black sm:text-6xl lg:text-6xl">
-                                    LegalizeMe
-                                </h1>
-                                <div className="relative inline-flex">
-                                    <span className="absolute inset-x-0 bottom-0 border-b-[30px] border-[#4ADE80]"></span>
-                                    <span className="relative text-4xl font-bold text-black sm:text-6xl lg:text-6xl">
-                                        Lubricating the wheels of justice
-                                    </span>
-                                </div>
-
-                                <p className="mt-8 text-base text-black sm:text-xl animate-fadeIn delay-500">
-                                    LegalizeMe is redefining access to justice with cutting-edge tools that make legal services faster, smarter, and accessible for all. Every minute saved, every document generated, and every user empowered brings us closer to a world where justice moves swiftly for everyone.<br /><br /> Sign up now, and be part of the change.
-                                </p>
-
-                                <div className="mt-8 sm:flex sm:items-center sm:space-x-8">
-                                    <a href="/signup" className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-green-600 border-r-2 transform hover:scale-105" role="button">
-                                        Get Started
-                                    </a>
-
-                                    <a href="/about" className="text-sm font-semibold leading-6 text-gray-900 px-2 transform hover:scale-105 transition-all duration-200">
-                                        Learn more <span aria-hidden="true">→</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            {/* <div className="animate-slideInRight">
-                                <img className="w-full hover:animate-pulse transform transition-transform duration-500 hover:scale-105 rounded-lg" src="file.jpg" alt="Hero" />
-                            </div> */}
-                            <div className="relative lg:mb-12">
-                                <img className="absolute -right-0 -bottom-8 xl:-bottom-12 xl:-right-4" src="https://cdn.rareblocks.xyz/collection/celebration/images/content/3/dots-pattern.svg" alt="" />
-                                <div className="pl-12 pr-6">
-                                    <img className="relative rounded-lg" src="/file.jpg" alt="" />
-                                </div>
-                                <div className="absolute left-0 pr-12 bottom-8 xl:bottom-20">
-                                    <div className="max-w-xs bg-indigo-400 rounded-lg sm:max-w-md xl:max-w-md">
-                                        <div className="px-3 py-4 sm:px-4 sm:py-4">
-                                            <div className="flex items-start">
-                                                <blockquote className="ml-2">
-                                                    <p className="text-sm font-medium text-white sm:text-lg">
-                                                        "Welcome to LegalizeMe. Be part of the revolution."
-                                                    </p>
-                                                </blockquote>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
+                <NavbarWithHero />
                 <main className="relative isolate px-6 pt-8 lg:px-8">
                     <hr className="mx-auto max-w-7xl border-t border-gray-300" />
                     <Brief />
@@ -305,6 +251,7 @@ export default function Home() {
 
                 </main>
             </div>
+            <Footer />
         </>
     );
 }
