@@ -1,52 +1,37 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
 
-export default function Navbar() {
+export default function NavbarWithHero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  //const [isAuthenticated, setIsAuthenticated] = useState(false); // User's authentication state
-
   const { isAuthenticated, setIsAuthenticated } = useAuth();
-  // Check if user is authenticated on component mount
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token'); // Check for token in localStorage
-  //   if (token) {
-  //     setIsAuthenticated(true); // User is authenticated if token exists
-  //   }
-  // }, []);
 
-  // Logout functionality
   const handleLogout = () => {
-    // Clear the JWT token from localStorage
     localStorage.removeItem('token');
-
-    // Update authentication state
     setIsAuthenticated(false);
-
     console.log('User logged out');
   };
 
-  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
 
   return (
     <>
-      <header className="pb-4 bg-gradient-to-tr from-gray-200 to-white-200 lg:pb-0 animate-fadeIn">
+      {/* Unified Header and Hero Section */}
+      <header className="pt-6 bg-gradient-to-tr from-indigo-500 to-purple-300 animate-fadeIn animated-gradient">
+        {/* Navbar */}
         <div className="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
               <a href="/" title="Home" className="flex items-center space-x-4">
-                {/* <img className="h-12 w-12 lg:h-16 lg:w-16" src="transparentlogo.svg" alt="Logo" /> */}
-                <h3 className="text-2xl font-extrabold text-gray-800 tracking-wide lg:text-3xl transition duration-200 hover:text-blue-600">
+                <h3 className="text-2xl font-extrabold text-gray-800 tracking-wide lg:text-4xl transition duration-200 hover:text-blue-600">
                   Legalize<span className="text-black-200">Me</span>
                 </h3>
               </a>
             </div>
-
 
             {/* Hamburger menu button for mobile */}
             <button
@@ -103,7 +88,6 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Adjust buttons to prevent overflow */}
               <div className="px-6 mt-6">
                 {isAuthenticated ? (
                   <button
@@ -124,6 +108,63 @@ export default function Navbar() {
             </nav>
           )}
         </div>
+
+        {/* Hero Section */}
+        <section className="py-10 sm:py-16 lg:py-24">
+          <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
+              <div className="animate-slideInLeft">
+                <h1 className="text-4xl font-bold font-roboto text-black sm:text-6xl lg:text-6xl">
+                  LegalizeMe
+                </h1>
+                <div className="relative inline-flex">
+                  <span className="absolute inset-x-0 bottom-0 border-b-[30px] border-[#4ADE80]"></span>
+                  <span className="relative text-4xl font-bold text-black sm:text-6xl lg:text-6xl">
+                    Lubricating the wheels of justice
+                  </span>
+                </div>
+
+                <p className="mt-8 text-base text-black sm:text-xl animate-fadeIn delay-500">
+                  LegalizeMe is redefining access to justice with cutting-edge tools that make legal services faster, smarter, and accessible for all. Every minute saved, every document generated, and every user empowered brings us closer to a world where justice moves swiftly for everyone.<br /><br /> Sign up now, and be part of the change.
+                </p>
+
+                <div className="mt-8 sm:flex sm:items-center sm:space-x-8">
+                  <a href="/signup" className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-green-600 border-r-2 transform hover:scale-105" role="button">
+                    Get Started
+                  </a>
+
+                  <a href="/about" className="text-sm font-semibold leading-6 text-gray-900 px-2 transform hover:scale-105 transition-all duration-200">
+                    Learn more <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="relative lg:mb-12">
+                <img
+                  className="absolute -right-0 -bottom-8 xl:-bottom-12 xl:-right-4 floating-dots"
+                  src="https://cdn.rareblocks.xyz/collection/celebration/images/content/3/dots-pattern.svg"
+                  alt=""
+                />
+                <div className="pl-12 pr-6">
+                  <img className="relative rounded-lg" src="/file.jpg" alt="" />
+                </div>
+                <div className="absolute left-0 pr-12 bottom-8 xl:bottom-20">
+                  <div className="max-w-xs bg-indigo-400 rounded-lg sm:max-w-md xl:max-w-md">
+                    <div className="px-3 py-4 sm:px-4 sm:py-4">
+                      <div className="flex items-start">
+                        <blockquote className="ml-2">
+                          <p className="text-sm font-medium text-white sm:text-lg">
+                            "Welcome to LegalizeMe. Be part of the revolution."
+                          </p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </header>
     </>
   );

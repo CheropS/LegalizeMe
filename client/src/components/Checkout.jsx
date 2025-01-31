@@ -10,10 +10,10 @@ const CheckoutForm = () => {
     plan: "",
     amount: 0,
   });
+  const [error, setError] = useState(null);
 
   const backendUrl = "https://legalizeme.azurewebsites.net/payments/";
 
-  // Prices for each plan
   const planPrices = {
     "Pay-Per-Use": 500,
     "Pay-Per-Use + AI": 700,
@@ -24,10 +24,8 @@ const CheckoutForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    // Automatically set amount if the user selects a plan
     if (name === "plan") {
-      const selectedPrice = planPrices[value] || 0; // Default to 0 if no match
+      const selectedPrice = planPrices[value] || 0;
       setFormData({ ...formData, [name]: value, amount: selectedPrice });
     } else {
       setFormData({ ...formData, [name]: value });
@@ -36,26 +34,44 @@ const CheckoutForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setError("You must be logged in to proceed with the payment.");
+      return;
+    }
 
     try {
       const response = await fetch(backendUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });
 
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please log in again.");
+      }
+
+      console.log("Request URL:", backendUrl);
+      console.log("Request Headers:", response.headers);
+      console.log("Request Body:", formData);
+
       const result = await response.json();
+      console.log("API Response:", result);
+
       if (response.ok) {
         alert("Payment successful! Redirecting to confirmation...");
-        navigate("/confirmation"); // Redirect to a confirmation page
+        navigate("/confirmation");
       } else {
-        alert(`Payment failed: ${result.message}`);
+        console.log("Payment failed:", result.message);
+        throw new Error(result.message || "Payment failed. Please try again.");
       }
     } catch (error) {
       console.error("Error processing payment:", error);
-      alert("An error occurred while processing your payment.");
+      setError(error.message || "An error occurred while processing your payment.");
     }
   };
 
@@ -68,6 +84,11 @@ const CheckoutForm = () => {
         <h2 className="mb-6 text-2xl font-bold text-center text-gray-800">
           Checkout Form
         </h2>
+        {error && (
+          <div className="mb-4 text-sm text-red-600">
+            {error}
+          </div>
+        )}
         <div className="mb-4">
           <label
             htmlFor="fullName"
