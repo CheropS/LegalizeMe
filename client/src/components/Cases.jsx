@@ -51,7 +51,7 @@
 //             <Navbar />
 
 // {/* "How Does it Work" Section */}
-// <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-roboto">
+// <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-montserrat">
 //     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
 //         <div className="max-w-2xl mx-auto text-center">
 //             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">How does it work?</h2>
@@ -106,7 +106,7 @@
 //     </div>
 // </section>
 
-//             <section className="py-10 bg-white sm:py-16 lg:py-24 font-roboto animate-fadeIn">
+//             <section className="py-10 bg-white sm:py-16 lg:py-24 font-montserrat animate-fadeIn">
 //                 <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
 //                     <div className="max-w-2xl mx-auto text-center">
 //                         <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Latest Cases</h2>
@@ -328,7 +328,7 @@ const Cases = () => {
 
     return (
         <>
-            <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-roboto">
+            <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-montserrat">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="max-w-2xl mx-auto text-center">
                         <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">How does it work?</h2>
@@ -383,7 +383,7 @@ const Cases = () => {
                 </div>
             </section>
 
-            <section className="py-10 bg-white sm:py-16 lg:py-24 font-roboto">
+            <section className="py-10 bg-white sm:py-16 lg:py-24 font-montserrat">
                 <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                     <div className="max-w-2xl mx-auto text-center">
                         <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Latest Cases</h2>

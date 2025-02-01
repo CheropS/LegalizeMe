@@ -12,7 +12,7 @@ const AboutUs = () => {
     return (
         <div>
             {/* Page Title */}
-            <section className="bg-white py-[70px] dark:bg-dark text-center font-roboto">
+            <section className="bg-white py-[70px] dark:bg-dark text-center font-montserrat">
                 <div className="mx-auto px-4 sm:container">
                     <div className="max-w-2xl mx-auto text-center">
                         <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">About Us</h2>
@@ -22,7 +22,7 @@ const AboutUs = () => {
 
             <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
-            <section className="py-10 bg-white sm:py-16 lg:py-24 font-roboto animate-fadeIn">
+            <section className="py-10 bg-white sm:py-16 lg:py-24 font-montserrat animate-fadeIn">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-x-12 xl:gap-x-24 gap-y-12">
                         <div className="relative lg:mb-12">
@@ -60,7 +60,7 @@ const AboutUs = () => {
             <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
             {/* Accordion Section */}
-            <div className="bg-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8 animate-fadeInUp font-roboto">
+            <div className="bg-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8 animate-fadeInUp font-montserrat">
                 <div className="lg:w-1/2 w-full mx-auto">
                     <div id="accordion-flush" className="space-y-5">
                         {/* Mission */}
@@ -91,7 +91,7 @@ const AboutUs = () => {
 
             <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
-            <section className="py-10 bg-gray-100 sm:py-16 lg:py-24 font-roboto">
+            <section className="py-10 bg-gray-100 sm:py-16 lg:py-24 font-montserrat">
                 <div className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="max-w-2xl mx-auto text-center">
                         <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Numbers tell our story</h2>

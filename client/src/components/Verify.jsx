@@ -11,7 +11,7 @@ const StudentVerification = ({ location }) => {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 font-montserrat">
       <h2 className="text-2xl font-bold">Verify Student Status</h2>
       <p className="mt-4">Upload proof of your student status to access discounts for the {plan.name} plan.</p>
       <button

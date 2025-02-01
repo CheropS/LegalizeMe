@@ -3,7 +3,7 @@ import React from 'react';
 const Terms = () => {
     return (
         <>
-            <section className="py-10 bg-white sm:py-16 lg:py-24 font-roboto animate-fadeIn">
+            <section className="py-10 bg-white sm:py-16 lg:py-24 font-montserrat animate-fadeIn">
                 <div className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Terms of Service and Conditions of Use</h2>
 

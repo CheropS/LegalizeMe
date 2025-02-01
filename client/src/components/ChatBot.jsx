@@ -233,7 +233,7 @@ const ChatBotPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-[#4F9CF9] to-[#1A3B7A] flex">
+    <div className="min-h-screen bg-gradient-to-tr from-[#4F9CF9] to-[#1A3B7A] flex font-montserrat">
       {/* Sidebar */}
       <div
         className={`w-64 bg-white shadow-lg transition-all duration-300 ${

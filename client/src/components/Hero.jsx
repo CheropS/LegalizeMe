@@ -2,7 +2,7 @@ import React from 'react';
 
 const Hero = () => {
     return (
-        <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-roboto">
+        <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-montserrat">
             <div className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
                 <div className="grid items-center md:grid-cols-2 gap-y-10 md:gap-x-20">
                     <div className="pr-12 sm:pr-0">

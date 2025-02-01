@@ -1,6 +1,6 @@
 'use client'
 
-import { FingerPrintIcon, ChatBubbleLeftIcon, FolderIcon, PaperAirplaneIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
+import { FingerPrintIcon, ChatBubbleLeftIcon, PaperAirplaneIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 import Brief from './Brief';
 import Cta from './CTA';
@@ -31,19 +31,7 @@ const features = [
     },
     {
         name: 'Coming Soon: A Glimpse into the Future',
-        description: 'We’re just getting started. Soon, you’ll have access to cutting-edge features like advanced contract analysis to identify risks and optimize terms—plus much more. Stay tuned.'
-        // (
-        //     <>
-        //         <p>We are just getting started. Stay tuned for advanced features including:</p>
-        //         <ul className="list-disc ml-4">
-        //             <li>Contract analysis to spot risks and optimize terms</li>
-        //             <li>E-discovery tools to streamline case preparation</li>
-        //             <li>Lawyer recommendations for specialized legal assistance</li>
-        //             <li>Augmented document retrieval for more comprehensive results</li>
-        //         </ul>
-        //     </>
-        // )
-        ,
+        description: 'We’re just getting started. Soon, you’ll have access to cutting-edge features like advanced contract analysis to identify risks and optimize terms—plus much more. Stay tuned.',
         icon: EllipsisHorizontalCircleIcon,
     },
 ];
@@ -63,17 +51,18 @@ const stats = [
 
 const partners = [
     { name: 'Kenya Law', src: '/klaw.jpeg', url: 'https://www.kenyalaw.org' },
-    { name: 'ALX Academy', src: '/alxacademy.png', url: 'https://www.alxafrica.com' },
+    { name: 'ALX Academy', src: '/alxacademy2.jpeg', url: 'https://www.alxafrica.com' },
     { name: 'Sand Technologies', src: './sandtech.jpeg', url: 'https://www.sandtech.com' },
     { name: 'ALX Ventures', src: './alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
-    { name: 'The FutureList', src: './futurelist.png', url: 'https://www.futurelist.com' },
+    { name: 'The FutureList', src: './future2.png', url: 'https://www.futurelist.com' },
+    { name: 'NVIDIA Inception Program', src:'./nvidia1.svg', url:'https://www.nvidia.com/en-us/startups/'}
 ];
 
 
 export default function Home() {
     return (
         <>
-            <div className="bg-white font-roboto">
+            <div className="bg-white font-montserrat">
                 <NavbarWithHero />
                 <main className="relative isolate px-6 pt-8 lg:px-8">
                     <hr className="mx-auto max-w-7xl border-t border-gray-300" />
@@ -222,7 +211,7 @@ export default function Home() {
                                         <motion.img
                                             src={src}
                                             alt={name}
-                                            className="col-span-2 h-16 w-36 object-contain lg:col-span-1"
+                                            className="col-span-2 h-16 w-36 object-contain lg:col-span-1 group bounce-hover"
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
