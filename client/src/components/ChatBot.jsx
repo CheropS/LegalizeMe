@@ -139,9 +139,8 @@
 
 // export default ChatBot;
 
-
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // For navigation to the home page
+import { Link } from 'react-router-dom';
 
 const ChatBotPage = () => {
   const [messages, setMessages] = useState([]);
@@ -152,7 +151,6 @@ const ChatBotPage = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [activeChat, setActiveChat] = useState(null);
 
-  // Load chat history and messages from localStorage when the component mounts
   useEffect(() => {
     const savedChatHistory = JSON.parse(localStorage.getItem('chatHistory'));
     const savedMessages = JSON.parse(localStorage.getItem('chatMessages'));
@@ -164,7 +162,6 @@ const ChatBotPage = () => {
     }
   }, []);
 
-  // Save chat history and messages to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
     localStorage.setItem('chatMessages', JSON.stringify(messages));
@@ -199,7 +196,7 @@ const ChatBotPage = () => {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault(); // Prevent form submission
+      e.preventDefault();
       sendMessage();
     }
   };
@@ -234,11 +231,19 @@ const ChatBotPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-tr from-[#4F9CF9] to-[#1A3B7A] flex font-montserrat">
+      {/* Production Banner */}
+      <div className="w-full bg-yellow-400 text-black text-center py-2 fixed top-0 z-50">
+        <p className="text-sm font-semibold">
+          🚧 This page is still in production. Features may be incomplete or subject to change. 🚧
+        </p>
+      </div>
+
       {/* Sidebar */}
       <div
         className={`w-64 bg-white shadow-lg transition-all duration-300 ${
           isSidebarOpen ? 'ml-0' : '-ml-64'
         }`}
+        style={{ marginTop: '40px' }} // Adjust margin to account for the banner
       >
         <div className="p-4 border-b">
           <Link to="/" className="text-xl font-semibold text-blue-600 hover:text-blue-700">
@@ -293,7 +298,7 @@ const ChatBotPage = () => {
       </div>
 
       {/* Main Chat Area */}
-      <div className="flex-1 flex flex-col items-center justify-center p-4">
+      <div className="flex-1 flex flex-col items-center justify-center p-4" style={{ marginTop: '40px' }}>
         <div className="w-full max-w-4xl bg-white rounded-lg shadow-2xl overflow-hidden">
           {/* Header */}
           <div className="bg-blue-600 text-white flex items-center justify-between px-6 py-4">
@@ -354,7 +359,7 @@ const ChatBotPage = () => {
             Powered by <span className="font-semibold">LegalizeMe</span> - Redefining Access to Justice
           </p>
           <p className="text-xs text-gray-300 mt-2">
-            © 2023 LegalizeMe. All rights reserved.
+            © 2025 LegalizeMe. All rights reserved.
           </p>
         </div>
       </div>
