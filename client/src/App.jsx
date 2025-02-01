@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
   const location = useLocation();
   const basePath = location.pathname.toLowerCase();
 
-  const noNavbarFooterPages = ["/signup", "/login", "/terms", "/data-governance", "/checkout", "/forgot-password", "/password-reset", "/"];
+  const noNavbarFooterPages = ["/signup", "/login", "/terms", "/data-governance", "/checkout", "/forgot-password", "/password-reset", "/", "/counsel"];
   const noChatBotPages = ["/checkout", "/verify", "/password-reset", "/login", "/signup", "/forgot-password"];
 
   const hideNavbarFooter = noNavbarFooterPages.includes(basePath) || basePath.startsWith("password-reset");
@@ -46,11 +46,11 @@ const Layout = ({ children }) => {
        {!hideNavbarFooter && <Navbar />}
       {children}
       {!hideNavbarFooter && <Footer />}
-      {!hideChatBot && (
+      {/* {!hideChatBot && (
         <div className="fixed bottom-4 right-4 z-50">
           <ChatBot />
         </div>
-      )}
+      )} */}
     </>
   );
 };
@@ -102,6 +102,7 @@ const App = () => {
   };
 
   return (
+    <div className="overflow-x-hidden">
     <Router>
       <Layout>
         <Routes>
@@ -122,9 +123,11 @@ const App = () => {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/verify" element={<StudentVerification />} />
           <Route path="/password-reset" element={<PasswordReset />} />
+          <Route path="/counsel" element={<ChatBot />} />
         </Routes>
       </Layout>
     </Router>
+    </div>
   );
 };
 

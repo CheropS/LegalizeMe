@@ -19,17 +19,18 @@ export default function NavbarWithHero() {
 
   return (
     <>
-      {/* Unified Header and Hero Section */}
-      <header className="pt-6 bg-gradient-to-tr from-indigo-500 to-purple-300 animate-fadeIn animated-gradient">
+      {/* <header className="pt-6 bg-gradient-to-tr from-[#050101] to-[#817e7e] animate-fadeIn animated-gradient backdrop-filter backdrop-blur-lg bg-opacity-30 overflow-x-hidden"> */}
+      <header className="pt-6 animate-fadeIn animated-gradient backdrop-filter backdrop-blur-lg bg-opacity-30 overflow-x-hidden">
         {/* Navbar */}
         <div className="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <nav className="flex items-center justify-between h-16 lg:h-20">
+          <nav className="flex items-center justify-between h-16 lg:h-20 font-montserrat">
             {/* Logo */}
             <div className="flex-shrink-0">
               <a href="/" title="Home" className="flex items-center space-x-4">
-                <h3 className="text-2xl font-extrabold text-gray-800 tracking-wide lg:text-4xl transition duration-200 hover:text-blue-600">
+                {/* <h3 className="text-2xl font-extrabold tracking-wide lg:text-4xl transition duration-200 hover:text-blue-600">
                   Legalize<span className="text-black-200">Me</span>
-                </h3>
+                </h3> */}
+                <img src="/Legal.png" alt="LegalizeMe" className="h-52 w-52 sm:w-30" />
               </a>
             </div>
 
@@ -51,12 +52,12 @@ export default function NavbarWithHero() {
 
             {/* Main menu for desktop */}
             <div className="hidden lg:flex lg:items-center lg:space-x-10 mx-auto">
-              <a href="/about" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600">About Us</a>
-              <a href="/solutions" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600">Solutions</a>
-              <a href="/counsel" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600">Counsel</a>
-              <a href="/cases" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600">Cases</a>
-              <a href="/resources" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600">Resources</a>
-              <a href="/pricing" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600">Pricing</a>
+              <a href="/about" className="text-l font-medium  transition-all duration-200 hover:text-blue-600 group bounce-hover">About Us</a>
+              <a href="/solutions" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Solutions</a>
+              <a href="/counsel" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Counsel</a>
+              <a href="/cases" className="text-l font-medium  transition-all duration-200 hover:text-blue-600 group bounce-hover">Cases</a>
+              <a href="/resources" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Resources</a>
+              <a href="/pricing" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Pricing</a>
             </div>
 
             {/* Authenticated or not */}
@@ -76,15 +77,15 @@ export default function NavbarWithHero() {
 
           {/* Mobile menu */}
           {mobileMenuOpen && (
-            <nav className="pt-2 pb-4 rounded-md lg:hidden bg-gradient-to-tr from-gray-200 to-white-200">
+            <nav className="pt-2 pb-4 rounded-md lg:hidden bg-gradient-to-tr from-gray-200 to-white-200 font-montserrat">
               <div className="flow-root">
                 <div className="flex flex-col px-6 -my-2 space-y-1">
-                  <a href="/about" className="inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">About Us</a>
-                  <a href="/solutions" className="inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Solutions</a>
-                  <a href="/counsel" className="inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Counsel</a>
-                  <a href="/cases" className="inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Cases</a>
-                  <a href="/resources" className="inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Resources</a>
-                  <a href="/pricing" className="inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Pricing</a>
+                  <a href="/about" className="inline-flex py-2 text-base font-medium transition-all duration-200 hover:text-blue-600 focus:text-blue-600">About Us</a>
+                  <a href="/solutions" className="inline-flex py-2 text-base font-medium transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Solutions</a>
+                  <a href="/counsel" className="inline-flex py-2 text-base font-medium transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Counsel</a>
+                  <a href="/cases" className="inline-flex py-2 text-base font-medium transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Cases</a>
+                  <a href="/resources" className="inline-flex py-2 text-base font-medium transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Resources</a>
+                  <a href="/pricing" className="inline-flex py-2 text-base font-medium transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Pricing</a>
                 </div>
               </div>
 
@@ -114,26 +115,26 @@ export default function NavbarWithHero() {
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
               <div className="animate-slideInLeft">
-                <h1 className="text-4xl font-bold font-roboto text-black sm:text-6xl lg:text-6xl">
+                {/* <h1 className="text-3xl font-bold font-montserrat text-white sm:text-6xl lg:text-5xl">
                   LegalizeMe
-                </h1>
+                </h1> */}
                 <div className="relative inline-flex">
                   <span className="absolute inset-x-0 bottom-0 border-b-[30px] border-[#4ADE80]"></span>
-                  <span className="relative text-4xl font-bold text-black sm:text-6xl lg:text-6xl">
+                  <span className="relative text-4xl font-bold sm:text-6xl lg:text-6xl font-montserrat">
                     Lubricating the wheels of justice
                   </span>
                 </div>
 
-                <p className="mt-8 text-base text-black sm:text-xl animate-fadeIn delay-500">
+                <p className="mt-8 text-base sm:text-xl animate-fadeIn delay-500 font-montserrat">
                   LegalizeMe is redefining access to justice with cutting-edge tools that make legal services faster, smarter, and accessible for all. Every minute saved, every document generated, and every user empowered brings us closer to a world where justice moves swiftly for everyone.<br /><br /> Sign up now, and be part of the change.
                 </p>
 
-                <div className="mt-8 sm:flex sm:items-center sm:space-x-8">
+                <div className="mt-8 sm:flex sm:items-center sm:space-x-8 font-montserrat">
                   <a href="/signup" className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-green-600 border-r-2 transform hover:scale-105" role="button">
                     Get Started
                   </a>
 
-                  <a href="/about" className="text-sm font-semibold leading-6 text-gray-900 px-2 transform hover:scale-105 transition-all duration-200">
+                  <a href="/about" className="text-sm font-semibold font-montserrat leading-6 px-2 transform hover:scale-105 transition-all duration-200">
                     Learn more <span aria-hidden="true">→</span>
                   </a>
                 </div>
@@ -153,7 +154,7 @@ export default function NavbarWithHero() {
                     <div className="px-3 py-4 sm:px-4 sm:py-4">
                       <div className="flex items-start">
                         <blockquote className="ml-2">
-                          <p className="text-sm font-medium text-white sm:text-lg">
+                          <p className="text-sm font-medium font-montserrat text-white sm:text-lg">
                             "Welcome to LegalizeMe. Be part of the revolution."
                           </p>
                         </blockquote>

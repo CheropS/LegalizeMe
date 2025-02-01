@@ -2,7 +2,7 @@ import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-white py-8 font-roboto">
+    <footer className="bg-slate-900 text-white py-8 font-roboto overflow-x-hidden">
       <div className="container mx-auto px-6">
         {/* News Subscription */}
         <div className="flex flex-col md:flex-row md:justify-between items-center border-b border-gray-600 pb-6 mb-6">
