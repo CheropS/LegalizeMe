@@ -1,52 +1,37 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  //const [isAuthenticated, setIsAuthenticated] = useState(false); // User's authentication state
-
   const { isAuthenticated, setIsAuthenticated } = useAuth();
-  // Check if user is authenticated on component mount
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token'); // Check for token in localStorage
-  //   if (token) {
-  //     setIsAuthenticated(true); // User is authenticated if token exists
-  //   }
-  // }, []);
 
-  // Logout functionality
   const handleLogout = () => {
-    // Clear the JWT token from localStorage
     localStorage.removeItem('token');
-
-    // Update authentication state
     setIsAuthenticated(false);
-
     console.log('User logged out');
   };
 
-  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
 
   return (
     <>
-      <header className="pb-4 bg-gradient-to-tr from-gray-200 to-white-200 lg:pb-0 animate-fadeIn">
+      {/* <header className="pb-4 bg-gradient-to-tr from-gray-200 to-white-200 lg:pb-0 animate-fadeIn overflow-x-hidden"> */}
+      <header className="pb-4 lg:pt-6 sm:pt-6 animate-fadeIn overflow-x-hidden font-montserrat">
         <div className="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
               <a href="/" title="Home" className="flex items-center space-x-4">
-                {/* <img className="h-12 w-12 lg:h-16 lg:w-16" src="transparentlogo.svg" alt="Logo" /> */}
-                <h3 className="text-2xl font-extrabold text-gray-800 tracking-wide lg:text-3xl transition duration-200 hover:text-blue-600">
+                {/* <h3 className="text-2xl font-extrabold tracking-wide lg:text-4xl transition duration-200 hover:text-blue-600">
                   Legalize<span className="text-black-200">Me</span>
-                </h3>
+                </h3> */}
+                <img src="/Legal.png" alt="LegalizeMe" className="h-52 w-52 sm:w-30" />
               </a>
             </div>
-
 
             {/* Hamburger menu button for mobile */}
             <button
@@ -91,7 +76,7 @@ export default function Navbar() {
 
           {/* Mobile menu */}
           {mobileMenuOpen && (
-            <nav className="pt-2 pb-4 rounded-md lg:hidden bg-gradient-to-tr from-gray-200 to-white-200">
+            <nav className="pt-2 pb-4 rounded-md lg:hidden">
               <div className="flow-root">
                 <div className="flex flex-col px-6 -my-2 space-y-1">
                   <a href="/about" className="inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">About Us</a>
@@ -103,7 +88,6 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Adjust buttons to prevent overflow */}
               <div className="px-6 mt-6">
                 {isAuthenticated ? (
                   <button

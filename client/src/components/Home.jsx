@@ -82,7 +82,6 @@ export default function Home() {
                     <Hero />
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
-                    {/* Features Section */}
                     <div className="bg-white py-24 sm:py-32">
                         <div className="mx-auto max-w-7xl px-6 lg:px-8">
                             <motion.div
@@ -130,7 +129,6 @@ export default function Home() {
 
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
-                    {/* Third Section: Work with Us */}
                     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-10">
                         <img
                             alt=""
@@ -207,7 +205,6 @@ export default function Home() {
                     </div>
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
-                    {/* Third Section: Partners */}
                     <div className="bg-white py-24 sm:py-32">
                         <div className="mx-auto max-w-7xl px-6 lg:px-8">
                             <motion.h2
@@ -238,18 +235,16 @@ export default function Home() {
 
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
-                    {/* CTA */}
                     <Cta />
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
-                    {/* Services Section */}
                     <Services />
                     <hr className="mx-auto max-w-7xl border-t border-gray-200" />
 
-                    {/* FAQs Section */}
                     <FAQs />
 
                 </main>
+
             </div>
             <Footer />
         </>
