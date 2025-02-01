@@ -3,7 +3,7 @@ import React from "react";
 const Solutions = () => {
   return (
     <>
-      <section className="py-10 bg-gray-50 sm:py-16 lg:py-24 font-roboto animate-fadeIn overflow-x-hidden">
+      <section className="py-10 bg-gray-50 sm:py-16 lg:py-24 font-montserrat animate-fadeIn overflow-x-hidden">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
@@ -116,7 +116,7 @@ const Solutions = () => {
         </div>
       </section>
 
-      <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-roboto">
+      <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-montserrat">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
@@ -265,7 +265,7 @@ const Solutions = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-wrap -mx-4 mt-12 animate-fadeIn font-roboto">
+          <div className="flex flex-wrap -mx-4 mt-12 animate-fadeIn font-montserrat">
             {['01', '02', '03'].map((num, idx) => (
               <div key={num} className="w-full md:w-1/3 px-4 mb-8">
                 <div className="rounded-md bg-white shadow-md p-8 h-[300px] flex flex-col justify-between">
@@ -305,7 +305,7 @@ const Solutions = () => {
         </div>
       </section>
 
-      <section className="py-10 bg-gray-100 sm:py-16 lg:py-24 animate-fadeIn font-roboto">
+      <section className="py-10 bg-gray-100 sm:py-16 lg:py-24 animate-fadeIn font-montserrat">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold leading-tight text-gray-800 sm:text-4xl lg:text-5xl">

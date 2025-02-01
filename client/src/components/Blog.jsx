@@ -32,7 +32,7 @@ const Blog = () => {
   ];
 
   return (
-    <section className="py-10 bg-gray-50 sm:py-16 lg:py-24 font-roboto">
+    <section className="py-10 bg-gray-50 sm:py-16 lg:py-24 font-montserrat">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex items-end justify-between">
           <div className="flex-1 text-center lg:text-left">

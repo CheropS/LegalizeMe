@@ -3,7 +3,7 @@ import React from 'react';
 const Numbers = () => {
     return (
         <>
-            <section className="py-10 bg-white sm:py-16 lg:py-24 font-roboto animate-fadeIn">
+            <section className="py-10 bg-white sm:py-16 lg:py-24 font-montserrat animate-fadeIn">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="text-center">
                         <h4 className="text-xl font-medium text-gray-900">Numbers tell the hard works we’ve done in last 6 years</h4>

@@ -59,7 +59,7 @@ function Soon() {
             for exciting updates and announcements.
           </p>
         </div>
-        <Slider {...settings} className="animate-fadeIn font-roboto">
+        <Slider {...settings} className="animate-fadeIn font-montserrat">
           {cardsData.map((card) => (
             <div key={card.id} className="px-4">
               <div className="rounded-md bg-white shadow-md p-8 h-[250px] flex flex-col justify-between">
