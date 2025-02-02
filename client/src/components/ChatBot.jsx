@@ -1,165 +1,114 @@
-// import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
+import {
+  FiPlus,
+  FiUser,
+  FiChevronLeft,
+  FiChevronRight,
+  FiSend,
+  FiMoreVertical,
+  FiArrowLeft,
+} from "react-icons/fi";
 
-// const ChatBot = () => {
-//   const [messages, setMessages] = useState([]);
-//   const [input, setInput] = useState('');
-//   const [isOpen, setIsOpen] = useState(false);
-//   const [loading, setLoading] = useState(false);
+const ChatPage = ({ messages, input, setInput, handleSendMessage, chatRef, loading }) => {
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
 
-//   // Load chat history from localStorage when the component mounts
-//   useEffect(() => {
-//     const savedMessages = JSON.parse(localStorage.getItem('chatMessages'));
-//     if (savedMessages) {
-//       setMessages(savedMessages);
-//     }
-//   }, []);
+  return (
+    <div className="flex flex-col flex-1 h-screen bg-gray-100 font-montserrat">
+      {/* Production Banner */}
+      <div className="w-full bg-yellow-400 text-black text-center py-2 fixed top-0 z-40">
+        <p className="text-sm font-semibold">
+          🚧 This page is still in production. Features may be incomplete or subject to change. 🚧
+        </p>
+      </div>
 
-//   // Save chat history to localStorage whenever the messages change
-//   useEffect(() => {
-//     localStorage.setItem('chatMessages', JSON.stringify(messages));
-//   }, [messages]);
+      <header className="flex items-center justify-between p-4 bg-blue-600 text-white mt-10">
+        <button className="md:hidden p-2">
+          <FiArrowLeft className="text-2xl" />
+        </button>
+        <h1 className="text-xl font-bold">Chat with Counsel</h1>
+        <button className="p-2">
+          <FiMoreVertical className="text-2xl" />
+        </button>
+      </header>
 
-//   // Close the chat when clicking outside of the chatbot
-//   const handleClickOutside = (e) => {
-//     if (e.target.closest('.chatbot-container') === null) {
-//       setIsOpen(false);
-//     }
-//   };
+      <div className="flex-1 overflow-y-auto px-4 py-2">
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"} mb-2`}
+          >
+            <div
+              className={`max-w-xs p-3 rounded-lg ${
+                msg.sender === "user" ? "bg-blue-500 text-white" : "bg-gray-300 text-black"
+              }`}
+            >
+              <p className="text-sm">{msg.text}</p>
+              <span className="text-xs text-gray-400 block mt-1">
+                {new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+              </span>
+            </div>
+          </div>
+        ))}
+        {loading && (
+          <div className="flex justify-start mb-2">
+            <div className="max-w-xs p-3 rounded-lg bg-gray-300">
+              <p className="text-sm">Sending...</p>
+            </div>
+          </div>
+        )}
+        <div ref={chatRef}></div>
+      </div>
 
-//   useEffect(() => {
-//     // Attach the event listener on mount
-//     document.addEventListener('click', handleClickOutside);
+      <footer className="p-4 bg-white border-t">
+        <div className="flex items-center gap-2">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Type a message..."
+            className="flex-1 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+          />
+          <button
+            onClick={handleSendMessage}
+            disabled={loading}
+            className="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 disabled:bg-blue-400"
+          >
+            <FiSend className="text-2xl" />
+          </button>
+        </div>
+        <div className="mt-2">
+          <p className="text-sm">
+            Powered by <span className="font-semibold">LegalizeMe</span> - Redefining Access to Justice
+          </p>
+          <p className="text-xs text-gray-300 mt-1">
+            © 2025 LegalizeMe. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+};
 
-//     // Cleanup the event listener on unmount
-//     return () => {
-//       document.removeEventListener('click', handleClickOutside);
-//     };
-//   }, []);
-
-//   const sendMessage = async () => {
-//     if (!input.trim()) return;
-
-//     const userMessage = { sender: 'user', text: input };
-//     setMessages((prev) => [...prev, userMessage]);
-//     setLoading(true);
-
-//     try {
-//       const response = await fetch('https://legalizeme.azurewebsites.net/api/chatbot/', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ message: input }),
-//       });
-//       const data = await response.json();
-//       const botMessage = { sender: 'bot', text: data.reply || 'Error in processing your message' };
-//       setMessages((prev) => [...prev, botMessage]);
-//     } catch (error) {
-//       setMessages((prev) => [
-//         ...prev,
-//         { sender: 'bot', text: 'Error in processing your message' },
-//       ]);
-//     } finally {
-//       setLoading(false);
-//       setInput('');
-//     }
-//   };
-
-//   const handleKeyDown = (e) => {
-//     // Allow new lines on Enter key press
-//     if (e.key === 'Enter' && !e.shiftKey) {
-//       e.preventDefault(); // Prevent form submission
-//       sendMessage();
-//     }
-//   };
-
-//   return (
-//     <div
-//       className={`chatbot-container fixed bottom-20 right-8 z-50 ${isOpen ? 'w-80 h-[400px]' : 'w-16 h-16'} bg-white rounded-lg shadow-2xl transition-all duration-300`}
-//     >
-//       {/* Hover message */}
-//       {/* <div
-//         className={`absolute top-[-20px] left-0 right-0 text-center text-sm text-blue-600 transition-opacity ${isOpen ? 'opacity-0' : 'opacity-100'}`}
-//       >
-//         <span>Talk to Counsel Today</span>
-//       </div> */}
-
-//       {/* Header */}
-//       <div
-//         className="bg-blue-600 text-white flex items-center justify-between px-4 py-2 cursor-pointer"
-//         onClick={() => setIsOpen(!isOpen)}
-//       >
-//         <span className="font-semibold">{isOpen ? 'Counsel' : '💬'}</span>
-//         <span>{isOpen ? '−' : '+'}</span>
-//       </div>
-
-//       {/* Chat Content */}
-//       {isOpen && (
-//         <div className="flex flex-col h-full">
-//           <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-100">
-//             {messages.map((msg, index) => (
-//               <div
-//                 key={index}
-//                 className={`${
-//                   msg.sender === 'user'
-//                     ? 'bg-blue-500 text-white ml-auto'
-//                     : 'bg-gray-300 text-black mr-auto'
-//                 } rounded-lg px-4 py-2 max-w-xs break-words`}
-//               >
-//                 {msg.text}
-//               </div>
-//             ))}
-//             {loading && (
-//               <div className="text-gray-500 text-sm italic">Counsel is typing...</div>
-//             )}
-//           </div>
-
-//           {/* Input */}
-//           <div className="flex items-center p-2 bg-white border-t">
-//             <textarea
-//               rows="3" // Allow multi-line input
-//               className="flex-1 px-3 py-2 border rounded-lg focus:outline-none"
-//               placeholder="Type a message..."
-//               value={input}
-//               onChange={(e) => setInput(e.target.value)}
-//               onKeyDown={handleKeyDown} // Handle Enter key to send the message
-//               disabled={loading}
-//             />
-//             <button
-//               onClick={sendMessage}
-//               className={`ml-2 px-4 py-2 rounded-lg text-white ${loading ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'}`}
-//               disabled={loading}
-//             >
-//               {loading ? '...' : 'Send'}
-//             </button>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default ChatBot;
-
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
-const ChatBotPage = () => {
+const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(true);
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const [activeChat, setActiveChat] = useState(null);
+  const chatRef = useRef(null);
 
   useEffect(() => {
     const savedChatHistory = JSON.parse(localStorage.getItem('chatHistory'));
     const savedMessages = JSON.parse(localStorage.getItem('chatMessages'));
-    if (savedChatHistory) {
-      setChatHistory(savedChatHistory);
-    }
-    if (savedMessages) {
-      setMessages(savedMessages);
-    }
+    if (savedChatHistory) setChatHistory(savedChatHistory);
+    if (savedMessages) setMessages(savedMessages);
   }, []);
 
   useEffect(() => {
@@ -171,7 +120,7 @@ const ChatBotPage = () => {
     if (!input.trim()) return;
 
     const userMessage = { sender: 'user', text: input };
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setLoading(true);
 
     try {
@@ -182,26 +131,18 @@ const ChatBotPage = () => {
       });
       const data = await response.json();
       const botMessage = { sender: 'bot', text: data.reply || 'Error in processing your message' };
-      setMessages((prev) => [...prev, botMessage]);
+      setMessages(prev => [...prev, botMessage]);
     } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        { sender: 'bot', text: 'Error in processing your message' },
-      ]);
+      setMessages(prev => [...prev, { sender: 'bot', text: 'Error in processing your message' }]);
     } finally {
       setLoading(false);
       setInput('');
-    }
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
+      chatRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const startNewChat = () => {
+    saveChatToHistory();
     setMessages([]);
     setActiveChat(null);
   };
@@ -212,159 +153,112 @@ const ChatBotPage = () => {
         id: Date.now(),
         title: `Chat ${chatHistory.length + 1}`,
         messages: messages,
+        date: new Date().toISOString(),
       };
-      setChatHistory((prev) => [...prev, newChat]);
+      setChatHistory(prev => [...prev, newChat]);
     }
   };
 
   const loadChatFromHistory = (chatId) => {
-    const chat = chatHistory.find((chat) => chat.id === chatId);
+    const chat = chatHistory.find(chat => chat.id === chatId);
     if (chat) {
       setMessages(chat.messages);
       setActiveChat(chatId);
     }
   };
 
-  const filteredChatHistory = chatHistory.filter((chat) =>
+  const filteredChatHistory = chatHistory.filter(chat =>
     chat.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const categorizedChats = {
+    today: filteredChatHistory.filter(chat => isRecent(chat.date, "today")),
+    yesterday: filteredChatHistory.filter(chat => isRecent(chat.date, "yesterday")),
+    last7Days: filteredChatHistory.filter(chat => isRecent(chat.date, "week")),
+    lastMonth: filteredChatHistory.filter(chat => isRecent(chat.date, "month")),
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-[#4F9CF9] to-[#1A3B7A] flex font-montserrat">
-      {/* Production Banner */}
-      <div className="w-full bg-yellow-400 text-black text-center py-2 fixed top-0 z-50">
-        <p className="text-sm font-semibold">
-          🚧 This page is still in production. Features may be incomplete or subject to change. 🚧
-        </p>
-      </div>
-
-      {/* Sidebar */}
-      <div
-        className={`w-64 bg-white shadow-lg transition-all duration-300 ${
-          isSidebarOpen ? 'ml-0' : '-ml-64'
+    <div className="flex h-screen font-montserrat">
+      <aside
+        className={`flex flex-col bg-gray-800 text-white transition-all duration-300 ${
+          isOpen ? "w-64" : "w-16"
         }`}
-        style={{ marginTop: '40px' }} // Adjust margin to account for the banner
       >
-        <div className="p-4 border-b">
-          <Link to="/" className="text-xl font-semibold text-blue-600 hover:text-blue-700">
-            Home
-          </Link>
-        </div>
-
-        {/* Search Bar */}
-        <div className="p-4 border-b">
-          <input
-            type="text"
-            placeholder="Search chats..."
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-
-        {/* New Chat Button */}
-        <div className="p-4 border-b">
+        <div className="flex items-center justify-between p-4">
+          <h1 className={`text-xl font-semibold ${isOpen ? "block" : "hidden"}`}>
+            LegalizeMe
+          </h1>
           <button
-            onClick={startNewChat}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="text-xl p-2 bg-gray-700 rounded-full hover:bg-gray-600"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            New Chat
+            {isOpen ? <FiChevronLeft /> : <FiChevronRight />}
           </button>
         </div>
 
-        {/* Chat History */}
-        <div className="p-4">
-          <h2 className="text-lg font-semibold mb-2">Chat History</h2>
-          <ul className="space-y-2">
-            {filteredChatHistory.map((chat) => (
-              <li
-                key={chat.id}
-                className={`p-2 rounded-lg cursor-pointer ${
-                  activeChat === chat.id ? 'bg-blue-100' : 'hover:bg-gray-100'
-                }`}
-                onClick={() => loadChatFromHistory(chat.id)}
-              >
-                {chat.title}
-              </li>
-            ))}
-          </ul>
+        <a
+          href="/"
+          className="text-xl p-2 bg-gray-700 rounded-full hover:bg-gray-600 relative group mx-4"
+        >
+          <FiArrowLeft />
+          <span className="absolute left-full ml-2 px-2 py-1 bg-gray-700 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Back to Home
+          </span>
+        </a>
+        {/* <button
+          className="flex items-center gap-2 p-4 bg-blue-600 hover:bg-blue-500 rounded-md mx-2 my-2"
+          onClick={startNewChat}
+        >
+          <FiPlus className="text-xl" />
+          {isOpen && <span>New Chat</span>}
+        </button>
+        <input
+          type="text"
+          placeholder="Search chats..."
+          className="p-2 bg-gray-700 rounded-md focus:outline-none focus:ring focus:ring-blue-300 w-full"
+          onChange={(e) => setSearchQuery(e.target.value)}
+        /> */}
+
+        <div className="flex-1 overflow-y-auto px-2 pt-4">
+          {Object.entries(categorizedChats).map(([category, chats]) => (
+            <div key={category} className="mb-4">
+              <h2 className={`text-gray-400 text-sm uppercase ${isOpen ? "block" : "hidden"}`}>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </h2>
+              <ul>
+                {chats.map((chat) => (
+                  <li
+                    key={chat.id}
+                    className={`p-2 text-sm hover:bg-gray-700 rounded-md cursor-pointer ${
+                      activeChat === chat.id ? "bg-gray-700" : ""
+                    }`}
+                    onClick={() => loadChatFromHistory(chat.id)}
+                  >
+                    {isOpen ? chat.title : <div className="w-3 h-3 bg-gray-500 rounded-full" />}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        {/* My Profile */}
-        <div className="p-4 border-t">
-          <h2 className="text-lg font-semibold mb-2">My Profile</h2>
-          <p className="text-sm text-gray-600">User details here...</p>
+        <div className="p-4 border-t border-gray-700 flex items-center gap-2">
+          <FiUser className="text-2xl" />
+          {isOpen && <span>My Profile</span>}
         </div>
-      </div>
+      </aside>
 
-      {/* Main Chat Area */}
-      <div className="flex-1 flex flex-col items-center justify-center p-4" style={{ marginTop: '40px' }}>
-        <div className="w-full max-w-4xl bg-white rounded-lg shadow-2xl overflow-hidden">
-          {/* Header */}
-          <div className="bg-blue-600 text-white flex items-center justify-between px-6 py-4">
-            <h1 className="text-2xl font-semibold">Counsel - Your Legal Assistant</h1>
-            <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="text-white focus:outline-none"
-            >
-              {isSidebarOpen ? '◄' : '►'}
-            </button>
-          </div>
-
-          {/* Chat Window */}
-          <div className="flex flex-col h-[500px] bg-gray-100 p-4 overflow-y-auto">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`${
-                  msg.sender === 'user'
-                    ? 'bg-blue-500 text-white ml-auto'
-                    : 'bg-gray-300 text-black mr-auto'
-                } rounded-lg px-4 py-2 max-w-xs break-words mb-2`}
-              >
-                {msg.text}
-              </div>
-            ))}
-            {loading && (
-              <div className="text-gray-500 text-sm italic">Counsel is typing...</div>
-            )}
-          </div>
-
-          {/* Input Area */}
-          <div className="flex items-center p-4 bg-white border-t">
-            <textarea
-              rows="3"
-              className="flex-1 px-4 py-2 border rounded-lg focus:outline-none"
-              placeholder="Type a message..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              disabled={loading}
-            />
-            <button
-              onClick={sendMessage}
-              className={`ml-4 px-6 py-2 rounded-lg text-white ${
-                loading ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'
-              }`}
-              disabled={loading}
-            >
-              {loading ? '...' : 'Send'}
-            </button>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="mt-8 text-white text-center">
-          <p className="text-sm">
-            Powered by <span className="font-semibold">LegalizeMe</span> - Redefining Access to Justice
-          </p>
-          <p className="text-xs text-gray-300 mt-2">
-            © 2025 LegalizeMe. All rights reserved.
-          </p>
-        </div>
-      </div>
+      <ChatPage
+        messages={messages}
+        input={input}
+        setInput={setInput}
+        handleSendMessage={sendMessage}
+        chatRef={chatRef}
+        loading={loading}
+      />
     </div>
   );
 };
 
-export default ChatBotPage;
+export default Sidebar;
