@@ -12,6 +12,10 @@ export default {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
         },
+        "slide-in": {
+          "0%": { transform: "translateX(100%)", opacity: 0 },
+          "100%": { transform: "translateY(0)", opacity: 1 },
+        },
         slideInLeft: {
           '0%': { opacity: 0, transform: 'translateX(-50px)' },
           '100%': { opacity: 1, transform: 'translateX(0)' },
@@ -30,6 +34,7 @@ export default {
         slideInLeft: 'slideInLeft 2s ease-out forwards',
         slideInRight: 'slideInRight 2s ease-out forwards',
         scaleUp: 'scaleUp 1s ease-out forwards',
+        "slide-in": 'slide-in 2s ease-out',
       },
     },
   },

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '@tailwindcss/forms';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -7,6 +9,7 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleTogglePassword = () => setShowPassword((prev) => !prev);
 
@@ -14,22 +17,24 @@ export default function SignIn() {
     e.preventDefault();
     setError('');
     setSuccess('');
-  
+    setLoading(true);
+
     if (!username || !password) {
       setError('Please fill in all fields');
+      setLoading(false);
       return;
     }
-  
+
     try {
       const response = await fetch('https://legalizeme.azurewebsites.net/api/token/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
-  
+
       const data = await response.json();
-      console.log('Response data:', data);  // Log response data for debugging
-  
+      console.log('Response data:', data);
+
       if (response.ok) {
         setSuccess('Logged in successfully. Redirecting...');
         localStorage.setItem('token', data.token);
@@ -38,14 +43,15 @@ export default function SignIn() {
         }, 2000);
       } else {
         setError(data.message || 'Login failed. Please try again.');
-        console.error('Error data:', data); // Log error details if any
+        console.error('Error data:', data);
       }
     } catch (error) {
       setError('Login failed. Please try again.');
-      console.error('Network or Server Error:', error); // Log network issues
+      console.error('Network or Server Error:', error);
+    } finally {
+      setLoading(false);
     }
   };
-  
 
   return (
     <>
@@ -64,7 +70,7 @@ export default function SignIn() {
                     <label className="text-base font-medium text-gray-900"> Username </label>
                     <div className="mt-2.5">
                       <input
-                        type="name"
+                        type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder="Enter username"
@@ -93,7 +99,17 @@ export default function SignIn() {
                   </div>
 
                   <div>
-                    <button type="submit" className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-md focus:outline-none hover:bg-blue-700 focus:bg-blue-700">Log in</button>
+                    <button
+                      type="submit"
+                      className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-md focus:outline-none hover:bg-blue-700 focus:bg-blue-700"
+                      disabled={loading}
+                    >
+                      {loading ? (
+                        <FontAwesomeIcon icon={faSpinner} className="animate-spin" />
+                      ) : (
+                        'Log in'
+                      )}
+                    </button>
                   </div>
                 </div>
               </form>
@@ -112,7 +128,7 @@ export default function SignIn() {
                   Sign in with Google
                 </button>
 
-                <button
+                {/* <button
                   type="button"
                   className="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none"
                 >
@@ -122,11 +138,11 @@ export default function SignIn() {
                     </svg>
                   </div>
                   Sign in with Facebook
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
-          {/* Existing right-side content */}
+          
           <div className="flex items-center justify-center px-4 py-10 sm:py-16 lg:py-24 bg-gray-50 sm:px-6 lg:px-8">
             <div>
               <img className="w-full mx-auto rounded-lg" src="legal.jpg" alt="" />

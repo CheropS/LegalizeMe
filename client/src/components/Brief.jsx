@@ -31,7 +31,7 @@ const Brief = () => {
                                             alt=""
                                             className="w-full rounded-2xl"
                                         />
-                                        <span className="absolute -right-7 -bottom-7 z-[-1]">
+                                        <span className="absolute -right-7 -bottom-7 z-[-1] floating-dots">
                                             <svg
                                                 width={134}
                                                 height={106}

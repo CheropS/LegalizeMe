@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { BeatLoader } from 'react-spinners';
 import '@tailwindcss/forms';
 
 export default function SignUp() {
@@ -9,21 +11,40 @@ export default function SignUp() {
   const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleTogglePassword = () => setShowPassword((prev) => !prev);
+
+  const validatePassword = (password) => {
+    const minLength = 8;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    return password.length >= minLength && hasUppercase && hasLowercase && hasSpecialChar;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
+    setIsLoading(true);
 
     if (!username || !email || !password) {
       setError('Please fill in all fields');
+      setIsLoading(false);
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      setError('Password does not meet the requirements');
+      setIsLoading(false);
       return;
     }
 
     if (!agreed) {
       setError('Please agree to the Terms of Service and Data Governance Policy');
+      setIsLoading(false);
       return;
     }
 
@@ -35,14 +56,13 @@ export default function SignUp() {
       });
 
       const data = await response.json();
-      console.log('Response data:', data);  // Log response data for debugging
+      console.log('Response data:', data);
 
       if (response.ok) {
-        setSuccess('Account created successfully');
-        setUsername('');
-        setEmail('');
-        setPassword('');
-        setAgreed(false);
+        setSuccess('Account created successfully! Redirecting to login...');
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
       } else {
         setError(data.message || 'Signup failed. Please try again.');
         console.error('Error data:', data);
@@ -50,9 +70,10 @@ export default function SignUp() {
     } catch (error) {
       setError('Signup failed. Please try again.');
       console.error('Network or Server Error:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
-
 
   return (
     <>
@@ -108,6 +129,12 @@ export default function SignUp() {
                         {showPassword ? '🙈' : '👁️'}
                       </button>
                     </div>
+                    <ul className="mt-2 text-sm text-gray-500 list-disc list-inside">
+                      <li>Minimum 8 characters</li>
+                      <li>At least one uppercase letter</li>
+                      <li>At least one lowercase letter</li>
+                      <li>At least one special character</li>
+                    </ul>
                   </div>
 
                   <div className="flex items-center">
@@ -119,8 +146,12 @@ export default function SignUp() {
                   </div>
 
                   <div>
-                    <button type="submit" className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-md focus:outline-none hover:bg-blue-700 focus:bg-blue-700">
-                      Create free account
+                    <button
+                      type="submit"
+                      disabled={isLoading}
+                      className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-md focus:outline-none hover:bg-blue-700 focus:bg-blue-700"
+                    >
+                      {isLoading ? <BeatLoader color="#ffffff" size={10} /> : 'Create free account'}
                     </button>
                   </div>
                 </div>
@@ -140,7 +171,7 @@ export default function SignUp() {
                   Sign up with Google
                 </button>
 
-                <button
+                {/* <button
                   type="button"
                   className="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none"
                 >
@@ -150,11 +181,11 @@ export default function SignUp() {
                     </svg>
                   </div>
                   Sign up with Facebook
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
-          {/* Existing right-side content */}
+
           <div className="flex items-center justify-center px-4 py-10 sm:py-16 lg:py-24 bg-gray-50 sm:px-6 lg:px-8">
             <div>
               <img className="w-full mx-auto rounded-lg" src="/legal.jpg" alt="" />
