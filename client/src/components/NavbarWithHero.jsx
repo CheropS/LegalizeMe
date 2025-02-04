@@ -61,22 +61,27 @@ export default function NavbarWithHero() {
               <a href="/pricing" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Pricing</a>
             </div>
 
-            {/* Authenticated or not */}
             {isAuthenticated ? (
               <button
-                onClick={handleLogout}
+                onClick={() => {
+                  handleLogout();
+                  alert('You have successfully logged out.');
+                }}
                 className="hidden lg:inline-flex px-4 py-2 ml-auto text-base font-semibold text-white bg-red-600 border border-transparent rounded-md hover:bg-red-700"
               >
                 Logout
               </button>
             ) : (
-              <a href="/login" className="hidden lg:inline-flex px-4 py-2 ml-auto text-base font-semibold text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700">
+              <a
+                href="/login"
+                className="hidden lg:inline-flex px-4 py-2 ml-auto text-base font-semibold text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 hover:scale-105"
+              >
                 Get started now
               </a>
             )}
-          </nav>
+            </nav>
 
-          {/* Mobile menu */}
+            {/* Mobile menu */}
           {mobileMenuOpen && (
             <nav className="pt-2 pb-4 rounded-md lg:hidden font-montserrat">
               <div className="flow-root">
@@ -93,7 +98,10 @@ export default function NavbarWithHero() {
               <div className="px-6 mt-6">
                 {isAuthenticated ? (
                   <button
-                    onClick={handleLogout}
+                    onClick = {() => {
+                      handleLogout();
+                      alert("You have successfully logged out.");
+                    }}
                     className="w-full px-4 py-2 text-base font-semibold text-white bg-red-600 rounded-md hover:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                   >
                     Logout

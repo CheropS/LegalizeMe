@@ -7,6 +7,7 @@ import {
   FiSend,
   FiMoreVertical,
   FiArrowLeft,
+  FiMenu,
 } from "react-icons/fi";
 
 const ChatPage = ({ messages, input, setInput, handleSendMessage, chatRef, loading }) => {
@@ -65,14 +66,14 @@ const ChatPage = ({ messages, input, setInput, handleSendMessage, chatRef, loadi
       </div>
 
       <footer className="p-4 bg-white border-t">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 max-w-2xl mx-auto">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type a message..."
-            className="flex-1 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+            className="flex-1 lg:p-8 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
           />
           <button
             onClick={handleSendMessage}
@@ -82,7 +83,7 @@ const ChatPage = ({ messages, input, setInput, handleSendMessage, chatRef, loadi
             <FiSend className="text-2xl" />
           </button>
         </div>
-        <div className="mt-2">
+        <div className="mt-2 text-center">
           <p className="text-sm">
             Powered by <span className="font-semibold">LegalizeMe</span> - Redefining Access to Justice
           </p>
@@ -97,11 +98,13 @@ const ChatPage = ({ messages, input, setInput, handleSendMessage, chatRef, loadi
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
   const [activeChat, setActiveChat] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const chatRef = useRef(null);
 
   useEffect(() => {
@@ -115,6 +118,14 @@ const Sidebar = () => {
     localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
     localStorage.setItem('chatMessages', JSON.stringify(messages));
   }, [chatHistory, messages]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -171,6 +182,26 @@ const Sidebar = () => {
     chat.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const isRecent = (date, period) => {
+    const now = new Date();
+    const chatDate = new Date(date);
+    const diffTime = Math.abs(now - chatDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    switch (period) {
+      case "today":
+        return diffDays === 0;
+      case "yesterday":
+        return diffDays === 1;
+      case "week":
+        return diffDays <= 7;
+      case "month":
+        return diffDays <= 30;
+      default:
+        return false;
+    }
+  };
+
   const categorizedChats = {
     today: filteredChatHistory.filter(chat => isRecent(chat.date, "today")),
     yesterday: filteredChatHistory.filter(chat => isRecent(chat.date, "yesterday")),
@@ -180,10 +211,18 @@ const Sidebar = () => {
 
   return (
     <div className="flex h-screen font-montserrat">
+      {isMobile && !isOpen && (
+        <button
+          className="fixed top-4 left-4 p-2 bg-gray-800 text-white rounded-md z-50"
+          onClick={() => setIsOpen(true)}
+        >
+          <FiMenu className="text-2xl" />
+        </button>
+      )}
       <aside
         className={`flex flex-col bg-gray-800 text-white transition-all duration-300 ${
-          isOpen ? "w-64" : "w-16"
-        }`}
+          isOpen ? "w-64" : "w-0"
+        } ${isMobile ? "fixed inset-y-0 z-40" : "relative"}`}
       >
         <div className="flex items-center justify-between p-4">
           <h1 className={`text-xl font-semibold ${isOpen ? "block" : "hidden"}`}>
@@ -206,19 +245,6 @@ const Sidebar = () => {
             Back to Home
           </span>
         </a>
-        {/* <button
-          className="flex items-center gap-2 p-4 bg-blue-600 hover:bg-blue-500 rounded-md mx-2 my-2"
-          onClick={startNewChat}
-        >
-          <FiPlus className="text-xl" />
-          {isOpen && <span>New Chat</span>}
-        </button>
-        <input
-          type="text"
-          placeholder="Search chats..."
-          className="p-2 bg-gray-700 rounded-md focus:outline-none focus:ring focus:ring-blue-300 w-full"
-          onChange={(e) => setSearchQuery(e.target.value)}
-        /> */}
 
         <div className="flex-1 overflow-y-auto px-2 pt-4">
           {Object.entries(categorizedChats).map(([category, chats]) => (
