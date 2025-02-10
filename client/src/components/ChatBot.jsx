@@ -8,9 +8,29 @@ import {
   FiMoreVertical,
   FiArrowLeft,
   FiMenu,
+  FiX,
+  FiHome,
 } from "react-icons/fi";
 
-const ChatPage = ({ messages, input, setInput, handleSendMessage, chatRef, loading }) => {
+// Previous Message and ChatInput components remain the same...
+const Message = ({ message }) => (
+  <div className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"} mb-2`}>
+    <div
+      className={`max-w-xs md:max-w-md p-3 rounded-lg ${
+        message.sender === "user" 
+          ? "bg-blue-500 text-white" 
+          : "bg-gray-300 text-black"
+      }`}
+    >
+      <p className="text-sm whitespace-pre-wrap break-words">{message.text}</p>
+      <span className="text-xs opacity-75 block mt-1">
+        {new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+      </span>
+    </div>
+  </div>
+);
+
+const ChatInput = ({ input, setInput, handleSendMessage, loading }) => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -19,119 +39,161 @@ const ChatPage = ({ messages, input, setInput, handleSendMessage, chatRef, loadi
   };
 
   return (
-    <div className="flex flex-col flex-1 h-screen bg-gray-100 font-montserrat">
-      {/* Production Banner */}
-      <div className="w-full bg-yellow-400 text-black text-center py-2 fixed top-0 z-40">
-        <p className="text-sm font-semibold">
-          🚧 This page is still in production. Features may be incomplete or subject to change. 🚧
+    <footer className="p-4 bg-white border-t">
+      <div className="flex items-center gap-2 max-w-2xl mx-auto">
+        <textarea
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Type a message..."
+          rows={1}
+          className="flex-1 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none"
+        />
+        <button
+          onClick={handleSendMessage}
+          disabled={loading}
+          className="p-3 bg-blue-600 text-white rounded-md hover:bg-blue-500 disabled:bg-blue-400 transition-colors"
+        >
+          <FiSend className="text-xl" />
+        </button>
+      </div>
+      <div className="mt-2 text-center">
+        <p className="text-sm">
+          Powered by <span className="font-semibold">LegalizeMe</span>
+        </p>
+        <p className="text-xs text-gray-400 mt-1">
+          © 2025 LegalizeMe. All rights reserved.
         </p>
       </div>
-
-      <header className="flex items-center justify-between p-4 bg-blue-600 text-white mt-10">
-        <button className="md:hidden p-2">
-          <FiArrowLeft className="text-2xl" />
-        </button>
-        <h1 className="text-xl font-bold">Chat with Counsel</h1>
-        <button className="p-2">
-          <FiMoreVertical className="text-2xl" />
-        </button>
-      </header>
-
-      <div className="flex-1 overflow-y-auto px-4 py-2">
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"} mb-2`}
-          >
-            <div
-              className={`max-w-xs p-3 rounded-lg ${
-                msg.sender === "user" ? "bg-blue-500 text-white" : "bg-gray-300 text-black"
-              }`}
-            >
-              <p className="text-sm">{msg.text}</p>
-              <span className="text-xs text-gray-400 block mt-1">
-                {new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-              </span>
-            </div>
-          </div>
-        ))}
-        {loading && (
-          <div className="flex justify-start mb-2">
-            <div className="max-w-xs p-3 rounded-lg bg-gray-300">
-              <p className="text-sm">Sending...</p>
-            </div>
-          </div>
-        )}
-        <div ref={chatRef}></div>
-      </div>
-
-      <footer className="p-4 bg-white border-t">
-        <div className="flex items-center gap-2 max-w-2xl mx-auto">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Type a message..."
-            className="flex-1 lg:p-8 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-          />
-          <button
-            onClick={handleSendMessage}
-            disabled={loading}
-            className="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 disabled:bg-blue-400"
-          >
-            <FiSend className="text-2xl" />
-          </button>
-        </div>
-        <div className="mt-2 text-center">
-          <p className="text-sm">
-            Powered by <span className="font-semibold">LegalizeMe</span> - Redefining Access to Justice
-          </p>
-          <p className="text-xs text-gray-300 mt-1">
-            © 2025 LegalizeMe. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </div>
+    </footer>
   );
 };
 
+const ChatPage = ({ messages, input, setInput, handleSendMessage, chatRef, loading }) => (
+  <div className="flex flex-col flex-1 h-screen bg-gray-100">
+    {/* <div className="w-full bg-yellow-400 text-black text-center py-2 fixed top-0 z-40">
+      <p className="text-sm font-semibold">
+        🚧 This page is still in production. Features may be incomplete or subject to change. 🚧
+      </p>
+    </div> */}
+
+    <header className="flex items-center justify-between p-4 bg-blue-600 text-white">
+      <h1 className="text-xl font-bold">Chat with Counsel</h1>
+      <button className="p-2 hover:bg-blue-500 rounded-full transition-colors">
+        <FiMoreVertical className="text-2xl" />
+      </button>
+    </header>
+
+    <div className="flex-1 overflow-y-auto px-4 py-2">
+      {messages.map((msg, index) => (
+        <Message key={index} message={msg} />
+      ))}
+      {loading && (
+        <div className="flex justify-start mb-2">
+          <div className="max-w-xs p-3 rounded-lg bg-gray-300">
+            <p className="text-sm">Typing...</p>
+          </div>
+        </div>
+      )}
+      <div ref={chatRef} />
+    </div>
+
+    <ChatInput
+      input={input}
+      setInput={setInput}
+      handleSendMessage={handleSendMessage}
+      loading={loading}
+    />
+  </div>
+);
+
+const ChatHistory = ({ chats, activeChat, onChatSelect, isOpen }) => (
+  <div className="flex-1 overflow-y-auto">
+    {chats.map((chat) => (
+      <div
+        key={chat.id}
+        onClick={() => onChatSelect(chat.id)}
+        className={`p-3 cursor-pointer transition-colors ${
+          activeChat === chat.id 
+            ? "bg-gray-700" 
+            : "hover:bg-gray-700"
+        } ${!isOpen && "justify-center"}`}
+      >
+        {isOpen ? (
+          <div>
+            <h3 className="text-sm font-medium">{chat.title}</h3>
+            <p className="text-xs text-gray-400">
+              {new Date(chat.date).toLocaleDateString()}
+            </p>
+          </div>
+        ) : (
+          <div className="w-2 h-2 bg-gray-400 rounded-full" />
+        )}
+      </div>
+    ))}
+  </div>
+);
+
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
   const [activeChat, setActiveChat] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
   const chatRef = useRef(null);
+  const sidebarRef = useRef(null);
 
+  // Previous useEffects and handlers remain the same...
   useEffect(() => {
-    const savedChatHistory = JSON.parse(localStorage.getItem('chatHistory'));
-    const savedMessages = JSON.parse(localStorage.getItem('chatMessages'));
-    if (savedChatHistory) setChatHistory(savedChatHistory);
-    if (savedMessages) setMessages(savedMessages);
-  }, []);
+    const handleClickOutside = (event) => {
+      if (isMobile && isOpen && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
 
-  useEffect(() => {
-    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-    localStorage.setItem('chatMessages', JSON.stringify(messages));
-  }, [chatHistory, messages]);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMobile, isOpen]);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (!mobile && !isOpen) setIsOpen(true);
     };
+
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const sendMessage = async () => {
+  useEffect(() => {
+    const savedData = localStorage.getItem('chatData');
+    if (savedData) {
+      const { history, currentMessages, currentChat } = JSON.parse(savedData);
+      setChatHistory(history || []);
+      setMessages(currentMessages || []);
+      setActiveChat(currentChat);
+    }
+  }, []);
+
+  useEffect(() => {
+    const chatData = {
+      history: chatHistory,
+      currentMessages: messages,
+      currentChat: activeChat
+    };
+    localStorage.setItem('chatData', JSON.stringify(chatData));
+  }, [chatHistory, messages, activeChat]);
+
+  const handleSendMessage = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { sender: 'user', text: input };
-    setMessages(prev => [...prev, userMessage]);
+    const newMessage = { sender: 'user', text: input };
+    setMessages(prev => [...prev, newMessage]);
+    setInput('');
     setLoading(true);
 
     try {
@@ -140,138 +202,140 @@ const Sidebar = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: input }),
       });
+      
       const data = await response.json();
-      const botMessage = { sender: 'bot', text: data.reply || 'Error in processing your message' };
-      setMessages(prev => [...prev, botMessage]);
+      setMessages(prev => [...prev, {
+        sender: 'bot',
+        text: data.reply || 'Sorry, I encountered an error processing your message.'
+      }]);
     } catch (error) {
-      setMessages(prev => [...prev, { sender: 'bot', text: 'Error in processing your message' }]);
+      setMessages(prev => [...prev, {
+        sender: 'bot',
+        text: 'Sorry, I encountered an error processing your message.'
+      }]);
     } finally {
       setLoading(false);
-      setInput('');
       chatRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const startNewChat = () => {
-    saveChatToHistory();
-    setMessages([]);
-    setActiveChat(null);
-  };
-
-  const saveChatToHistory = () => {
     if (messages.length > 0) {
       const newChat = {
         id: Date.now(),
         title: `Chat ${chatHistory.length + 1}`,
-        messages: messages,
-        date: new Date().toISOString(),
+        messages: [...messages],
+        date: new Date().toISOString()
       };
       setChatHistory(prev => [...prev, newChat]);
     }
+    setMessages([]);
+    setActiveChat(null);
   };
 
-  const loadChatFromHistory = (chatId) => {
-    const chat = chatHistory.find(chat => chat.id === chatId);
+  const loadChat = (chatId) => {
+    const chat = chatHistory.find(c => c.id === chatId);
     if (chat) {
       setMessages(chat.messages);
       setActiveChat(chatId);
     }
   };
 
-  const filteredChatHistory = chatHistory.filter(chat =>
-    chat.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const isRecent = (date, period) => {
-    const now = new Date();
-    const chatDate = new Date(date);
-    const diffTime = Math.abs(now - chatDate);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-    switch (period) {
-      case "today":
-        return diffDays === 0;
-      case "yesterday":
-        return diffDays === 1;
-      case "week":
-        return diffDays <= 7;
-      case "month":
-        return diffDays <= 30;
-      default:
-        return false;
-    }
-  };
-
-  const categorizedChats = {
-    today: filteredChatHistory.filter(chat => isRecent(chat.date, "today")),
-    yesterday: filteredChatHistory.filter(chat => isRecent(chat.date, "yesterday")),
-    last7Days: filteredChatHistory.filter(chat => isRecent(chat.date, "week")),
-    lastMonth: filteredChatHistory.filter(chat => isRecent(chat.date, "month")),
+  const handleHomeClick = () => {
+    window.location.href = '/';
   };
 
   return (
-    <div className="flex h-screen font-montserrat">
+    <div className="flex h-screen bg-gray-100">
       {isMobile && !isOpen && (
         <button
-          className="fixed top-4 left-4 p-2 bg-gray-800 text-white rounded-md z-50"
           onClick={() => setIsOpen(true)}
+          className="fixed top-16 left-4 z-50 p-2 bg-gray-800 text-white rounded-full shadow-lg"
         >
-          <FiMenu className="text-2xl" />
+          <FiMenu className="text-xl" />
         </button>
       )}
+
       <aside
-        className={`flex flex-col bg-gray-800 text-white transition-all duration-300 ${
-          isOpen ? "w-64" : "w-0"
-        } ${isMobile ? "fixed inset-y-0 z-40" : "relative"}`}
+        ref={sidebarRef}
+        className={`
+          fixed md:relative
+          h-full
+          bg-gray-800
+          text-white
+          transition-all
+          duration-300
+          ease-in-out
+          z-50
+          ${isOpen ? 'w-64' : 'w-16'}
+          ${isMobile && !isOpen ? '-translate-x-full' : 'translate-x-0'}
+        `}
       >
-        <div className="flex items-center justify-between p-4">
-          <h1 className={`text-xl font-semibold ${isOpen ? "block" : "hidden"}`}>
-            LegalizeMe
-          </h1>
+        <div className="flex items-center justify-between p-4 border-b border-gray-700">
+          {isOpen && <h1 className="text-xl font-bold">LegalizeMe</h1>}
           <button
-            className="text-xl p-2 bg-gray-700 rounded-full hover:bg-gray-600"
             onClick={() => setIsOpen(!isOpen)}
+            className="p-2 hover:bg-gray-700 rounded-full transition-colors"
           >
             {isOpen ? <FiChevronLeft /> : <FiChevronRight />}
           </button>
         </div>
 
-        <a
-          href="/"
-          className="text-xl p-2 bg-gray-700 rounded-full hover:bg-gray-600 relative group mx-4"
-        >
-          <FiArrowLeft />
-          <span className="absolute left-full ml-2 px-2 py-1 bg-gray-700 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Back to Home
-          </span>
-        </a>
-
-        <div className="flex-1 overflow-y-auto px-2 pt-4">
-          {Object.entries(categorizedChats).map(([category, chats]) => (
-            <div key={category} className="mb-4">
-              <h2 className={`text-gray-400 text-sm uppercase ${isOpen ? "block" : "hidden"}`}>
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </h2>
-              <ul>
-                {chats.map((chat) => (
-                  <li
-                    key={chat.id}
-                    className={`p-2 text-sm hover:bg-gray-700 rounded-md cursor-pointer ${
-                      activeChat === chat.id ? "bg-gray-700" : ""
-                    }`}
-                    onClick={() => loadChatFromHistory(chat.id)}
-                  >
-                    {isOpen ? chat.title : <div className="w-3 h-3 bg-gray-500 rounded-full" />}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        {/* Home button */}
+        <div className="p-4 border-b border-gray-700">
+          <button
+            onClick={handleHomeClick}
+            className={`
+              flex items-center gap-2
+              w-full p-2
+              hover:bg-gray-700
+              rounded-md
+              transition-colors
+              ${!isOpen && 'justify-center'}
+            `}
+          >
+            <FiHome className="text-xl" />
+            {isOpen && <span>Home</span>}
+          </button>
         </div>
 
-        <div className="p-4 border-t border-gray-700 flex items-center gap-2">
-          <FiUser className="text-2xl" />
-          {isOpen && <span>My Profile</span>}
+        <div className="p-4">
+          <button
+            onClick={startNewChat}
+            className={`
+              flex items-center gap-2
+              w-full p-2
+              bg-blue-600
+              hover:bg-blue-500
+              rounded-md
+              transition-colors
+              ${!isOpen && 'justify-center'}
+            `}
+          >
+            <FiPlus />
+            {isOpen && <span>New Chat</span>}
+          </button>
+        </div>
+
+        <ChatHistory
+          chats={chatHistory}
+          activeChat={activeChat}
+          onChatSelect={loadChat}
+          isOpen={isOpen}
+        />
+
+        <div className="p-4 border-t border-gray-700">
+          <button className={`
+            flex items-center gap-2
+            w-full p-2
+            hover:bg-gray-700
+            rounded-md
+            transition-colors
+            ${!isOpen && 'justify-center'}
+          `}>
+            <FiUser />
+            {isOpen && <span>Profile</span>}
+          </button>
         </div>
       </aside>
 
@@ -279,10 +343,17 @@ const Sidebar = () => {
         messages={messages}
         input={input}
         setInput={setInput}
-        handleSendMessage={sendMessage}
+        handleSendMessage={handleSendMessage}
         chatRef={chatRef}
         loading={loading}
       />
+
+      {isMobile && isOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
     </div>
   );
 };
