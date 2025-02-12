@@ -1,0 +1,21 @@
+[2025-02-12 21:17:47,239] INFO in contact: Received contact form submission from humphreyotieno04@gmail.com
+[2025-02-12 21:17:49,929] ERROR in contact: Failed to send email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4395a056151sm27332015e9.16 - gsmtp')
+[2025-02-12 21:17:49,929] ERROR in contact: Error processing contact form: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4395a056151sm27332015e9.16 - gsmtp')
+[2025-02-12 21:19:24,924] INFO in contact: Received contact form submission from humphreyotieno04@gmail.com
+[2025-02-12 21:19:27,980] ERROR in contact: Failed to send email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4395a04cd48sm27555625e9.5 - gsmtp')
+[2025-02-12 21:19:27,980] ERROR in contact: Error processing contact form: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4395a04cd48sm27555625e9.5 - gsmtp')
+[2025-02-12 21:23:31] INFO [contact.py:192] - Starting server with email configuration: smtp.zoho.com:587
+[2025-02-12 21:23:31] INFO [contact.py:193] - Recipient email configured as: info.support@legalizeme.site
+[2025-02-12 21:23:35] INFO [contact.py:138] - Received contact form submission request from IP: 127.0.0.1
+[2025-02-12 21:23:35] WARNING [contact.py:158] - Invalid phone format: 234567890
+[2025-02-12 21:23:54] INFO [contact.py:138] - Received contact form submission request from IP: 127.0.0.1
+[2025-02-12 21:24:00] INFO [contact.py:118] - Email sent successfully for humphreyotieno04@gmail.com
+[2025-02-12 21:25:38] INFO [contact.py:138] - Received contact form submission request from IP: 127.0.0.1
+[2025-02-12 21:25:38] WARNING [contact.py:158] - Invalid phone format: 3456765432
+[2025-02-12 21:34:17] INFO [contact.py:138] - Received contact form submission request from IP: 127.0.0.1
+[2025-02-12 21:34:22] INFO [contact.py:118] - Email sent successfully for testuser@gmail.com
+[2025-02-12 21:50:07] INFO [app.py:234] - Starting server with email configuration: smtp.zoho.com:587
+[2025-02-12 21:50:07] INFO [app.py:235] - Recipient email configured as: info.support@legalizeme.site
+[2025-02-12 21:50:11] INFO [app.py:107] - Received contact form submission request from IP: 127.0.0.1
+[2025-02-12 21:50:18] INFO [app.py:87] - Email sent successfully for humphreyotieno04@gmail.com
+[2025-02-12 21:50:43] INFO [app.py:87] - Email sent successfully for anothertest@gmail.com

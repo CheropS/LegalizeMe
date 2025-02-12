@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import '@tailwindcss/forms';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import axios from 'axios';
 
 export default function Feedback() {
   const [formData, setFormData] = useState({
@@ -17,6 +16,7 @@ export default function Feedback() {
 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,13 +26,15 @@ export default function Feedback() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
     if (!formData.userName || !formData.email || !formData.experience || !formData.features || !formData.referralSource) {
       setError('Please fill out all required fields');
       return;
     }
 
     try {
-      // Simulate form submission or integrate with backend
+      const response = await axios.post('http://localhost:5000/api/feedback', formData);
+      setSuccessMessage(response.data.message);
       setSubmitted(true);
       setFormData({
         userName: '',
@@ -57,7 +59,7 @@ export default function Feedback() {
         <p className="mt-2 text-center text-gray-600">Help us improve by sharing your thoughts on our service.</p>
 
         {error && <div className="p-4 text-red-600 bg-red-100 rounded-md mt-4">{error}</div>}
-        {submitted && <div className="p-4 text-green-600 bg-green-100 rounded-md mt-4">Thank you for your feedback!</div>}
+        {successMessage && <div className="p-4 text-green-600 bg-green-100 rounded-md mt-4">{successMessage}</div>}
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           {/* Name */}
