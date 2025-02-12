@@ -87,7 +87,7 @@ export default function Contact() {
 
         try {
             const response = await axios.post(
-                'http://localhost:5000/api/contact',
+                'https://legalizeme.onrender.com/api/contact',
                 formData,
                 {
                     headers: { 'Content-Type': 'application/json' },
