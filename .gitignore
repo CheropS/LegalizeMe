@@ -1,0 +1,5 @@
+.env
+# venv/
+legal/
+contact.py
+subscribe.py

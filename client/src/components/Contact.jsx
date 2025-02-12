@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
+import { Alert, AlertDescription } from "../components/Alert";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -9,26 +12,113 @@ export default function Contact() {
         message: ""
     });
 
-    const [error, setError] = useState("");
+    const [errors, setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [globalError, setGlobalError] = useState("");
+
+    // Validation functions
+    const validateEmail = (email) => {
+        const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return pattern.test(email);
+    };
+
+    const validatePhone = (phone) => {
+        const pattern = /^(?:\+?254|0)?[71]\d{8}$/;
+        return pattern.test(phone);
+    };
+
+    const validateField = (name, value) => {
+        switch (name) {
+            case "name":
+                return value.length < 2 ? "Name must be at least 2 characters long" : "";
+            case "email":
+                return !validateEmail(value) ? "Please enter a valid email address" : "";
+            case "phone":
+                return !validatePhone(value) ? "Please enter a valid Kenyan phone number" : "";
+            case "message":
+                return value.length < 10 ? "Message must be at least 10 characters long" : "";
+            default:
+                return "";
+        }
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData(prev => ({ ...prev, [name]: value }));
+
+        // Clear errors for this field
+        setErrors(prev => ({ ...prev, [name]: "" }));
+
+        // Clear success message when user starts typing again
+        if (successMessage) setSuccessMessage("");
+        if (globalError) setGlobalError("");
     };
 
-    const handleSubmit = (e) => {
+    const handleBlur = (e) => {
+        const { name, value } = e.target;
+        const error = validateField(name, value);
+        if (error) {
+            setErrors(prev => ({ ...prev, [name]: error }));
+        }
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const { name, email, phone, message } = formData;
-        
-        // Basic validation
-        if (!name || !email || !phone || !message) {
-            setError("Please fill in all required fields.");
+        setIsSubmitting(true);
+        setGlobalError("");
+        setSuccessMessage("");
+
+        // Validate all fields
+        const newErrors = {};
+        Object.keys(formData).forEach(key => {
+            if (key !== "company") { // Company is optional
+                const error = validateField(key, formData[key]);
+                if (error) newErrors[key] = error;
+            }
+        });
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            setIsSubmitting(false);
+            setGlobalError("Please correct the errors below.");
             return;
         }
-        
-        setError(""); // Clear error if form is valid
-        // Proceed with form submission (e.g., send to backend)
-        console.log("Form submitted:", formData);
+
+        try {
+            const response = await axios.post(
+                'http://localhost:5000/api/contact',
+                formData,
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    timeout: 10000 // 10 second timeout
+                }
+            );
+
+            setSuccessMessage(response.data.message);
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                company: "",
+                message: ""
+            });
+            setErrors({});
+        } catch (error) {
+            if (error.response) {
+                // Server responded with an error
+                setGlobalError(error.response.data.error || "Failed to send message. Please try again.");
+            } else if (error.code === "ECONNABORTED") {
+                setGlobalError("Request timed out. Please check your connection and try again.");
+            } else if (!navigator.onLine) {
+                setGlobalError("You appear to be offline. Please check your internet connection.");
+            } else {
+                setGlobalError("An unexpected error occurred. Please try again later.");
+            }
+            console.error("Submission Error:", error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -79,45 +169,69 @@ export default function Contact() {
                         <div className="mt-6 overflow-hidden bg-white rounded-xl">
                             <div className="px-6 py-12 sm:p-12">
                                 <h3 className="text-3xl font-semibold text-center text-gray-900">Send us a message</h3>
-                                
-                                {error && <p className="text-red-500 text-center mt-2">{error}</p>}
-                                
+
+                                {globalError && (
+                                    <Alert variant="destructive" className="mt-4">
+                                        <AlertCircle className="h-4 w-4" />
+                                        <AlertDescription>{globalError}</AlertDescription>
+                                    </Alert>
+                                )}
+
+                                {successMessage && (
+                                    <Alert className="mt-4 bg-green-50 text-green-700 border-green-200">
+                                        <CheckCircle2 className="h-4 w-4" />
+                                        <AlertDescription>{successMessage}</AlertDescription>
+                                    </Alert>
+                                )}
+
                                 <form onSubmit={handleSubmit} className="mt-14">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
                                         <div>
-                                            <label className="text-base font-medium text-gray-900">Your name</label>
+                                            <label className="text-base font-medium text-gray-900">Your name *</label>
                                             <input
                                                 type="text"
                                                 name="name"
                                                 placeholder="Enter your full name"
                                                 value={formData.name}
                                                 onChange={handleInputChange}
-                                                className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
+                                                onBlur={handleBlur}
+                                                className={`block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border rounded-md focus:outline-none focus:border-blue-600 caret-blue-600 ${errors.name ? 'border-red-500' : 'border-gray-200'
+                                                    }`}
+                                                disabled={isSubmitting}
                                             />
+                                            {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                                         </div>
 
                                         <div>
-                                            <label className="text-base font-medium text-gray-900">Email address</label>
+                                            <label className="text-base font-medium text-gray-900">Email address *</label>
                                             <input
                                                 type="email"
                                                 name="email"
                                                 placeholder="Enter your email"
                                                 value={formData.email}
                                                 onChange={handleInputChange}
-                                                className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
+                                                onBlur={handleBlur}
+                                                className={`block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border rounded-md focus:outline-none focus:border-blue-600 caret-blue-600 ${errors.email ? 'border-red-500' : 'border-gray-200'
+                                                    }`}
+                                                disabled={isSubmitting}
                                             />
+                                            {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                                         </div>
 
                                         <div>
-                                            <label className="text-base font-medium text-gray-900">Phone number</label>
+                                            <label className="text-base font-medium text-gray-900">Phone number *</label>
                                             <input
                                                 type="tel"
                                                 name="phone"
                                                 placeholder="Enter your phone number"
                                                 value={formData.phone}
                                                 onChange={handleInputChange}
-                                                className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
+                                                onBlur={handleBlur}
+                                                className={`block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border rounded-md focus:outline-none focus:border-blue-600 caret-blue-600 ${errors.phone ? 'border-red-500' : 'border-gray-200'
+                                                    }`}
+                                                disabled={isSubmitting}
                                             />
+                                            {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
                                         </div>
 
                                         <div>
@@ -125,31 +239,44 @@ export default function Contact() {
                                             <input
                                                 type="text"
                                                 name="company"
-                                                placeholder="Enter your company name"
+                                                placeholder="Enter your company name (optional)"
                                                 value={formData.company}
                                                 onChange={handleInputChange}
                                                 className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
+                                                disabled={isSubmitting}
                                             />
                                         </div>
 
                                         <div className="sm:col-span-2">
-                                            <label className="text-base font-medium text-gray-900">Message</label>
+                                            <label className="text-base font-medium text-gray-900">Message *</label>
                                             <textarea
                                                 name="message"
                                                 placeholder="Enter your message"
                                                 value={formData.message}
                                                 onChange={handleInputChange}
-                                                className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md resize-y focus:outline-none focus:border-blue-600 caret-blue-600"
+                                                onBlur={handleBlur}
+                                                className={`block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border rounded-md resize-y focus:outline-none focus:border-blue-600 caret-blue-600 ${errors.message ? 'border-red-500' : 'border-gray-200'
+                                                    }`}
                                                 rows="4"
-                                            ></textarea>
+                                                disabled={isSubmitting}
+                                            />
+                                            {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
                                         </div>
 
                                         <div className="sm:col-span-2">
                                             <button
                                                 type="submit"
-                                                className="inline-flex items-center justify-center w-full px-6 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-md focus:outline-none hover:bg-blue-700 focus:bg-blue-700"
+                                                className="inline-flex items-center justify-center w-full px-6 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-md focus:outline-none hover:bg-blue-700 focus:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                disabled={isSubmitting}
                                             >
-                                                Send message
+                                                {isSubmitting ? (
+                                                    <>
+                                                        <Loader2 className="animate-spin mr-2 h-5 w-5" />
+                                                        Sending...
+                                                    </>
+                                                ) : (
+                                                    "Send message"
+                                                )}
                                             </button>
                                         </div>
                                     </div>
@@ -158,7 +285,7 @@ export default function Contact() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
         </>
     );
 }

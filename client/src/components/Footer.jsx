@@ -1,6 +1,39 @@
+import React, { useState } from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setMessage('');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setMessage('Thank you for subscribing!');
+        setEmail('');
+      } else {
+        setMessage(data.error || 'Failed to subscribe. Please try again.');
+      }
+    } catch (error) {
+      setMessage('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="bg-slate-900 text-white py-8 font-montserrat overflow-x-hidden">
       <div className="container mx-auto px-6">
@@ -10,14 +43,24 @@ const Footer = () => {
             <h2 className="text-lg font-semibold">Get the latest news and updates</h2>
             <p className="text-sm mt-2 text-gray-400">Stay up-to-date with the latest happenings. Subscribe to our newsletter.</p>
           </div>
-          <div className="flex items-center">
+          <form onSubmit={handleSubscribe} className="flex items-center">
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="px-4 py-2 rounded-l-md border border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-gray-800 text-white"
+              required
             />
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-r-md">Subscribe</button>
-          </div>
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-6 py-2 rounded-r-md disabled:opacity-50"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+            </button>
+          </form>
+          {message && <p className="mt-2 text-sm text-green-500">{message}</p>}
         </div>
 
         {/* Footer Content */}
@@ -36,9 +79,6 @@ const Footer = () => {
               <a href="https://x.com/Legalizee_Me" className="text-gray-400 hover:text-white" target="_blank">
                 <FaTwitter size={24} />
               </a>
-              {/* <a href="#" className="text-gray-400 hover:text-white">
-                <FaInstagram size={24} />
-              </a> */}
             </div>
           </div>
 
@@ -86,7 +126,6 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-    
   );
 };
 
