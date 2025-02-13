@@ -19,3 +19,23 @@
 [2025-02-12 21:50:11] INFO [app.py:107] - Received contact form submission request from IP: 127.0.0.1
 [2025-02-12 21:50:18] INFO [app.py:87] - Email sent successfully for humphreyotieno04@gmail.com
 [2025-02-12 21:50:43] INFO [app.py:87] - Email sent successfully for anothertest@gmail.com
+[2025-02-13 14:37:46] INFO [app.py:277] - Starting server with email configuration: smtp.zoho.com:587
+[2025-02-13 14:37:46] INFO [app.py:278] - Recipient email configured as: info.support@legalizeme.site
+[2025-02-13 14:38:45] INFO [app.py:240] - Received feedback from Researcher: {'userType': 'Researcher', 'goals': 'Test goals', 'challenges': 'Test barriers', 'alternatives': 'Test', 'fairPrice': '200', 'qualityPrice': '200', 'expensivePrice': '200', 'usefulFeatures': ['Legal research & case law database'], 'satisfaction': '5', 'referralSource': 'Social Media', 'otherUserType': '', 'otherReferralSource': ''}
+[2025-02-13 14:38:50] INFO [app.py:87] - Email sent successfully for subscriber
+[2025-02-13 14:40:43] INFO [app.py:240] - Received feedback from Student: {'userType': 'Student', 'goals': 'Test', 'challenges': 'Test', 'alternatives': 'test1', 'fairPrice': '100', 'qualityPrice': '100', 'expensivePrice': '100', 'usefulFeatures': ['Legal research & case law database'], 'satisfaction': 5, 'referralSource': 'Referral', 'otherUserType': '', 'otherReferralSource': ''}
+[2025-02-13 14:40:47] INFO [app.py:87] - Email sent successfully for subscriber
+[2025-02-13 14:57:51] INFO [app.py:240] - Received feedback from Student: {'userType': 'Student', 'goals': 'Test', 'challenges': 'test', 'alternatives': 'test', 'fairPrice': '1', 'qualityPrice': '1', 'expensivePrice': '1', 'usefulFeatures': ['AI-powered document drafting'], 'satisfaction': 5, 'referralSource': 'Other', 'otherUserType': '', 'otherReferralSource': 'Whatsapp'}
+[2025-02-13 14:57:56] INFO [app.py:87] - Email sent successfully for subscriber
+[2025-02-13 15:00:03] INFO [app.py:240] - Received feedback from Student: {'userType': 'Student', 'goals': '1', 'challenges': '1', 'alternatives': '1', 'fairPrice': '1', 'qualityPrice': '1', 'expensivePrice': '1', 'usefulFeatures': ['AI-powered document drafting', 'Other'], 'satisfaction': 5, 'referralSource': 'Referral', 'otherUserType': '', 'otherReferralSource': '', 'otherUsefulFeature': 'UX'}
+[2025-02-13 15:00:07] INFO [app.py:87] - Email sent successfully for subscriber
+[2025-02-13 15:01:35] INFO [app.py:240] - Received feedback from Student: {'userType': 'Student', 'goals': '1', 'challenges': '2', 'alternatives': '3', 'fairPrice': '4', 'qualityPrice': '5', 'expensivePrice': '6', 'usefulFeatures': ['AI-powered document drafting'], 'satisfaction': 5, 'referralSource': 'Online Search', 'otherUserType': '', 'otherReferralSource': ''}
+[2025-02-13 15:01:55] INFO [app.py:87] - Email sent successfully for subscriber
+[2025-02-13 15:02:46] INFO [app.py:240] - Received feedback from Lawyer: {'userType': 'Lawyer', 'goals': '1', 'challenges': '2', 'alternatives': '3', 'fairPrice': '5', 'qualityPrice': '6', 'expensivePrice': '7', 'usefulFeatures': ['AI-powered document drafting'], 'satisfaction': 5, 'referralSource': 'Event/Conference', 'otherUserType': '', 'otherReferralSource': ''}
+[2025-02-13 15:02:50] INFO [app.py:87] - Email sent successfully for subscriber
+[2025-02-13 15:05:48] INFO [app.py:240] - Received feedback from Student: {'userType': 'Student', 'goals': '1', 'challenges': '2', 'alternatives': '3', 'fairPrice': '4', 'qualityPrice': '5', 'expensivePrice': '6', 'usefulFeatures': ['AI-powered document drafting'], 'satisfaction': 5, 'referralSource': 'Referral', 'otherUserType': '', 'otherReferralSource': ''}
+[2025-02-13 15:05:52] INFO [app.py:87] - Email sent successfully for subscriber
+[2025-02-13 15:10:17] INFO [app.py:240] - Received feedback from Researcher: {'userType': 'Researcher', 'goals': '1', 'challenges': '2', 'alternatives': '3', 'fairPrice': '4', 'qualityPrice': '5', 'expensivePrice': '6', 'usefulFeatures': ['AI-powered document drafting'], 'satisfaction': 5, 'referralSource': 'Event/Conference', 'otherUserType': '', 'otherReferralSource': ''}
+[2025-02-13 15:10:21] INFO [app.py:87] - Email sent successfully for subscriber
+[2025-02-13 15:11:44] INFO [app.py:240] - Received feedback from Student: {'userType': 'Student', 'goals': '1', 'challenges': '2', 'alternatives': '3', 'fairPrice': '4', 'qualityPrice': '5', 'expensivePrice': '6', 'usefulFeatures': ['AI-powered document drafting'], 'satisfaction': 5, 'referralSource': 'Social Media', 'otherUserType': '', 'otherReferralSource': ''}
+[2025-02-13 15:11:48] INFO [app.py:87] - Email sent successfully for subscriber

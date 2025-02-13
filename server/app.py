@@ -220,6 +220,59 @@ def subscribe():
     except Exception as e:
         app.logger.error(f"Error processing subscription: {str(e)}")
         return jsonify({'error': str(e)}), 500
+    
+@app.route('/api/feedback', methods=['POST'])
+def handle_feedback():
+    try:
+        data = request.get_json()
+
+        # Validate required fields
+        required_fields = [
+            'userType', 'goals', 'challenges', 'fairPrice',
+            'qualityPrice', 'expensivePrice', 'usefulFeatures',
+            'satisfaction', 'referralSource'
+        ]
+        for field in required_fields:
+            if not data.get(field):
+                return jsonify({'error': f'Missing required field: {field}'}), 400
+
+        # Log the feedback
+        app.logger.info(f"Received feedback from {data.get('userType')}: {data}")
+
+        # Send email with feedback
+        subject = f"New Feedback from {data.get('userType')}"
+        body = f"""
+        <html>
+          <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
+            <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px;">
+              <h2 style="color: #2c5282; margin-bottom: 20px;">New Feedback Submission</h2>
+              <p style="color: #666; font-size: 14px;"><strong>Received on:</strong> {datetime.now().strftime('%B %d, %Y at %H:%M:%S')}</p>
+              
+              <div style="background-color: white; padding: 20px; border-radius: 5px; margin-top: 20px;">
+            <p><strong>User Type:</strong> {data.get('userType')}</p>
+            <p><strong>Goals:</strong> {data.get('goals')}</p>
+            <p><strong>Challenges:</strong> {data.get('challenges')}</p>
+            <p><strong>Fair Price:</strong> {data.get('fairPrice')} KES</p>
+            <p><strong>Quality Price:</strong> {data.get('qualityPrice')} KES</p>
+            <p><strong>Expensive Price:</strong> {data.get('expensivePrice')} KES</p>
+            <p><strong>Useful Features:</strong> {', '.join(data.get('usefulFeatures'))}</p>
+            <p><strong>Satisfaction:</strong> {data.get('satisfaction')}/5</p>
+            <p><strong>Referral Source:</strong> {data.get('referralSource')}</p>
+              </div>
+              
+              <div style="margin-top: 20px; font-size: 12px; color: #666;">
+            <p>This is an automated message from your website feedback form.</p>
+              </div>
+            </div>
+          </body>
+        </html>
+        """
+        send_email(data, subject, body)
+
+        return jsonify({'message': 'Thank you for your feedback!'}), 200
+    except Exception as e:
+        app.logger.error(f"Error processing feedback: {str(e)}")
+        return jsonify({'error': 'An error occurred while processing your feedback.'}), 500
 
 if __name__ == '__main__':
     # Verify environment variables
