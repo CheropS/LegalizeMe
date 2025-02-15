@@ -10,12 +10,18 @@ from dotenv import load_dotenv
 from logging.handlers import RotatingFileHandler
 import re
 from email.utils import formataddr
+# from google.oauth2 import id_token
+# from google.auth.transport import requests
+# import jwt
 
 # Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
+
+# GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
+# SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Configure logging with more detailed formatting
 if not os.path.exists('logs'):
@@ -239,8 +245,19 @@ def handle_feedback():
         # Log the feedback
         app.logger.info(f"Received feedback from {data.get('userType')}: {data}")
 
+        # Handle "Other" values for userType and referralSource
+        user_type_display = data.get('userType')
+        if user_type_display == 'Other':
+            # If userType is "Other", append the specified value
+            user_type_display = f"Other: {data.get('otherUserType', 'Not specified')}"
+
+        referral_source_display = data.get('referralSource')
+        if referral_source_display == 'Other':
+            # If referralSource is "Other", append the specified value
+            referral_source_display = f"Other: {data.get('otherReferralSource', 'Not specified')}"
+
         # Send email with feedback
-        subject = f"New Feedback from {data.get('userType')}"
+        subject = f"New Feedback from {user_type_display}"
         body = f"""
         <html>
           <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
@@ -249,19 +266,19 @@ def handle_feedback():
               <p style="color: #666; font-size: 14px;"><strong>Received on:</strong> {datetime.now().strftime('%B %d, %Y at %H:%M:%S')}</p>
               
               <div style="background-color: white; padding: 20px; border-radius: 5px; margin-top: 20px;">
-            <p><strong>User Type:</strong> {data.get('userType')}</p>
-            <p><strong>Goals:</strong> {data.get('goals')}</p>
-            <p><strong>Challenges:</strong> {data.get('challenges')}</p>
-            <p><strong>Fair Price:</strong> {data.get('fairPrice')} KES</p>
-            <p><strong>Quality Price:</strong> {data.get('qualityPrice')} KES</p>
-            <p><strong>Expensive Price:</strong> {data.get('expensivePrice')} KES</p>
-            <p><strong>Useful Features:</strong> {', '.join(data.get('usefulFeatures'))}</p>
-            <p><strong>Satisfaction:</strong> {data.get('satisfaction')}/5</p>
-            <p><strong>Referral Source:</strong> {data.get('referralSource')}</p>
+                <p><strong>User Type:</strong> {user_type_display}</p>
+                <p><strong>Goals:</strong> {data.get('goals')}</p>
+                <p><strong>Challenges:</strong> {data.get('challenges')}</p>
+                <p><strong>Fair Price:</strong> {data.get('fairPrice')} KES</p>
+                <p><strong>Quality Price:</strong> {data.get('qualityPrice')} KES</p>
+                <p><strong>Expensive Price:</strong> {data.get('expensivePrice')} KES</p>
+                <p><strong>Useful Features:</strong> {', '.join(data.get('usefulFeatures'))}</p>
+                <p><strong>Satisfaction:</strong> {data.get('satisfaction')}/5</p>
+                <p><strong>Referral Source:</strong> {referral_source_display}</p>
               </div>
               
               <div style="margin-top: 20px; font-size: 12px; color: #666;">
-            <p>This is an automated message from your website feedback form.</p>
+                <p>This is an automated message from your website feedback form.</p>
               </div>
             </div>
           </body>
@@ -273,6 +290,21 @@ def handle_feedback():
     except Exception as e:
         app.logger.error(f"Error processing feedback: {str(e)}")
         return jsonify({'error': 'An error occurred while processing your feedback.'}), 500
+    
+# @app.route('/api/google-login', methods=['POST'])
+# def google_login():
+#     token = request.json.get('token')
+#     try:
+#         id_info = id_token.verify_oauth2_token(token, requests.Request(), GOOGLE_CLIENT_ID)
+#         userid = id_info['sub']
+#         email = id_info['email']
+        
+#         # Create JWT token
+#         jwt_token = jwt.encode({ 'sub': userid, 'email': email, 'iat': datetime.datetime.utcnow(), 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2) }, SECRET_KEY, algorithm='HS256')
+        
+#         return jsonify({'token': jwt_token})
+#     except ValueError:
+#         return jsonify({'error': 'Invalid token'}), 400
 
 if __name__ == '__main__':
     # Verify environment variables

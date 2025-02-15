@@ -270,7 +270,10 @@ export default function Feedback() {
             required
           >
             <option value="" disabled>Select an option</option>
-            <option value="Social Media">Social Media</option>
+            <option value="Whatsapp">Whatsapp</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Twitter">Twitter</option>
             <option value="Referral">Referral</option>
             <option value="Online Search">Online Search</option>
             <option value="Event/Conference">Event/Conference</option>

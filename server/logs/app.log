@@ -39,3 +39,11 @@
 [2025-02-13 15:10:21] INFO [app.py:87] - Email sent successfully for subscriber
 [2025-02-13 15:11:44] INFO [app.py:240] - Received feedback from Student: {'userType': 'Student', 'goals': '1', 'challenges': '2', 'alternatives': '3', 'fairPrice': '4', 'qualityPrice': '5', 'expensivePrice': '6', 'usefulFeatures': ['AI-powered document drafting'], 'satisfaction': 5, 'referralSource': 'Social Media', 'otherUserType': '', 'otherReferralSource': ''}
 [2025-02-13 15:11:48] INFO [app.py:87] - Email sent successfully for subscriber
+[2025-02-14 10:20:13] INFO [app.py:298] - Starting server with email configuration: smtp.zoho.com:587
+[2025-02-14 10:20:13] INFO [app.py:299] - Recipient email configured as: info.support@legalizeme.site
+[2025-02-14 10:21:28] INFO [app.py:240] - Received feedback from Other: {'userType': 'Other', 'goals': '1', 'challenges': '2', 'alternatives': '3', 'fairPrice': '5', 'qualityPrice': '6', 'expensivePrice': '7', 'usefulFeatures': ['AI-powered document drafting'], 'satisfaction': 5, 'referralSource': 'Other', 'otherUserType': 'Dev', 'otherReferralSource': 'Google'}
+[2025-02-14 10:21:32] INFO [app.py:87] - Email sent successfully for subscriber
+[2025-02-14 10:22:09] INFO [app.py:240] - Received feedback from Researcher: {'userType': 'Researcher', 'goals': '1', 'challenges': '2', 'alternatives': '3', 'fairPrice': '4', 'qualityPrice': '5', 'expensivePrice': '6', 'usefulFeatures': ['AI-powered document drafting'], 'satisfaction': 5, 'referralSource': 'Twitter', 'otherUserType': '', 'otherReferralSource': ''}
+[2025-02-14 10:22:13] INFO [app.py:87] - Email sent successfully for subscriber
+[2025-02-14 11:46:07] INFO [app.py:319] - Starting server with email configuration: smtp.zoho.com:587
+[2025-02-14 11:46:07] INFO [app.py:320] - Recipient email configured as: info.support@legalizeme.site
