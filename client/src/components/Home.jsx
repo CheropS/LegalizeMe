@@ -55,7 +55,10 @@ const partners = [
     { name: 'Sand Technologies', src: './sandtech.jpeg', url: 'https://www.sandtech.com' },
     { name: 'ALX Ventures', src: './alxventures.jpeg', url: 'https://www.alxafrica.com/ventures' },
     { name: 'The FutureList', src: './future2.png', url: 'https://www.futurelist.com' },
-    { name: 'NVIDIA Inception Program', src:'./nvidia1.svg', url:'https://www.nvidia.com/en-us/startups/'}
+    { name: 'NVIDIA Inception Program', src:'./nvidia1.svg', url:'https://www.nvidia.com/en-us/startups/' },
+    { name: 'Amazon Web Services', src:'./aws_light.svg', url:'https://aws.amazon.com/' },
+    { name: 'Microsoft for Startups', src:'./microsoft.svg', url:'https://startups.microsoft.com/en-us/' },
+    { name: 'Microsoft Azure', src:'./azure.svg', url:'https://azure.microsoft.com/en-us/' },
 ];
 
 
@@ -150,7 +153,7 @@ export default function Home() {
                                     initial={{ opacity: 0, y: -20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: 0.4 }}
-                                    className="mt-6 text-lg leading-8 text-gray-300"
+                                    className="mt-6 text-lg leading-8 font-semibold text-gray-300"
                                 >
                                     We’re evolving to deliver smarter legal solutions for legal professionals, researchers, students, and business founders. There's something for everyone.<br /><br />
                                     For inquiries, details, or personalized support, reach out to us anytime at <strong>info.support@legalizeme.site</strong> by clicking the links below.
@@ -162,7 +165,7 @@ export default function Home() {
                                 transition={{ duration: 0.5, delay: 0.6 }}
                                 className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none"
                             >
-                                <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+                                <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-bold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
                                     {links.map((link) => (
                                         <motion.a
                                             key={link.name}
