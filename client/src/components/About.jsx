@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Blog from './Blog';
+import Navbar from './Navbar';
 
 const AboutUs = () => {
     // const stats = [

@@ -1,15 +1,20 @@
 import { useState, useEffect } from 'react';
 
-export default function useAuth(){
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+export default function useAuth() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        const token = localStorage.getItem('token'); // Check for token in localStorage
-        if (token) {
-          setIsAuthenticated(true); // User is authenticated if token exists
-        }
-      }, []);
-
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('userData');
     
-    return { isAuthenticated, setIsAuthenticated };
+    if (token) {
+      setIsAuthenticated(true);
+      if (userData) {
+        setUser(JSON.parse(userData));
+      }
+    }
+  }, []);
+  
+  return { isAuthenticated, setIsAuthenticated, user, setUser };
 }
