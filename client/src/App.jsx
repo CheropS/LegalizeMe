@@ -24,6 +24,7 @@ import StudentVerification from "./components/Verify";
 import PasswordReset from "./components/PasswordReset";
 import { CookiesProvider, useCookies } from "react-cookie";
 import CookiePolicy from "./components/CookiePolicy";
+import Profile from "./components/Profile";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -136,6 +137,7 @@ const App = () => {
               <Route path="/password-reset" element={<PasswordReset />} />
               <Route path="/counsel" element={<ChatBot />} />
               <Route path="/cookie-policy" element={<CookiePolicy />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </Layout>
         </Router>

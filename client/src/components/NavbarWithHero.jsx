@@ -2,15 +2,35 @@
 
 import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
+import { User, LogOut } from 'lucide-react';
 
 export default function NavbarWithHero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { isAuthenticated, setIsAuthenticated } = useAuth();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const { isAuthenticated, setIsAuthenticated, user, setUser } = useAuth();
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsAuthenticated(false);
-    console.log('User logged out');
+  const handleLogout = async () => {
+    const confirmLogout = window.confirm('Are you sure you want to log out?');
+    if (confirmLogout) {
+      setIsLoggingOut(true);
+      try {
+        // Remove local storage items
+        localStorage.removeItem('token');
+        localStorage.removeItem('userData');
+        
+        // Update authentication state
+        setIsAuthenticated(false);
+        setUser(null);
+        setMobileMenuOpen(false);
+        
+        // No need to reload the page
+        alert('You have successfully logged out.');
+      } catch (error) {
+        console.error('Logout failed', error);
+      } finally {
+        setIsLoggingOut(false);
+      }
+    }
   };
 
   const toggleMobileMenu = () => {
@@ -19,7 +39,6 @@ export default function NavbarWithHero() {
 
   return (
     <>
-      {/* <header className="pt-6 bg-gradient-to-tr from-[#050101] to-[#817e7e] animate-fadeIn animated-gradient backdrop-filter backdrop-blur-lg bg-opacity-30 overflow-x-hidden"> */}
       <header className="pt-6 animate-fadeIn animated-gradient backdrop-filter backdrop-blur-lg bg-opacity-30 overflow-x-hidden">
         {/* Navbar */}
         <div className="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -33,6 +52,58 @@ export default function NavbarWithHero() {
                   className="h-52 w-44 sm:h-64 sm:w-64"
                 />
               </a>
+            </div>
+
+            {/* Main menu for desktop */}
+            <div className="hidden lg:flex lg:items-center lg:space-x-10 mx-auto">
+              <a href="/about" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">About Us</a>
+              <a href="/solutions" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Solutions</a>
+              <a href="/counsel" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Counsel</a>
+              <a href="/cases" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Cases</a>
+              <a href="/resources" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Resources</a>
+              <a href="/pricing" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Pricing</a>
+            </div>
+
+            {/* Authentication/Profile Section */}
+            <div className="hidden lg:flex items-center space-x-6">
+              {isAuthenticated ? (
+                <div className="flex items-center space-x-6">
+                  <div className="relative group">
+                    <a 
+                      href="/profile" 
+                      className="transition-all duration-200 hover:opacity-80 group bounce-hover"
+                      title="View Profile"
+                    >
+                      {user?.profileImage ? (
+                        <img
+                          src={user.profileImage}
+                          alt="Profile"
+                          className="w-10 h-10 rounded-full"
+                        />
+                      ) : (
+                        <User className="w-6 h-6" />
+                      )}
+                    </a>
+                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-black rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      View Profile
+                    </span>
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className={`px-4 py-2 text-base font-semibold text-white bg-red-600 border border-transparent rounded-md hover:bg-red-700 transition-all duration-200 ${isLoggingOut ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    disabled={isLoggingOut}
+                  >
+                    {isLoggingOut ? 'Logging out...' : 'Logout'}
+                  </button>
+                </div>
+              ) : (
+                <a
+                  href="/login"
+                  className="hidden lg:inline-flex px-4 py-2 ml-auto text-base font-semibold text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 hover:scale-105 transition-all duration-200"
+                >
+                  Get started now
+                </a>
+              )}
             </div>
 
             {/* Hamburger menu button for mobile */}
@@ -50,38 +121,9 @@ export default function NavbarWithHero() {
                 </svg>
               )}
             </button>
+          </nav>
 
-            {/* Main menu for desktop */}
-            <div className="hidden lg:flex lg:items-center lg:space-x-10 mx-auto">
-              <a href="/about" className="text-l font-medium  transition-all duration-200 hover:text-blue-600 group bounce-hover">About Us</a>
-              <a href="/solutions" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Solutions</a>
-              <a href="/counsel" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Counsel</a>
-              <a href="/cases" className="text-l font-medium  transition-all duration-200 hover:text-blue-600 group bounce-hover">Cases</a>
-              <a href="/resources" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Resources</a>
-              <a href="/pricing" className="text-l font-medium transition-all duration-200 hover:text-blue-600 group bounce-hover">Pricing</a>
-            </div>
-
-            {isAuthenticated ? (
-              <button
-                onClick={() => {
-                  handleLogout();
-                  alert('You have successfully logged out.');
-                }}
-                className="hidden lg:inline-flex px-4 py-2 ml-auto text-base font-semibold text-white bg-red-600 border border-transparent rounded-md hover:bg-red-700"
-              >
-                Logout
-              </button>
-            ) : (
-              <a
-                href="/login"
-                className="hidden lg:inline-flex px-4 py-2 ml-auto text-base font-semibold text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 hover:scale-105"
-              >
-                Get started now
-              </a>
-            )}
-            </nav>
-
-            {/* Mobile menu */}
+          {/* Mobile menu */}
           {mobileMenuOpen && (
             <nav className="pt-2 pb-4 rounded-md lg:hidden font-montserrat">
               <div className="flow-root">
@@ -92,19 +134,26 @@ export default function NavbarWithHero() {
                   <a href="/cases" className="inline-flex py-2 text-base font-medium transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Cases</a>
                   <a href="/resources" className="inline-flex py-2 text-base font-medium transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Resources</a>
                   <a href="/pricing" className="inline-flex py-2 text-base font-medium transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Pricing</a>
+                  {isAuthenticated && (
+                    <a href="/profile" className="inline-flex py-2 text-base font-medium transition-all duration-200 hover:text-blue-600 focus:text-blue-600">
+                      <User className="w-5 h-5 mr-2" />
+                      Profile
+                    </a>
+                  )}
                 </div>
               </div>
 
               <div className="px-6 mt-6">
                 {isAuthenticated ? (
                   <button
-                    onClick = {() => {
-                      handleLogout();
-                      alert("You have successfully logged out.");
-                    }}
-                    className="w-full px-4 py-2 text-base font-semibold text-white bg-red-600 rounded-md hover:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                    onClick={handleLogout}
+                    className={`w-full px-4 py-2 text-base font-semibold text-white bg-red-600 rounded-md hover:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ${isLoggingOut ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    disabled={isLoggingOut}
                   >
-                    Logout
+                    <div className="flex items-center justify-center">
+                      <LogOut className="w-5 h-5 mr-2" />
+                      {isLoggingOut ? 'Logging out...' : 'Logout'}
+                    </div>
                   </button>
                 ) : (
                   <a
@@ -124,9 +173,6 @@ export default function NavbarWithHero() {
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
               <div className="animate-slideInLeft">
-                {/* <h1 className="text-3xl font-bold font-montserrat text-white sm:text-6xl lg:text-5xl">
-                  LegalizeMe
-                </h1> */}
                 <div className="relative inline-flex">
                   <span className="absolute inset-x-0 bottom-0 border-b-[30px] border-[#4ADE80]"></span>
                   <span className="relative text-4xl font-bold sm:text-6xl lg:text-6xl font-montserrat">
