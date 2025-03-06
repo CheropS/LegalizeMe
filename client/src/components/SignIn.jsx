@@ -34,17 +34,24 @@ export default function SignIn() {
       });
 
       const data = await response.json();
-      console.log('Response data:', data);
 
       if (response.ok) {
-        setSuccess('Logged in successfully. Redirecting...');
-        localStorage.setItem('token', data.token);
-        setTimeout(() => {
-          window.location.href = '/';
-        }, 2000);
+        if (data.access && data.refresh) {
+          setSuccess('Logged in successfully. Redirecting...');
+          // Store both tokens in localStorage
+          localStorage.setItem('access_token', data.access);
+          localStorage.setItem('refresh_token', data.refresh);
+          
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 2000);
+        } else {
+          setError('Invalid login response. Please try again.');
+          console.error('Invalid login response:', data);
+        }
       } else {
-        setError(data.message || 'Login failed. Please try again.');
-        console.error('Error data:', data);
+        setError(data.detail || 'Login failed. Please try again.');
+        console.error('Login error:', data);
       }
     } catch (error) {
       setError('Login failed. Please try again.');

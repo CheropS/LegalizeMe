@@ -108,9 +108,9 @@ const Footer = () => {
           <div>
             <h3 className="mb-6 text-md font-semibold">Contact us</h3>
             <ul className="space-y-4">
-              <li className="flex items-center space-x-2">
-                <span className="text-gray-400 hover:text-white">+254 714 844 320</span>
-              </li>
+               {/* <li className="flex items-center space-x-2"> */}
+                {/* <span className="text-gray-400 hover:text-white">+254 714 844 320</span> */}
+              {/* </li> */}
               <li className="flex items-center space-x-2">
                 <span className="text-gray-400 hover:text-white">info.support@legalizeme.site</span>
               </li>
