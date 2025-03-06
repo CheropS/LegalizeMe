@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Pricing = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
 
   const plans = [
     {
@@ -155,6 +155,51 @@ const Pricing = () => {
   return (
     <section className="py-10 bg-white sm:py-16 lg:py-24 animate-fadeIn font-montserrat">
       <div className="px-4 mx-auto max-w-6xl sm:px-6 lg:px-8">
+        {/* User Authentication Section */}
+        <div className="mb-8 text-center">
+          {isAuthenticated ? (
+            <div className="flex flex-col items-center">
+              <h2 className="text-2xl font-bold text-gray-800">
+                Welcome, {user?.username || 'User'}!
+              </h2>
+              <div className="mt-4 space-x-4">
+                <button 
+                  onClick={() => navigate('/profile')}
+                  className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
+                >
+                  View Profile
+                </button>
+                <button 
+                  onClick={logout}
+                  className="px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center">
+              <p className="text-gray-600 mb-4">
+                Create an account to access exclusive features and pricing.
+              </p>
+              <div className="space-x-4">
+                <button 
+                  onClick={() => navigate('/login')}
+                  className="px-6 py-3 text-white bg-blue-600 rounded hover:bg-blue-700"
+                >
+                  Login
+                </button>
+                <button 
+                  onClick={() => navigate('/signup')}
+                  className="px-6 py-3 text-blue-600 border border-blue-600 rounded hover:bg-blue-50"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
             Pricing & Plans

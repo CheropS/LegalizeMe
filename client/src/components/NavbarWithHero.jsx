@@ -15,7 +15,7 @@ export default function NavbarWithHero() {
       setIsLoggingOut(true);
       try {
         // Remove local storage items
-        localStorage.removeItem('token');
+        localStorage.removeItem('access_token');
         localStorage.removeItem('userData');
         
         // Update authentication state
