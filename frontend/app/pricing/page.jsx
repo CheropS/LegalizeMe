@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Navbar from "@/components/navbar";
 import Link from "next/link";
 
 const Pricing = () => {
@@ -147,11 +146,11 @@ const Pricing = () => {
 
   return (
     <main className="min-h-screen bg-white">
-      <Navbar />
       
       <div className="pt-20">
         <section className="py-16 sm:py-20 bg-white font-montserrat">
           <div className="px-4 mx-auto max-w-6xl sm:px-6 lg:px-8">
+            <h1 className="text-4xl mb-10 text-black font-bold text-center">Pricing & Plans</h1>
             {/* User Authentication Section */}
             <motion.div 
               className="mb-8 text-center"

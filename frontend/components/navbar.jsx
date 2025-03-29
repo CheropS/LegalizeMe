@@ -71,20 +71,24 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 group transition-transform duration-300 hover:scale-105">
-            <img src="/legalize2.png" alt="LegalizeMe" className="h-16 w-auto" />
+            <img src="/legalize2.png" alt="LegalizeMe" className="h-12 w-auto sm:h-16" />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center space-x-2">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="relative px-4 py-2 text-base font-medium text-white transition-all duration-300 hover:text-purple-500 group"
+                className="relative px-3 py-2 text-sm font-medium text-white/90 transition-all duration-300 hover:text-white group rounded-lg hover:bg-white/5"
               >
-                {item.name}
+                <div className="flex items-center space-x-1">
+                  <span className="text-primary/80 group-hover:text-purple-500 transition-colors">
+                    {item.icon}
+                  </span>
+                  <span classname="group:">{item.name}</span>
+                </div>
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                <span className="absolute inset-0 bg-primary/5 rounded-lg opacity-0 group-hover:opacity-400 transition-opacity duration-300"></span>
               </Link>
             ))}
           </nav>
@@ -94,9 +98,9 @@ export default function Navbar() {
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <Link href="/profile" className="flex items-center space-x-2 group">
-                  <Avatar className="h-9 w-9 transition-all duration-300 group-hover:scale-110 group-hover:ring-2 group-hover:ring-primary">
+                  <Avatar className="h-9 w-9 ring-2 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:ring-primary">
                     <AvatarImage src={user?.profileImage} alt={user?.name || "User"} />
-                    <AvatarFallback className="bg-primary text-primary-foreground">
+                    <AvatarFallback className="bg-primary/10 text-primary">
                       {user?.name?.charAt(0) || <User className="h-5 w-5" />}
                     </AvatarFallback>
                   </Avatar>
@@ -105,7 +109,7 @@ export default function Navbar() {
                   variant="destructive"
                   onClick={handleLogout}
                   disabled={isLoggingOut}
-                  className="transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                  className="transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   {isLoggingOut ? "Logging out..." : "Logout"}
@@ -115,7 +119,7 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 asChild
-                className="bg-primary hover:bg-purple-500 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                className="bg-primary hover:bg-purple-500 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm font-medium px-6"
               >
                 <Link href="/login">Get started now</Link>
               </Button>
@@ -125,16 +129,20 @@ export default function Navbar() {
           {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden text-white hover:bg-white/10">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="lg:hidden text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-primary/20"
+              >
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-gray-900 border-gray-800">
+            <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-gray-900/95 backdrop-blur-lg border-gray-800">
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between py-4 border-b border-gray-800">
                   <Link href="/" className="flex items-center">
-                    <img src="/legalize2.png" alt="LegalizeMe" className="h-12 w-auto" />
+                    <img src="/legalize2.png" alt="LegalizeMe" className="h-10 w-auto" />
                   </Link>
                 </div>
 
@@ -143,12 +151,12 @@ export default function Navbar() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="flex items-center px-4 py-3 text-base font-medium text-white hover:bg-white/10 rounded-lg transition-all duration-300 group"
+                      className="flex items-center px-4 py-3 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 group"
                     >
-                      <span className="text-primary mr-2 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-primary/80 group-hover:text-primary transition-colors">
                         {item.icon}
                       </span>
-                      {item.name}
+                      <span className="ml-3">{item.name}</span>
                       <ChevronRight className="ml-auto h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-transform duration-300" />
                     </Link>
                   ))}
@@ -158,9 +166,9 @@ export default function Navbar() {
                   {isAuthenticated ? (
                     <div className="space-y-4 px-4">
                       <div className="flex items-center space-x-3">
-                        <Avatar className="h-10 w-10">
+                        <Avatar className="h-10 w-10 ring-2 ring-primary/20">
                           <AvatarImage src={user?.profileImage} alt={user?.name || "User"} />
-                          <AvatarFallback className="bg-primary text-primary-foreground">
+                          <AvatarFallback className="bg-primary/10 text-primary">
                             {user?.name?.charAt(0) || <User className="h-5 w-5" />}
                           </AvatarFallback>
                         </Avatar>
@@ -175,7 +183,7 @@ export default function Navbar() {
                         variant="destructive" 
                         onClick={handleLogout} 
                         disabled={isLoggingOut} 
-                        className="w-full transition-all duration-300 hover:scale-[1.02]"
+                        className="w-full transition-all duration-300 hover:scale-[1.02] text-sm"
                       >
                         <LogOut className="mr-2 h-4 w-4" />
                         {isLoggingOut ? "Logging out..." : "Logout"}
@@ -184,8 +192,9 @@ export default function Navbar() {
                   ) : (
                     <div className="px-4">
                       <Button 
+                        variant="outline"
                         asChild 
-                        className="w-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02]"
+                        className="w-full bg-primary hover:bg-purple-500 text-white transition-all duration-300 hover:scale-[1.02] text-sm font-medium"
                       >
                         <Link href="/login">Get started now</Link>
                       </Button>

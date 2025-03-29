@@ -258,7 +258,7 @@ export default function Solutions() {
                 <h2 className="mb-3 text-2xl font-bold leading-[1.2] text-dark dark:text-black sm:text-4xl md:text-[40px] animate-fadeIn">
                   The Future of Legal Tech is Here
                 </h2>
-                <p className="text-base text-body-color dark:text-dark-6 animate-fadeIn">
+                <p className="text-base text-black dark:text-dark-6 animate-fadeIn">
                   The best is yet to come. Brace yourself for groundbreaking
                   innovations that will revolutionize the legal industry. Stay tuned
                   for exciting updates and announcements.
@@ -271,7 +271,7 @@ export default function Solutions() {
               <div key={num} className="w-full md:w-1/3 px-4 mb-8">
                 <div className="rounded-md bg-white shadow-md p-8 h-[300px] flex flex-col justify-between">
                   <div className="text-4xl font-bold text-purple-600 mb-4">{num}</div>
-                  <h3 className="text-2xl font-bold mb-4">
+                  <h3 className="text-2xl text-black font-bold mb-4">
                     {idx === 0
                       ? 'AI-Powered Document Generation'
                       : idx === 1
@@ -294,10 +294,10 @@ export default function Solutions() {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
               <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
-                <h2 className="mb-3 text-2xl font-bold leading-[1.2] text-dark dark:text-black sm:text-4xl md:text-[40px] animate-fadeIn">
+                <h2 className="mb-3 text-2xl font-bold leading-[1.2] text-black dark:text-black sm:text-4xl md:text-[40px] animate-fadeIn">
                   The Future of Law is Here. Experience It First.
                 </h2>
-                <p className="text-base text-body-color dark:text-dark-6 animate-fadeIn">
+                <p className="text-base text-black dark:text-dark-6 animate-fadeIn">
                   Curious? Excited? You should be. These tools are designed to transform how you work with the law, giving you unprecedented power and efficiency.
                 </p>
               </div>

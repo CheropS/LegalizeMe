@@ -107,7 +107,7 @@ export default function Footer() {
 
           {/* Support Section */}
           <div>
-            <h3 className="mb-6 text-md font-semibold">Support</h3>
+            <h3 className="mb-6 text-sm font-semibold">Support</h3>
             <ul className="space-y-4">
               <li><Link href="/pricing" className="hover:underline text-gray-400 hover:text-white">Pricing</Link></li>
               <li><Link href="/feedback" className="hover:underline text-gray-400 hover:text-white">Feedback</Link></li>
@@ -118,7 +118,7 @@ export default function Footer() {
 
           {/* Company Section */}
           <div>
-            <h3 className="mb-6 text-md font-semibold">Company</h3>
+            <h3 className="mb-6 text-sm font-semibold">Company</h3>
             <ul className="space-y-4">
               <li><Link href="/about" className="hover:underline text-gray-400 hover:text-white">About</Link></li>
               <li><Link href="#" className="hover:underline text-gray-400 hover:text-white">Careers</Link></li>
@@ -129,7 +129,7 @@ export default function Footer() {
 
           {/* Contact Section */}
           <div>
-            <h3 className="mb-6 text-md font-semibold">Contact us</h3>
+            <h3 className="mb-6 text-sm font-semibold">Contact us</h3>
             <ul className="space-y-4">
               <li className="flex items-center space-x-2">
                 <span className="text-gray-400 hover:text-white">info.support@legalizeme.site</span>

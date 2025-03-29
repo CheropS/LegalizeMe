@@ -13,7 +13,6 @@ import Footer from "@/components/footer"
 export default function Home() {
   return (
     <main>
-      <Navbar />
       <HeroSection />
 
       <div className="bg-white">
@@ -44,7 +43,6 @@ export default function Home() {
         
 
       </div>
-      <Footer />
     </main>
   )
 }

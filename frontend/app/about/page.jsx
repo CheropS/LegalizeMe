@@ -50,7 +50,7 @@ export default function AboutPage() {
         <div>
             {/* Page Title */}
             <motion.section 
-                className="bg-white py-[70px] mt-20 dark:bg-dark text-center font-montserrat"
+                className="bg-white py-[70px] dark:bg-dark text-center font-montserrat"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

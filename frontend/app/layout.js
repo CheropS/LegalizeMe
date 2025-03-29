@@ -27,22 +27,17 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-
-
-  // Check if the current path is an auth page
-  const isAuthPage = typeof window !== 'undefined' && 
-  (window.location.pathname.startsWith('/login') || 
-   window.location.pathname.startsWith('/register'))
-
-return (
-  <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}>
-    <body className={`${inter.variable} ${montserrat.variable} font-sans`}>
-      {!isAuthPage && <Navbar />}
-      <main className="flex-grow">
-        {children}
-      </main>
-      {!isAuthPage && <Footer />}
-    </body>
-  </html>
-);
+  return (
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}>
+      <body className={`${montserrat.variable} font-sans min-h-screen flex flex-col bg-gradient-to-b from-gray-900 to-black text-white`}>
+        <AuthProvider>
+          <Navbar />
+          <main className="flex-grow pt-20">
+            {children}
+          </main>
+          <Footer />
+        </AuthProvider>
+      </body>
+    </html>
+  );
 }
