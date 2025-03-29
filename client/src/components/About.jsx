@@ -1,14 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Blog from './Blog';
-import Navbar from './Navbar';
 
 const AboutUs = () => {
-    // const stats = [
-    //     { id: 1, name: 'Global Users', value: '10M+' },
-    //     { id: 2, name: 'Active Projects', value: '1.2K+' },
-    //     { id: 3, name: 'Support Staff', value: '24/7' },
-    // ];
 
     return (
         <div>

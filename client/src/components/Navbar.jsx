@@ -14,16 +14,11 @@ export default function Navbar() {
     if (window.confirm('Are you sure you want to log out?')) {
       setIsLoggingOut(true);
       try {
-        // Remove local storage items
         localStorage.removeItem('token');
         localStorage.removeItem('userData');
-        
-        // Update authentication state
         setIsAuthenticated(false);
         setUser(null);
         setMobileMenuOpen(false);
-        
-        // Notify the user without requiring page reload
         toast.success('You have successfully logged out.');
       } catch (error) {
         console.error('Logout failed', error);

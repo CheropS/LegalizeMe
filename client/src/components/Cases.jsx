@@ -10,8 +10,6 @@ const Cases = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    // const [nextPage, setNextPage] = useState(null);
-    // const [previousPage, setPreviousPage] = useState(null);
     const [classifications, setClassifications] = useState([]);
     const [counties, setCounties] = useState([]);
     const [courts, setCourts] = useState([]);
@@ -43,8 +41,6 @@ const Cases = () => {
                     throw new Error('Invalid response data');
                 }
 
-                // allCases = [...allCases, ...response.data.results];
-                // url = response.data.next;
             }
             setCases(allCases);
             extractDropdownData(allCases);
@@ -67,9 +63,6 @@ const Cases = () => {
 
     useEffect(() => {
         setLoading(true);
-        // setTimeout(() => {
-        //     setLoading(false);
-        // }, 2000); // Simulated delay
     }, []);
 
     const filteredCases = cases.filter((caseItem) =>
