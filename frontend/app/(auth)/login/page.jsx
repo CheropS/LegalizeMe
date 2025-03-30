@@ -5,9 +5,11 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { User, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
+import useAuth from '@/hooks/useAuth'
 
 export default function LoginPage() {
   const router = useRouter()
+  const { login } = useAuth()
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -60,8 +62,8 @@ export default function LoginPage() {
         }
       }
 
-      // Store the token in localStorage
-      localStorage.setItem('token', data.token)
+      // Update auth state using the login function from useAuth
+      login(data.access_token, data.user)
       
       // Show success message
       setSuccess('Login successful! Redirecting to home page...')

@@ -1,0 +1,7 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <text x="10" y="40" font-family="Montserrat, sans-serif" font-size="24" fill="#7B3EFF">LegalizeMe</text>
+  <g transform="translate(145, 15)">
+    <path d="M0 10H6V6H10V0H0V10Z" fill="#7B3EFF" opacity="0.5"/>
+    <path d="M5 15H11V11H15V5H5V15Z" fill="#7B3EFF"/>
+  </g>
+</svg> 

@@ -7,43 +7,88 @@
   --background-rgb: 17, 24, 39;
 }
 
+/* Base styles */
 html {
   color-scheme: dark;
   height: 100%;
+  height: 100dvh;
   overflow: hidden;
+  overscroll-behavior-y: none;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
   height: 100%;
+  height: 100dvh;
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
 }
 
-/* Improve scrolling on mobile */
+/* Mobile optimizations */
 @media (max-width: 640px) {
   html,
   body {
-    overflow: auto;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
     overscroll-behavior-y: none;
+  }
+
+  /* Prevent body scroll when sidebar is open */
+  body.sidebar-open {
+    overflow: hidden;
+  }
+
+  /* Improve touch targets */
+  button, 
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem;
+  }
+
+  /* Better spacing for mobile */
+  .prose {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Prevent zoom on input focus */
+  input, 
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* Improve scrolling containers */
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
   }
 }
 
-/* Custom scrollbar for better UX */
-::-webkit-scrollbar {
+/* Custom scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
   width: 6px;
 }
 
-::-webkit-scrollbar-track {
+.scrollbar-thin::-webkit-scrollbar-track {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+.scrollbar-thin::-webkit-scrollbar-thumb {
   background: #4b5563;
   border-radius: 3px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: #6b7280;
 }
 
@@ -96,9 +141,17 @@ body {
   margin-bottom: 0.5em;
 }
 
+/* Smooth transitions */
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
 /* Fix iOS height issues */
 @supports (-webkit-touch-callout: none) {
-  .h-screen {
+  .h-screen,
+  .h-\[100dvh\] {
     height: -webkit-fill-available;
   }
 }

@@ -5,9 +5,11 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { User, Mail, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
+import useAuth from '@/hooks/useAuth'
 
 export default function RegisterPage() {
   const router = useRouter()
+  const { login } = useAuth()
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -125,6 +127,11 @@ export default function RegisterPage() {
         } else {
           throw new Error(data.message || 'Registration failed. Please try again')
         }
+      }
+      
+      // If registration is successful and returns a token, log the user in
+      if (data.access_token) {
+        login(data.access_token, data.user)
       }
       
       // Show success message

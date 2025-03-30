@@ -88,8 +88,8 @@ export default function Feedback() {
   };
 
   return (
-    <div className="min-h-screen mt-24 bg-white">
-      <div className="max-w-2xl mx-auto bg-white p-8 mt-10 rounded-lg shadow-lg font-montserrat animate-fadeIn mb-6">
+    <div className="min-h-screen bg-white">
+      <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg font-montserrat animate-fadeIn mb-6">
         <h2 className="text-2xl font-bold text-center text-blue-600">LegalizeMe User Feedback Form</h2>
         <p className="mt-2 text-center text-gray-600">We value your feedback! Help us improve by sharing your thoughts.</p>
 

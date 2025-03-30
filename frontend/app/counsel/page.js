@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Plus, User, ChevronLeft, Send, Menu, Home, MessageSquare, Trash2 } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 // Message component with ChatGPT styling
 const Message = ({ message }) => {
@@ -119,6 +120,7 @@ const ChatHistory = ({ chats, activeChat, onChatSelect, onDeleteChat, isOpen }) 
 
 // Main component
 const ChatGPTInterface = () => {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
   const [messages, setMessages] = useState([])
@@ -261,52 +263,63 @@ const ChatGPTInterface = () => {
 
   // Navigate to home page
   const handleHomeClick = () => {
-    window.location.href = "/"
+    router.push("/")
+  }
+
+  // Add handleProfileClick with auth check
+  const handleProfileClick = () => {
+    const token = localStorage.getItem("token")
+    if (!token) {
+      router.push("/login")
+      return
+    }
+    router.push("/profile")
   }
 
   return (
-    <div className="flex h-screen bg-gray-900 text-white overflow-hidden">
-      {/* Mobile menu button - positioned better for mobile */}
+    <div className="flex h-[100dvh] bg-gray-900 text-white overflow-hidden">
+      {/* Mobile menu button - repositioned for better access */}
       {isMobile && !isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed top-3 left-3 z-50 p-2 bg-gray-700 text-white rounded-md shadow-lg"
+          className="fixed top-4 left-4 z-50 p-3 bg-gray-800/90 backdrop-blur-sm text-white rounded-lg shadow-lg hover:bg-gray-700 transition-colors"
           aria-label="Open menu"
         >
           <Menu className="h-5 w-5" />
         </button>
       )}
 
-      {/* Sidebar - improved positioning for mobile */}
+      {/* Sidebar - improved mobile handling */}
       <aside
         ref={sidebarRef}
         className={`
           fixed md:relative
-          h-full
-          bg-gray-900
+          h-[100dvh]
+          bg-gray-900/95
+          backdrop-blur-sm
           border-r border-gray-700/50
-          transition-all
+          transition-transform
           duration-300
           ease-in-out
           z-50
-          ${isOpen ? "w-72 max-w-full" : "w-0 md:w-0"}
-          ${isMobile && !isOpen ? "-translate-x-full" : "translate-x-0"}
+          ${isOpen ? "w-[280px] max-w-[80vw]" : "w-0"}
+          ${isMobile ? (isOpen ? "translate-x-0" : "-translate-x-full") : "translate-x-0"}
         `}
       >
         <div className="flex h-full flex-col">
           {/* New chat button */}
-          <div className="p-3 sticky top-0 bg-gray-900 z-10">
+          <div className="p-4 sticky top-0 bg-gray-900/95 backdrop-blur-sm z-10 border-b border-gray-700/50">
             <button
               onClick={startNewChat}
-              className="flex w-full items-center gap-2 rounded-md border border-gray-700/50 px-3 py-2 text-sm hover:bg-gray-700/30 transition-colors"
+              className="flex w-full items-center gap-2 rounded-lg border border-gray-700/50 px-4 py-3 text-sm hover:bg-gray-700/30 transition-colors"
             >
               <Plus className="h-4 w-4" />
               {isOpen && <span>New chat</span>}
             </button>
           </div>
 
-          {/* Chat history - now scrollable */}
-          <div className="flex-1 overflow-y-auto pb-20">
+          {/* Chat history - improved scrolling */}
+          <div className="flex-1 overflow-y-auto py-4 scrollbar-thin">
             <ChatHistory
               chats={chatHistory}
               activeChat={activeChat}
@@ -316,17 +329,20 @@ const ChatGPTInterface = () => {
             />
           </div>
 
-          {/* Sidebar footer - sticky at bottom */}
-          <div className="sticky bottom-0 border-t border-gray-700/50 p-3 bg-gray-900">
+          {/* Sidebar footer - improved spacing */}
+          <div className="p-4 border-t border-gray-700/50 bg-gray-900/95 backdrop-blur-sm">
             <button
               onClick={handleHomeClick}
-              className="flex w-full items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-gray-700/30 transition-colors"
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm hover:bg-gray-700/30 transition-colors"
             >
               <Home className="h-4 w-4" />
               {isOpen && <span>Home</span>}
             </button>
 
-            <button className="flex w-full items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-gray-700/30 transition-colors">
+            <button
+              onClick={handleProfileClick}
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 mt-2 text-sm hover:bg-gray-700/30 transition-colors"
+            >
               <User className="h-4 w-4" />
               {isOpen && <span>Profile</span>}
             </button>
@@ -334,9 +350,9 @@ const ChatGPTInterface = () => {
             {isOpen && isMobile && (
               <button
                 onClick={() => setIsOpen(false)}
-                className="mt-2 flex w-full items-center justify-center rounded-md px-2 py-2 text-sm hover:bg-gray-700/30 transition-colors"
+                className="flex w-full items-center justify-center gap-2 rounded-lg px-3 py-2.5 mt-3 text-sm bg-gray-800/50 hover:bg-gray-700/50 transition-colors"
               >
-                <ChevronLeft className="h-4 w-4 mr-1" />
+                <ChevronLeft className="h-4 w-4" />
                 <span>Close sidebar</span>
               </button>
             )}
@@ -344,12 +360,12 @@ const ChatGPTInterface = () => {
         </div>
       </aside>
 
-      {/* Main chat area */}
-      <main className="flex flex-1 flex-col overflow-hidden relative w-full">
-        {/* Welcome screen or messages - now scrollable on small devices */}
+      {/* Main chat area - improved spacing */}
+      <main className="flex-1 flex flex-col relative w-full">
+        {/* Welcome screen or messages */}
         {messages.length === 0 ? (
-          <div className="flex flex-1 flex-col items-center justify-center px-4 py-8 overflow-y-auto">
-            <h1 className="mb-6 text-3xl md:text-4xl font-bold">LegalizeMe</h1>
+          <div className="flex flex-1 flex-col items-center justify-center p-6 md:p-8 overflow-y-auto">
+            <h1 className="mb-8 text-3xl md:text-4xl font-bold">LegalizeMe</h1>
             <div className="grid gap-4 w-full max-w-4xl px-2 sm:px-4 md:grid-cols-2 lg:grid-cols-3">
               {[
                 { title: "Legal Advice", description: "Get guidance on legal matters and procedures" },
@@ -361,7 +377,7 @@ const ChatGPTInterface = () => {
               ].map((item, i) => (
                 <button
                   key={i}
-                  className="flex flex-col items-start gap-2 rounded-xl border border-gray-700 p-4 text-left hover:bg-gray-700/30 transition-colors"
+                  className="flex flex-col items-start gap-3 rounded-xl border border-gray-700/50 p-4 text-left hover:bg-gray-700/30 transition-colors"
                   onClick={() => {
                     setInput(item.description)
                     setTimeout(() => {
@@ -369,14 +385,14 @@ const ChatGPTInterface = () => {
                     }, 100)
                   }}
                 >
-                  <h3 className="font-medium">{item.title}</h3>
+                  <h3 className="font-medium text-base md:text-lg">{item.title}</h3>
                   <p className="text-sm text-gray-400">{item.description}</p>
                 </button>
               ))}
             </div>
           </div>
         ) : (
-          <div className="flex-1 overflow-y-auto pb-32">
+          <div className="flex-1 overflow-y-auto pb-36">
             {messages.map((msg, index) => (
               <Message key={index} message={msg} />
             ))}
@@ -385,15 +401,19 @@ const ChatGPTInterface = () => {
           </div>
         )}
 
-        {/* Input area - fixed at bottom with better spacing */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700/50">
+        {/* Input area - improved positioning and spacing */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur-sm border-t border-gray-700/50">
           <ChatInput input={input} setInput={setInput} handleSendMessage={handleSendMessage} loading={loading} />
         </div>
       </main>
 
-      {/* Mobile overlay */}
+      {/* Mobile overlay - improved interaction */}
       {isMobile && isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setIsOpen(false)} />
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40" 
+          onClick={() => setIsOpen(false)}
+          style={{ touchAction: 'none' }}
+        />
       )}
     </div>
   )

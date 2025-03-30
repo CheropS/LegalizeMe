@@ -23,7 +23,7 @@ import { toast } from "react-toastify"
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [isLoggingOut, setIsLoggingOut] = useState(false)
-  const { isAuthenticated, setIsAuthenticated, user, setUser } = useAuth()
+  const { isAuthenticated, user, logout } = useAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,10 +38,7 @@ export default function Navbar() {
     if (window.confirm("Are you sure you want to log out?")) {
       setIsLoggingOut(true)
       try {
-        localStorage.removeItem("token")
-        localStorage.removeItem("userData")
-        setIsAuthenticated(false)
-        setUser(null)
+        logout()
         toast.success("You have successfully logged out.")
       } catch (error) {
         console.error("Logout failed", error)
@@ -71,7 +68,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 group transition-transform duration-300 hover:scale-105">
-            <img src="/legalize2.png" alt="LegalizeMe" className="h-12 w-auto sm:h-16" />
+            <img src="/logo.svg" alt="LegalizeMe" className="h-8 w-auto sm:h-10" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -142,7 +139,7 @@ export default function Navbar() {
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between py-4 border-b border-gray-800">
                   <Link href="/" className="flex items-center">
-                    <img src="/legalize2.png" alt="LegalizeMe" className="h-10 w-auto" />
+                    <img src="/logo.svg" alt="LegalizeMe" className="h-7 w-auto" />
                   </Link>
                 </div>
 
