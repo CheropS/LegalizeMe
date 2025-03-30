@@ -2,8 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/hooks/useAuth";
 import { Montserrat } from 'next/font/google'
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import LayoutContent from "@/components/LayoutContent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,11 +30,9 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}>
       <body className={`${montserrat.variable} font-sans min-h-screen flex flex-col bg-gradient-to-b from-gray-900 to-black text-white`}>
         <AuthProvider>
-          <Navbar />
-          <main className="flex-grow pt-20">
+          <LayoutContent>
             {children}
-          </main>
-          <Footer />
+          </LayoutContent>
         </AuthProvider>
       </body>
     </html>

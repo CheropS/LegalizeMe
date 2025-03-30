@@ -86,7 +86,7 @@ export default function Navbar() {
                   <span className="text-primary/80 group-hover:text-purple-500 transition-colors">
                     {item.icon}
                   </span>
-                  <span classname="group:">{item.name}</span>
+                  <span className="group:">{item.name}</span>
                 </div>
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </Link>
