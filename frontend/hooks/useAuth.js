@@ -27,25 +27,35 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem("access_token")
         const userData = localStorage.getItem("userData")
 
-        if (token) {
+        if (token && token !== "null" && token !== "undefined") {
           setIsAuthenticated(true)
-          if (userData) {
+          if (userData && userData !== "null" && userData !== "undefined") {
             try {
               const parsedUser = JSON.parse(userData)
-              setUser(parsedUser)
+              if (parsedUser && typeof parsedUser === "object") {
+                setUser(parsedUser)
+              } else {
+                throw new Error("Invalid user data format")
+              }
             } catch (error) {
               console.error("Error parsing user data:", error)
               localStorage.removeItem("userData")
+              setUser(null)
             }
+          } else {
+            setUser(null)
           }
         } else {
           setIsAuthenticated(false)
           setUser(null)
+          localStorage.removeItem("access_token")
         }
       } catch (error) {
         console.error("Auth initialization failed:", error)
         setIsAuthenticated(false)
         setUser(null)
+        localStorage.removeItem("access_token")
+        localStorage.removeItem("userData")
       } finally {
         setIsInitialized(true)
       }
@@ -57,7 +67,7 @@ export const AuthProvider = ({ children }) => {
   // Function to check auth and handle redirects
   const checkAuthAndRedirect = (targetPath = '/profile') => {
     const token = localStorage.getItem("access_token")
-    if (!token) {
+    if (!token || token === "null" || token === "undefined") {
       router.push('/login')
       return false
     }
@@ -74,18 +84,26 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem("access_token")
         const userData = localStorage.getItem("userData")
 
-        if (!token) {
+        if (!token || token === "null" || token === "undefined") {
           setIsAuthenticated(false)
           setUser(null)
+          localStorage.removeItem("access_token")
           if (pathname === '/profile') {
             router.push('/login')
           }
-        } else if (token && userData) {
+        } else if (token && userData && userData !== "null" && userData !== "undefined") {
           setIsAuthenticated(true)
           try {
-            setUser(JSON.parse(userData))
+            const parsedUser = JSON.parse(userData)
+            if (parsedUser && typeof parsedUser === "object") {
+              setUser(parsedUser)
+            } else {
+              throw new Error("Invalid user data format")
+            }
           } catch (error) {
             console.error("Error parsing user data:", error)
+            localStorage.removeItem("userData")
+            setUser(null)
           }
         }
       }
@@ -97,15 +115,23 @@ export const AuthProvider = ({ children }) => {
 
   const login = (token, userData) => {
     try {
+      if (!token || token === "null" || token === "undefined") {
+        throw new Error("Invalid token")
+      }
+      
       localStorage.setItem("access_token", token)
-      if (userData) {
+      if (userData && typeof userData === "object") {
         localStorage.setItem("userData", JSON.stringify(userData))
       }
       setIsAuthenticated(true)
       setUser(userData)
-      router.push('/profile')
+      router.push('/')
     } catch (error) {
       console.error("Login failed:", error)
+      localStorage.removeItem("access_token")
+      localStorage.removeItem("userData")
+      setIsAuthenticated(false)
+      setUser(null)
     }
   }
 
@@ -121,6 +147,20 @@ export const AuthProvider = ({ children }) => {
       console.error("Logout failed:", error)
     }
   }
+
+  // Check auth state on route changes
+  useEffect(() => {
+    if (isInitialized) {
+      const isAuthPage = pathname === '/login' || pathname === '/register'
+      const token = localStorage.getItem("access_token")
+
+      if (isAuthPage && token && token !== "null" && token !== "undefined") {
+        router.push('/')
+      } else if (pathname === '/profile' && (!token || token === "null" || token === "undefined")) {
+        router.push('/login')
+      }
+    }
+  }, [pathname, isInitialized, router])
 
   if (!isInitialized) {
     return (

@@ -21,46 +21,62 @@ import {
 export default function ProfilePage() {
   const router = useRouter()
   const { isAuthenticated, user: authUser, checkAuthAndRedirect } = useAuth()
-  const [user, setUser] = useState(() => ({
-    email: authUser?.email || "",
-    fullname: authUser?.fullname || "",
-    profileImage: authUser?.profileImage || null,
-    bio: authUser?.bio || "Passionate about legal technology and innovation",
-    phone: authUser?.phone || "",
-    notificationPreference: authUser?.notificationPreference || false,
-  }))
+  const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState(null)
+
+  // Check authentication and initialize user data
+  useEffect(() => {
+    const initProfile = async () => {
+      try {
+        const isAuthenticated = checkAuthAndRedirect()
+        if (!isAuthenticated) {
+          return
+        }
+
+        // Initialize user data from authUser
+        if (authUser) {
+          setUser({
+            email: authUser.email || "",
+            fullname: authUser.fullname || "",
+            profileImage: authUser.profileImage || null,
+            bio: authUser.bio || "Passionate about legal technology and innovation",
+            phone: authUser.phone || "",
+            notificationPreference: authUser.notificationPreference || false,
+          })
+        }
+      } catch (error) {
+        console.error("Error initializing profile:", error)
+        router.push('/login')
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    initProfile()
+  }, [authUser, checkAuthAndRedirect, router])
 
   const [isEditing, setIsEditing] = useState(false)
-  const [formData, setFormData] = useState(user)
+  const [formData, setFormData] = useState(null)
   const [activeTab, setActiveTab] = useState("contact")
   const [errors, setErrors] = useState({})
 
-  // Check authentication on mount
+  // Update formData when user changes
   useEffect(() => {
-    checkAuthAndRedirect()
-  }, [checkAuthAndRedirect])
-
-  // Update user data when authUser changes
-  useEffect(() => {
-    if (authUser) {
-      setUser(prev => ({
-        ...prev,
-        ...authUser,
-      }))
+    if (user) {
+      setFormData(user)
     }
-  }, [authUser])
-
-  useEffect(() => {
-    // Update formData when user changes
-    setFormData(user)
   }, [user])
 
-  if (!isAuthenticated) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
       </div>
     )
+  }
+
+  if (!isAuthenticated || !user) {
+    return null
   }
 
   const handleImageUpload = (e) => {

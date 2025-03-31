@@ -1,39 +1,45 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { User, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
+import { User, Lock, Eye, EyeOff, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import useAuth from '@/hooks/useAuth'
 
 export default function LoginPage() {
   const router = useRouter()
-  const { login } = useAuth()
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  })
+  const { login, isAuthenticated, checkAuthAndRedirect } = useAuth()
   const [showPassword, setShowPassword] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [isRedirecting, setIsRedirecting] = useState(false)
+
+  // Check if user is already logged in
+  useEffect(() => {
+    const token = localStorage.getItem("access_token")
+    if (token && token !== "null" && token !== "undefined") {
+      setIsRedirecting(true)
+      const timer = setTimeout(() => {
+        router.push("/")
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [router])
+
+  const handleTogglePassword = () => setShowPassword((prev) => !prev)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsLoading(true)
     setError('')
     setSuccess('')
+    setIsLoading(true)
 
-    // Basic validation
-    if (!formData.username.trim()) {
-      setError('Please enter your username')
-      setIsLoading(false)
-      return
-    }
-
-    if (!formData.password) {
-      setError('Please enter your password')
+    if (!username || !password) {
+      setError('Please fill in all fields')
       setIsLoading(false)
       return
     }
@@ -41,42 +47,45 @@ export default function LoginPage() {
     try {
       const response = await fetch('https://legalizeme.azurewebsites.net/api/token/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
       })
 
       const data = await response.json()
 
-      if (!response.ok) {
-        // Handle specific error cases
-        if (response.status === 401) {
-          throw new Error('Invalid username or password')
-        } else if (response.status === 404) {
-          throw new Error('User not found. Please check your username')
-        } else if (response.status === 429) {
-          throw new Error('Too many login attempts. Please try again later')
+      if (response.ok) {
+        if (data.access && data.refresh) {
+          setSuccess('Logged in successfully. Redirecting...')
+          // Use the login function from useAuth to update the global state
+          login(data.access, data.user)
         } else {
-          throw new Error(data.message || 'Login failed. Please try again')
+          setError('Invalid login response. Please try again.')
+          console.error('Invalid login response:', data)
         }
+      } else {
+        setError(data.detail || 'Login failed. Please try again.')
+        console.error('Login error:', data)
       }
-
-      // Update auth state using the login function from useAuth
-      login(data.access_token, data.user)
-      
-      // Show success message
-      setSuccess('Login successful! Redirecting to home page...')
-      
-      // Delay redirect to show the success message
-      setTimeout(() => {
-        router.push('/')
-      }, 1500)
-    } catch (err) {
-      setError(err.message)
+    } catch (error) {
+      setError('Login failed. Please try again.')
+      console.error('Network or Server Error:', error)
     } finally {
       setIsLoading(false)
     }
+  }
+
+  if (isRedirecting) {
+    return (
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-700/50 max-w-md w-full">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500 mx-auto mb-4"></div>
+            <h2 className="text-2xl font-bold text-white mb-2">Already Logged In</h2>
+            <p className="text-gray-400">Redirecting you to the home page...</p>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -114,8 +123,8 @@ export default function LoginPage() {
                     </div>
                     <input
                       type="text"
-                      value={formData.username}
-                      onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       placeholder="Enter username"
                       className="block w-full p-4 pl-10 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                     />
@@ -135,14 +144,14 @@ export default function LoginPage() {
                     </div>
                     <input
                       type={showPassword ? 'text' : 'password'}
-                      value={formData.password}
-                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
                       className="block w-full p-4 pl-10 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                     />
                     <button
                       type="button"
-                      onClick={() => setShowPassword(!showPassword)}
+                      onClick={handleTogglePassword}
                       className="absolute inset-y-0 right-4 flex items-center text-gray-500"
                     >
                       {showPassword ? (
@@ -162,10 +171,7 @@ export default function LoginPage() {
                   >
                     {isLoading ? (
                       <span className="flex items-center">
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
+                        <Loader2 className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
                         Signing in...
                       </span>
                     ) : (
