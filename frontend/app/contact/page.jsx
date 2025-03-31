@@ -124,7 +124,7 @@ export default function Contact() {
     };
 
     return (
-        <div className="min-h-screen mt-20 bg-white">
+        <div className="min-h-screen bg-white">
             <section className="py-10 sm:py-16 lg:py-24 animate-fadeIn font-montserrat">
                 <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                     <div className="max-w-2xl mx-auto text-center">

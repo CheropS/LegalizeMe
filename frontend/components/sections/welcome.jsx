@@ -25,15 +25,6 @@ export default function Welcome() {
                                 quality={85}
                                 priority
                             />
-
-                            <Image
-                                className="absolute origin-bottom-right -bottom-10 -right-10 md:-right-16 w-full md:w-2/3 rounded-lg shadow-xl"
-                                src="/welcome2.jpeg"
-                                alt="Happy client"
-                                width={400}
-                                height={400}
-                                quality={85}
-                            />
                         </div>
                     </motion.div>
 
