@@ -21,7 +21,7 @@ export default function Partners() {
     const containerRef = useRef(null)
 
     return (
-        <section className="py-16 bg-gray-50 sm:py-20 lg:py-24">
+        <section className="py-16 sm:py-20 lg:py-24">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

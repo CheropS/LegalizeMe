@@ -69,8 +69,10 @@ export default function ProfilePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="bg-gray-800/70 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-700/50">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500 mx-auto"></div>
+        </div>
       </div>
     )
   }
@@ -135,12 +137,12 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-gray-700/50">
+    <div className="min-h-screen py-12">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto bg-gray-800/70 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-gray-700/50">
           <div className="md:flex">
             {/* Sidebar */}
-            <div className="md:w-1/3 bg-gray-800/50 p-8 flex flex-col items-center border-r border-gray-700/50">
+            <div className="md:w-1/3 bg-gray-800/70 p-8 flex flex-col items-center border-r border-gray-700/50">
               <div className="text-center">
                 <div className="relative inline-block">
                   {user.profileImage ? (
@@ -268,18 +270,12 @@ export default function ProfilePage() {
                           value={formData.bio}
                           onChange={(e) => setFormData((prev) => ({ ...prev, bio: e.target.value }))}
                           className="w-full bg-gray-700/50 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500"
-                          rows={3}
                           placeholder="Tell us about yourself"
+                          rows={4}
                         />
                       </div>
 
-                      <div className="flex space-x-4">
-                        <button
-                          type="submit"
-                          className="bg-indigo-500 text-white px-6 py-2 rounded-lg hover:bg-indigo-600 transition-colors flex items-center space-x-2"
-                        >
-                          <span>Save Changes</span>
-                        </button>
+                      <div className="flex justify-end space-x-4">
                         <button
                           type="button"
                           onClick={() => {
@@ -287,37 +283,38 @@ export default function ProfilePage() {
                             setFormData(user)
                             setErrors({})
                           }}
-                          className="bg-gray-700 text-gray-300 px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors flex items-center space-x-2"
+                          className="px-4 py-2 border border-gray-600 rounded-lg hover:bg-gray-700 transition-colors"
                         >
-                          <X className="w-4 h-4" />
-                          <span>Cancel</span>
+                          Cancel
+                        </button>
+                        <button
+                          type="submit"
+                          className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors"
+                        >
+                          Save Changes
                         </button>
                       </div>
                     </form>
                   ) : (
                     <div className="space-y-6">
-                      <div className="flex space-x-4">
-                        <a
-                          href="#"
-                          className="flex items-center space-x-2 text-gray-400 hover:text-indigo-500 transition-colors"
-                        >
-                          <Twitter className="w-5 h-5" />
-                          <span>Twitter</span>
-                        </a>
-                        <a
-                          href="#"
-                          className="flex items-center space-x-2 text-gray-400 hover:text-indigo-500 transition-colors"
-                        >
-                          <Facebook className="w-5 h-5" />
-                          <span>Facebook</span>
-                        </a>
-                        <a
-                          href="#"
-                          className="flex items-center space-x-2 text-gray-400 hover:text-indigo-500 transition-colors"
-                        >
-                          <Linkedin className="w-5 h-5" />
-                          <span>LinkedIn</span>
-                        </a>
+                      <div>
+                        <h3 className="text-lg font-medium text-gray-300">Full Name</h3>
+                        <p className="mt-1">{user.fullname || "Not set"}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-lg font-medium text-gray-300">Email</h3>
+                        <p className="mt-1">{user.email || "Not set"}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-lg font-medium text-gray-300">Phone</h3>
+                        <p className="mt-1">{user.phone || "Not set"}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-lg font-medium text-gray-300">Bio</h3>
+                        <p className="mt-1">{user.bio || "Not set"}</p>
                       </div>
                     </div>
                   )}
@@ -325,37 +322,33 @@ export default function ProfilePage() {
               )}
 
               {activeTab === "settings" && (
-                <div className="space-y-8">
-                  <div className="border-b border-gray-700 pb-6">
-                    <h3 className="text-lg font-medium mb-4 flex items-center space-x-2">
-                      <Bell className="w-5 h-5 text-indigo-500" />
-                      <span>Notification Preferences</span>
-                    </h3>
-                    <label className="flex items-center space-x-3">
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-medium text-gray-300">Email Notifications</h3>
+                      <p className="text-sm text-gray-400">Receive email notifications about your account</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
                       <input
                         type="checkbox"
-                        checked={formData.notificationPreference}
-                        onChange={() =>
-                          setFormData((prev) => ({
+                        checked={user.notificationPreference}
+                        onChange={(e) => {
+                          setUser((prev) => ({
                             ...prev,
-                            notificationPreference: !prev.notificationPreference,
+                            notificationPreference: e.target.checked,
                           }))
-                        }
-                        className="form-checkbox h-5 w-5 text-indigo-500 rounded border-gray-600 bg-gray-700 focus:ring-indigo-500"
+                          localStorage.setItem(
+                            "userData",
+                            JSON.stringify({
+                              ...user,
+                              notificationPreference: e.target.checked,
+                            })
+                          )
+                        }}
+                        className="sr-only peer"
                       />
-                      <span className="text-gray-300">Receive email notifications</span>
+                      <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500"></div>
                     </label>
-                  </div>
-
-                  <div>
-                    <h3 className="text-lg font-medium mb-4 flex items-center space-x-2">
-                      <Shield className="w-5 h-5 text-indigo-500" />
-                      <span>Account Security</span>
-                    </h3>
-                    <button className="bg-indigo-500 text-white px-6 py-2 rounded-lg hover:bg-indigo-600 transition-colors flex items-center space-x-2">
-                      <Settings className="w-4 h-4" />
-                      <span>Change Password</span>
-                    </button>
                   </div>
                 </div>
               )}

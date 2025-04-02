@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const Brief = () => {
     return (
-        <section className="overflow-hidden py-16 bg-white sm:py-20 lg:py-24">
+        <section className="overflow-hidden py-16 sm:py-20 lg:py-24">
             <div className="container mx-auto px-4">
                 <div className="flex flex-wrap items-center justify-between -mx-4">
                     <div className="w-full px-4 lg:w-6/12">

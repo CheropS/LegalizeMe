@@ -94,14 +94,14 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-4">
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
-                {/* <Link href="/profile" className="flex items-center space-x-2 group">
+                <Link href="/profile" className="flex items-center space-x-2 group">
                   <Avatar className="h-9 w-9 ring-2 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:ring-primary">
                     <AvatarImage src={user?.profileImage} alt={user?.name || "User"} />
                     <AvatarFallback className="bg-primary/10 text-primary">
                       {user?.name?.charAt(0) || <User className="h-5 w-5" />}
                     </AvatarFallback>
                   </Avatar>
-                </Link> */}
+                </Link>
                 <Button
                   variant="destructive"
                   onClick={handleLogout}

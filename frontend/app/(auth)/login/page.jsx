@@ -76,8 +76,8 @@ export default function LoginPage() {
 
   if (isRedirecting) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-700/50 max-w-md w-full">
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="bg-gray-800/70 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-700/50 max-w-md w-full">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500 mx-auto mb-4"></div>
             <h2 className="text-2xl font-bold text-white mb-2">Already Logged In</h2>

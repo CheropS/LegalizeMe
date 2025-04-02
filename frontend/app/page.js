@@ -15,7 +15,7 @@ export default function Home() {
     <main>
       <HeroSection />
 
-      <div className="bg-white">
+      <div>
         <Brief />
         <hr className="mx-auto mt-10 max-w-7xl border-t border-gray-300" />
 

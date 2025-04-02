@@ -3,6 +3,7 @@ import "./globals.css";
 import { AuthProvider } from "@/hooks/useAuth";
 import { Montserrat } from 'next/font/google'
 import LayoutContent from "@/components/LayoutContent";
+import GlobalBackground from "@/components/global-background";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}>
-      <body className={`${montserrat.variable} font-sans min-h-screen flex flex-col bg-gradient-to-b from-gray-900 to-black text-white overflow-x-hidden`}>
+      <body className={`${montserrat.variable} font-sans min-h-screen flex flex-col bg-gray-900 text-white overflow-x-hidden relative`}>
+        <GlobalBackground />
         <AuthProvider>
           <LayoutContent>
             {children}

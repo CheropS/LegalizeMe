@@ -19,7 +19,7 @@ export default function FAQs() {
     ];
 
     return (
-        <section className="py-16 bg-gray-50 sm:py-20 lg:py-24">
+        <section className="py-16 sm:py-20 lg:py-24">
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <motion.div 
                     className="max-w-2xl mx-auto text-center"

@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 
 export default function Welcome() {
     return (
-        <section className="py-12 sm:py-16 lg:py-20 bg-white animate-fadeIn font-montserrat">
+        <section className="py-12 sm:py-16 lg:py-20 animate-fadeIn font-montserrat">
             <div className="max-w-7xl px-4 mx-auto sm:px-6 lg:px-8">
                 <div className="grid items-center md:grid-cols-2 gap-y-8 md:gap-x-28">
                     <motion.div 
