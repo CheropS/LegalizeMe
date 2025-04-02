@@ -77,13 +77,13 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="relative px-3 py-2 text-sm font-medium text-white/90 transition-all duration-300 hover:text-white group rounded-lg hover:bg-white/5"
+                className="relative px-3 py-2 text-sm font-medium text-white/90 transition-all duration-300 hover:text-[#2A538D] group rounded-lg hover:bg-white/5"
               >
                 <div className="flex items-center space-x-1">
-                  <span className="text-primary/80 group-hover:text-purple-500 transition-colors">
+                  <span className="text-primary/80 group-hover:text-[#2A538D] transition-colors">
                     {item.icon}
                   </span>
-                  <span className="group:">{item.name}</span>
+                  <span className="group: hover:text-[#2A538D]">{item.name}</span>
                 </div>
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </Link>
@@ -95,7 +95,7 @@ export default function Navbar() {
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <Link href="/profile" className="flex items-center space-x-2 group">
-                  <Avatar className="h-9 w-9 ring-2 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:ring-primary">
+                  <Avatar className="h-9 w-9 ring-2 ring-primary/20 transition-all duration-300 group-hover:scale-110 hover:bg-[#243363] group-hover:ring-primary">
                     <AvatarImage src={user?.profileImage} alt={user?.name || "User"} />
                     <AvatarFallback className="bg-primary/10 text-primary">
                       {user?.name?.charAt(0) || <User className="h-5 w-5" />}
@@ -106,7 +106,7 @@ export default function Navbar() {
                   variant="destructive"
                   onClick={handleLogout}
                   disabled={isLoggingOut}
-                  className="transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm"
+                  className="transition-all duration-300 hover:scale-105 hover:bg-red-500 text-sm"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   {isLoggingOut ? "Logging out..." : "Logout"}
@@ -116,7 +116,7 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 asChild
-                className="bg-primary hover:bg-purple-500 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm font-medium px-6"
+                className="bg-[#2A538D] hover:bg-[#243363] text-white transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm font-medium px-6"
               >
                 <Link href="/login">Get started now</Link>
               </Button>
@@ -148,9 +148,9 @@ export default function Navbar() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="flex items-center px-4 py-3 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 group"
+                      className="flex items-center px-4 py-3 text-sm font-medium text-white/90 hover:text-[#2A538D] hover:bg-white/10 rounded-lg transition-all duration-300 group"
                     >
-                      <span className="text-primary/80 group-hover:text-primary transition-colors">
+                      <span className="text-primary/80 group-hover:text-[#2A538D] transition-colors">
                         {item.icon}
                       </span>
                       <span className="ml-3">{item.name}</span>
@@ -165,13 +165,13 @@ export default function Navbar() {
                       <div className="flex items-center space-x-3">
                         <Avatar className="h-10 w-10 ring-2 ring-primary/20">
                           <AvatarImage src={user?.profileImage} alt={user?.name || "User"} />
-                          <AvatarFallback className="bg-primary/10 text-primary">
+                          <AvatarFallback className="bg-primary/10 text-primary hover:bg-[#243363]">
                             {user?.name?.charAt(0) || <User className="h-5 w-5" />}
                           </AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="text-sm font-medium text-white">{user?.name || "User"}</p>
-                          <Link href="/profile" className="text-xs text-gray-400 hover:text-primary transition-colors">
+                          <p className="text-sm font-medium hover:text-[#2A538D] text-white">{user?.name || "User"}</p>
+                          <Link href="/profile" className="text-xs text-gray-400 hover:text-[#2A538D] transition-colors">
                             View Profile
                           </Link>
                         </div>
@@ -180,7 +180,7 @@ export default function Navbar() {
                         variant="destructive" 
                         onClick={handleLogout} 
                         disabled={isLoggingOut} 
-                        className="w-full transition-all duration-300 hover:scale-[1.02] text-sm"
+                        className="w-full transition-all duration-300 hover:bg-red-500 hover:scale-[1.02] text-sm"
                       >
                         <LogOut className="mr-2 h-4 w-4" />
                         {isLoggingOut ? "Logging out..." : "Logout"}

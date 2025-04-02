@@ -35,10 +35,10 @@ export default function Welcome() {
                         transition={{ duration: 0.5 }}
                         className="relative z-10"
                     >
-                        <h2 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
+                        <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
                             Grow with LegalizeMe
                         </h2>
-                        <p className="mt-6 text-lg leading-relaxed text-gray-600">
+                        <p className="mt-6 text-lg leading-relaxed text-gray-300">
                             Our platform is designed to provide you with the best legal
                             experience possible. We are committed to making the law
                             accessible to everyone, everywhere. LegalizeMe is the future
@@ -53,7 +53,7 @@ export default function Welcome() {
                         >
                             <a
                                 href="/register"
-                                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
+                                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-[#2A538D] rounded-lg hover:bg-[#243363] transition-colors"
                             >
                                 Get Started
                                 <svg

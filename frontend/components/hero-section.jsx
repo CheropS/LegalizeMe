@@ -28,7 +28,7 @@ export default function HeroSection() {
               <Button
                 variant="outline"
                 size="default"
-                className="bg-primary hover:bg-purple-500 text-white text-base px-6 py-2.5 h-auto transition-all duration-300 hover:scale-105"
+                className="bg-[#2A538D] hover:bg-[#243363] text-white text-base px-6 py-2.5 h-auto transition-all duration-300 hover:scale-105"
                 asChild
               >
                 <Link href={isAuthenticated ? "/counsel" : "/register"}>
@@ -39,7 +39,7 @@ export default function HeroSection() {
               <Button
                 variant="outline"
                 size="default"
-                className="text-base px-6 py-2.5 h-auto group hover:bg-purple-500 transition-all duration-300 hover:scale-105"
+                className="text-base px-6 py-2.5 h-auto group hover:bg-[#243363] transition-all duration-300 hover:scale-105"
                 asChild
               >
                 <Link href="/about">

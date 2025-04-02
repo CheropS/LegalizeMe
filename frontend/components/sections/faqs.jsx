@@ -28,10 +28,10 @@ export default function FAQs() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
+                    <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
                         Frequently Asked Questions
                     </h2>
-                    <p className="mt-6 text-lg leading-relaxed text-gray-600">
+                    <p className="mt-6 text-lg leading-relaxed text-gray-300">
                         How can we help you?
                     </p>
                 </motion.div>
@@ -93,7 +93,7 @@ export default function FAQs() {
                 </motion.div>
 
                 <motion.p 
-                    className="text-center text-lg text-gray-600 mt-12"
+                    className="text-center text-lg text-gray-300 mt-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

@@ -38,7 +38,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-slate-900 text-white py-8 font-montserrat overflow-x-hidden">
+    <footer className="bg-black text-white py-8 font-montserrat overflow-x-hidden">
       <div className="container mx-auto px-6">
         {/* News Subscription */}
         <div className="flex flex-col md:flex-row md:justify-between items-center border-b border-gray-600 pb-6 mb-6">
@@ -63,7 +63,7 @@ export default function Footer() {
             </div>
             <button
               type="submit"
-              className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-medium"
+              className="w-full sm:w-auto bg-[#2A538D] hover:bg-[#243363] text-white px-6 py-2.5 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-medium"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
@@ -96,10 +96,10 @@ export default function Footer() {
             <p className="text-sm text-gray-400 mb-6">Bringing you the latest in tech and innovation. Join us on the journey.</p>
             {/* Social Icons */}
             <div className="flex space-x-4">
-              <a href="https://www.facebook.com/profile.php?id=100069216433282" className="text-gray-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/profile.php?id=100069216433282" className="text-gray-400 hover:text-[#2A538D] transition-colors" target="_blank" rel="noopener noreferrer">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="https://x.com/Legalizee_Me" className="text-gray-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com/Legalizee_Me" className="text-gray-400 hover:text-[#2A538D] transition-colors" target="_blank" rel="noopener noreferrer">
                 <Twitter className="h-6 w-6" />
               </a>
             </div>
@@ -109,10 +109,10 @@ export default function Footer() {
           <div>
             <h3 className="mb-6 text-sm font-semibold">Support</h3>
             <ul className="space-y-4">
-              <li><Link href="/pricing" className="hover:underline text-gray-400 hover:text-white">Pricing</Link></li>
-              <li><Link href="/feedback" className="hover:underline text-gray-400 hover:text-white">Feedback</Link></li>
-              <li><Link href="#" className="hover:underline text-gray-400 hover:text-white">Documentation</Link></li>
-              <li><Link href="#" className="hover:underline text-gray-400 hover:text-white">Guides</Link></li>
+              <li><Link href="/pricing" className="hover:underline text-gray-400 hover:text-[#2A538D]">Pricing</Link></li>
+              <li><Link href="/feedback" className="hover:underline text-gray-400 hover:text-[#2A538D]">Feedback</Link></li>
+              <li><Link href="#" className="hover:underline text-gray-400 hover:text-[#2A538D]">Documentation</Link></li>
+              <li><Link href="#" className="hover:underline text-gray-400 hover:text-[#2A538D]">Guides</Link></li>
             </ul>
           </div>
 
@@ -120,10 +120,10 @@ export default function Footer() {
           <div>
             <h3 className="mb-6 text-sm font-semibold">Company</h3>
             <ul className="space-y-4">
-              <li><Link href="/about" className="hover:underline text-gray-400 hover:text-white">About</Link></li>
-              <li><Link href="#" className="hover:underline text-gray-400 hover:text-white">Careers</Link></li>
-              <li><Link href="/terms" className="hover:underline text-gray-400 hover:text-white">Terms of Service</Link></li>
-              <li><Link href="/data-governance" className="hover:underline text-gray-400 hover:text-white">Privacy Policy</Link></li>
+              <li><Link href="/about" className="hover:underline text-gray-400 hover:text-[#2A538D]">About</Link></li>
+              <li><Link href="#" className="hover:underline text-gray-400 hover:text-[#2A538D]">Careers</Link></li>
+              <li><Link href="/terms" className="hover:underline text-gray-400 hover:text-[#2A538D]">Terms of Service</Link></li>
+              <li><Link href="/data-governance" className="hover:underline text-gray-400 hover:text-[#2A538D]">Privacy Policy</Link></li>
             </ul>
           </div>
 
@@ -132,10 +132,10 @@ export default function Footer() {
             <h3 className="mb-6 text-sm font-semibold">Contact us</h3>
             <ul className="space-y-4">
               <li className="flex items-center space-x-2">
-                <span className="text-gray-400 hover:text-white">info.support@legalizeme.site</span>
+                <span className="text-gray-400 hover:text-[#2A538D]">info.support@legalizeme.site</span>
               </li>
               <li className="flex items-center space-x-2">
-                <span className="text-gray-400 hover:text-white">Eldoret East View Elgon Road</span>
+                <span className="text-gray-400 hover:text-[#2A538D]">Eldoret East View Elgon Road</span>
               </li>
             </ul>
           </div>

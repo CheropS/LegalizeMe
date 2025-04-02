@@ -19,10 +19,10 @@ const Service = () => {
               <span className="mb-2 block text-lg font-semibold text-blue-600">
                 Our Services
               </span>
-              <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-gray-900 sm:text-4xl md:text-[40px] lg:text-5xl">
+              <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-white sm:text-4xl md:text-[40px] lg:text-5xl">
                 What We Offer
               </h2>
-              <p className="text-lg leading-relaxed text-gray-600">
+              <p className="text-lg leading-relaxed text-gray-300">
                 Know more about our services and how we can help you. We offer a wide range of services to help you with your legal needs.
                 LegalizeMe is a global leader in customer support and service excellence. We are committed to providing top-notch services to our clients worldwide.
               </p>

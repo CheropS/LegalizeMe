@@ -43,10 +43,10 @@ export default function Features() {
           <span className="mb-2 block text-lg font-semibold text-blue-600">
             Get your cases solved faster
           </span>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
             LegalizeMe: Fast, Efficient, Reliable and Accessible
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-gray-600">
+          <p className="mt-6 text-lg leading-relaxed text-gray-300">
             We leverage cutting-edge AI technology to simplify legal services and streamline your workflow.
             From lightning-fast research to automated document generation, we empower you to focus on what matters.
             With smart recommendations and robust security, the future of legal services is just a click away.
@@ -69,13 +69,13 @@ export default function Features() {
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                 className="group relative pl-16"
               >
-                <dt className="text-xl font-semibold leading-7 text-gray-900">
-                  <div className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white transition-colors group-hover:bg-blue-700">
+                <dt className="text-xl font-bold leading-7 text-white">
+                  <div className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-xl bg-[#2A538D] text-white transition-colors group-hover:bg-[#243363]">
                     <feature.icon className="h-6 w-6" aria-hidden="true" />
                   </div>
                   {feature.name}
                 </dt>
-                <dd className="mt-2 text-lg leading-relaxed text-gray-600">
+                <dd className="mt-2 text-lg leading-relaxed text-gray-400">
                   {feature.description}
                 </dd>
               </motion.div>

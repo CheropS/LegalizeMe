@@ -61,7 +61,7 @@ const Brief = () => {
                                         className="w-full rounded-2xl shadow-lg"
                                         quality={85}
                                     />
-                                    <span className="absolute -right-7 -bottom-7 z-[-1] floating-dots">
+                                    <span className="absolute -right-7 -bottom-7 z-[-1] floating-dots animate-pulse">
                                         <svg
                                             width={134}
                                             height={106}
@@ -648,21 +648,21 @@ const Brief = () => {
                             <span className="block mb-4 text-lg font-semibold text-blue-600">
                                 Why Choose Us
                             </span>
-                            <h2 className="mb-5 text-3xl font-bold text-gray-900 sm:text-[40px]/[48px] lg:text-5xl">
+                            <h2 className="mb-5 text-3xl font-bold text-white sm:text-[40px]/[48px] lg:text-5xl">
                                 The Future of Law Today
                             </h2>
-                            <p className="mb-5 text-lg leading-relaxed text-gray-600">
+                            <p className="mb-5 text-lg leading-relaxed text-gray-300">
                                 We are not just adapting to the future of law - we are creating it.
                                 LegalizeMe is revolutionizing the legal landscape, making legal services smarter, faster and more accessible to everyone.
                                 With AI-powered solutions at your fingertips, we empower you to save time, cut costs, and focus on what truly matters - delivering justice.
                             </p>
-                            <p className="mb-8 text-lg leading-relaxed text-gray-600">
+                            <p className="mb-8 text-lg leading-relaxed text-gray-300">
                                 Justice delayed is justice denied. Don't get left behind. Join us today and be a part of a movement that is transforming
                                 how the legal world operates. Experience the future of law now, and let LegalizeMe be your trusted partner on this journey.
                             </p>
                             <motion.a
                                 href="/cases"
-                                className="inline-flex items-center justify-center py-3 px-7 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
+                                className="inline-flex items-center justify-center py-3 px-7 text-base font-medium text-white bg-[#2A538D] rounded-lg hover:bg-[#243363] transition-colors"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
