@@ -661,7 +661,7 @@ const Brief = () => {
                                 how the legal world operates. Experience the future of law now, and let LegalizeMe be your trusted partner on this journey.
                             </p>
                             <motion.a
-                                href="/cases"
+                                href="/docs"
                                 className="inline-flex items-center justify-center py-3 px-7 text-base font-medium text-white bg-[#2A538D] rounded-lg hover:bg-[#243363] transition-colors"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}

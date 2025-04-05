@@ -53,7 +53,7 @@ export default function Navbar() {
     { name: "About Us", href: "/about", icon: <BookOpen className="w-4 h-4 mr-2" /> },
     { name: "Solutions", href: "/solutions", icon: <Scale className="w-4 h-4 mr-2" /> },
     { name: "Counsel", href: "/counsel", icon: <Briefcase className="w-4 h-4 mr-2" /> },
-    { name: "Cases", href: "/cases", icon: <FileText className="w-4 h-4 mr-2" /> },
+    { name: "Docs", href: "/docs", icon: <FileText className="w-4 h-4 mr-2" /> },
     { name: "Resources", href: "/resources", icon: <Library className="w-4 h-4 mr-2" /> },
     { name: "Pricing", href: "/pricing", icon: <CreditCard className="w-4 h-4 mr-2" /> },
   ]
