@@ -10,32 +10,42 @@ const AccordionItem = ({ title, children }) => {
 
     return (
         <motion.div 
-            className="border-b border-gray-200 animate-accordionFade"
+            className="bg-black/20 backdrop-blur-sm transition-all duration-300 hover:bg-black/30 group"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
         >
             <button
-                className="w-full py-4 text-left text-white flex justify-between items-center"
+                className="w-full p-6 text-left flex justify-between items-center focus:outline-none"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <span>{title}</span>
-                <svg
-                    className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                <span className="text-lg font-medium text-white group-hover:text-blue-400 transition-colors duration-300">{title}</span>
+                <motion.svg
+                    className="w-5 h-5 text-blue-400 transition-transform duration-300"
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                 >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
+                </motion.svg>
             </button>
-            <div className={`transition-max-height duration-300 ease-in-out ${isOpen ? 'max-h-screen' : 'max-h-0 overflow-hidden'}`}>
-                <div className="py-2">
+            <motion.div 
+                initial={false}
+                animate={{ 
+                    height: isOpen ? "auto" : 0,
+                    opacity: isOpen ? 1 : 0
+                }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+            >
+                <div className="px-6 pb-6">
                     {children}
                 </div>
-            </div>
+            </motion.div>
         </motion.div>
     );
 };
@@ -63,7 +73,7 @@ export default function AboutPage() {
                 </div>
             </motion.section>
 
-            <section className="py-10 sm:py-16 lg:py-24 font-montserrat">
+            <section className="py-8 sm:py-16 lg:py-24 font-montserrat">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-x-12 xl:gap-x-24 gap-y-12">
                         <motion.div 
@@ -87,6 +97,7 @@ export default function AboutPage() {
                                     alt="About LegalizeMe"
                                     width={600}
                                     height={400}
+                                    priority
                                 />
                             </div>
                             <motion.div 
@@ -140,24 +151,33 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
             >
-                <div className="lg:w-1/2 w-full mx-auto">
-                    <div id="accordion-flush" className="space-y-5">
+                <div className="max-w-7xl mx-auto mb-16">
+                    <div className="max-w-2xl mx-auto text-center">
+                        <h3 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">Our Values</h3>
+                        <p className="mt-3 text-lg leading-relaxed text-gray-400">
+                            At LegalizeMe, we believe in breaking down barriers because justice delayed is justice denied. We're not just transforming the law; we're making it work for you.
+                        </p>
+                    </div>
+                </div>
+
+                <div className="max-w-3xl mx-auto">
+                    <div id="accordion-flush" className="space-y-4">
                         {/* Mission */}
                         <AccordionItem title="Mission">
-                            <p className="text-md leading-relaxed text-gray-300">To revolutionize the legal landscape by providing innovative, AI powered solutions that make legal services fast, accessible, and affordable for everyone, ensuring no one is left behind in the pursuit of justice.</p>
+                            <p className="text-md leading-relaxed text-gray-400">To revolutionize the legal landscape by providing innovative, AI powered solutions that make legal services fast, accessible, and affordable for everyone, ensuring no one is left behind in the pursuit of justice.</p>
                         </AccordionItem>
 
                         {/* Vision */}
                         <AccordionItem title="Vision">
-                            <p className="text-md leading-relaxed text-gray-300">To be the premier legal hub that revolutionizes law across Africa and beyond, empowering individuals and legal professionals with groundbreaking tools to make justice swift, accessible, and efficient for all.</p>
+                            <p className="text-md leading-relaxed text-gray-400">To be the premier legal hub that revolutionizes law across Africa and beyond, empowering individuals and legal professionals with groundbreaking tools to make justice swift, accessible, and efficient for all.</p>
                         </AccordionItem>
 
                         {/* Core Values */}
                         <AccordionItem title="Core Values">
-                            <ul className="list-disc pl-5 text-md leading-relaxed text-gray-300">
-                                <li><strong>Innovation</strong> - Redefining possibilities in legal tech for impactful solutions.</li>
-                                <li><strong>Accessibility</strong> - Making justice swift, affordable, and available to all.</li>
-                                <li><strong>Integrity</strong> - Committed to trust, transparency, and fairness in every step.</li>
+                            <ul className="list-disc pl-5 text-md leading-relaxed text-gray-400">
+                                <li><strong className="text-white">Innovation</strong> - Redefining possibilities in legal tech for impactful solutions.</li>
+                                <li><strong className="text-white">Accessibility</strong> - Making justice swift, affordable, and available to all.</li>
+                                <li><strong className="text-white">Integrity</strong> - Committed to trust, transparency, and fairness in every step.</li>
                             </ul>
                         </AccordionItem>
                     </div>

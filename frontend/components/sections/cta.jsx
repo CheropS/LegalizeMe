@@ -8,7 +8,7 @@ const Cta = () => {
     <section className="py-16 sm:py-20 lg:py-24">
       <div className="container mx-auto px-4">
         <motion.div 
-          className="relative z-10 overflow-hidden rounded-2xl bg-blue-700 py-12 px-6 sm:px-8 md:p-[70px]"
+          className="relative z-10 overflow-hidden rounded-2xl bg-[#2A538D] py-12 px-6 sm:px-8 md:p-[70px]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

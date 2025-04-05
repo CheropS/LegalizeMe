@@ -20,7 +20,7 @@ const Brief = () => {
                                     transition={{ duration: 0.5 }}
                                 >
                                     <Image
-                                        src="/image.jpg"
+                                        src="/legal_ai.jpg"
                                         alt="Legal document"
                                         width={500}
                                         height={300}
@@ -36,7 +36,7 @@ const Brief = () => {
                                     transition={{ duration: 0.5, delay: 0.2 }}
                                 >
                                     <Image
-                                        src="/image1.jpg"
+                                        src="/legaldocs.jpg"
                                         alt="Team meeting"
                                         width={500}
                                         height={300}
@@ -54,7 +54,7 @@ const Brief = () => {
                                     transition={{ duration: 0.5, delay: 0.4 }}
                                 >
                                     <Image
-                                        src="/image3.jpg"
+                                        src="/legalsolutions.jpg"
                                         alt="Modern office space"
                                         width={500}
                                         height={300}

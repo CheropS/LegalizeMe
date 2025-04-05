@@ -28,7 +28,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`} suppressHydrationWarning>
       <body className={`${montserrat.variable} font-sans min-h-screen flex flex-col bg-gray-900 text-white overflow-x-hidden relative`}>
         <GlobalBackground />
         <AuthProvider>

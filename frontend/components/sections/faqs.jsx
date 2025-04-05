@@ -19,47 +19,35 @@ export default function FAQs() {
     ];
 
     return (
-        <section className="py-16 sm:py-20 lg:py-24">
+        <section className="py-20 font-montserrat">
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-                <motion.div 
-                    className="max-w-2xl mx-auto text-center"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
-                        Frequently Asked Questions
-                    </h2>
-                    <p className="mt-6 text-lg leading-relaxed text-gray-300">
+                <div className="mb-16">
+                    <h2 className="text-3xl font-bold text-white text-center">Frequently Asked Questions</h2>
+                    <p className="mt-3 text-gray-400 text-center">
                         How can we help you?
                     </p>
-                </motion.div>
+                </div>
 
-                <motion.div 
-                    className="max-w-3xl mx-auto mt-8 space-y-4 md:mt-16"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                >
+                <div className="max-w-3xl mx-auto space-y-4">
                     {faqItems.map((faq, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                            className="overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
+                            transition={{ duration: 0.5, delay: 0.1 * index }}
+                            className="bg-black/20 backdrop-blur-sm transition-all duration-300 hover:bg-black/30 group"
                         >
                             <button
                                 type="button"
-                                className="flex items-center justify-between w-full px-6 py-5 text-left focus:outline-none"
+                                className="flex items-center justify-between w-full p-6 text-left focus:outline-none"
                                 onClick={() => toggleAccordion(index)}
                             >
-                                <span className="text-xl font-semibold text-gray-900">{faq.question}</span>
+                                <span className="text-lg font-medium text-white group-hover:text-blue-400 transition-colors duration-300">
+                                    {faq.question}
+                                </span>
                                 <motion.svg
-                                    className="w-6 h-6 text-gray-500"
+                                    className="w-5 h-5 text-blue-400 transition-transform duration-300"
                                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                                     transition={{ duration: 0.3 }}
                                     xmlns="http://www.w3.org/2000/svg"
@@ -78,10 +66,9 @@ export default function FAQs() {
                                         animate={{ height: "auto", opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
                                         transition={{ duration: 0.3 }}
-                                        className="overflow-hidden"
                                     >
-                                        <div className="px-6 pb-5">
-                                            <p className="text-lg leading-relaxed text-gray-600">
+                                        <div className="px-6 pb-6">
+                                            <p className="text-gray-400">
                                                 {faq.answer}
                                             </p>
                                         </div>
@@ -90,19 +77,19 @@ export default function FAQs() {
                             </AnimatePresence>
                         </motion.div>
                     ))}
-                </motion.div>
+                </div>
 
                 <motion.p 
-                    className="text-center text-lg text-gray-300 mt-12"
+                    className="text-center mt-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.8 }}
                 >
-                    For more information:{' '}
+                    <span className="text-gray-400">Still have questions?</span>{' '}
                     <a 
                         href="/contact" 
-                        className="font-medium text-blue-600 transition-colors hover:text-blue-700 hover:underline"
+                        className="text-blue-400 hover:text-blue-300 transition-colors duration-300"
                     >
                         Contact our support
                     </a>
