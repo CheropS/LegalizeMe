@@ -17,7 +17,7 @@ const AccordionItem = ({ title, children }) => {
             transition={{ duration: 0.5 }}
         >
             <button
-                className="w-full py-4 text-left text-gray-600 flex justify-between items-center"
+                className="w-full py-4 text-left text-white flex justify-between items-center"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <span>{title}</span>
@@ -50,7 +50,7 @@ export default function AboutPage() {
         <div>
             {/* Page Title */}
             <motion.section 
-                className="bg-white py-[70px] dark:bg-dark text-center font-montserrat"
+                className="py-[70px] text-center font-montserrat"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -58,12 +58,12 @@ export default function AboutPage() {
             >
                 <div className="mx-auto px-4 sm:container">
                     <div className="max-w-2xl mx-auto text-center">
-                        <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">About Us</h2>
+                        <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">About Us</h2>
                     </div>
                 </div>
             </motion.section>
 
-            <section className="py-10 bg-white sm:py-16 lg:py-24 font-montserrat">
+            <section className="py-10 sm:py-16 lg:py-24 font-montserrat">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-x-12 xl:gap-x-24 gap-y-12">
                         <motion.div 
@@ -96,7 +96,7 @@ export default function AboutPage() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: 0.2 }}
                             >
-                                <div className="max-w-xs bg-blue-600 rounded-lg sm:max-w-md xl:max-w-md">
+                                <div className="max-w-xs bg-[#2A538D] rounded-lg sm:max-w-md xl:max-w-md">
                                     <div className="px-3 py-4 sm:px-5 sm:py-8">
                                         <div className="flex items-start">
                                             <p className="text-3xl sm:text-4xl">👋</p>
@@ -120,11 +120,11 @@ export default function AboutPage() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
                         >
-                            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight">Get to know us</h2>
-                            <p className="text-xl leading-relaxed text-gray-900 mt-9">
+                            <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl lg:leading-tight">Get to know us</h2>
+                            <p className="text-lg leading-relaxed text-gray-300 mt-9">
                                 LegalizeMe is revolutionizing the legal landscape with technology that makes legal services faster, more reliable, and accessible for everyone. Our platform empowers users to save time, cut costs, and streamline their processes—whether you're a legal professional, student, or individual seeking justice.
                             </p>
-                            <p className="mt-6 text-xl leading-relaxed text-gray-900">
+                            <p className="mt-6 text-lg leading-relaxed text-gray-300">
                                 At LegalizeMe, we believe in breaking down barriers because justice delayed is justice denied. We're not just transforming the law; we're making it work for you.
                             </p>
                         </motion.div>
@@ -134,7 +134,7 @@ export default function AboutPage() {
 
             {/* Accordion Section */}
             <motion.div 
-                className="bg-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8 font-montserrat"
+                className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 font-montserrat"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -144,17 +144,17 @@ export default function AboutPage() {
                     <div id="accordion-flush" className="space-y-5">
                         {/* Mission */}
                         <AccordionItem title="Mission">
-                            <p className="text-md leading-relaxed text-gray-900">To revolutionize the legal landscape by providing innovative, AI powered solutions that make legal services fast, accessible, and affordable for everyone, ensuring no one is left behind in the pursuit of justice.</p>
+                            <p className="text-md leading-relaxed text-gray-300">To revolutionize the legal landscape by providing innovative, AI powered solutions that make legal services fast, accessible, and affordable for everyone, ensuring no one is left behind in the pursuit of justice.</p>
                         </AccordionItem>
 
                         {/* Vision */}
                         <AccordionItem title="Vision">
-                            <p className="text-md leading-relaxed text-gray-900">To be the premier legal hub that revolutionizes law across Africa and beyond, empowering individuals and legal professionals with groundbreaking tools to make justice swift, accessible, and efficient for all.</p>
+                            <p className="text-md leading-relaxed text-gray-300">To be the premier legal hub that revolutionizes law across Africa and beyond, empowering individuals and legal professionals with groundbreaking tools to make justice swift, accessible, and efficient for all.</p>
                         </AccordionItem>
 
                         {/* Core Values */}
                         <AccordionItem title="Core Values">
-                            <ul className="list-disc pl-5 text-md leading-relaxed text-gray-900">
+                            <ul className="list-disc pl-5 text-md leading-relaxed text-gray-300">
                                 <li><strong>Innovation</strong> - Redefining possibilities in legal tech for impactful solutions.</li>
                                 <li><strong>Accessibility</strong> - Making justice swift, affordable, and available to all.</li>
                                 <li><strong>Integrity</strong> - Committed to trust, transparency, and fairness in every step.</li>
@@ -167,7 +167,7 @@ export default function AboutPage() {
             <Blog />
 
             <motion.section 
-                className="py-10 bg-gray-100 sm:py-16 lg:py-24 font-montserrat"
+                className="py-10 sm:py-16 lg:py-24 font-montserrat"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -181,8 +181,8 @@ export default function AboutPage() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Numbers tell our story</h2>
-                        <p className="mt-3 text-xl leading-relaxed text-gray-600 md:mt-8">
+                        <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">Numbers tell our story</h2>
+                        <p className="mt-3 text-lg leading-relaxed text-gray-300 md:mt-8">
                             What started as a dream has now become a reality. Our numbers speak for themselves, showcasing our growth, impact, and commitment to excellence.
                         </p>
                     </motion.div>
@@ -215,8 +215,8 @@ export default function AboutPage() {
                                 <h3 className="font-bold text-7xl">
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-blue-600">{stat.number}</span>
                                 </h3>
-                                <p className="mt-4 text-xl font-medium text-gray-900">{stat.title}</p>
-                                <p className="text-base mt-0.5 text-gray-500">{stat.subtitle}</p>
+                                <p className="mt-4 text-xl font-medium text-gray-300">{stat.title}</p>
+                                <p className="text-base mt-0.5 text-gray-400">{stat.subtitle}</p>
                             </motion.div>
                         ))}
                     </div>
