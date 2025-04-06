@@ -88,21 +88,22 @@ export default Service;
 const ServiceCard = ({ icon, title, details, delay }) => {
   return (
     <motion.div 
-      className="flex flex-col bg-black/20 backdrop-blur-sm transition-all duration-300 hover:bg-black/30 hover:translate-y-[-4px] cursor-pointer"
+      className="relative group"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
     >
-      <div className="p-6">
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+      <div className="relative p-6 bg-black/50 backdrop-blur-sm rounded-lg border border-white/10">
         <div className="text-blue-400 mb-6 transition-transform duration-300 group-hover:scale-110">
           {icon}
         </div>
         <div className="flex-grow">
-          <h3 className="text-xl font-medium text-white transition-colors duration-300 hover:text-blue-400">
+          <h3 className="text-xl font-medium text-white transition-colors duration-300 group-hover:text-blue-400">
             {title}
           </h3>
-          <p className="mt-3 text-sm text-gray-400 line-clamp-3">
+          <p className="mt-3 text-sm text-gray-300 line-clamp-3">
             {details}
           </p>
         </div>

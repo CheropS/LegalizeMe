@@ -24,65 +24,48 @@ const Blog = () => {
           {blogPosts.map((post, index) => (
             <motion.div 
               key={post.id} 
-              className="flex flex-col bg-black/20 backdrop-blur-sm transition-all duration-300 hover:bg-black/30 hover:translate-y-[-4px] group"
+              className="relative group"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="relative aspect-[16/9] overflow-hidden">
-                <Image 
-                  className="object-cover transition-transform duration-500 group-hover:scale-105" 
-                  src={post.imgSrc} 
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  priority={post.id === 1}
-                />
-                <motion.div 
-                  className="absolute top-4 left-4"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                >
-                  <span className="px-3 py-1 text-xs font-medium text-white bg-blue-600/80 backdrop-blur-sm rounded-full transition-all duration-300 group-hover:bg-blue-500/90">
-                    {post.category}
-                  </span>
-                </motion.div>
-              </div>
-              
-              <div className="flex flex-col flex-grow p-6">
-                <div className="flex-grow">
-                  <span className="text-sm text-gray-400">
-                    {post.date}
-                  </span>
-                  <h3 className="mt-2 text-xl font-medium text-white line-clamp-2">
-                    <Link 
-                      href={post.url} 
-                      className="transition-colors duration-300 hover:text-blue-400"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {post.title}
-                    </Link>
-                  </h3>
-                  <p className="mt-3 text-sm text-gray-400 line-clamp-2">
-                    {post.brief}
-                  </p>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+              <div className="relative bg-black/50 backdrop-blur-sm rounded-lg border border-white/10">
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image 
+                    className="object-cover transition-transform duration-500 group-hover:scale-105" 
+                    src={post.imgSrc} 
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={post.id === 1}
+                  />
+                  <motion.div 
+                    className="absolute top-4 left-4"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                  >
+                    <span className="px-3 py-1 text-xs font-medium text-white bg-blue-600/80 backdrop-blur-sm rounded-full transition-all duration-300 group-hover:bg-blue-500/90">
+                      {post.category}
+                    </span>
+                  </motion.div>
                 </div>
-                
-                <Link 
-                  href={post.url} 
-                  className="inline-flex items-center mt-4 text-sm text-blue-400 hover:text-blue-300 transition-colors duration-300 group-hover:translate-x-1" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Read more
-                  <svg className="w-4 h-4 ml-2 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                  </svg>
-                </Link>
+                <div className="p-6">
+                  <h3 className="text-xl font-medium text-white transition-colors duration-300 group-hover:text-blue-400">
+                    {post.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-gray-300 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  <div className="mt-4">
+                    <Link href={`/blog/${post.slug}`} className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">
+                      Read more →
+                    </Link>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}

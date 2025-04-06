@@ -10,42 +10,45 @@ const AccordionItem = ({ title, children }) => {
 
     return (
         <motion.div 
-            className="bg-black/20 backdrop-blur-sm transition-all duration-300 hover:bg-black/30 group"
+            className="relative group"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
         >
-            <button
-                className="w-full p-6 text-left flex justify-between items-center focus:outline-none"
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                <span className="text-lg font-medium text-white group-hover:text-blue-400 transition-colors duration-300">{title}</span>
-                <motion.svg
-                    className="w-5 h-5 text-blue-400 transition-transform duration-300"
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+            <div className="relative p-6 bg-black/50 backdrop-blur-sm rounded-lg border border-white/10">
+                <button
+                    className="w-full text-left flex justify-between items-center focus:outline-none"
+                    onClick={() => setIsOpen(!isOpen)}
                 >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </motion.svg>
-            </button>
-            <motion.div 
-                initial={false}
-                animate={{ 
-                    height: isOpen ? "auto" : 0,
-                    opacity: isOpen ? 1 : 0
-                }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden"
-            >
-                <div className="px-6 pb-6">
-                    {children}
-                </div>
-            </motion.div>
+                    <span className="text-lg font-medium text-white group-hover:text-blue-400 transition-colors duration-300">{title}</span>
+                    <motion.svg
+                        className="w-5 h-5 text-blue-400 transition-transform duration-300"
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    </motion.svg>
+                </button>
+                <motion.div 
+                    initial={false}
+                    animate={{ 
+                        height: isOpen ? "auto" : 0,
+                        opacity: isOpen ? 1 : 0
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                >
+                    <div className="px-6 pb-6">
+                        {children}
+                    </div>
+                </motion.div>
+            </div>
         </motion.div>
     );
 };
@@ -164,17 +167,17 @@ export default function AboutPage() {
                     <div id="accordion-flush" className="space-y-4">
                         {/* Mission */}
                         <AccordionItem title="Mission">
-                            <p className="text-md leading-relaxed text-gray-400">To revolutionize the legal landscape by providing innovative, AI powered solutions that make legal services fast, accessible, and affordable for everyone, ensuring no one is left behind in the pursuit of justice.</p>
+                            <p className="text-md leading-relaxed text-gray-300">To revolutionize the legal landscape by providing innovative, AI powered solutions that make legal services fast, accessible, and affordable for everyone, ensuring no one is left behind in the pursuit of justice.</p>
                         </AccordionItem>
 
                         {/* Vision */}
                         <AccordionItem title="Vision">
-                            <p className="text-md leading-relaxed text-gray-400">To be the premier legal hub that revolutionizes law across Africa and beyond, empowering individuals and legal professionals with groundbreaking tools to make justice swift, accessible, and efficient for all.</p>
+                            <p className="text-md leading-relaxed text-gray-300">To be the premier legal hub that revolutionizes law across Africa and beyond, empowering individuals and legal professionals with groundbreaking tools to make justice swift, accessible, and efficient for all.</p>
                         </AccordionItem>
 
                         {/* Core Values */}
                         <AccordionItem title="Core Values">
-                            <ul className="list-disc pl-5 text-md leading-relaxed text-gray-400">
+                            <ul className="list-disc pl-5 text-md leading-relaxed text-gray-300">
                                 <li><strong className="text-white">Innovation</strong> - Redefining possibilities in legal tech for impactful solutions.</li>
                                 <li><strong className="text-white">Accessibility</strong> - Making justice swift, affordable, and available to all.</li>
                                 <li><strong className="text-white">Integrity</strong> - Committed to trust, transparency, and fairness in every step.</li>

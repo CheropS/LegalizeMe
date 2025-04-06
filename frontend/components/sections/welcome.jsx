@@ -50,25 +50,29 @@ export default function Welcome() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="mt-8"
-                        >
+                        >     
+                            
                             <a
                                 href="/register"
-                                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-[#2A538D] rounded-lg hover:bg-[#243363] transition-colors"
+                                className="relative group inline-flex items-center justify-center py-3 px-7 text-base font-medium text-white rounded-lg"
                             >
-                                Get Started
-                                <svg
-                                    className="w-5 h-5 ml-2"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                                    />
-                                </svg>
+                                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0 group-hover:opacity-100 transition duration-300" />
+                                <div className="relative text-white transition-all duration-300 hover:text-blue-400 flex items-center px-6 py-2.5">
+                                    Get Started
+                                    <svg
+                                        className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform inline-flex"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                        />
+                                    </svg>
+                                </div>
                             </a>
                         </motion.div>
                     </motion.div>

@@ -36,45 +36,48 @@ export default function FAQs() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.1 * index }}
-                            className="bg-black/20 backdrop-blur-sm transition-all duration-300 hover:bg-black/30 group"
+                            className="relative group"
                         >
-                            <button
-                                type="button"
-                                className="flex items-center justify-between w-full p-6 text-left focus:outline-none"
-                                onClick={() => toggleAccordion(index)}
-                            >
-                                <span className="text-lg font-medium text-white group-hover:text-blue-400 transition-colors duration-300">
-                                    {faq.question}
-                                </span>
-                                <motion.svg
-                                    className="w-5 h-5 text-blue-400 transition-transform duration-300"
-                                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                                    transition={{ duration: 0.3 }}
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                            <div className="relative p-6 bg-black/50 backdrop-blur-sm rounded-lg border border-white/10">
+                                <button
+                                    type="button"
+                                    className="flex items-center justify-between w-full text-left focus:outline-none"
+                                    onClick={() => toggleAccordion(index)}
                                 >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                </motion.svg>
-                            </button>
-
-                            <AnimatePresence>
-                                {openIndex === index && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
+                                    <span className="text-lg font-medium text-white group-hover:text-blue-400 transition-colors duration-300">
+                                        {faq.question}
+                                    </span>
+                                    <motion.svg
+                                        className="w-5 h-5 text-blue-400 transition-transform duration-300"
+                                        animate={{ rotate: openIndex === index ? 180 : 0 }}
                                         transition={{ duration: 0.3 }}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
                                     >
-                                        <div className="px-6 pb-6">
-                                            <p className="text-gray-400">
-                                                {faq.answer}
-                                            </p>
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                    </motion.svg>
+                                </button>
+
+                                <AnimatePresence>
+                                    {openIndex === index && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            <div className="px-6 pb-6">
+                                                <p className="text-gray-300">
+                                                    {faq.answer}
+                                                </p>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
                         </motion.div>
                     ))}
                 </div>

@@ -13,7 +13,7 @@ const features = [
   {
       name: '"Counsel" Your Personal Legal Assistant',
       description:
-          '"Counsel" isn’t just a chatbot—it’s your real-time document generator. From contracts to agreements, "Counsel" delivers. Fast, accurate, and as easy as a conversation, "Counsel" puts legal support at your fingertips.',
+          '"Counsel" isn\'t just a chatbot—it\'s your real-time document generator. From contracts to agreements, "Counsel" delivers. Fast, accurate, and as easy as a conversation, "Counsel" puts legal support at your fingertips.',
       icon: PaperAirplaneIcon,
   },
   {
@@ -24,7 +24,7 @@ const features = [
   },
   {
       name: 'Coming Soon: A Glimpse into the Future',
-      description: 'We’re just getting started. Soon, you’ll have access to cutting-edge features like advanced contract analysis to identify risks and optimize terms—plus much more. Stay tuned.',
+      description: 'We\'re just getting started. Soon, you\'ll have access to cutting-edge features like advanced contract analysis to identify risks and optimize terms—plus much more. Stay tuned.',
     icon: EllipsisHorizontalCircleIcon,
   },
 ];
@@ -70,12 +70,15 @@ export default function Features() {
                 className="group relative pl-16"
               >
                 <dt className="text-xl font-bold leading-7 text-white">
-                  <div className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-xl bg-[#2A538D] text-white transition-colors group-hover:bg-[#243363]">
-                    <feature.icon className="h-6 w-6" aria-hidden="true" />
+                  <div className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-xl relative group">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                    <div className="relative text-white transition-all duration-300 group-hover:text-blue-400">
+                      <feature.icon className="h-6 w-6" aria-hidden="true" />
+                    </div>
                   </div>
                   {feature.name}
                 </dt>
-                <dd className="mt-2 text-lg leading-relaxed text-gray-400">
+                <dd className="mt-2 text-lg leading-relaxed text-gray-300">
                   {feature.description}
                 </dd>
               </motion.div>

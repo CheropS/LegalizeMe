@@ -662,24 +662,27 @@ const Brief = () => {
                             </p>
                             <motion.a
                                 href="/docs"
-                                className="inline-flex items-center justify-center py-3 px-7 text-base font-medium text-white bg-[#2A538D] rounded-lg hover:bg-[#243363] transition-colors"
+                                className="relative group inline-flex items-center justify-center py-3 px-7 text-base font-medium text-white rounded-lg"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                Start Free
-                                <svg
-                                    className="w-5 h-5 ml-2"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                                    />
-                                </svg>
+                                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                                <div className="relative text-white transition-all duration-300 hover:text-blue-400 flex items-center">
+                                    Start Free
+                                    <svg
+                                        className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform inline-flex"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                        />
+                                    </svg>
+                                </div>
                             </motion.a>
                         </motion.div>
                     </div>

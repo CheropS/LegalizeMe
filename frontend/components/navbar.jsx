@@ -77,15 +77,15 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="relative px-3 py-2 text-sm font-medium text-white/90 transition-all duration-300 hover:text-[#2A538D] group rounded-lg hover:bg-white/5"
+                className="relative px-3 py-2 text-sm font-medium text-white/90 transition-all duration-300 group rounded-lg"
               >
-                <div className="flex items-center space-x-1">
-                  <span className="text-primary/80 group-hover:text-[#2A538D] transition-colors">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                <div className="relative flex items-center space-x-1">
+                  <span className="text-primary/80 group-hover:text-blue-400 transition-colors">
                     {item.icon}
                   </span>
-                  <span className="group: hover:text-[#2A538D]">{item.name}</span>
+                  <span className="group-hover:text-blue-400">{item.name}</span>
                 </div>
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </Link>
             ))}
           </nav>
@@ -95,7 +95,7 @@ export default function Navbar() {
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <Link href="/profile" className="flex items-center space-x-2 group">
-                  <Avatar className="h-9 w-9 ring-2 ring-primary/20 transition-all duration-300 group-hover:scale-110 hover:bg-[#243363] group-hover:ring-primary">
+                  <Avatar className="h-9 w-9 ring-2 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:ring-blue-400">
                     <AvatarImage src={user?.profileImage} alt={user?.name || "User"} />
                     <AvatarFallback className="bg-primary/10 text-primary">
                       {user?.name?.charAt(0) || <User className="h-5 w-5" />}
@@ -116,9 +116,14 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 asChild
-                className="bg-[#2A538D] hover:bg-[#243363] text-white transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm font-medium px-6"
+                className="relative group"
               >
-                <Link href="/login">Get started now</Link>
+                <Link href="/login" className="relative">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                  <div className="relative text-white transition-all duration-300 hover:scale-105 hover:text-blue-400 text-sm font-medium px-6">
+                    Get started now
+                  </div>
+                </Link>
               </Button>
             )}
           </div>
@@ -129,15 +134,15 @@ export default function Navbar() {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="lg:hidden text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                className="lg:hidden text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
               >
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-gray-900/95 backdrop-blur-lg border-gray-800">
+            <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-black/90 backdrop-blur-lg border-white/10">
               <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between py-4 border-b border-gray-800">
+                <div className="flex items-center justify-between py-4 border-b border-white/10">
                   <Link href="/" className="flex items-center">
                     <img src="/logo.svg" alt="LegalizeMe" className="h-7 w-auto" />
                   </Link>
@@ -148,30 +153,33 @@ export default function Navbar() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="flex items-center px-4 py-3 text-sm font-medium text-white/90 hover:text-[#2A538D] hover:bg-white/10 rounded-lg transition-all duration-300 group"
+                      className="relative group flex items-center px-4 py-3 text-sm font-medium text-white/90 hover:text-blue-400 rounded-lg transition-all duration-300"
                     >
-                      <span className="text-primary/80 group-hover:text-[#2A538D] transition-colors">
-                        {item.icon}
-                      </span>
-                      <span className="ml-3">{item.name}</span>
-                      <ChevronRight className="ml-auto h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-transform duration-300" />
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                      <div className="relative flex items-center">
+                        <span className="text-primary/80 group-hover:text-blue-400 transition-colors">
+                          {item.icon}
+                        </span>
+                        <span className="ml-3">{item.name}</span>
+                        <ChevronRight className="ml-auto h-5 w-5 text-gray-400 group-hover:text-blue-400 group-hover:translate-x-1 transition-transform duration-300" />
+                      </div>
                     </Link>
                   ))}
                 </nav>
 
-                <div className="mt-auto border-t border-gray-800 py-4">
+                <div className="mt-auto border-t border-white/10 py-4">
                   {isAuthenticated ? (
                     <div className="space-y-4 px-4">
                       <div className="flex items-center space-x-3">
-                        <Avatar className="h-10 w-10 ring-2 ring-primary/20">
+                        <Avatar className="h-10 w-10 ring-2 ring-primary/20 group-hover:ring-blue-400">
                           <AvatarImage src={user?.profileImage} alt={user?.name || "User"} />
-                          <AvatarFallback className="bg-primary/10 text-primary hover:bg-[#243363]">
+                          <AvatarFallback className="bg-primary/10 text-primary">
                             {user?.name?.charAt(0) || <User className="h-5 w-5" />}
                           </AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="text-sm font-medium hover:text-[#2A538D] text-white">{user?.name || "User"}</p>
-                          <Link href="/profile" className="text-xs text-gray-400 hover:text-[#2A538D] transition-colors">
+                          <p className="text-sm font-medium text-white group-hover:text-blue-400">{user?.name || "User"}</p>
+                          <Link href="/profile" className="text-xs text-gray-400 hover:text-blue-400 transition-colors">
                             View Profile
                           </Link>
                         </div>
@@ -191,9 +199,14 @@ export default function Navbar() {
                       <Button 
                         variant="outline"
                         asChild 
-                        className="w-full bg-primary hover:bg-purple-500 text-white transition-all duration-300 hover:scale-[1.02] text-sm font-medium"
+                        className="relative group w-full"
                       >
-                        <Link href="/login">Get started now</Link>
+                        <Link href="/login" className="relative">
+                          <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                          <div className="relative text-white transition-all duration-300 hover:scale-[1.02] hover:text-blue-400 text-sm font-medium">
+                            Get started now
+                          </div>
+                        </Link>
                       </Button>
                     </div>
                   )}
