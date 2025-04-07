@@ -645,7 +645,7 @@ const Brief = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
                         >
-                            <span className="block mb-4 text-lg font-semibold text-blue-600">
+                            <span className="block mb-4 text-lg font-semibold text-purple-600">
                                 Why Choose Us
                             </span>
                             <h2 className="mb-5 text-3xl font-bold text-white sm:text-[40px]/[48px] lg:text-5xl">

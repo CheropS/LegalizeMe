@@ -56,7 +56,7 @@ export default function Welcome() {
                                 href="/register"
                                 className="relative group inline-flex items-center justify-center py-3 px-7 text-base font-medium text-white rounded-lg"
                             >
-                                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0 group-hover:opacity-100 transition duration-300" />
+                                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-25 blur group-hover:opacity-100 transition duration-300" />
                                 <div className="relative text-white transition-all duration-300 hover:text-blue-400 flex items-center px-6 py-2.5">
                                     Get Started
                                     <svg

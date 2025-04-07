@@ -11,7 +11,7 @@ export default function FAQs() {
     };
 
     const faqItems = [
-        { question: "What is LegalizeMe", answer: "LegalizeMe is a transformative AI-powered legal platform that simplifies legal processes - providing fast research, dynamic document generation, and access to expert insights for both legal professionals and individuals." },
+        { question: "What is LegalizeMe?", answer: "LegalizeMe is a transformative AI-powered legal platform that simplifies legal processes - providing fast research, dynamic document generation, and access to expert insights for both legal professionals and individuals." },
         { question: "How does LegalizeMe work?", answer: "Our platform combines AI with legal expertise to automate key tasks. Users can conduct legal research, generate contracts instantly, via Counsel, our 24/7 AI chatbot." },
         { question: "Who can benefit from LegalizeMe?", answer: "Whether you are a law student, researcher, legal professional, small business, or individual needing legal support, LegalizeMe offers streamlined tools tailored to your need." },
         { question: "Is LegalizeMe secure and compliant?", answer: "Yes, security and privacy are paramount. We use end-to-end encryption and adhere to industry standards to protect your data while delivering efficient, reliable services." },
@@ -23,7 +23,7 @@ export default function FAQs() {
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="mb-16">
                     <h2 className="text-3xl font-bold text-white text-center">Frequently Asked Questions</h2>
-                    <p className="mt-3 text-gray-400 text-center">
+                    <p className="mt-3 text-gray-300 text-center text-md">
                         How can we help you?
                     </p>
                 </div>
@@ -70,7 +70,7 @@ export default function FAQs() {
                                             transition={{ duration: 0.3 }}
                                         >
                                             <div className="px-6 pb-6">
-                                                <p className="text-gray-300">
+                                                <p className="text-gray-300 text-md">
                                                     {faq.answer}
                                                 </p>
                                             </div>

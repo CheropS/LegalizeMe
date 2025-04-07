@@ -8,9 +8,9 @@ const Service = () => {
     <section className="py-20 font-montserrat">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="mb-16 text-center">
-          <span className="text-blue-400">Our Services</span>
+          <span className="text-purple-400 text-xl">Our Services</span>
           <h2 className="mt-2 text-3xl font-bold text-white">What We Offer</h2>
-          <p className="mt-3 text-gray-400">
+          <p className="mt-3 text-gray-300">
             Know more about our services and how we can help you with your legal needs
           </p>
         </div>
@@ -100,10 +100,10 @@ const ServiceCard = ({ icon, title, details, delay }) => {
           {icon}
         </div>
         <div className="flex-grow">
-          <h3 className="text-xl font-medium text-white transition-colors duration-300 group-hover:text-blue-400">
+          <h3 className="text-2xl font-medium text-white transition-colors duration-300 group-hover:text-blue-400">
             {title}
           </h3>
-          <p className="mt-3 text-sm text-gray-300 line-clamp-3">
+          <p className="mt-3 text-md text-gray-300 line-clamp-3">
             {details}
           </p>
         </div>

@@ -40,7 +40,7 @@ export default function Features() {
           transition={{ duration: 0.5 }}
           className="mx-auto max-w-2xl lg:text-center"
         >
-          <span className="mb-2 block text-lg font-semibold text-blue-600">
+          <span className="mb-2 block text-lg font-semibold text-purple-600">
             Get your cases solved faster
           </span>
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">

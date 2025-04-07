@@ -66,7 +66,7 @@ export default function Footer() {
               className="relative group w-full sm:w-auto inline-flex items-center justify-center rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
               disabled={isSubmitting}
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0 group-hover:opacity-100 transition duration-300" />
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-25 group-hover:opacity-100 transition duration-300" />
               <div className="relative bg-black/50 backdrop-blur-sm text-white transition-all duration-300 hover:text-blue-400 border border-white/10 rounded-lg px-6 py-2.5 flex items-center font-medium">
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">

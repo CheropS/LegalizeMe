@@ -30,7 +30,7 @@ export default function Partners() {
                     transition={{ duration: 0.5 }}
                     className="text-center"
                 >
-                    <h2 className="text-3xl font-bold tracking-tight text-blue-600 sm:text-4xl lg:text-5xl">
+                    <h2 className="text-3xl font-bold tracking-tight text-purple-600 sm:text-4xl lg:text-5xl">
                         Our Trusted Partners
                     </h2>
                     <p className="mt-6 text-lg leading-relaxed text-gray-300">
