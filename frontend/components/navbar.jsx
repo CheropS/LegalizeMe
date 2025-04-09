@@ -16,7 +16,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { toast } from "react-toastify"
 
@@ -94,13 +94,22 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-4">
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
-                <Link href="/profile" className="flex items-center space-x-2 group">
-                  <Avatar className="h-9 w-9 ring-2 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:ring-blue-400">
-                    <AvatarImage src={user?.profileImage} alt={user?.name || "User"} />
-                    <AvatarFallback className="bg-primary/10 text-primary">
-                      {user?.name?.charAt(0) || <User className="h-5 w-5" />}
-                    </AvatarFallback>
-                  </Avatar>
+                <Link 
+                  href="/profile" 
+                  className="flex items-center space-x-2 group relative"
+                >
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-0 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                  <div className="relative flex items-center">
+                    <Avatar className="h-9 w-9 ring-2 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:ring-blue-400">
+                      <AvatarImage src={user?.profileImage} alt={user?.name || "User"} />
+                      <AvatarFallback className="bg-primary/10 text-primary">
+                        {user?.name?.charAt(0) || <User className="h-5 w-5" />}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="ml-2 text-sm text-white/90 group-hover:text-blue-400 transition-colors">
+                      {user?.name || "Profile"}
+                    </span>
+                  </div>
                 </Link>
                 <Button
                   variant="destructive"
@@ -141,6 +150,7 @@ export default function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-black/90 backdrop-blur-lg border-white/10">
+              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between py-4 border-b border-white/10">
                   <Link href="/" className="flex items-center">

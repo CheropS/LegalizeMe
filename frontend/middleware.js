@@ -9,7 +9,7 @@ export function middleware(request) {
   }
 
   // Get the user token from cookies
-  const token = request.cookies.get("token")?.value
+  const token = request.cookies.get("access_token")?.value
 
   // Check if the user is trying to access protected routes
   if (request.nextUrl.pathname.startsWith("/profile")) {

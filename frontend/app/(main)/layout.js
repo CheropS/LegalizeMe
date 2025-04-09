@@ -1,5 +1,6 @@
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import CookieBanner from "@/components/cookie-banner";
 
 export default function MainLayout({ children }) {
   return (
@@ -9,6 +10,7 @@ export default function MainLayout({ children }) {
         {children}
       </main>
       <Footer />
+      <CookieBanner />
     </>
   );
 } 
