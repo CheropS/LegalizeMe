@@ -10,7 +10,6 @@ function LayoutContentWrapper({ children }) {
   // Check if current path is in auth routes or counsel
   const isAuthRoute = pathname === '/login' || pathname === '/register' || pathname === '/forgot-password'
   const isCounselPage = pathname === '/counsel'
-  const isNotFoundPage = pathname === '/404'
 
   if (isAuthRoute) {
     return (
@@ -26,10 +25,6 @@ function LayoutContentWrapper({ children }) {
         {children}
       </div>
     )
-  }
-
-  if (isNotFoundPage) {
-    return children
   }
 
   return (
