@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { User, Mail, Lock, Eye, EyeOff, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
-import useAuth from '@/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -15,7 +15,8 @@ export default function RegisterPage() {
     username: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    agreeToTerms: false
   })
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
@@ -125,6 +126,12 @@ export default function RegisterPage() {
       return
     }
 
+    if (!formData.agreeToTerms) {
+      setError('You must agree to the Terms of Service and Privacy Policy')
+      setIsLoading(false)
+      return
+    }
+
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match')
       setIsLoading(false)
@@ -145,7 +152,7 @@ export default function RegisterPage() {
       })
 
       const data = await response.json()
-      console.log('Response data:', data)
+      // console.log('Response data:', data)
 
       if (response.ok) {
         setSuccess('Account created successfully! Redirecting to login...')
@@ -286,6 +293,30 @@ export default function RegisterPage() {
                       <Eye className="h-5 w-5 text-gray-400" />
                     )}
                   </button>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <div className="flex items-center h-5">
+                  <input
+                    type="checkbox"
+                    id="agreeToTerms"
+                    checked={formData.agreeToTerms}
+                    onChange={(e) => setFormData({ ...formData, agreeToTerms: e.target.checked })}
+                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-700 rounded bg-gray-800/50"
+                  />
+                </div>
+                <div className="ml-3 text-sm">
+                  <label htmlFor="agreeToTerms" className="text-gray-300">
+                    I agree to the{' '}
+                    <Link href="/terms" className="text-indigo-400 hover:text-indigo-300 hover:underline">
+                      Terms of Service
+                    </Link>{' '}
+                    and{' '}
+                    <Link href="/privacy" className="text-indigo-400 hover:text-indigo-300 hover:underline">
+                      Privacy Policy
+                    </Link>
+                  </label>
                 </div>
               </div>
 

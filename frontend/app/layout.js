@@ -4,6 +4,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { Montserrat } from 'next/font/google'
 import LayoutContent from "@/components/LayoutContent";
 import GlobalBackground from "@/components/global-background";
+import CookieBanner from '@/components/cookie-banner'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
             {children}
           </LayoutContent>
         </AuthProvider>
+        <CookieBanner />
       </body>
     </html>
   );

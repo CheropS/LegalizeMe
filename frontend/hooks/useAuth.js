@@ -25,28 +25,28 @@ export const AuthProvider = ({ children }) => {
   // Initialize auth state
   useEffect(() => {
     const initAuth = () => {
-      console.log('Auth: Starting initialization')
+      // console.log('Auth: Starting initialization')
       try {
         const token = localStorage.getItem("access_token")
         const userData = localStorage.getItem("userData")
-        console.log('Auth: Found token:', token ? 'yes' : 'no')
-        console.log('Auth: Found userData:', userData ? 'yes' : 'no')
+        // console.log('Auth: Found token:', token ? 'yes' : 'no')
+        // console.log('Auth: Found userData:', userData ? 'yes' : 'no')
 
         let authState = false
         let userState = null
 
         if (token && token !== "null" && token !== "undefined") {
-          console.log('Auth: Valid token found, setting authState to true')
+          // console.log('Auth: Valid token found, setting authState to true')
           authState = true
           
           if (userData && userData !== "null" && userData !== "undefined") {
             try {
               const parsedUser = JSON.parse(userData)
               if (parsedUser && typeof parsedUser === "object") {
-                console.log('Auth: Setting user data')
+                // console.log('Auth: Setting user data')
                 userState = parsedUser
               } else {
-                console.log('Auth: Invalid user data format')
+                // console.log('Auth: Invalid user data format')
                 // If we have a token but invalid user data, we can't fetch user data
                 // since there's no endpoint for that. Just set auth state.
                 authState = true
@@ -57,13 +57,13 @@ export const AuthProvider = ({ children }) => {
               authState = true
             }
           } else {
-            console.log('Auth: No user data found, but token exists')
+            // console.log('Auth: No user data found, but token exists')
             // We have a token but no user data, and no endpoint to fetch user data
             // Just set auth state
             authState = true
           }
         } else {
-          console.log('Auth: No valid token found')
+          // console.log('Auth: No valid token found')
           localStorage.removeItem("access_token")
           authState = false
         }
@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }) => {
         // Update states together to prevent race conditions
         setIsAuthenticated(authState)
         setUser(userState)
-        console.log('Auth: Setting states - isAuthenticated:', authState, 'user:', userState ? 'exists' : 'null')
+        // console.log('Auth: Setting states - isAuthenticated:', authState, 'user:', userState ? 'exists' : 'null')
         
       } catch (error) {
         console.error("Auth: Initialization failed:", error)
@@ -80,7 +80,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("access_token")
         localStorage.removeItem("userData")
       } finally {
-        console.log('Auth: Initialization complete')
+        // console.log('Auth: Initialization complete')
         setIsInitialized(true)
       }
     }
@@ -90,21 +90,21 @@ export const AuthProvider = ({ children }) => {
 
   // Function to check auth and handle redirects
   const checkAuthAndRedirect = (targetPath = '/profile') => {
-    console.log('Auth: Checking auth for redirect to', targetPath, 'current path:', pathname)
+    // console.log('Auth: Checking auth for redirect to', targetPath, 'current path:', pathname)
     const token = localStorage.getItem("access_token")
     const isValid = token && token !== "null" && token !== "undefined"
-    console.log('Auth: Token is valid:', isValid)
+    // console.log('Auth: Token is valid:', isValid)
     
     // If we have a valid token and want to go to profile, just go there
     if (isValid && targetPath === '/profile') {
-      console.log('Auth: Valid token, redirecting to profile page')
+      // console.log('Auth: Valid token, redirecting to profile page')
       router.push('/profile')
       return true
     }
     
     // Always update authentication state if we have a valid token
     if (isValid && !isAuthenticated) {
-      console.log('Auth: Valid token but not authenticated, updating state')
+      // console.log('Auth: Valid token but not authenticated, updating state')
       setIsAuthenticated(true)
       
       // Try to get user data from localStorage
@@ -121,16 +121,16 @@ export const AuthProvider = ({ children }) => {
       }
     }
     
-    console.log('Auth: Auth check complete, token valid:', isValid, 'isAuthenticated:', isAuthenticated)
+    // console.log('Auth: Auth check complete, token valid:', isValid, 'isAuthenticated:', isAuthenticated)
     return isValid
   }
 
   // Listen for storage events (for multi-tab support)
   useEffect(() => {
     const handleStorageChange = (e) => {
-      console.log('Auth: Storage change detected:', e.key)
+      // console.log('Auth: Storage change detected:', e.key)
       if (e.key === "access_token" || e.key === "userData") {
-        console.log('Auth: Relevant storage change, updating state')
+        // console.log('Auth: Relevant storage change, updating state')
         
         const token = localStorage.getItem("access_token")
         const userData = localStorage.getItem("userData")
@@ -139,14 +139,14 @@ export const AuthProvider = ({ children }) => {
         let userState = null
         
         if (token && token !== "null" && token !== "undefined") {
-          console.log('Auth: Valid token in storage')
+          // console.log('Auth: Valid token in storage')
           authState = true
           
           if (userData && userData !== "null" && userData !== "undefined") {
             try {
               const parsedUser = JSON.parse(userData)
               if (parsedUser && typeof parsedUser === "object") {
-                console.log('Auth: Valid user data in storage')
+                // console.log('Auth: Valid user data in storage')
                 userState = parsedUser
               }
             } catch (error) {
@@ -154,12 +154,12 @@ export const AuthProvider = ({ children }) => {
             }
           }
         } else {
-          console.log('Auth: No valid token in storage')
+          // console.log('Auth: No valid token in storage')
         }
         
         setIsAuthenticated(authState)
         setUser(userState)
-        console.log('Auth: Storage change - updating states - isAuthenticated:', authState, 'user:', userState ? 'exists' : 'null')
+        // console.log('Auth: Storage change - updating states - isAuthenticated:', authState, 'user:', userState ? 'exists' : 'null')
 
         if (!authState && pathname === '/profile') {
           router.push('/login')
@@ -172,25 +172,25 @@ export const AuthProvider = ({ children }) => {
   }, [pathname, router])
 
   const login = async (token, userData) => {
-    console.log('Auth: Login attempt')
+    // console.log('Auth: Login attempt')
     try {
       if (!token || token === "null" || token === "undefined") {
         throw new Error("Invalid token")
       }
       
-      console.log('Auth: Setting token and user data')
+      // console.log('Auth: Setting token and user data')
       localStorage.setItem("access_token", token)
       
       // Store user data if provided
       if (userData) {
-        console.log('Auth: User data provided, storing it')
+        // console.log('Auth: User data provided, storing it')
         localStorage.setItem("userData", JSON.stringify(userData))
       }
       
       // Update states together
       setIsAuthenticated(true)
       setUser(userData)
-      console.log('Auth: Login successful, states updated')
+      // console.log('Auth: Login successful, states updated')
       router.push('/')
     } catch (error) {
       console.error("Auth: Login failed:", error)
@@ -202,13 +202,13 @@ export const AuthProvider = ({ children }) => {
   }
 
   const loginWithGoogle = async (googleToken) => {
-    console.log('Auth: Google login attempt')
+    // console.log('Auth: Google login attempt')
     try {
       if (!googleToken) {
         throw new Error("Invalid Google token")
       }
       
-      console.log('Auth: Processing Google token')
+      // console.log('Auth: Processing Google token')
       
       // Verify the Google token client-side
       const response = await fetch('https://oauth2.googleapis.com/tokeninfo?id_token=' + googleToken);
@@ -235,7 +235,7 @@ export const AuthProvider = ({ children }) => {
       // Update states together
       setIsAuthenticated(true);
       setUser(userData);
-      console.log('Auth: Google login successful, states updated');
+      // console.log('Auth: Google login successful, states updated');
       router.push('/');
       
       return true;
@@ -250,7 +250,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   const logout = () => {
-    console.log('Auth: Logout initiated')
+    // console.log('Auth: Logout initiated')
     try {
       localStorage.removeItem("access_token")
       localStorage.removeItem("refresh_token")
@@ -258,7 +258,7 @@ export const AuthProvider = ({ children }) => {
       // Update states together
       setIsAuthenticated(false)
       setUser(null)
-      console.log('Auth: Logout successful, states updated')
+      // console.log('Auth: Logout successful, states updated')
       router.push("/")
     } catch (error) {
       console.error("Auth: Logout failed:", error)
@@ -268,14 +268,14 @@ export const AuthProvider = ({ children }) => {
   // Check auth state on route changes
   useEffect(() => {
     if (isInitialized) {
-      console.log('Auth: Route change detected:', pathname)
+      // console.log('Auth: Route change detected:', pathname)
       
       // If we have a token but not authenticated, update the state
       const token = localStorage.getItem("access_token")
       const tokenIsValid = token && token !== "null" && token !== "undefined"
       
       if (tokenIsValid && !isAuthenticated) {
-        console.log('Auth: Valid token but not authenticated, updating state')
+        // console.log('Auth: Valid token but not authenticated, updating state')
         setIsAuthenticated(true)
         
         // Try to get user data from localStorage
@@ -295,7 +295,7 @@ export const AuthProvider = ({ children }) => {
   }, [pathname, isInitialized, isAuthenticated])
 
   if (!isInitialized) {
-    console.log('Auth: Not initialized, showing loading state')
+    // console.log('Auth: Not initialized, showing loading state')
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
@@ -303,7 +303,7 @@ export const AuthProvider = ({ children }) => {
     )
   }
 
-  console.log('Auth: Provider rendering, isAuthenticated:', isAuthenticated, 'user:', user ? 'exists' : 'null')
+  // console.log('Auth: Provider rendering, isAuthenticated:', isAuthenticated, 'user:', user ? 'exists' : 'null')
   return (
     <AuthContext.Provider value={{ 
       isAuthenticated, 
@@ -323,10 +323,10 @@ export const AuthProvider = ({ children }) => {
 
 const useAuth = () => {
   const context = useContext(AuthContext)
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider")
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider')
   }
   return context
 }
 
-export default useAuth
+export { useAuth }

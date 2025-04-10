@@ -54,13 +54,28 @@ const Blog = () => {
                   </motion.div>
                 </div>
                 <div className="p-6">
+                  <div className="flex items-center space-x-4 mb-3">
+                    <span className="text-xs text-gray-400">
+                      {post.date}
+                    </span>
+                    <span className="text-xs text-gray-400">•</span>
+                    <span className="text-xs text-gray-400">
+                      {post.readingTime} min read
+                    </span>
+                  </div>
                   <h3 className="text-xl font-medium text-white transition-colors duration-300 group-hover:text-blue-400">
                     {post.title}
                   </h3>
                   <p className="mt-3 text-sm text-gray-300 line-clamp-3">
                     {post.excerpt}
                   </p>
-                  <div className="mt-4">
+                  <div className="mt-4 flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-600/20 flex items-center justify-center">
+                        <span className="text-xs text-blue-400">{post.author.charAt(0)}</span>
+                      </div>
+                      <span className="text-xs text-gray-400">{post.author}</span>
+                    </div>
                     <Link href={`/blog/${post.slug}`} className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">
                       Read more →
                     </Link>

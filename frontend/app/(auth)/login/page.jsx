@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { User, Lock, Eye, EyeOff, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
-import useAuth from '@/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 export default function LoginPage() {
   const router = useRouter()

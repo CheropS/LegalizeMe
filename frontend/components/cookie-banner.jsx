@@ -1,70 +1,71 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { X, Cookie } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { X } from 'lucide-react'
 
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    const hasConsented = localStorage.getItem('cookieConsent')
-    if (!hasConsented) {
+    // Check if user has already made a choice
+    const cookieConsent = localStorage.getItem('cookieConsent')
+    if (!cookieConsent) {
       setIsVisible(true)
     }
   }, [])
 
   const handleAccept = () => {
-    localStorage.setItem('cookieConsent', 'true')
+    localStorage.setItem('cookieConsent', 'accepted')
     setIsVisible(false)
+    // Here you would typically initialize your analytics/tracking scripts
   }
 
-  const handleDecline = () => {
-    localStorage.setItem('cookieConsent', 'false')
+  const handleReject = () => {
+    localStorage.setItem('cookieConsent', 'rejected')
     setIsVisible(false)
+    // Here you would typically remove or disable your analytics/tracking scripts
   }
 
   if (!isVisible) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-t border-white/10">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-t border-white/10">
       <div className="container mx-auto px-4 py-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-start gap-4">
-            <div className="p-2 bg-blue-500/20 rounded-lg">
-              <Cookie className="h-6 w-6 text-blue-400" />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold text-white mb-1">Cookie Policy</h3>
-              <p className="text-sm text-gray-300">
-                We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. 
-                By clicking "Accept All", you consent to our use of cookies.
-              </p>
-            </div>
+          <div className="flex-1 text-sm text-gray-300">
+            <p>
+              We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. 
+              By clicking "Accept All", you consent to our use of cookies. 
+              <Link href="/cookie-policy" className="text-blue-400 hover:text-blue-300 ml-1">
+                Learn more
+              </Link>
+            </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center space-x-3">
             <Button
               variant="outline"
-              size="sm"
-              onClick={handleDecline}
+              onClick={handleReject}
               className="text-white border-white/20 hover:bg-white/10"
             >
-              Decline
+              Reject All
             </Button>
             <Button
-              size="sm"
               onClick={handleAccept}
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-blue-600 hover:bg-blue-700 text-white"
             >
               Accept All
             </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsVisible(false)}
+              className="text-gray-400 hover:text-white"
+            >
+              <X className="h-4 w-4" />
+            </Button>
           </div>
-          <button
-            onClick={() => setIsVisible(false)}
-            className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
-          >
-            <X className="h-5 w-5" />
-          </button>
         </div>
       </div>
     </div>

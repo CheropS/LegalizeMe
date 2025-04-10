@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import useAuth from "../hooks/useAuth"
+import { useAuth } from "../hooks/useAuth"
 import {
   User,
   LogOut,
@@ -105,10 +105,13 @@ export default function Navbar() {
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-0 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
                   <div className="relative flex items-center">
                     <Avatar className="h-9 w-9 ring-2 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:ring-blue-400">
-                      <AvatarImage src={user?.profileImage} alt={user?.name || "User"} />
-                      <AvatarFallback className="bg-primary/10 text-primary">
-                        {user?.name?.charAt(0) || <User className="h-5 w-5" />}
-                      </AvatarFallback>
+                      {user?.profile_picture ? (
+                        <AvatarImage src={user.profile_picture} alt={user?.name || "User"} />
+                      ) : (
+                        <AvatarFallback className="bg-primary/10 text-primary">
+                          {user?.name?.charAt(0) || <User className="h-5 w-5" />}
+                        </AvatarFallback>
+                      )}
                     </Avatar>
                     <span className="ml-2 text-sm text-white/90 group-hover:text-blue-400 transition-colors">
                       {user?.name || "Profile"}
@@ -186,10 +189,13 @@ export default function Navbar() {
                     <div className="space-y-4 px-4">
                       <div className="flex items-center space-x-3">
                         <Avatar className="h-10 w-10 ring-2 ring-primary/20 group-hover:ring-blue-400">
-                          <AvatarImage src={user?.profileImage} alt={user?.name || "User"} />
-                          <AvatarFallback className="bg-primary/10 text-primary">
-                            {user?.name?.charAt(0) || <User className="h-5 w-5" />}
-                          </AvatarFallback>
+                          {user?.profile_picture ? (
+                            <AvatarImage src={user.profile_picture} alt={user?.name || "User"} />
+                          ) : (
+                            <AvatarFallback className="bg-primary/10 text-primary">
+                              {user?.name?.charAt(0) || <User className="h-5 w-5" />}
+                            </AvatarFallback>
+                          )}
                         </Avatar>
                         <div>
                           <p className="text-sm font-medium text-white group-hover:text-blue-400">{user?.name || "User"}</p>
