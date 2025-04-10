@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 import { Button } from '@/components/ui/button'
 import { LogOut, User, Settings } from 'lucide-react'
+import Image from 'next/image'
 
 export default function ProfilePage() {
   const router = useRouter()
@@ -12,13 +13,23 @@ export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true)
 
   console.log('Profile: Component render - isInitialized:', isInitialized, 'isAuthenticated:', isAuthenticated, 'isLoading:', isLoading)
+  console.log('Profile: User data:', user)
 
   useEffect(() => {
     console.log('Profile: Effect running - isInitialized:', isInitialized, 'isAuthenticated:', isAuthenticated)
     if (isInitialized) {
       if (!isAuthenticated) {
-        console.log('Profile: Not authenticated, redirecting to login')
-        router.push('/login')
+        // Check if there's a token in localStorage before redirecting
+        const token = localStorage.getItem("access_token");
+        if (!token || token === "null" || token === "undefined") {
+          console.log('Profile: Not authenticated and no token, redirecting to login')
+          router.push('/login')
+        } else {
+          // We have a token but isAuthenticated is false - this might be a race condition
+          // Set loading to false to show the profile anyway since we have a token
+          console.log('Profile: Token found but not authenticated yet, showing profile')
+          setIsLoading(false)
+        }
       } else {
         console.log('Profile: Authenticated, setting loading to false')
         setIsLoading(false)
@@ -42,6 +53,9 @@ export default function ProfilePage() {
     return null
   }
 
+  // Determine if we should show the user's profile picture or a default avatar
+  const hasProfilePicture = user?.picture || user?.profile_picture
+
   console.log('Profile: Rendering profile content')
   return (
     <div className="min-h-screen bg-black text-white">
@@ -51,12 +65,24 @@ export default function ProfilePage() {
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center space-x-4">
                 <div className="relative">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
-                    <User className="w-10 h-10 text-white" />
-                  </div>
+                  {hasProfilePicture ? (
+                    <div className="w-20 h-20 rounded-full overflow-hidden">
+                      <Image 
+                        src={user.picture || user.profile_picture}
+                        alt={user.name || 'User profile'}
+                        width={80}
+                        height={80}
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+                      <User className="w-10 h-10 text-white" />
+                    </div>
+                  )}
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold">{user?.name || 'User'}</h1>
+                  <h1 className="text-2xl font-bold">{user?.name || user?.username || 'User'}</h1>
                   <p className="text-gray-400">{user?.email}</p>
                 </div>
               </div>
@@ -80,26 +106,42 @@ export default function ProfilePage() {
                   <div className="space-y-4">
                     <div>
                       <label className="text-sm text-gray-400">Name</label>
-                      <p className="text-white">{user?.name || 'Not set'}</p>
+                      <p className="text-white">{user?.name || user?.username || 'Not set'}</p>
                     </div>
                     <div>
                       <label className="text-sm text-gray-400">Email</label>
-                      <p className="text-white">{user?.email}</p>
+                      <p className="text-white">{user?.email || 'Not set'}</p>
                     </div>
+                    {user?.id && (
+                      <div>
+                        <label className="text-sm text-gray-400">User ID</label>
+                        <p className="text-white">{user.id}</p>
+                      </div>
+                    )}
+                    {user?.last_login && (
+                      <div>
+                        <label className="text-sm text-gray-400">Last Login</label>
+                        <p className="text-white">{new Date(user.last_login).toLocaleString()}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 <div className="bg-white/5 rounded-lg p-6 border border-white/10">
-                  <h2 className="text-lg font-semibold mb-4">Preferences</h2>
+                  <h2 className="text-lg font-semibold mb-4">Authentication</h2>
                   <div className="space-y-4">
                     <div>
-                      <label className="text-sm text-gray-400">Theme</label>
-                      <p className="text-white">Dark</p>
+                      <label className="text-sm text-gray-400">Authentication Method</label>
+                      <p className="text-white">
+                        {user?.google_id ? 'Google Account' : 'Email & Password'}
+                      </p>
                     </div>
-                    <div>
-                      <label className="text-sm text-gray-400">Language</label>
-                      <p className="text-white">English</p>
-                    </div>
+                    {user?.date_joined && (
+                      <div>
+                        <label className="text-sm text-gray-400">Account Created</label>
+                        <p className="text-white">{new Date(user.date_joined).toLocaleString()}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -109,4 +151,4 @@ export default function ProfilePage() {
       </div>
     </div>
   )
-} 
+}

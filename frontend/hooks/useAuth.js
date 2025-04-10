@@ -12,6 +12,7 @@ const AuthContext = createContext({
   logout: () => {},
   checkAuthAndRedirect: () => {},
   isInitialized: false,
+  loginWithGoogle: () => {},
 })
 
 export const AuthProvider = ({ children }) => {
@@ -45,18 +46,21 @@ export const AuthProvider = ({ children }) => {
                 console.log('Auth: Setting user data')
                 userState = parsedUser
               } else {
-                console.log('Auth: Invalid user data format, attempting to fetch user data')
-                // If user data is invalid but we have a token, we should try to fetch user data
-                fetchUserData(token)
+                console.log('Auth: Invalid user data format')
+                // If we have a token but invalid user data, we can't fetch user data
+                // since there's no endpoint for that. Just set auth state.
+                authState = true
               }
             } catch (error) {
               console.error("Auth: Error parsing user data:", error)
-              console.log('Auth: Attempting to fetch user data after parse error')
-              fetchUserData(token)
+              // If we can't parse user data, we still have a token, so we're authenticated
+              authState = true
             }
           } else {
-            console.log('Auth: No user data found, attempting to fetch user data')
-            fetchUserData(token)
+            console.log('Auth: No user data found, but token exists')
+            // We have a token but no user data, and no endpoint to fetch user data
+            // Just set auth state
+            authState = true
           }
         } else {
           console.log('Auth: No valid token found')
@@ -81,110 +85,57 @@ export const AuthProvider = ({ children }) => {
       }
     }
 
-    const fetchUserData = async (token) => {
-      try {
-        console.log('Auth: Fetching user data from API')
-        const response = await fetch('/api/auth/me', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        })
-        
-        if (response.ok) {
-          const userData = await response.json()
-          console.log('Auth: Successfully fetched user data:', userData)
-          localStorage.setItem("userData", JSON.stringify(userData))
-          setUser(userData)
-          return userData
-        } else if (response.status === 401) {
-          console.log('Auth: Token invalid or expired')
-          localStorage.removeItem("access_token")
-          localStorage.removeItem("userData")
-          setIsAuthenticated(false)
-          setUser(null)
-          router.push('/login')
-        } else {
-          console.error('Auth: Failed to fetch user data:', response.status)
-          throw new Error('Failed to fetch user data')
-        }
-      } catch (error) {
-        console.error('Auth: Error fetching user data:', error)
-        // Don't clear the token on network errors, only on auth errors
-        if (error.message.includes('Failed to fetch')) {
-          console.log('Auth: Network error, keeping existing auth state')
-        } else {
-          localStorage.removeItem("access_token")
-          localStorage.removeItem("userData")
-          setIsAuthenticated(false)
-          setUser(null)
-        }
-      }
-    }
-
     initAuth()
-  }, [])
+  }, [router])
 
   // Function to check auth and handle redirects
   const checkAuthAndRedirect = (targetPath = '/profile') => {
-    console.log('Auth: Checking auth and redirect, isInitialized:', isInitialized)
-    if (!isInitialized) {
-      console.log('Auth: Not initialized yet, returning false')
-      return false
-    }
-    
+    console.log('Auth: Checking auth for redirect to', targetPath)
     const token = localStorage.getItem("access_token")
-    console.log('Auth: Current token status:', token ? 'exists' : 'missing')
-    if (!token || token === "null" || token === "undefined") {
-      console.log('Auth: No valid token, redirecting to login')
+    const isValid = token && token !== "null" && token !== "undefined"
+    
+    if (!isValid && pathname === targetPath) {
+      console.log('Auth: No valid token, redirecting from', pathname, 'to /login')
       router.push('/login')
       return false
     }
-    if (pathname !== targetPath) {
-      console.log('Auth: Redirecting to target path:', targetPath)
-      router.push(targetPath)
-    }
-    return true
+    
+    console.log('Auth: Auth check complete, token valid:', isValid)
+    return isValid
   }
 
-  // Listen for storage changes
+  // Listen for storage events (for multi-tab support)
   useEffect(() => {
     const handleStorageChange = (e) => {
       console.log('Auth: Storage change detected:', e.key)
-      if (e.key === 'access_token' || e.key === 'userData') {
+      if (e.key === "access_token" || e.key === "userData") {
+        console.log('Auth: Relevant storage change, updating state')
+        
         const token = localStorage.getItem("access_token")
         const userData = localStorage.getItem("userData")
-
+        
         let authState = false
         let userState = null
-
+        
         if (token && token !== "null" && token !== "undefined") {
+          console.log('Auth: Valid token in storage')
           authState = true
+          
           if (userData && userData !== "null" && userData !== "undefined") {
             try {
               const parsedUser = JSON.parse(userData)
               if (parsedUser && typeof parsedUser === "object") {
+                console.log('Auth: Valid user data in storage')
                 userState = parsedUser
-              } else {
-                console.log('Auth: Invalid user data format in storage change')
-                // Attempt to fetch user data if it's invalid
-                fetchUserData(token)
               }
             } catch (error) {
-              console.error("Auth: Error parsing user data on storage change:", error)
-              localStorage.removeItem("userData")
-              // Attempt to fetch user data after error
-              fetchUserData(token)
+              console.error("Auth: Error parsing user data from storage:", error)
             }
-          } else {
-            console.log('Auth: No user data in storage change, attempting to fetch')
-            fetchUserData(token)
           }
         } else {
-          authState = false
-          localStorage.removeItem("access_token")
+          console.log('Auth: No valid token in storage')
         }
-
-        // Update states together
+        
         setIsAuthenticated(authState)
         setUser(userState)
         console.log('Auth: Storage change - updating states - isAuthenticated:', authState, 'user:', userState ? 'exists' : 'null')
@@ -209,25 +160,11 @@ export const AuthProvider = ({ children }) => {
       console.log('Auth: Setting token and user data')
       localStorage.setItem("access_token", token)
       
-      // If userData is not provided, fetch it from the API
-      if (!userData) {
-        console.log('Auth: No user data provided, fetching from API')
-        const response = await fetch('/api/auth/me', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        })
-        
-        if (response.ok) {
-          userData = await response.json()
-          console.log('Auth: Successfully fetched user data during login')
-        } else {
-          throw new Error('Failed to fetch user data')
-        }
+      // Store user data if provided
+      if (userData) {
+        console.log('Auth: User data provided, storing it')
+        localStorage.setItem("userData", JSON.stringify(userData))
       }
-      
-      // Store user data
-      localStorage.setItem("userData", JSON.stringify(userData))
       
       // Update states together
       setIsAuthenticated(true)
@@ -243,6 +180,54 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  const loginWithGoogle = async (googleToken) => {
+    console.log('Auth: Google login attempt')
+    try {
+      if (!googleToken) {
+        throw new Error("Invalid Google token")
+      }
+      
+      console.log('Auth: Processing Google token')
+      
+      // Verify the Google token client-side
+      const response = await fetch('https://oauth2.googleapis.com/tokeninfo?id_token=' + googleToken);
+      
+      if (!response.ok) {
+        throw new Error('Failed to verify Google token');
+      }
+      
+      const googleData = await response.json();
+      
+      // Create user data from Google response
+      const userData = {
+        email: googleData.email,
+        name: googleData.name,
+        picture: googleData.picture,
+        google_id: googleData.sub,
+        is_google_user: true
+      };
+      
+      // Store the Google token as our access token (simplified approach)
+      localStorage.setItem("access_token", googleToken);
+      localStorage.setItem("userData", JSON.stringify(userData));
+      
+      // Update states together
+      setIsAuthenticated(true);
+      setUser(userData);
+      console.log('Auth: Google login successful, states updated');
+      router.push('/');
+      
+      return true;
+    } catch (error) {
+      console.error("Auth: Google login failed:", error)
+      localStorage.removeItem("access_token")
+      localStorage.removeItem("userData")
+      setIsAuthenticated(false)
+      setUser(null)
+      return false
+    }
+  }
+
   const logout = () => {
     console.log('Auth: Logout initiated')
     try {
@@ -253,7 +238,7 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(false)
       setUser(null)
       console.log('Auth: Logout successful, states updated')
-      router.push("/login")
+      router.push("/")
     } catch (error) {
       console.error("Auth: Logout failed:", error)
     }
@@ -265,17 +250,35 @@ export const AuthProvider = ({ children }) => {
       console.log('Auth: Route change detected:', pathname)
       const isAuthPage = pathname === '/login' || pathname === '/register'
       const token = localStorage.getItem("access_token")
+      const tokenIsValid = token && token !== "null" && token !== "undefined"
       console.log('Auth: Current route auth check - isAuthPage:', isAuthPage, 'hasToken:', !!token)
 
-      if (isAuthPage && token && token !== "null" && token !== "undefined") {
+      if (isAuthPage && tokenIsValid) {
         console.log('Auth: On auth page with token, redirecting to home')
         router.push('/')
-      } else if (pathname === '/profile' && (!token || token === "null" || token === "undefined")) {
+      } else if (pathname === '/profile' && !tokenIsValid) {
         console.log('Auth: On profile page without token, redirecting to login')
         router.push('/login')
+      } else if (pathname === '/profile' && tokenIsValid && !isAuthenticated) {
+        // If we have a token but isAuthenticated is false, update the auth state
+        console.log('Auth: On profile page with token but not authenticated, updating state')
+        setIsAuthenticated(true)
+        
+        // Try to get user data from localStorage
+        const userData = localStorage.getItem("userData")
+        if (userData && userData !== "null" && userData !== "undefined") {
+          try {
+            const parsedUser = JSON.parse(userData)
+            if (parsedUser && typeof parsedUser === "object") {
+              setUser(parsedUser)
+            }
+          } catch (error) {
+            console.error("Auth: Error parsing user data:", error)
+          }
+        }
       }
     }
-  }, [pathname, isInitialized, router])
+  }, [pathname, isInitialized, router, isAuthenticated])
 
   if (!isInitialized) {
     console.log('Auth: Not initialized, showing loading state')
@@ -297,6 +300,7 @@ export const AuthProvider = ({ children }) => {
       logout,
       checkAuthAndRedirect,
       isInitialized,
+      loginWithGoogle,
     }}>
       {children}
     </AuthContext.Provider>
@@ -312,4 +316,3 @@ const useAuth = () => {
 }
 
 export default useAuth
-
