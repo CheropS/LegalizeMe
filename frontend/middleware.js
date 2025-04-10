@@ -4,21 +4,12 @@ export function middleware(request) {
   const isAuthPage = request.nextUrl.pathname.startsWith('/login') || 
                     request.nextUrl.pathname.startsWith('/register')
 
+  // Always allow access to auth pages
   if (isAuthPage) {
     return NextResponse.next()
   }
 
-  // Get the user token from cookies
-  const token = request.cookies.get("access_token")?.value
-
-  // Check if the user is trying to access protected routes
-  if (request.nextUrl.pathname.startsWith("/profile")) {
-    if (!token) {
-      // Redirect to login page if no token is found
-      return NextResponse.redirect(new URL("/login", request.url))
-    }
-  }
-
+  // Always allow access to all other pages
   return NextResponse.next()
 }
 

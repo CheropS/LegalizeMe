@@ -9,7 +9,7 @@ import Image from 'next/image'
 
 export default function ProfilePage() {
   const router = useRouter()
-  const { user, logout, isAuthenticated, isInitialized } = useAuth()
+  const { user, logout, isAuthenticated, isInitialized, setUser, setIsAuthenticated } = useAuth()
   const [isLoading, setIsLoading] = useState(true)
 
   console.log('Profile: Component render - isInitialized:', isInitialized, 'isAuthenticated:', isAuthenticated, 'isLoading:', isLoading)
@@ -17,42 +17,64 @@ export default function ProfilePage() {
 
   useEffect(() => {
     console.log('Profile: Effect running - isInitialized:', isInitialized, 'isAuthenticated:', isAuthenticated)
-    if (isInitialized) {
-      if (!isAuthenticated) {
-        // Check if there's a token in localStorage before redirecting
-        const token = localStorage.getItem("access_token");
-        if (!token || token === "null" || token === "undefined") {
-          console.log('Profile: Not authenticated and no token, redirecting to login')
-          router.push('/login')
-        } else {
-          // We have a token but isAuthenticated is false - this might be a race condition
-          // Set loading to false to show the profile anyway since we have a token
-          console.log('Profile: Token found but not authenticated yet, showing profile')
-          setIsLoading(false)
-        }
-      } else {
-        console.log('Profile: Authenticated, setting loading to false')
-        setIsLoading(false)
-      }
-    } else {
-      console.log('Profile: Not initialized yet')
+    
+    // Only proceed if auth is initialized
+    if (!isInitialized) {
+      console.log('Profile: Auth not initialized yet, waiting...')
+      return;
     }
-  }, [isAuthenticated, isInitialized, router])
+    
+    // Check token directly
+    const token = localStorage.getItem("access_token");
+    const tokenIsValid = token && token !== "null" && token !== "undefined";
+    console.log('Profile: Token valid:', tokenIsValid);
+    
+    // If we have a token but not authenticated, update auth state
+    if (tokenIsValid && !isAuthenticated) {
+      console.log('Profile: Valid token but not authenticated, updating auth state')
+      setIsAuthenticated(true)
+      
+      // Get user data from localStorage
+      const userData = localStorage.getItem("userData");
+      if (userData && userData !== "null" && userData !== "undefined") {
+        try {
+          const parsedUser = JSON.parse(userData);
+          console.log('Profile: Setting user data from localStorage:', parsedUser)
+          setUser(parsedUser);
+        } catch (error) {
+          console.error("Profile: Error parsing user data:", error);
+        }
+      }
+    }
+    
+    // Always set loading to false to show the profile
+    console.log('Profile: Showing profile')
+    setIsLoading(false);
+  }, [isAuthenticated, isInitialized, setUser, setIsAuthenticated])
 
-  if (!isInitialized || isLoading) {
-    console.log('Profile: Showing loading state')
+  // Show loading state while initializing
+  if (!isInitialized) {
+    console.log('Profile: Auth not initialized, showing loading state')
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <p className="ml-3 text-blue-500">Initializing...</p>
+      </div>
+    )
+  }
+  
+  // Show loading state while checking auth
+  if (isLoading) {
+    console.log('Profile: Still loading, showing loading state')
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <p className="ml-3 text-blue-500">Loading profile...</p>
       </div>
     )
   }
 
-  if (!isAuthenticated) {
-    console.log('Profile: Not authenticated, returning null')
-    return null
-  }
-
+  // We have a valid token at this point, so always render the profile
   // Determine if we should show the user's profile picture or a default avatar
   const hasProfilePicture = user?.picture || user?.profile_picture
 

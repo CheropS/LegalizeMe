@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
         let userState = null
 
         if (token && token !== "null" && token !== "undefined") {
-          console.log('Auth: Valid token found')
+          console.log('Auth: Valid token found, setting authState to true')
           authState = true
           
           if (userData && userData !== "null" && userData !== "undefined") {
@@ -86,21 +86,42 @@ export const AuthProvider = ({ children }) => {
     }
 
     initAuth()
-  }, [router])
+  }, [])
 
   // Function to check auth and handle redirects
   const checkAuthAndRedirect = (targetPath = '/profile') => {
-    console.log('Auth: Checking auth for redirect to', targetPath)
+    console.log('Auth: Checking auth for redirect to', targetPath, 'current path:', pathname)
     const token = localStorage.getItem("access_token")
     const isValid = token && token !== "null" && token !== "undefined"
+    console.log('Auth: Token is valid:', isValid)
     
-    if (!isValid && pathname === targetPath) {
-      console.log('Auth: No valid token, redirecting from', pathname, 'to /login')
-      router.push('/login')
-      return false
+    // If we have a valid token and want to go to profile, just go there
+    if (isValid && targetPath === '/profile') {
+      console.log('Auth: Valid token, redirecting to profile page')
+      router.push('/profile')
+      return true
     }
     
-    console.log('Auth: Auth check complete, token valid:', isValid)
+    // Always update authentication state if we have a valid token
+    if (isValid && !isAuthenticated) {
+      console.log('Auth: Valid token but not authenticated, updating state')
+      setIsAuthenticated(true)
+      
+      // Try to get user data from localStorage
+      const userData = localStorage.getItem("userData")
+      if (userData && userData !== "null" && userData !== "undefined") {
+        try {
+          const parsedUser = JSON.parse(userData)
+          if (parsedUser && typeof parsedUser === "object") {
+            setUser(parsedUser)
+          }
+        } catch (error) {
+          console.error("Auth: Error parsing user data:", error)
+        }
+      }
+    }
+    
+    console.log('Auth: Auth check complete, token valid:', isValid, 'isAuthenticated:', isAuthenticated)
     return isValid
   }
 
@@ -248,20 +269,13 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (isInitialized) {
       console.log('Auth: Route change detected:', pathname)
-      const isAuthPage = pathname === '/login' || pathname === '/register'
+      
+      // If we have a token but not authenticated, update the state
       const token = localStorage.getItem("access_token")
       const tokenIsValid = token && token !== "null" && token !== "undefined"
-      console.log('Auth: Current route auth check - isAuthPage:', isAuthPage, 'hasToken:', !!token)
-
-      if (isAuthPage && tokenIsValid) {
-        console.log('Auth: On auth page with token, redirecting to home')
-        router.push('/')
-      } else if (pathname === '/profile' && !tokenIsValid) {
-        console.log('Auth: On profile page without token, redirecting to login')
-        router.push('/login')
-      } else if (pathname === '/profile' && tokenIsValid && !isAuthenticated) {
-        // If we have a token but isAuthenticated is false, update the auth state
-        console.log('Auth: On profile page with token but not authenticated, updating state')
+      
+      if (tokenIsValid && !isAuthenticated) {
+        console.log('Auth: Valid token but not authenticated, updating state')
         setIsAuthenticated(true)
         
         // Try to get user data from localStorage
@@ -278,7 +292,7 @@ export const AuthProvider = ({ children }) => {
         }
       }
     }
-  }, [pathname, isInitialized, router, isAuthenticated])
+  }, [pathname, isInitialized, isAuthenticated])
 
   if (!isInitialized) {
     console.log('Auth: Not initialized, showing loading state')

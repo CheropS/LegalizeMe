@@ -23,7 +23,7 @@ import { toast } from "react-toastify"
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [isLoggingOut, setIsLoggingOut] = useState(false)
-  const { isAuthenticated, user, logout } = useAuth()
+  const { isAuthenticated, user, logout, checkAuthAndRedirect } = useAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,7 +95,11 @@ export default function Navbar() {
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <Link 
-                  href="/profile" 
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    checkAuthAndRedirect('/profile');
+                  }}
                   className="flex items-center space-x-2 group relative"
                 >
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-0 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
@@ -229,4 +233,3 @@ export default function Navbar() {
     </header>
   )
 }
-

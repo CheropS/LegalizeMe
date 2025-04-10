@@ -15,7 +15,6 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [isRedirecting, setIsRedirecting] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
 
   // Load Google API script
@@ -99,18 +98,6 @@ export default function LoginPage() {
     }
   };
 
-  // Check if user is already logged in
-  useEffect(() => {
-    const token = localStorage.getItem("access_token")
-    if (token && token !== "null" && token !== "undefined") {
-      setIsRedirecting(true)
-      const timer = setTimeout(() => {
-        router.push("/")
-      }, 2000)
-      return () => clearTimeout(timer)
-    }
-  }, [router])
-
   const handleTogglePassword = () => setShowPassword((prev) => !prev)
 
   const handleSubmit = async (e) => {
@@ -161,20 +148,6 @@ export default function LoginPage() {
     } finally {
       setIsLoading(false)
     }
-  }
-
-  if (isRedirecting) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <div className="bg-gray-800/70 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-700/50 max-w-md w-full">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500 mx-auto mb-4"></div>
-            <h2 className="text-2xl font-bold text-white mb-2">Already Logged In</h2>
-            <p className="text-gray-300">Redirecting you to the home page...</p>
-          </div>
-        </div>
-      </div>
-    )
   }
 
   return (

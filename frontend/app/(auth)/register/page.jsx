@@ -10,10 +10,13 @@ export default function RegisterPage() {
   const router = useRouter()
   const { login, loginWithGoogle } = useAuth()
   const [showPassword, setShowPassword] = useState(false)
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [agreed, setAgreed] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  })
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -116,20 +119,20 @@ export default function RegisterPage() {
     setSuccess('')
     setIsLoading(true)
 
-    if (!username || !email || !password) {
+    if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
       setError('Please fill in all fields')
       setIsLoading(false)
       return
     }
 
-    if (!validatePassword(password)) {
-      setError('Password does not meet the requirements')
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match')
       setIsLoading(false)
       return
     }
 
-    if (!agreed) {
-      setError('Please agree to the Terms of Service and Data Governance Policy')
+    if (!validatePassword(formData.password)) {
+      setError('Password does not meet the requirements')
       setIsLoading(false)
       return
     }
@@ -138,7 +141,7 @@ export default function RegisterPage() {
       const response = await fetch('https://legalizeme.azurewebsites.net/api/register/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username: formData.username, email: formData.email, password: formData.password }),
       })
 
       const data = await response.json()
@@ -202,8 +205,8 @@ export default function RegisterPage() {
                   </div>
                   <input
                     type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={formData.username}
+                    onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                     placeholder="Choose a username"
                     className="block w-full p-4 pl-10 text-white placeholder-gray-500 transition-all duration-200 border border-gray-700 rounded-md bg-gray-800/50 focus:outline-none focus:border-indigo-500 caret-indigo-500"
                   />
@@ -218,8 +221,8 @@ export default function RegisterPage() {
                   </div>
                   <input
                     type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="Enter your email"
                     className="block w-full p-4 pl-10 text-white placeholder-gray-500 transition-all duration-200 border border-gray-700 rounded-md bg-gray-800/50 focus:outline-none focus:border-indigo-500 caret-indigo-500"
                   />
@@ -234,8 +237,8 @@ export default function RegisterPage() {
                   </div>
                   <input
                     type={showPassword ? 'text' : 'password'}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     placeholder="Create a password"
                     className="block w-full p-4 pl-10 text-white placeholder-gray-500 transition-all duration-200 border border-gray-700 rounded-md bg-gray-800/50 focus:outline-none focus:border-indigo-500 caret-indigo-500"
                   />
@@ -259,24 +262,31 @@ export default function RegisterPage() {
                 </ul>
               </div>
 
-              <div className="flex items-center">
-                <input
-                  id="terms"
-                  type="checkbox"
-                  checked={agreed}
-                  onChange={(e) => setAgreed(e.target.checked)}
-                  className="h-4 w-4 rounded border-gray-600 text-indigo-500 focus:ring-indigo-500 bg-gray-700/50"
-                />
-                <label htmlFor="terms" className="ml-2 block text-sm text-gray-300">
-                  I agree to the{' '}
-                  <Link href="/terms" className="font-medium text-indigo-400 hover:text-indigo-300">
-                    Terms of Service
-                  </Link>{' '}
-                  and{' '}
-                  <Link href="/privacy" className="font-medium text-indigo-400 hover:text-indigo-300">
-                    Data Governance Policy
-                  </Link>
-                </label>
+              <div>
+                <label className="text-base font-medium text-gray-300">Confirm Password</label>
+                <div className="mt-2.5 relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Lock className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    value={formData.confirmPassword}
+                    onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                    placeholder="Confirm password"
+                    className="block w-full p-4 pl-10 text-white placeholder-gray-500 transition-all duration-200 border border-gray-700 rounded-md bg-gray-800/50 focus:outline-none focus:border-indigo-500 caret-indigo-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword((prev) => !prev)}
+                    className="absolute inset-y-0 right-4 flex items-center text-gray-500"
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff className="h-5 w-5 text-gray-400" />
+                    ) : (
+                      <Eye className="h-5 w-5 text-gray-400" />
+                    )}
+                  </button>
+                </div>
               </div>
 
               <div>
