@@ -1,20 +1,11 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { AuthProvider } from "@/hooks/useAuth";
 import { Montserrat } from 'next/font/google'
-import LayoutContent from "@/components/LayoutContent";
-import GlobalBackground from "@/components/global-background";
+import './globals.css'
+import { AuthProvider } from "@/hooks/useAuth"
+import GlobalBackground from "@/components/global-background"
 import CookieBanner from '@/components/cookie-banner'
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import GoogleAnalytics from '@/components/GoogleAnalytics'
+import { Toaster } from '@/components/ui/toaster'
+import LayoutWrapper from '@/components/LayoutWrapper'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -29,16 +20,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`} suppressHydrationWarning>
+    <html lang="en" className={`${montserrat.variable} antialiased`} suppressHydrationWarning>
+      <head>
+        <link rel="icon" type="image/svg+xml" href="/Legalizeme.svg" />
+      </head>
       <body className={`${montserrat.variable} font-sans min-h-screen flex flex-col bg-gray-900 text-white overflow-x-hidden relative`}>
         <GlobalBackground />
         <AuthProvider>
-          <LayoutContent>
+          <LayoutWrapper>
             {children}
-          </LayoutContent>
+          </LayoutWrapper>
         </AuthProvider>
         <CookieBanner />
+        <Toaster />
+        <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
       </body>
     </html>
-  );
+  )
 }
