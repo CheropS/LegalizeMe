@@ -16,13 +16,14 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { toast } from "react-toastify"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [isLoggingOut, setIsLoggingOut] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const { isAuthenticated, user, logout, checkAuthAndRedirect } = useAuth()
 
   useEffect(() => {
@@ -145,7 +146,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu */}
-          <Sheet>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button 
                 variant="ghost" 
@@ -160,7 +161,7 @@ export default function Navbar() {
               <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between py-4 border-b border-white/10">
-                  <Link href="/" className="flex items-center">
+                  <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center">
                     <img src="/logo.svg" alt="LegalizeMe" className="h-7 w-auto" />
                   </Link>
                 </div>
@@ -170,6 +171,7 @@ export default function Navbar() {
                     <Link
                       key={item.name}
                       href={item.href}
+                      onClick={() => setIsOpen(false)}
                       className="relative group flex items-center px-4 py-3 text-sm font-medium text-white/90 hover:text-blue-400 rounded-lg transition-all duration-300"
                     >
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
@@ -199,14 +201,25 @@ export default function Navbar() {
                         </Avatar>
                         <div>
                           <p className="text-sm font-medium text-white group-hover:text-blue-400">{user?.name || "User"}</p>
-                          <Link href="/profile" className="text-xs text-gray-400 hover:text-blue-400 transition-colors">
+                          <Link 
+                            href="#" 
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setIsOpen(false);
+                              checkAuthAndRedirect('/profile');
+                            }} 
+                            className="text-xs text-gray-400 hover:text-blue-400 transition-colors"
+                          >
                             View Profile
                           </Link>
                         </div>
                       </div>
                       <Button 
                         variant="destructive" 
-                        onClick={handleLogout} 
+                        onClick={() => {
+                          setIsOpen(false);
+                          handleLogout();
+                        }} 
                         disabled={isLoggingOut} 
                         className="w-full transition-all duration-300 hover:bg-red-500 hover:scale-[1.02] text-sm"
                       >
@@ -220,6 +233,7 @@ export default function Navbar() {
                         variant="outline"
                         asChild 
                         className="relative group w-full"
+                        onClick={() => setIsOpen(false)}
                       >
                         <Link href="/login" className="relative">
                           <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
