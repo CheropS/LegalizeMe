@@ -52,7 +52,7 @@ const Cta = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <div className="absolute -inset-0.5 rounded-lg opacity-25 group-hover:opacity-100 transition duration-300" />
-                  <div className="relative text-white transition-all duration-300 hover:text-purple-400 border border-white/10 rounded-lg px-6 py-2.5 flex items-center">
+                  <div className="relative text-white transition-all duration-300 hover:text-purple-400 border border-white/50 rounded-lg px-6 py-2.5 flex items-center">
                     Get Pro Version
                     <svg
                       className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform inline-flex"
@@ -76,7 +76,7 @@ const Cta = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <div className="absolute -inset-0.5 rounded-lg opacity-25 group-hover:opacity-100 transition duration-300" />
-                    <div className="relative text-white transition-all duration-300 hover:text-purple-400 border border-white/10 rounded-lg px-6 py-2.5 flex items-center">
+                    <div className="relative text-white transition-all duration-300 hover:text-purple-400 border border-white/50 rounded-lg px-6 py-2.5 flex items-center">
                     View Cases
                     <svg
                       className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform inline-flex"

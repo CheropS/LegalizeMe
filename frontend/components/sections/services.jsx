@@ -5,25 +5,24 @@ import { motion } from "framer-motion";
 
 const Service = () => {
   return (
-    <section className="py-20 font-montserrat">
+    <section className="py-12 sm:py-16 md:py-20 font-montserrat">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-        <div className="mb-16 text-center">
-          <span className="text-purple-400 text-xl">Our Services</span>
-          <h2 className="mt-2 text-3xl font-bold text-white">What We Offer</h2>
-          <p className="mt-3 text-gray-300">
+        <div className="mb-8 sm:mb-12 md:mb-16 text-center">
+          <span className="text-purple-400 text-lg sm:text-xl">Our Services</span>
+          <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-bold text-white">What We Offer</h2>
+          <p className="mt-3 text-sm sm:text-base text-gray-300 max-w-2xl mx-auto">
             Know more about our services and how we can help you with your legal needs
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
           <ServiceCard
-            title="AI Powered Database" 
-            details="Get to experience the best lightning-fast AI that helps you find the best law resources and services.
-            Say goodbye to research headaches and hello to effortless precision."
+            title="AI-Powered Legal Intelligence" 
+            details="LegalizeMe connects you to trusted legal sources—like Kenya Law—in real time, enhanced by AI. Instantly search, summarize, and generate legal content with precision. Whether you're drafting documents, exploring case law, or navigating complex legal questions, Counsel turns hours of work into seconds of insight. This isn't just research. It's legal clarity—on demand."
             icon={
               <svg
-                width="36"
-                height="36"
+                width="32"
+                height="32"
                 viewBox="0 0 36 36"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -41,8 +40,8 @@ const Service = () => {
             details="Explore our user-friendly interface that makes it easy for you to find the best law resources and services. Our platform is designed to provide you with the best legal experience possible."
             icon={
               <svg
-                width="36"
-                height="36"
+                width="32"
+                height="32"
                 viewBox="0 0 36 36"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -59,12 +58,11 @@ const Service = () => {
           />
           <ServiceCard
             title="Interactive Chatbot"
-            details="Draft contracts, get legal answers, and generate documents in real-time-fast, precise, and effortless with our interactive chatbot.
-            Accessible anytime, anywhere."
+            details="Draft contracts, get legal answers, and generate documents in real-time-fast, precise, and effortless with our interactive chatbot. Accessible anytime, anywhere."
             icon={
               <svg
-                width="36"
-                height="36"
+                width="32"
+                height="32"
                 viewBox="0 0 36 36"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,22 +86,22 @@ export default Service;
 const ServiceCard = ({ icon, title, details, delay }) => {
   return (
     <motion.div 
-      className="relative group"
+      className="relative group h-full"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
     >
       <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
-      <div className="relative p-6 bg-black/50 backdrop-blur-sm rounded-lg border border-white/10">
-        <div className="text-blue-400 mb-6 transition-transform duration-300 group-hover:scale-110">
+      <div className="relative p-4 sm:p-6 bg-black/50 backdrop-blur-sm rounded-lg border border-white/10 h-full flex flex-col">
+        <div className="text-blue-400 mb-4 sm:mb-6 transition-transform duration-300 group-hover:scale-110">
           {icon}
         </div>
         <div className="flex-grow">
-          <h3 className="text-2xl font-medium text-white transition-colors duration-300 group-hover:text-blue-400">
+          <h3 className="text-xl sm:text-2xl font-medium text-white transition-colors duration-300 group-hover:text-blue-400">
             {title}
           </h3>
-          <p className="mt-3 text-md text-gray-300 line-clamp-3">
+          <p className="mt-3 text-sm sm:text-base text-gray-300">
             {details}
           </p>
         </div>
