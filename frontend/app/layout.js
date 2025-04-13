@@ -6,6 +6,7 @@ import CookieBanner from '@/components/cookie-banner'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import { Toaster } from '@/components/ui/toaster'
 import LayoutWrapper from '@/components/LayoutWrapper'
+import { Analytics } from "@vercel/analytics/react"
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <LayoutWrapper>
             {children}
+            <Analytics />
           </LayoutWrapper>
         </AuthProvider>
         <CookieBanner />
