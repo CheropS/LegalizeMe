@@ -30,7 +30,7 @@ const UseCases = () => {
           />
           <UseCaseCard
             title="Case Law Insights"
-            description="Get instant access to relevant case law and legal precedents with our comprehensive database."
+            description="Access relevant precedents instantly—AI-curated,accurate and tailored to your legal needs."
             icon={<Scale className="h-8 w-8 sm:h-10 sm:w-10 text-indigo-400" />}
             delay={0.6}
           />
