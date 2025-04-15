@@ -228,7 +228,7 @@ def subscribe():
                 <p>Hello,</p>
                 <p>Thank you for subscribing to our newsletter. We're excited to have you join our community!</p>
                 <p>You'll now receive regular updates on legal services, industry news, and special offers.</p>
-                <p>If you have any questions, feel free to contact us at <a href="mailto:{SMTP_USERNAME}">{SMTP_USERNAME}</a> or call us at +254-714-844-320.</p>
+                <p>If you have any questions, feel free to contact us at <a href="mailto:{SMTP_USERNAME}">{SMTP_USERNAME}</a>.</p>
                 <p>Best regards,<br/>The LegalizeMe Team</p>
               </div>
               
