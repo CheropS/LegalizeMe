@@ -20,8 +20,6 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-# GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
-# SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Configure logging with more detailed formatting
 if not os.path.exists('logs'):
@@ -199,8 +197,8 @@ def subscribe():
         if not validate_email(email):
             return jsonify({'error': 'Please provide a valid email address'}), 400
 
-        # Create HTML email body
-        html = f"""
+        # 1. Create admin notification email
+        admin_html = f"""
         <html>
           <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
             <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px;">
@@ -219,10 +217,54 @@ def subscribe():
         </html>
         """
         
-        # Send email
-        send_email({'email': email}, 'New Newsletter Subscription', html)
+        # 2. Create welcome email for the subscriber
+        welcome_html = f"""
+        <html>
+          <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
+            <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px;">
+              <h2 style="color: #2c5282; margin-bottom: 20px;">Welcome to LegalizeMe Newsletter!</h2>
+              
+              <div style="background-color: white; padding: 20px; border-radius: 5px; margin-top: 20px;">
+                <p>Hello,</p>
+                <p>Thank you for subscribing to our newsletter. We're excited to have you join our community!</p>
+                <p>You'll now receive regular updates on legal services, industry news, and special offers.</p>
+                <p>If you have any questions, feel free to contact us at <a href="mailto:{SMTP_USERNAME}">{SMTP_USERNAME}</a> or call us at +254-714-844-320.</p>
+                <p>Best regards,<br/>The LegalizeMe Team</p>
+              </div>
+              
+              <div style="margin-top: 20px; font-size: 12px; color: #666; text-align: center;">
+                <p>© {datetime.now().year} LegalizeMe. All rights reserved.</p>
+              </div>
+            </div>
+          </body>
+        </html>
+        """
         
-        return jsonify({'message': 'Subscription successful'}), 200
+        # 3. Send admin notification
+        send_email({'email': email}, 'New Newsletter Subscription', admin_html)
+        
+        # 4. Send welcome email to subscriber
+        try:
+            # Create message container for subscriber welcome
+            msg = MIMEMultipart('alternative')
+            msg['Subject'] = 'Welcome to LegalizeMe Newsletter'
+            msg['From'] = formataddr((COMPANY_NAME, SMTP_USERNAME))
+            msg['To'] = email
+            msg.attach(MIMEText(welcome_html, 'html'))
+            
+            # Send the welcome email
+            with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=30) as server:
+                server.starttls()
+                server.login(SMTP_USERNAME, SMTP_PASSWORD)
+                server.send_message(msg)
+                
+            app.logger.info(f"Welcome email sent to new subscriber: {email}")
+        except Exception as e:
+            app.logger.error(f"Failed to send welcome email to subscriber: {str(e)}")
+            # We don't want to return an error if only the welcome email fails
+            # The subscription is still recorded
+        
+        return jsonify({'message': 'Subscription successful! Check your email for confirmation.'}), 200
     except Exception as e:
         app.logger.error(f"Error processing subscription: {str(e)}")
         return jsonify({'error': str(e)}), 500

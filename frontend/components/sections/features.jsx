@@ -5,9 +5,9 @@ import { motion } from 'framer-motion'
 
 const features = [
   {
-      name: 'AI-Powered Legal Database',
+      name: 'AI That Thinks Like a Legal Mind',
       description:
-          'Our AI-driven database transforms legal research with rapid, precise searches, personalized insights, and instant summaries. Whether you are a legal professional or seeking quick access to legal information, LegalizeMe saves you time, turning complex searches into effortless results. Embrace smarter, faster legal work.',
+          'LegalizeMe isn’t just about speed — it’s about precision. We connect you to authoritative legal sources like Kenya Law and layer that with cutting-edge AI to distill insight, draft legal documents, and surface case law in seconds. No clutter. No confusion. Just clarity — when it matters most.',
       icon: ChatBubbleLeftIcon,
   },
   {

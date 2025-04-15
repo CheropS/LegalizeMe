@@ -47,3 +47,4 @@
 [2025-02-14 10:22:13] INFO [app.py:87] - Email sent successfully for subscriber
 [2025-02-14 11:46:07] INFO [app.py:319] - Starting server with email configuration: smtp.zoho.com:587
 [2025-02-14 11:46:07] INFO [app.py:320] - Recipient email configured as: info.support@legalizeme.site
+[2025-04-15 14:09:35] ERROR [app.py:357] - Missing required environment variables: SMTP_USERNAME, SMTP_PASSWORD, RECIPIENT_EMAIL
