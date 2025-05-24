@@ -13,14 +13,69 @@ const AuthContext = createContext({
   checkAuthAndRedirect: () => {},
   isInitialized: false,
   loginWithGoogle: () => {},
+  sessionTimeoutMinutes: 30,
+  setSessionTimeoutMinutes: () => {},
 })
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isInitialized, setIsInitialized] = useState(false)
   const [user, setUser] = useState(null)
+  const [sessionTimeoutMinutes, setSessionTimeoutMinutes] = useState(43200)
+  const [lastActivity, setLastActivity] = useState(Date.now())
   const router = useRouter()
   const pathname = usePathname()
+
+  // Track user activity to reset timeout
+  useEffect(() => {
+    if (!isAuthenticated) return
+
+    // Function to handle user activity
+    const handleActivity = () => {
+      setLastActivity(Date.now())
+      localStorage.setItem('lastActivityTime', Date.now().toString())
+    }
+
+    // Add event listeners for user activity
+    const activityEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart']
+    activityEvents.forEach(event => {
+      window.addEventListener(event, handleActivity)
+    })
+
+    return () => {
+      activityEvents.forEach(event => {
+        window.removeEventListener(event, handleActivity)
+      })
+    }
+  }, [isAuthenticated])
+
+  // Check for session timeout
+  useEffect(() => {
+    if (!isAuthenticated) return
+
+    const checkSessionTimeout = () => {
+      const storedLastActivity = localStorage.getItem('lastActivityTime')
+      if (!storedLastActivity) return
+
+      const lastActivityTime = parseInt(storedLastActivity, 10)
+      const currentTime = Date.now()
+      const inactiveTime = currentTime - lastActivityTime
+      const timeoutDuration = sessionTimeoutMinutes * 60 * 1000
+
+      if (inactiveTime >= timeoutDuration) {
+        console.log('Session timeout due to inactivity')
+        logout()
+      }
+    }
+
+    // Check every minute
+    const intervalId = setInterval(checkSessionTimeout, 60000)
+    
+    // Also check on component mount
+    checkSessionTimeout()
+
+    return () => clearInterval(intervalId)
+  }, [isAuthenticated, sessionTimeoutMinutes])
 
   // Initialize auth state
   useEffect(() => {
@@ -34,6 +89,12 @@ export const AuthProvider = ({ children }) => {
 
         let authState = false
         let userState = null
+        
+        // Store session timeout preference if it exists
+        const storedTimeout = localStorage.getItem("sessionTimeoutMinutes")
+        if (storedTimeout) {
+          setSessionTimeoutMinutes(parseInt(storedTimeout, 10) || 43200)
+        }
 
         if (token && token !== "null" && token !== "undefined") {
           // console.log('Auth: Valid token found, setting authState to true')
@@ -94,6 +155,21 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("access_token")
     const isValid = token && token !== "null" && token !== "undefined"
     // console.log('Auth: Token is valid:', isValid)
+    
+    // If token is valid but user data is missing, try to recover it
+    if (isValid && !user) {
+      const userData = localStorage.getItem("userData")
+      if (userData && userData !== "null" && userData !== "undefined") {
+        try {
+          const parsedUser = JSON.parse(userData)
+          if (parsedUser && typeof parsedUser === "object") {
+            setUser(parsedUser)
+          }
+        } catch (error) {
+          console.error("Error parsing user data:", error)
+        }
+      }
+    }
     
     // If we have a valid token and want to go to profile, just go there
     if (isValid && targetPath === '/profile') {
@@ -315,6 +391,8 @@ export const AuthProvider = ({ children }) => {
       checkAuthAndRedirect,
       isInitialized,
       loginWithGoogle,
+      sessionTimeoutMinutes,
+      setSessionTimeoutMinutes,
     }}>
       {children}
     </AuthContext.Provider>

@@ -24,7 +24,41 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [isLoggingOut, setIsLoggingOut] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [localAuthState, setLocalAuthState] = useState(false)
   const { isAuthenticated, user, logout, checkAuthAndRedirect } = useAuth()
+
+  // Check for authentication token on component mount and window focus
+  useEffect(() => {
+    const checkAuthState = () => {
+      const token = localStorage.getItem("access_token")
+      const isValid = token && token !== "null" && token !== "undefined"
+      setLocalAuthState(isValid)
+    }
+    
+    // Check on mount
+    checkAuthState()
+    
+    // Also check when window gets focus (user returns to tab)
+    window.addEventListener('focus', checkAuthState)
+    
+    // Listen for storage events (for multi-tab support)
+    const handleStorageChange = (e) => {
+      if (e.key === "access_token") {
+        checkAuthState()
+      }
+    }
+    window.addEventListener('storage', handleStorageChange)
+    
+    return () => {
+      window.removeEventListener('focus', checkAuthState)
+      window.removeEventListener('storage', handleStorageChange)
+    }
+  }, [])
+  
+  // Sync local auth state with context auth state
+  useEffect(() => {
+    setLocalAuthState(isAuthenticated)
+  }, [isAuthenticated])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,7 +127,7 @@ export default function Navbar() {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
-            {isAuthenticated ? (
+            {isAuthenticated || localAuthState ? (
               <div className="flex items-center space-x-4">
                 <Link 
                   href="#" 
@@ -187,7 +221,7 @@ export default function Navbar() {
                 </nav>
 
                 <div className="mt-auto border-t border-white/10 py-4">
-                  {isAuthenticated ? (
+                  {isAuthenticated || localAuthState ? (
                     <div className="space-y-4 px-4">
                       <div className="flex items-center space-x-3">
                         <Avatar className="h-10 w-10 ring-2 ring-primary/20 group-hover:ring-blue-400">
