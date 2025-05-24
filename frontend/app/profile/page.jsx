@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 import { Button } from '@/components/ui/button'
-import { LogOut, User, Settings, Edit, Lock, Camera, Save, X } from 'lucide-react'
+import { LogOut, User, Settings, Edit, Lock, Camera, Save, X, Clock } from 'lucide-react'
 import Image from 'next/image'
 import { toast } from 'react-toastify'
+import SessionTimeoutSettings from '@/components/SessionTimeoutSettings'
 
 export default function ProfilePage() {
   const router = useRouter()
@@ -14,6 +15,7 @@ export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true)
   const [isEditing, setIsEditing] = useState(false)
   const [isChangingPassword, setIsChangingPassword] = useState(false)
+  const [showSecuritySettings, setShowSecuritySettings] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -377,6 +379,24 @@ export default function ProfilePage() {
                           <p className="text-white">{new Date(user.date_joined).toLocaleString()}</p>
                         </div>
                       )}
+                      
+                      <div className="mt-6">
+                        <Button
+                          variant="outline"
+                          onClick={() => setShowSecuritySettings(!showSecuritySettings)}
+                          className="text-white border-white/20 hover:bg-white/10"
+                        >
+                          <Clock className="w-4 h-4 mr-2" />
+                          {showSecuritySettings ? 'Hide Security Settings' : 'Security Settings'}
+                        </Button>
+                        
+                        {showSecuritySettings && (
+                          <div className="mt-4 p-4 bg-white/5 rounded-lg">
+                            <h3 className="text-lg font-medium text-white mb-4">Security Settings</h3>
+                            <SessionTimeoutSettings />
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>
