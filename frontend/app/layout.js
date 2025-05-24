@@ -35,7 +35,8 @@ export default function RootLayout({ children }) {
         </AuthProvider>
         <CookieBanner />
         <Toaster />
-        <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        {/* <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} /> */}
+        <GoogleAnalytics GA_MEASUREMENT_ID="G-3KG2ZH3Y5F" />
       </body>
     </html>
   )

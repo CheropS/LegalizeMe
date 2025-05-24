@@ -11,12 +11,12 @@ const Pricing = () => {
   const individualPlans = [
     {
       name: "Monthly Plan",
-      price: 1500,
+      price: 1200,
       billing: "per month",
       features: [
-        "1M tokens per month",
+        "150,000 tokens per month",
         "7-day free trial",
-        "100,000 trial tokens",
+        "10,000 trial tokens",
         "Access to all AI features",
         "Priority support",
       ],
@@ -25,15 +25,14 @@ const Pricing = () => {
     },
     {
       name: "Annual Plan",
-      price: 6000,
+      price: 10000,
       billing: "per year",
       features: [
-        "12M tokens per year",
+        "2M tokens per year",
         "7-day free trial",
-        "100,000 trial tokens",
+        "10,000 trial tokens",
         "Access to all AI features",
         "Priority support",
-        "2 months free",
       ],
       buttonText: "Start free trial",
       popular: true,
@@ -56,12 +55,40 @@ const Pricing = () => {
       popular: false,
     },
     {
+      name: "Pay-as-you-go",
+      price: 0.08,
+      billing: "per token",
+      features: [
+        "Up to 1M-5M tokens",
+        "KES 80 per 1,000 tokens",
+        "No monthly commitment",
+        "Flexible usage",
+        "Real-time billing",
+      ],
+      buttonText: "Get started",
+      popular: false,
+    },
+    {
+      name: "Pay-as-you-go",
+      price: 0.05,
+      billing: "per token",
+      features: [
+        "Up to 1M tokens",
+        "KES 50 per 1,000 tokens",
+        "No monthly commitment",
+        "Flexible usage",
+        "Real-time billing",
+      ],
+      buttonText: "Get started",
+      popular: false,
+    },
+    {
       name: "Starter Plan",
-      price: 25000,
+      price: 30000,
       billing: "per month",
       features: [
         "500,000 tokens",
-        "KES 0.05 per token",
+        "KES 0.06 per token",
         "API access",
         "Basic support",
         "Standard integration",
@@ -71,11 +98,11 @@ const Pricing = () => {
     },
     {
       name: "Professional Plan",
-      price: 50000,
+      price: 60000,
       billing: "per month",
       features: [
         "2M tokens",
-        "KES 0.025 per token",
+        "KES 0.03 per token",
         "API access",
         "Priority support",
         "Advanced integration",
@@ -85,18 +112,32 @@ const Pricing = () => {
     },
     {
       name: "Enterprise Plan",
-      price: 100000,
+      price: 120000,
       billing: "per month",
       features: [
         "5M tokens",
-        "KES 0.02 per token",
+        "KES 0.024 per token",
         "API access",
         "24/7 support",
-        "Custom integration",
       ],
       buttonText: "Contact sales",
       popular: false,
     },
+    {
+      name: "Annual API Plan",
+      price: 1200000,
+      billing: "per year",
+      features: [
+        "5M tokens",
+        "KES 0.024 per token",
+        "API access",
+        "24/7 support",
+        "Custom integration(negotiable)",
+        "Private Cloud support"
+      ],
+      buttonText: "Contact sales",
+      popular: false,
+    }
   ];
 
   const handleRedirectToCheckout = (plan) => {

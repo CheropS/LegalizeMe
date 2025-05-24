@@ -8,7 +8,7 @@ function LayoutContentWrapper({ children }) {
   const pathname = usePathname()
   
   // Check if current path is in auth routes or counsel
-  const isAuthRoute = pathname === '/login' || pathname === '/register' || pathname === '/forgot-password'
+  const isAuthRoute = pathname === '/login' || pathname === '/register' || pathname === '/forgot-password' || pathname === '/terms' || pathname === '/privacy'
   const isCounselPage = pathname === '/counsel'
 
   if (isAuthRoute) {

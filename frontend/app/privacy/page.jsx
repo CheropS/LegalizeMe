@@ -10,9 +10,9 @@ export default function PrivacyPolicy() {
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">
-            <Link href="/" className="inline-flex items-center text-blue-400 hover:text-blue-300">
+            <Link href="/register" className="inline-flex items-center text-blue-400 hover:text-blue-300">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
+              Back to Sign Up
             </Link>
           </div>
 

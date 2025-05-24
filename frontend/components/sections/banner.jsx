@@ -29,7 +29,7 @@ const carouselImages = [
   },
   {
     src: '/justice.jpg',
-    title: 'Justice Made Accessible',
+    title: 'Lubricating the Wheels of Justice',
     description: "Breaking down barriers to make legal services available to everyone, everywhere. Get in touch with us for more information and support."
   },
   {
