@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Check, Building2, Users, Zap, ArrowRight, ChevronRight } from "lucide-react";
+import PricingFAQs from "@/components/sections/pricingFaqs";
+import Tooltip from "@/components/ui/tooltip";
 
 const Pricing = () => {
   const [activeTab, setActiveTab] = useState("individual"); // "individual" or "enterprise"
@@ -42,8 +44,8 @@ const Pricing = () => {
   const enterprisePlans = [
     {
       name: "Tier 1",
-      price: 0.10,
-      billing: "per token",
+      price: "100,000 max per month",
+      billing: "depending on token usage",
       features: [
         "Up to 1M tokens",
         "KES 100 per 1,000 tokens",
@@ -56,8 +58,8 @@ const Pricing = () => {
     },
     {
       name: "Tier 2",
-      price: 0.08,
-      billing: "per token",
+      price: "400,000 max per month",
+      billing: "depending on token usage",
       features: [
         "Up to 1M-5M tokens",
         "KES 80 per 1,000 tokens",
@@ -70,17 +72,18 @@ const Pricing = () => {
     },
     {
       name: "Tier 3",
-      price: 0.05,
-      billing: "per token",
+      price: "Custom Pricing",
+      billing: "depending on token usage",
       features: [
-        "Up to 5M tokens",
+        "Up to 5M+ tokens",
         "KES 50 per 1,000 tokens",
         "No monthly commitment",
         "Flexible usage",
         "Real-time billing",
+        "Priority support"
       ],
       buttonText: "Get started",
-      popular: false,
+      popular: true,
     },
     {
       name: "Starter Plan",
@@ -200,7 +203,37 @@ const Pricing = () => {
             {plan.features.map((feature, i) => (
               <li key={i} className="flex items-start gap-2">
                 <Check className="h-5 w-5 text-blue-400 mt-1 flex-shrink-0" />
-                <span className="text-gray-300">{feature}</span>
+                <span className="text-gray-300">
+                  {feature.toLowerCase().includes('token') ? (
+                    <span>
+                      {feature.split(/token/i).map((part, idx, arr) => {
+                        // If this is the last part and it's empty, don't render it
+                        if (idx === arr.length - 1) return part;
+                        
+                        // Get the original token text (with original casing)
+                        const originalText = feature.substring(
+                          feature.toLowerCase().indexOf('token', 
+                            part ? feature.toLowerCase().indexOf(part.toLowerCase()) + part.length : 0
+                          ),
+                          feature.toLowerCase().indexOf('token', 
+                            part ? feature.toLowerCase().indexOf(part.toLowerCase()) + part.length : 0
+                          ) + 5
+                        );
+                        
+                        return (
+                          <React.Fragment key={idx}>
+                            {part}
+                            <Tooltip content="A short piece of text (about 4 characters). All AI interactions are measured in tokens.">
+                              {originalText}
+                            </Tooltip>
+                          </React.Fragment>
+                        );
+                      })}
+                    </span>
+                  ) : (
+                    feature
+                  )}
+                </span>
               </li>
             ))}
           </ul>
@@ -222,7 +255,7 @@ const Pricing = () => {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
       <div className="pt-20">
-        <section className="py-16 sm:py-20 font-montserrat">
+        <section className="py-16 sm:py-20 font-montserrat mb-0">
           <div className="px-4 mx-auto max-w-6xl sm:px-6 lg:px-8">
             <motion.div 
               className="max-w-2xl mx-auto text-center mb-12"
@@ -279,18 +312,42 @@ const Pricing = () => {
             </motion.div>
 
             {/* Plan Cards */}
-            <div className={`grid gap-6 ${
-              activeTab === "individual" 
-                ? "grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto" 
-                : "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-            }`}>
-              {renderPlanCards(activeTab === "individual" ? individualPlans : enterprisePlans)}
-            </div>
+            {activeTab === "individual" ? (
+              <div className="grid gap-6 grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto">
+                {renderPlanCards(individualPlans)}
+              </div>
+            ) : (
+              <>
+                <div className="mb-8 text-center">
+                  <h2 className="text-2xl font-bold text-white">
+                    Pay-Per-<Tooltip content="A short piece of text (about 4 characters). All AI interactions are measured in tokens.">Token</Tooltip> Plans
+                  </h2>
+                  <p className="text-gray-300 mt-2">Flexible pricing based on your usage</p>
+                </div>
+                <div className="grid gap-6 grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto">
+                  {renderPlanCards(enterprisePlans.slice(0, 3))}
+                </div>
+                
+                <div className="mt-16 mb-8 text-center">
+                  <h2 className="text-2xl font-bold text-white">Monthly & Annual Plans</h2>
+                  <p className="text-gray-300 mt-2">Predictable pricing for consistent usage</p>
+                </div>
+                <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 max-w-4xl mx-auto">
+                  {renderPlanCards(enterprisePlans.slice(3, 5))}
+                </div>
+                
+                {enterprisePlans.length > 5 && (
+                  <div className="mt-10 grid gap-6 grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto">
+                    {renderPlanCards(enterprisePlans.slice(5))}
+                  </div>
+                )}
+              </>
+            )}
 
             {/* Enterprise Package */}
             {activeTab === "enterprise" && (
               <motion.div 
-                className="mt-12 text-center"
+                className="mt-12 text-center mb-0"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -313,6 +370,8 @@ const Pricing = () => {
             )}
           </div>
         </section>
+
+        <PricingFAQs />
       </div>
     </main>
   );
