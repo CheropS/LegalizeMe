@@ -41,7 +41,7 @@ const Pricing = () => {
 
   const enterprisePlans = [
     {
-      name: "Pay-as-you-go",
+      name: "Tier 1",
       price: 0.10,
       billing: "per token",
       features: [
@@ -55,7 +55,7 @@ const Pricing = () => {
       popular: false,
     },
     {
-      name: "Pay-as-you-go",
+      name: "Tier 2",
       price: 0.08,
       billing: "per token",
       features: [
@@ -69,11 +69,11 @@ const Pricing = () => {
       popular: false,
     },
     {
-      name: "Pay-as-you-go",
+      name: "Tier 3",
       price: 0.05,
       billing: "per token",
       features: [
-        "Up to 1M tokens",
+        "Up to 5M tokens",
         "KES 50 per 1,000 tokens",
         "No monthly commitment",
         "Flexible usage",
